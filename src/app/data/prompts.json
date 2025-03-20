@@ -1,0 +1,49 @@
+{
+    "prompts": [
+      {
+        "id": "tech_skills",
+        "question": "What are her strongest technical skills?",
+        "answer": "Aishwarya's strongest technical skills are in JavaScript/TypeScript ecosystems, with expertise in Node.js, NestJS, and React. She has extensive experience with microservices architecture, distributed systems using Kafka, and containerization with Docker and Kubernetes. Her database skills span MongoDB, MySQL, and PostgreSQL, complemented by AWS cloud infrastructure knowledge."
+      },
+      {
+        "id": "specific_tech",
+        "question": "Has she worked with [specific technology]?",
+        "answer": "Please specify the technology you're interested in. Based on her resume, Aishwarya has worked with JavaScript, TypeScript, NodeJS, NestJS, ReactJS, NextJS, PostgreSQL, MySQL, AWS, Kafka, Docker, Kubernetes, MongoDB, Redis, and Material-UI."
+      },
+      {
+        "id": "leadership",
+        "question": "What leadership roles has she handled?",
+        "answer": "Aishwarya led a development team of 3-4 engineers at LINK, where she established coding standards and review processes. She conducted architecture planning sessions, implemented Test-Driven Development practices across projects, and mentored junior developers through code reviews and pair programming."
+      },
+      {
+        "id": "problem_solving",
+        "question": "What's her typical approach to problem-solving?",
+        "answer": "Aishwarya approaches problem-solving through architectural planning that adheres to SOLID principles. She implements Test-Driven Development methodologies and builds scalable solutions. Her work on template-based code generation systems and configurable platforms demonstrates her ability to create flexible, maintainable solutions to complex challenges."
+      },
+      {
+        "id": "agile",
+        "question": "Can she work in an agile environment?",
+        "answer": "Yes, Aishwarya has worked in agile environments across her career. Her experience with CI/CD pipelines (GitLab CI/CD), test-driven development practices, and team leadership all indicate strong familiarity with agile methodologies. Her work on microservices and distributed systems also aligns with incremental development and agile principles."
+      },
+      {
+        "id": "communication",
+        "question": "What are her communication strengths?",
+        "answer": "Aishwarya's communication strengths are evident in her technical leadership roles where she established coding standards, conducted architecture planning sessions, and mentored junior developers. She has experience communicating complex technical concepts through code reviews and pair programming, demonstrating both written and verbal communication skills."
+      },
+      {
+        "id": "deadlines",
+        "question": "How does she handle tight deadlines?",
+        "answer": "Aishwarya demonstrates effective deadline management through her experience implementing automated systems and templated solutions that improve efficiency. Her work on CI/CD pipelines and automated project setup shows a focus on streamlining processes to meet deadlines. Her leadership experience also indicates ability to coordinate team efforts under time constraints."
+      },
+      {
+        "id": "similar_projects",
+        "question": "What projects has she completed similar to our needs?",
+        "answer": "Please share more details about your specific project needs for a tailored response. Aishwarya has experience with microservice architectures, distributed systems, analytics platforms, loan processing systems, and integration platforms that might align with your requirements."
+      },
+      {
+        "id": "jd_compatibility",
+        "question": "How does her experience align with our current opening?",
+        "answer": "Please upload your job description for AI analysis. The system will compare requirements against Aishwarya's experience in JavaScript/TypeScript development, microservices architecture, distributed systems, technical leadership, and other areas outlined in her resume."
+      }
+    ]
+  }

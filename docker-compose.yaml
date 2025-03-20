@@ -1,6 +1,6 @@
 services:
   app:
-    image: project-name-app
+    image: personal-portfolio-app
     build:
       context: ./
       target: dev
