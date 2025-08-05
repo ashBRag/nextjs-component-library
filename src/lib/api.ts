@@ -11,7 +11,7 @@ export class ApiError extends Error {
 
 async function fetchApi(endpoint: string, options = {method:'', headers: {}, body: {}}) {
   const url = `${API_BASE_URL}/api${endpoint}`;
-  
+  console.log('url', url)
   try {
     const response = await fetch(url, {
         method: options.method || 'GET',
@@ -48,7 +48,8 @@ export const getSectionData = (sectionName: string) => fetchApi('/portfolio?sect
 // Contact form submission
 export const submitContactForm = (formData: any) => 
   fetchApi('/contact', {
-    method: 'POST',
+    method: 'POST',//import GitContributions from '../components/pages/git-contributions';
+
     headers: {},
     body: JSON.stringify(formData),
   });

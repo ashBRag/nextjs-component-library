@@ -7,7 +7,7 @@ const pathNames = new Map([
     ['personal', '/personal.json'],
     ['projects', '/projects.json'],
     ['services', '/services.json'],
-    ['skills: ','/skills.json']
+    ['skills','/skills.json']
 ])
 
 export async function GET(request: NextRequest) {
@@ -15,14 +15,16 @@ export async function GET(request: NextRequest) {
     let data
     const searchParams = request.nextUrl.searchParams
     const section = searchParams.get('section')
-
     const jsonDirectory = path.join(process.cwd(), 'src/data');
 
     if(section){
         const pathName = pathNames.get(section)
+        console.log(pathName)
         if(pathName){
+          console.log(jsonDirectory + pathName)
             const fileContents = await fs.readFile(jsonDirectory + pathName, 'utf8');
             data = JSON.parse(fileContents);
+            console.log(data)
         }
     }
     else{
