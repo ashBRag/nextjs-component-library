@@ -1,6 +1,7 @@
 import StackIcon from 'tech-stack-icons';
 import resumeData from './data/resume.json'
 import promptsData from './data/prompts.json'
+import GitContributions from '../components/pages/git-contributions';
 export default function Home() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
@@ -10,6 +11,7 @@ export default function Home() {
         {promptsData.prompts.map(prompt=><h1 key={prompt.id}>
             {prompt.question}
         </h1>)}
+        <GitContributions/>
 
     </div>
   );
