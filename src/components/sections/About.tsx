@@ -2,21 +2,25 @@
 import { useEffect, useState,  } from 'react';
 import { getSectionData } from '@/lib/api';
 import * as SiIcons from 'react-icons/si';
+import * as FaIcons from 'react-icons/fa';
+import { FaStar } from "react-icons/fa";
+import Image from 'next/image';
+import Typewriter from 'typewriter-effect';
 
 
 
 
 export default function AboutSection() {
-  const [personalData, setPersonalData] = useState({name: '', bio: '', profilePhoto: ''});
+  const [personalData, setPersonalData] = useState({name: '', about: '', profilePhoto: ''});
   const [skillsData, setSkillsData] = useState({categories:{
     frontend:{
-        skills: [{name:'', icon:'' }]
+        skills: [{name:'', icon:'', level:'', color:'' }]
     },
     backend:{
-        skills: [{name:'', icon:'' }]
+        skills: [{name:'', icon:'', level:'', color:'' }]
     },
     cloud:{
-        skills: [{name:'', icon:'' }]
+        skills: [{name:'', icon:'', level:'', color:'' }]
     },
   }});
   const [loading, setLoading] = useState(true);
@@ -43,31 +47,59 @@ export default function AboutSection() {
   if (loading) return <div>Loading...</div>;
 
   const skillComponent = (skill={icon:'', name: ''}) => {
-    const IconComponent = SiIcons[skill.icon||''];
-    console.log(skill.icon)
+    const IconComponent = SiIcons[skill.icon||''] || FaIcons[skill.icon||''];
     return (
-        <li key={skill.name} className="flex items-center gap-2">
-          {IconComponent && <IconComponent className="w-5 h-5" />}
-          <span>{skill.name}</span>
-          <span className="text-sm text-gray-500">({skill.level})</span>
+        <li key={skill.name} className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2">
+          {IconComponent && <IconComponent className="w-10 h-10" color={skill.color}/>}
+          <span className="text-lg sm:text-xs">{skill.name}</span>
+          </div>
+          {/*<span className="text-sm text-gray-500">
+            {skillLevelComponent(skill.level)}
+          </span>*/}
         </li>
       );
   }
 
-  return (
-    <section>
-        <img src='profilePhoto.jpg'/>
-      <h2>{personalData?.name}</h2>
-      <p>{personalData?.bio}</p>
-      
-      <p>Skills: 
-      <ul> 
-        {skillsData.categories.frontend.skills.map(skill =>skillComponent(skill))}
-        {skillsData.categories.backend.skills.map(skill =>skillComponent(skill))}
-        {skillsData.categories.cloud.skills.map(skill =>skillComponent(skill))}
+  const skillLevelComponent = (level='') => {
+    const stars = Array(+level).fill(0);
+    return (
+      <span className="text-sm text-gray-500">
+        <div className="flex items-center gap-1">
+        {stars.map((star, index) => <FaStar className="w-5 h-5 text-yellow-500" key={index}/>)}
+        </div>  
+      </span>
+    );
+  }
 
-        </ul>
-      </p>
+  return (
+    <>  
+    <section className="flex flex-row  gap-2">
+        <Image src='/profilePhoto.jpg' alt='profilePhoto' className='w-80 h-80 rounded-full' width={80} height={80} />
+        <div className="flex flex-col gap-2">
+          <h2>{personalData?.name}</h2>
+            <Typewriter 
+            options={{
+              strings: ['Full Stack Developer', 'Freelancer', 'Tech Consultant', 'Mentor'],
+              autoStart: true,
+              loop: true,
+              delay: 100,
+              deleteSpeed: 100,
+              pauseFor: 1000,
+            }}
+            />
+          <p>{personalData?.about}</p>
+          <ul className="grid grid-cols-9 gap-2"> 
+       {skillsData.categories.frontend.skills.map(skill =>skillComponent(skill))}
+       {skillsData.categories.backend.skills.map(skill =>skillComponent(skill))}
+       {skillsData.categories.cloud.skills.map(skill =>skillComponent(skill))}
+
+       </ul>
+        </div>
+      
+   
     </section>
+      
+    </>
   );
 }
