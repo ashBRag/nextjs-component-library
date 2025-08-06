@@ -8,8 +8,6 @@ import Image from 'next/image';
 import Typewriter from 'typewriter-effect';
 
 
-
-
 export default function AboutSection() {
   const [personalData, setPersonalData] = useState({name: '', about: '', profilePhoto: ''});
   const [skillsData, setSkillsData] = useState({categories:{
@@ -46,6 +44,7 @@ export default function AboutSection() {
 
   if (loading) return <div>Loading...</div>;
 
+
   const skillComponent = (skill={icon:'', name: ''}) => {
     const IconComponent = SiIcons[skill.icon||''] || FaIcons[skill.icon||''];
     return (
@@ -54,9 +53,6 @@ export default function AboutSection() {
           {IconComponent && <IconComponent className="w-10 h-10" color={skill.color}/>}
           <span className="text-lg sm:text-xs">{skill.name}</span>
           </div>
-          {/*<span className="text-sm text-gray-500">
-            {skillLevelComponent(skill.level)}
-          </span>*/}
         </li>
       );
   }
@@ -85,7 +81,6 @@ export default function AboutSection() {
               loop: true,
               delay: 100,
               deleteSpeed: 100,
-              pauseFor: 1000,
             }}
             />
           <p>{personalData?.about}</p>

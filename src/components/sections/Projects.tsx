@@ -4,7 +4,8 @@
 import { useState, useEffect } from 'react';
 import Timeline from '@/components/ui/Timeline';
 import { getSectionData } from '@/lib/api';
-
+import Image from 'next/image';
+import Card from '../ui/Card';
 interface Project {
   name: string;
   duration: string;
@@ -32,12 +33,23 @@ const variants = ['primary', 'success', 'warning', 'danger'] as const;
 export default function ProjectsSection() {
   const [projectsData, setProjectsData] = useState<ProjectsData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [projectInfo, setProjectInfo] = useState({
+    title: '',
+    description: '',
+  })
 
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await getSectionData('projects');
         setProjectsData(data);
+        const project = data.experience?.[0]?.projects?.[0] || {}
+        setProjectInfo({
+            title: project?.name||'',
+            description:  project.achievements?.join(' • ')||'',
+        })
+     
+        
       } catch (error) {
         console.error('Failed to fetch projects data:', error);
       } finally {
@@ -58,33 +70,31 @@ export default function ProjectsSection() {
     const allCompanies = Array.from(new Set(projectsData.experience.map(exp => exp.company)));
     const companyIndex = allCompanies.indexOf(exp.company);
     const variant = variants[companyIndex % variants.length];
-      if (exp.projects) {
-        exp.projects.forEach((project) => {
+    const badgeText = exp.company.split(' ')[0]
+        exp.projects?.forEach((project) => {
           allItems.push({
             id: `${exp.company.toLowerCase().replace(/\s+/g, '-')}-${project.name.toLowerCase().replace(/\s+/g, '-')}`,
             title: project.name,
             date: project.duration,
             //description: project.achievements.join(' • '),
             badge: {
-              text: exp.company.split(' ')[0], // Use first word of company name
+              text: badgeText, // Use first word of company name
               variant
             },
-          });
+            icon: <Image src={`/companyLogo/${badgeText.toLowerCase()}.png`}  alt='profilePhoto' className='w-10 h-10 rounded-full' width={10} height={10}/>,
+            action:{
+               onClick: ()=>{
+                setProjectInfo({
+                    title: project.name,
+                    description:  project.achievements.join(' • '),
+                })
+               }
+              
+            }
+          })
         });
-      } else {
-        // If no projects, add the experience itself
-        allItems.push({
-          id: exp.company.toLowerCase().replace(/\s+/g, '-'),
-          title: `${exp.position} - ${exp.company}`,
-          date: exp.duration,
-          //description: exp.achievements?.join(' • ') || 'General development work',
-          badge: {
-            text: exp.company.split(' ')[0],
-            variant
-          },
-        });
-      }
     });
+
 
     return allItems;
   };
@@ -93,7 +103,7 @@ export default function ProjectsSection() {
   if (loading) {
     return (
       <section className="py-16">
-        <div className="container mx-auto px-6">
+        <div className="container">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
           </div>
@@ -105,10 +115,9 @@ export default function ProjectsSection() {
   const timelineItems = getTimelineItems();
 
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto">
-          <Timeline items={timelineItems} />
-        </div>
+    <section className="flex py-16 bg-gray-50 dark:bg-gray-900">
+        <Timeline items={timelineItems} className='w-80' />
+        <Card title={projectInfo.title} description={projectInfo.description} />
     </section>
   );
 }

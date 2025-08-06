@@ -32,7 +32,7 @@ export default function Home() {
           label: "Blogs",
           content: <div>Blogs</div>
         },
-       ]} defaultActiveTab="projects" className="max-w-4xl mx-auto"/>
+       ]} defaultActiveTab="projects" className="p-10 m-10 mx-auto"/>
 
     </div>
   );

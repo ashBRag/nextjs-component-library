@@ -24,7 +24,7 @@ export default function TabbedSection({
 
   return (
     <section className={`py-16 ${className}`}>
-      <div className="container mx-auto px-6">
+      <div className="container">
         {title && (
           <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>
         )}
@@ -33,7 +33,7 @@ export default function TabbedSection({
           tabs={tabs}
           activeTab={activeTab}
           onTabChange={setActiveTab}
-          className="max-w-4xl mx-auto"
+          className=""
         />
       </div>
     </section>
