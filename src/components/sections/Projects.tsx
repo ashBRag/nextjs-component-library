@@ -46,7 +46,7 @@ export default function ProjectsSection() {
         const project = data.experience?.[0]?.projects?.[0] || {}
         setProjectInfo({
             title: project?.name||'',
-            description:  project.achievements?.join(' • ')||'',
+            description:  project.achievements?.join('\n')||'',
         })
      
         
