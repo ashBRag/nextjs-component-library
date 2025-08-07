@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from 'react';
-import Tabs from '@/components/ui/Tabs';
+import Tabs from '@/components/ui/undertale/Tabs';
 
 interface TabbedSectionProps {
   title?: string;

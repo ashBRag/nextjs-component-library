@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 interface TabItem {
   id: string;
-  label: string;
+  name: string;
   icon?: React.ReactNode;
   content: React.ReactNode;
   disabled?: boolean;
@@ -80,7 +80,7 @@ export default function VerticalTabs({
             {tab.icon}
           </span>
         )}
-        {tab.label}
+        {tab.name}
       </button>
     );
 
@@ -92,7 +92,7 @@ export default function VerticalTabs({
               {tab.icon}
             </span>
           )}
-          {tab.label}
+          {tab.name}
         </a>
       );
     }

@@ -2,10 +2,10 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import Timeline from '@/components/ui/Timeline';
+import Timeline from '@/components/ui/undertale/Timeline';
 import { getSectionData } from '@/lib/api';
 import Image from 'next/image';
-import Card from '../ui/Card';
+import Card from '../ui/undertale/Card';
 interface Project {
   name: string;
   duration: string;
@@ -115,9 +115,9 @@ export default function ProjectsSection() {
   const timelineItems = getTimelineItems();
 
   return (
-    <section className="flex py-16 bg-gray-50 dark:bg-gray-900">
-        <Timeline items={timelineItems} className='w-80' />
-        <Card title={projectInfo.title} description={projectInfo.description} />
+    <section className="flex p-4">
+        <Timeline items={timelineItems} className='w-120 mr-10' />
+        <Card title={projectInfo.title} description={projectInfo.description} size='lg'/>
     </section>
   );
 }

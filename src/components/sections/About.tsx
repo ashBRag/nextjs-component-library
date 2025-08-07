@@ -4,8 +4,10 @@ import { getSectionData } from '@/lib/api';
 import * as SiIcons from 'react-icons/si';
 import * as FaIcons from 'react-icons/fa';
 import { FaStar } from "react-icons/fa";
-import Image from 'next/image';
+import Image from '../ui/undertale/Image';
 import Typewriter from 'typewriter-effect';
+import Card from '../ui/undertale/Card';
+import { AnimatedSkillsGrid } from '../ui/undertale/Rotation';
 
 
 export default function AboutSection() {
@@ -71,9 +73,11 @@ export default function AboutSection() {
   return (
     <>  
     <section className="flex flex-row  gap-2">
-        <Image src='/profilePhoto.jpg' alt='profilePhoto' className='w-80 h-80 rounded-full' width={80} height={80} />
-        <div className="flex flex-col gap-2">
-          <h2>{personalData?.name}</h2>
+
+        <Image src='/profilePhoto.jpg' alt='profilePhoto' className='w-80 h-80 rounded-full' />
+        <Card
+        title='Meet Aishwarya B R'
+        description={ <div className="flex flex-col gap-2">
             <Typewriter 
             options={{
               strings: ['Full Stack Developer', 'Freelancer', 'Tech Consultant', 'Mentor'],
@@ -84,13 +88,23 @@ export default function AboutSection() {
             }}
             />
           <p>{personalData?.about}</p>
-          <ul className="grid grid-cols-9 gap-2"> 
+          {/*<ul className="grid grid-cols-9 gap-2"> 
        {skillsData.categories.frontend.skills.map(skill =>skillComponent(skill))}
        {skillsData.categories.backend.skills.map(skill =>skillComponent(skill))}
        {skillsData.categories.cloud.skills.map(skill =>skillComponent(skill))}
 
-       </ul>
-        </div>
+       </ul>*/}
+       <AnimatedSkillsGrid
+  skillsData={skillsData}
+  SiIcons={SiIcons}
+  FaIcons={FaIcons}
+  orbitSpeed="normal"
+  direction="clockwise"
+/>
+        </div>}
+              
+        />
+       
       
    
     </section>
