@@ -133,7 +133,7 @@ export default function UndertaleTabs({
     return soulType ? soulColors[soulType] : 'bg-slate-800/40 border-slate-600/30 text-slate-200';
   };
 
-  const activeTabData = tabs.find(tab => tab.id === activeTab);
+  //const activeTabData = tabs.find(tab => tab.id === activeTab);
 
   return (
     <div className={`backdrop-blur-sm border-2 rounded-lg ${getThemeStyles()} ${className}`}>
@@ -149,7 +149,7 @@ export default function UndertaleTabs({
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
-              <li key={tab.id} className="relative" role="presentation">
+              <li key={tab.id} className="relative max-w-40" role="presentation">
                 <button
                   className={getCharacterTabStyles(tab, isActive)}
                   onClick={() => onTabChange(tab.id)}

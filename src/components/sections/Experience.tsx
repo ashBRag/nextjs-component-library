@@ -23,19 +23,17 @@ export default function TabbedSection({
   const [activeTab, setActiveTab] = useState(defaultActiveTab || tabs[0]?.id);
 
   return (
-    <section className={`py-16 ${className}`}>
-      <div className="container">
+    <section className={className}>
         {title && (
-          <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>
+          <h2 className="text-3xl font-bold text-center m-12">{title}</h2>
         )}
         
         <Tabs 
           tabs={tabs}
           activeTab={activeTab}
           onTabChange={setActiveTab}
-          className=""
+          className="m-10"
         />
-      </div>
     </section>
   );
 }

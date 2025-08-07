@@ -46,21 +46,6 @@ export default function UndertaleProfileImage({
     return characterStyles[character];
   };
 
-  const getAnimationStyles = () => {
-    if (!animated) return '';
-    
-    const animations = {
-      sans: 'hover:scale-105 hover:rotate-1 transition-all duration-500 ease-out',
-      papyrus: 'hover:scale-110 hover:-rotate-2 transition-all duration-300',
-      flowey: 'hover:scale-110 hover:brightness-110 transition-all duration-200 hover:shadow-yellow-500/70',
-      frisk: 'hover:scale-105 transition-all duration-300 hover:shadow-red-500/60',
-      toriel: 'hover:scale-105 transition-all duration-400 ease-in-out',
-      undyne: 'hover:scale-110 hover:rotate-2 transition-all duration-200',
-      alphys: 'hover:scale-105 transition-all duration-300',
-      mettaton: 'hover:scale-115 hover:rotate-3 transition-all duration-300 ease-out hover:brightness-110'
-    };
-    return animations[character];
-  };
 
   const getMemoryTypeIcon = () => {
     const icons = {
@@ -79,21 +64,13 @@ export default function UndertaleProfileImage({
       {/* Main Profile Container */}
       <div className={`
         relative ${sizeConfig.container} 
-        rounded-lg border-4 backdrop-blur-sm shadow-2xl
-        ${getCharacterBorderStyles()}
-        ${getAnimationStyles()}
+        rounded-lg backdrop-blur-sm
       `}>
         {/* Pixelated Corner Decorations */}
-        <div className="absolute -top-1 -left-1 w-4 h-4 border-l-4 border-t-4 border-current bg-current/20"></div>
-        <div className="absolute -top-1 -right-1 w-4 h-4 border-r-4 border-t-4 border-current bg-current/20"></div>
-        <div className="absolute -bottom-1 -left-1 w-4 h-4 border-l-4 border-b-4 border-current bg-current/20"></div>
-        <div className="absolute -bottom-1 -right-1 w-4 h-4 border-r-4 border-b-4 border-current bg-current/20"></div>
-
-        {/* Additional Pixel Decorations */}
-        <div className="absolute top-2 left-2 w-2 h-2 bg-current opacity-40"></div>
-        <div className="absolute top-2 right-2 w-2 h-2 bg-current opacity-40"></div>
-        <div className="absolute bottom-2 left-2 w-2 h-2 bg-current opacity-40"></div>
-        <div className="absolute bottom-2 right-2 w-2 h-2 bg-current opacity-40"></div>
+        <div className="absolute -top-1 -left-1 w-4 h-4 border-l-4 border-t-4 border-gray-500"></div>
+        <div className="absolute -top-1 -right-1 w-4 h-4 border-r-4 border-t-4 border-gray-500"></div>
+        <div className="absolute -bottom-1 -left-1 w-4 h-4 border-l-4 border-b-4 border-gray-500"></div>
+        <div className="absolute -bottom-1 -right-1 w-4 h-4 border-r-4 border-b-4 border-gray-500"></div>
 
         {/* Profile Image */}
         <div className="absolute inset-2 rounded-lg overflow-hidden">

@@ -6,6 +6,9 @@ import Timeline from '@/components/ui/undertale/Timeline';
 import { getSectionData } from '@/lib/api';
 import Image from 'next/image';
 import Card from '../ui/undertale/Card';
+import * as SiIcons from 'react-icons/si';
+import * as FaIcons from 'react-icons/fa';
+
 interface Project {
   name: string;
   duration: string;
@@ -36,6 +39,7 @@ export default function ProjectsSection() {
   const [projectInfo, setProjectInfo] = useState({
     title: '',
     description: '',
+    tech_stack:['']
   })
 
   useEffect(() => {
@@ -47,6 +51,7 @@ export default function ProjectsSection() {
         setProjectInfo({
             title: project?.name||'',
             description:  project.achievements?.join('\n')||'',
+            tech_stack: project.tech_stack
         })
      
         
@@ -87,6 +92,7 @@ export default function ProjectsSection() {
                 setProjectInfo({
                     title: project.name,
                     description:  project.achievements.join(' • '),
+                    tech_stack: project.tech_stack
                 })
                }
               
@@ -102,22 +108,39 @@ export default function ProjectsSection() {
 
   if (loading) {
     return (
-      <section className="py-16">
-        <div className="container">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          </div>
         </div>
-      </section>
     );
   }
 
   const timelineItems = getTimelineItems();
+  const skillComponent = (skill={icon:'', name: ''}) => {
+    const IconComponent = SiIcons[skill.icon||''] || FaIcons[skill.icon||''];
+    return (
+        <li key={skill.name} className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-2">
+          {IconComponent && <IconComponent className="w-10 h-10" color={skill.color}/>}
+          <span className="text-lg sm:text-xs">{skill.name}</span>
+          </div>
+        </li>
+      );
+  }
+
 
   return (
     <section className="flex p-4">
         <Timeline items={timelineItems} className='w-120 mr-10' />
-        <Card title={projectInfo.title} description={projectInfo.description} size='lg'/>
+        <Card title={projectInfo.title} description={<div>
+            <div className="grid grid-cols-6 gap-2 w-auto"> 
+       {projectInfo?.tech_stack?.map(skill =>skillComponent({
+        name: skill,
+        icon: ''
+       }))}
+       </div>
+            {projectInfo.description}
+        </div>
+        } size='lg'/>
     </section>
   );
 }

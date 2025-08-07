@@ -72,7 +72,7 @@ export default function Card({
 
       sm: 'max-w-xs p-4 text-sm',
       md: 'p-6 text-base', 
-      lg: 'max-w-md p-8 text-lg'
+      lg: 'max-w-160 p-8 text-lg'
     };
     return sizes[size];
   };

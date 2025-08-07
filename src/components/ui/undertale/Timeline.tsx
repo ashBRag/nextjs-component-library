@@ -187,13 +187,13 @@ export default function UndertaleTimeline({
   };
 
   return (
-    <div className={`relative p-6 rounded-lg border-2 backdrop-blur-sm ${getThemeStyles()} ${className}`}>
+    <div className={`relative backdrop-blur-sm ${getThemeStyles()} ${className}`}>
       {/* Corner decorations */}
-      <div className="absolute top-2 left-2 w-3 h-3 border-l-2 border-t-2 border-current opacity-30"></div>
+      {/*<div className="absolute top-2 left-2 w-3 h-3 border-l-2 border-t-2 border-current opacity-30"></div>
       <div className="absolute top-2 right-2 w-3 h-3 border-r-2 border-t-2 border-current opacity-30"></div>
       <div className="absolute bottom-2 left-2 w-3 h-3 border-l-2 border-b-2 border-current opacity-30"></div>
       <div className="absolute bottom-2 right-2 w-3 h-3 border-r-2 border-b-2 border-current opacity-30"></div>
-
+*/}
       <ol className={`relative border-s-2 ms-6 ${theme === 'underground' ? 'border-slate-400' : theme === 'surface' ? 'border-blue-400' : 'border-purple-400'}`}>
         {items.map((item, index) => (
           <li key={item.id} className={`${index === items.length - 1 ? 'ms-8' : 'mb-12 ms-8'} relative`}>

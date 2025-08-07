@@ -1,11 +1,12 @@
 import AboutSection from '@/components/sections/About';
 import ExperienceSection from '@/components/sections/Experience';
+import Header from '@/components/sections/Header';
 import ProjectsSection from '@/components/sections/Projects';
 import ServicesSection from '@/components/sections/Services';
 export default function Home() {
   return (
-    <div className="p-4 m-4">
-
+    <div>
+      <Header/>
        <AboutSection/>
        <ExperienceSection tabs={[
         {
@@ -24,15 +25,25 @@ export default function Home() {
           content: <div>Contact Info</div>
         },
         {
+          id:'skills',
+          label: "Dev Arsenal",
+          content: <div>Skills</div>
+        },
+        /*{
           id:'architecture-diagrams',
           label: "Architecture Autopsy",
           content: <div>Architecture Autopsy</div>
         },
         {
+          id:'git',
+          label: "Commit-ment Issues",
+          content: <div>Git Contributions</div>
+        },
+        {
           id:'demo',
           label: "It works (on my machine)",
           content: <div>Live Demo</div>
-        },
+        },*/
         {
           id:'blogs',
           label: "Rant Journal",
@@ -60,8 +71,7 @@ export default function Home() {
 
           </div>
         },
-       ]} defaultActiveTab="projects" className="p-10 m-10 mx-auto"/>
-
+       ]} defaultActiveTab="projects" className="mt-10"/>
     </div>
   );
 }
