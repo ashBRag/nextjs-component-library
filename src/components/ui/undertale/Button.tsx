@@ -58,9 +58,8 @@ export function UndertaleDownloadButton({
 }
 */
 
-import React from 'react';
-
-
+import React from "react";
+import { LuExternalLink } from "react-icons/lu";
 
 // Orange variant
 
@@ -69,12 +68,12 @@ export function UndertaleDownloadButton({
   onClick,
   href = "/resume.pdf",
   className = "",
-  downloadName = "Aishwarya_BR_Resume.pdf"
+  downloadName = "Aishwarya_BR_Resume.pdf",
 }) {
   return (
     <div className="relative inline-block mt-5">
       <div className="absolute inset-0 bg-purple-700/20 blur-lg rounded-lg"></div>
-      
+
       <a
         href={href}
         download={downloadName}
@@ -96,9 +95,68 @@ export function UndertaleDownloadButton({
           <span>Download Resume</span>
           <div className="text-xs opacity-60">[PDF]</div>
         </div>
-        
+
         <div className="absolute inset-0 border border-purple-400/10 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-sm"></div>
       </a>
     </div>
   );
 }
+
+// Contact Link Button Component
+export const ContactLinkButton = ({
+  icon: Icon,
+  text,
+  href,
+  variant = "default",
+  size = "default",
+  showExternalIcon = true,
+  className = "",
+}) => {
+  const variants = {
+    default: "bg-white/5 hover:bg-white/10 border-transparent",
+    primary: "bg-blue-600/20 hover:bg-blue-600/30 border-blue-400/30",
+    secondary: "bg-purple-600/20 hover:bg-purple-600/30 border-purple-400/30",
+    success: "bg-green-600/20 hover:bg-green-600/30 border-green-400/30",
+    warning: "bg-yellow-600/20 hover:bg-yellow-600/30 border-yellow-400/30",
+    danger: "bg-red-600/20 hover:bg-red-600/30 border-red-400/30",
+  };
+
+  const sizes = {
+    small: "p-2 text-sm",
+    default: "p-3 text-base",
+    large: "p-4 text-lg",
+  };
+
+  const iconSizes = {
+    small: 16,
+    default: 20,
+    large: 24,
+  };
+
+  const Component = href ? "a" : "button";
+  const props = href
+    ? { href, target: "_blank", rel: "noopener noreferrer" }
+    : {};
+
+  return (
+    <Component
+      {...props}
+      className={`
+        flex items-center gap-3 rounded-lg border-2 transition-all duration-200 group
+        ${variants[variant]} ${sizes[size]} ${className}
+      `}
+    >
+      <Icon
+        className="text-current group-hover:scale-110 transition-transform flex-shrink-0"
+        size={iconSizes[size]}
+      />
+      <span className="text-white font-mono flex-1 text-left">{text}</span>
+      {showExternalIcon && href && (
+        <LuExternalLink
+          className="text-gray-400 group-hover:text-white transition-colors"
+          size={iconSizes[size] * 0.8}
+        />
+      )}
+    </Component>
+  );
+};
