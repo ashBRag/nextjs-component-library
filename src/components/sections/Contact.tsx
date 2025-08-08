@@ -11,6 +11,8 @@ import {
 import UndertaleCard from "../ui/undertale/Card";
 import { ContactLinkButton } from "../ui/undertale/Button";
 import { Contact } from "@/types/personal";
+import { useCalendly } from "../forms/calendly/useCalendly";
+import { CalendlyPopup } from "../forms/calendly/Calendly";
 
 interface FormData {
   name: string;
@@ -38,7 +40,6 @@ const IconComponent = (icon = "") => {
   return Icon;
 };
 
-// Form Logic Hook
 const useContactForm = ({ calendlyUrl = "" }) => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -161,12 +162,6 @@ const useContactForm = ({ calendlyUrl = "" }) => {
       setIsSubmitting(false);
     }
   };
-
-  const bookMeeting = () => {
-    if (!canBookMeeting()) return;
-    setShowCalendly(true);
-  };
-
   const resetForm = () => {
     setFormData({
       name: "",
@@ -203,7 +198,6 @@ const useContactForm = ({ calendlyUrl = "" }) => {
     hp,
     updateField,
     submitForm,
-    bookMeeting,
     resetForm,
     canBookMeeting,
     getCalendlyUrl,
@@ -211,37 +205,20 @@ const useContactForm = ({ calendlyUrl = "" }) => {
   };
 };
 
-// Main Contact Form Component
 const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
   const {
     formData,
     errors,
     isSubmitting,
     showSuccess,
-    showCalendly,
     updateField,
     submitForm,
-    bookMeeting,
     resetForm,
     canBookMeeting,
     getCalendlyUrl,
-    setShowCalendly,
   } = useContactForm({ calendlyUrl: contactInfo.availability.calendar });
 
-  // Load Calendly script
-  useEffect(() => {
-    if (showCalendly && !window.Calendly) {
-      const script = document.createElement("script");
-      script.src = "https://assets.calendly.com/assets/external/widget.js";
-      script.async = true;
-      document.head.appendChild(script);
-
-      const link = document.createElement("link");
-      link.href = "https://assets.calendly.com/assets/external/widget.css";
-      link.rel = "stylesheet";
-      document.head.appendChild(link);
-    }
-  }, [showCalendly]);
+  const { openPopup } = useCalendly();
 
   const workTypeOptions = [
     {
@@ -268,39 +245,15 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
     { value: "flexible", label: "Flexible Timeline" },
   ];
 
-  const CalendlyPopup = () => {
-    useEffect(() => {
-      if (window.Calendly) {
-        window.Calendly.initPopupWidget({
-          url: getCalendlyUrl(),
-        });
-      }
-    }, []);
+  const [showCalendly, setShowCalendly] = useState(false);
 
-    return (
-      <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-        <div className="bg-gradient-to-b from-blue-900 to-purple-900 border-4 border-yellow-400 rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
-          <div className="flex items-center justify-between p-4 border-b-2 border-yellow-400">
-            <h3 className="text-yellow-300 font-mono font-bold text-xl">
-              * Choose your meeting time!
-            </h3>
-            <button
-              onClick={() => setShowCalendly(false)}
-              className="text-yellow-300 hover:text-red-400 transition-colors"
-            >
-              <LuX size={24} />
-            </button>
-          </div>
+  const bookMeeting = () => {
+    if (!canBookMeeting()) return;
+    setShowCalendly(true);
+  };
 
-          <div className="h-[600px] bg-white">
-            <div
-              className="calendly-inline-widget w-full h-full"
-              data-url={getCalendlyUrl()}
-            />
-          </div>
-        </div>
-      </div>
-    );
+  const closeCalendly = () => {
+    setShowCalendly(false);
   };
 
   if (showSuccess) {
@@ -459,7 +412,13 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
         </div>
       </UndertaleCard>
       {/* Calendly Popup */}
-      {showCalendly && <CalendlyPopup />}
+      {showCalendly && (
+        <CalendlyPopup
+          isOpen={openPopup}
+          onClose={closeCalendly}
+          url={getCalendlyUrl()}
+        />
+      )}
     </div>
   );
 };

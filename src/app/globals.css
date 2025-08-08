@@ -119,3 +119,15 @@ body::before {
     transform: scaleY(0);
   }
 }
+
+.calendly-popup-wrapper {
+  z-index: 9999 !important;
+}
+
+.calendly-popup {
+  z-index: 9999 !important;
+}
+
+.calendly-popup-content {
+  z-index: 9999 !important;
+}
