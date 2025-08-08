@@ -1,6 +1,4 @@
 "use client";
-
-import { useState } from "react";
 import Tabs from "@/components/ui/undertale/Tabs";
 
 interface TabbedSectionProps {
@@ -12,18 +10,17 @@ interface TabbedSectionProps {
   }>;
   defaultActiveTab?: string;
   className?: string;
+  activeTab: string;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function TabbedSection({
   title,
   tabs,
-  defaultActiveTab,
   className = "",
   activeTab,
   setActiveTab,
 }: TabbedSectionProps) {
-  //const [activeTab, setActiveTab] = useState(defaultActiveTab || tabs[0]?.id);
-
   return (
     <section className={className}>
       {title && (

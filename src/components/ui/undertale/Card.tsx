@@ -2,7 +2,7 @@ import React from "react";
 
 interface UndertaleCardProps {
   title: string;
-  description: string;
+  description?: string;
   className?: string;
   titleClassName?: string;
   descriptionClassName?: string | React.ReactNode;
@@ -23,7 +23,7 @@ interface UndertaleCardProps {
 
 export default function Card({
   title,
-  description,
+  description = "",
   className = "",
   titleClassName = "",
   descriptionClassName = "",
@@ -162,7 +162,7 @@ export default function Card({
           {title}
         </h5>
 
-        {typeof description === "string" ? (
+        {description && (
           <p
             className={`
           font-normal leading-relaxed
@@ -171,8 +171,6 @@ export default function Card({
           >
             {description}
           </p>
-        ) : (
-          description
         )}
 
         {children}

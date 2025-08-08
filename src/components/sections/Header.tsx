@@ -1,13 +1,18 @@
 "use client";
-
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
+
+interface HeaderProps {
+  profileImage: string;
+  name: string;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+}
 
 const Header = ({
   profileImage = "/profilePhoto.jpg",
   name = "Aishwarya B R",
   setActiveTab,
-}) => {
+}: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -36,7 +41,7 @@ const Header = ({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleMenu = (id) => {
+  const handleMenu = (id = "") => {
     window.scrollTo({
       top: window.innerHeight - 100,
       behavior: "smooth",

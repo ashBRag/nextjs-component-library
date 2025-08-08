@@ -8,36 +8,17 @@ import Image from "next/image";
 import Card from "../ui/undertale/Card";
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
+import { Project, Projects } from "@/types/projects";
 
-interface Project {
-  name: string;
-  duration: string;
-  tech_stack: string[];
-  achievements: string[];
-}
-
-interface Experience {
-  position: string;
-  company: string;
-  location: string;
-  duration: string;
-  leadership?: string[];
-  projects?: Project[];
-  tech_stack?: string[];
-  achievements?: string[];
-}
-
-interface ProjectsData {
-  experience: Experience[];
-}
 const variants = ["primary", "success", "warning", "danger"] as const;
 
 export default function ProjectsSection() {
-  const [projectsData, setProjectsData] = useState<ProjectsData | null>(null);
+  const [projectsData, setProjectsData] = useState<Projects | null>(null);
   const [loading, setLoading] = useState(true);
-  const [projectInfo, setProjectInfo] = useState({
-    title: "",
-    description: "",
+  const [projectInfo, setProjectInfo] = useState<Project | null>({
+    name: "",
+    duration: "",
+    achievements: [""],
     tech_stack: [""],
   });
 
@@ -47,11 +28,7 @@ export default function ProjectsSection() {
         const data = await getSectionData("projects");
         setProjectsData(data);
         const project = data.experience?.[0]?.projects?.[0] || {};
-        setProjectInfo({
-          title: project?.name || "",
-          description: project.achievements?.join("\n") || "",
-          tech_stack: project.tech_stack,
-        });
+        setProjectInfo(project);
       } catch (error) {
         console.error("Failed to fetch projects data:", error);
       } finally {
@@ -96,11 +73,7 @@ export default function ProjectsSection() {
           ),
           action: {
             onClick: () => {
-              setProjectInfo({
-                title: project.name,
-                description: project.achievements.join(" • "),
-                tech_stack: project.tech_stack,
-              });
+              setProjectInfo(project);
             },
           },
         });
@@ -125,9 +98,7 @@ export default function ProjectsSection() {
     return (
       <li key={skill.name} className="flex flex-col items-center gap-2">
         <div className="flex flex-col items-center gap-2">
-          {IconComponent && (
-            <IconComponent className="w-10 h-10" color={skill.color} />
-          )}
+          {IconComponent && <IconComponent className="w-10 h-10" />}
           <span className="text-lg sm:text-xs">{skill.name}</span>
         </div>
       </li>
@@ -137,23 +108,23 @@ export default function ProjectsSection() {
   return (
     <section className="flex p-4">
       <Timeline items={timelineItems} className="w-120 mr-10" />
-      <Card
-        title={projectInfo.title}
-        description={
-          <div>
-            <div className="grid grid-cols-6 gap-2 w-auto">
-              {projectInfo?.tech_stack?.map((skill) =>
-                skillComponent({
-                  name: skill,
-                  icon: "",
-                }),
-              )}
-            </div>
-            {projectInfo.description}
+      <Card title={projectInfo?.name || ""} size="lg">
+        <div>
+          <div className="grid grid-cols-6 gap-2 w-auto">
+            {projectInfo?.tech_stack?.map((skill) =>
+              skillComponent({
+                name: skill,
+                icon: "",
+              }),
+            )}
           </div>
-        }
-        size="lg"
-      />
+          <ul>
+            {projectInfo?.achievements.map((achievement, index) => (
+              <li key={"ach" + index}>{achievement}</li>
+            ))}
+          </ul>
+        </div>
+      </Card>
     </section>
   );
 }

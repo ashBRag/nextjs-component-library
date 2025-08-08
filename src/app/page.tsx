@@ -5,11 +5,12 @@ import ExperienceSection from "@/components/sections/Experience";
 import Header from "@/components/sections/Header";
 import ProjectsSection from "@/components/sections/Projects";
 import ServicesSection from "@/components/sections/Services";
+import { Contact } from "@/types/personal";
 import React from "react";
 import { useState } from "react";
 export default function Home() {
   const [activeTab, setActiveTab] = useState("projects");
-  const [contactInfo, setContactInfo] = useState({
+  const [contactInfo, setContactInfo] = useState<Contact>({
     gmail: "",
     location: "",
     timezone: "",
@@ -25,6 +26,7 @@ export default function Home() {
     },
     social: {
       linkedin: "",
+      peerlist: "",
     },
     code: {
       github: "",
@@ -36,7 +38,11 @@ export default function Home() {
 
   return (
     <div>
-      <Header setActiveTab={setActiveTab} />
+      <Header
+        setActiveTab={setActiveTab}
+        profileImage="/profilePhoto.jpg"
+        name="Aishwarya B R"
+      />
       <AboutSection setContactInfo={setContactInfo} />
       <ExperienceSection
         activeTab={activeTab}
