@@ -2,8 +2,7 @@
 "use client";
 
 import React from "react";
-import * as SiIcons from "react-icons/si";
-import * as FaIcons from "react-icons/fa";
+import IconComponent from "../Icon";
 
 interface Skill {
   name: string;
@@ -40,41 +39,25 @@ export function AnimatedSkillsGrid({
     ...skillsData.categories.cloud.skills,
   ];
 
-  const skillComponent = (skill: Skill, index: number) => {
-    const iconConfig = iconMap.find((icon) => icon.name === skill.name) || {
-      icon: "",
-      color: "",
-      name: "",
-    };
-    const IconComponent = SiIcons[iconConfig.icon] || FaIcons[iconConfig.icon];
-
-    return (
-      <li
-        key={`${skill.name}-${index}`}
-        className="flex flex-col items-center gap-1 group"
-        style={{
-          animation: `float 3s ease-in-out infinite ${index * 0.2}s`,
-        }}
-      >
-        <div className="flex flex-col items-center gap-2 p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20  transition-all duration-300">
-          {IconComponent && (
-            <IconComponent
-              className="w-8 h-8 drop-shadow-lg transition-transform duration-300 w-10"
-              color={iconConfig.color || "#ffffff"}
-            />
-          )}
-          <span className="text-sm font-medium text-white text-center">
-            {skill.name}
-          </span>
-        </div>
-      </li>
-    );
-  };
-
   return (
     <div className={className}>
       <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-        {allSkills.map((skill, index) => skillComponent(skill, index))}
+        {allSkills.map((skill, index) => (
+          <li
+            key={`${skill.name}-${index}`}
+            className="flex flex-col items-center gap-1 group"
+            style={{
+              animation: `float 3s ease-in-out infinite ${index * 0.2}s`,
+            }}
+          >
+            <IconComponent
+              iconMap={iconMap}
+              name={skill.name}
+              iconClass="w-8 h-8 drop-shadow-lg transition-transform duration-300 w-10"
+              divClass="flex flex-col items-center gap-2 p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20  transition-all duration-300"
+            />
+          </li>
+        ))}
       </ul>
 
       <style jsx>{`

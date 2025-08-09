@@ -174,11 +174,7 @@ export default function UndertaleTabs({
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
-              <li
-                key={tab.id}
-                className="relative flex-1"
-                role="presentation"
-              >
+              <li key={tab.id} className="relative flex-1" role="presentation">
                 <button
                   className={`w-full ${getCharacterTabStyles(tab, isActive)}`}
                   onClick={() => onTabChange(tab.id)}

@@ -48,7 +48,7 @@ export default function UndertaleTimeline({
   items,
   className = "",
   theme = "underground",
-  animated = true,
+  animated = false,
 }: UndertaleTimelineProps) {
   const getThemeStyles = () => {
     const themes = {

@@ -10,36 +10,20 @@ import { AnimatedSkillsGrid } from "../ui/undertale/Rotation";
 import { UndertaleDownloadButton } from "../ui/undertale/Button";
 import UndertaleUI from "./Continue";
 
-export default function AboutSection({ setContactInfo, iconMap }) {
+export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
   const [personalData, setPersonalData] = useState({
     name: "",
     about: "",
     profilePhoto: "",
   });
-  const [skillsData, setSkillsData] = useState({
-    categories: {
-      frontend: {
-        skills: [{ name: "", icon: "", level: "", color: "" }],
-      },
-      backend: {
-        skills: [{ name: "", icon: "", level: "", color: "" }],
-      },
-      cloud: {
-        skills: [{ name: "", icon: "", level: "", color: "" }],
-      },
-    },
-  });
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const [personal, skills] = await Promise.all([
-          getSectionData("personal"),
-          getSectionData("skills"),
-        ]);
+        const personal = await getSectionData("personal");
         setPersonalData(personal);
-        setSkillsData(skills);
         setContactInfo(personal.contact);
       } catch (error) {
         console.error("Failed to fetch data:", error);

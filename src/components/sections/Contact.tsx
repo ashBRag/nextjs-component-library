@@ -24,6 +24,7 @@ interface FormData {
 
 interface ContactProps {
   contactInfo: Contact;
+  workType?: string; 
 }
 
 function capitalizeFirstLetter(str = "") {
@@ -55,7 +56,7 @@ const getIconColor = (platform: string) => {
   };
   return colors[platform.toLowerCase()] || "text-gray-400";
 };
-const useContactForm = ({ calendlyUrl = "" }) => {
+const useContactForm = ({ calendlyUrl = "", workType="" }) => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -74,7 +75,6 @@ const useContactForm = ({ calendlyUrl = "" }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showCalendly, setShowCalendly] = useState(false);
-  const [hp, setHp] = useState(100);
 
   // Validation rules
   const validateField = (field: string, value: string) => {
@@ -148,16 +148,10 @@ const useContactForm = ({ calendlyUrl = "" }) => {
       delete newErrors[field];
       setErrors(newErrors);
     }
-
-    // Restore HP when fixing errors
-    if (hp < 100) {
-      setHp(Math.min(hp + 5, 100));
-    }
   };
 
   const submitForm = async () => {
     if (!validateForm()) {
-      setHp(Math.max(hp - 10, 10));
       return;
     }
 
@@ -169,10 +163,8 @@ const useContactForm = ({ calendlyUrl = "" }) => {
 
       console.log("Form submitted:", formData);
       setShowSuccess(true);
-      setHp(100);
     } catch (error) {
       console.error("Submission failed:", error);
-      setHp(Math.max(hp - 20, 10));
     } finally {
       setIsSubmitting(false);
     }
@@ -188,7 +180,6 @@ const useContactForm = ({ calendlyUrl = "" }) => {
     setErrors({});
     setShowSuccess(false);
     setShowCalendly(false);
-    setHp(100);
     setIsSubmitting(false);
   };
 
@@ -210,7 +201,6 @@ const useContactForm = ({ calendlyUrl = "" }) => {
     isSubmitting,
     showSuccess,
     showCalendly,
-    hp,
     updateField,
     submitForm,
     resetForm,
@@ -220,7 +210,7 @@ const useContactForm = ({ calendlyUrl = "" }) => {
   };
 };
 
-const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
+const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo, workType="" }) => {
   const {
     formData,
     errors,
@@ -242,22 +232,15 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
       description: "Build something awesome together",
     },
     {
-      value: "tech-consultant",
+      value: "consultation",
       label: "🧙‍♂️ Tech Consultant",
       description: "Get expert technical guidance",
     },
     {
-      value: "mentor",
+      value: "mentorship",
       label: "📚 Mentorship",
       description: "Level up your skills",
     },
-  ];
-
-  const timelineOptions = [
-    { value: "asap", label: "ASAP (This Week)" },
-    { value: "month", label: "Within a Month" },
-    { value: "quarter", label: "This Quarter" },
-    { value: "flexible", label: "Flexible Timeline" },
   ];
 
   const [showCalendly, setShowCalendly] = useState(false);
@@ -270,6 +253,12 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
   const closeCalendly = () => {
     setShowCalendly(false);
   };
+
+  useEffect(()=>{
+    if(workType){
+      updateField('workType', workType)
+    }
+  }, [workType])
 
   if (showSuccess) {
     return (
@@ -338,7 +327,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
           <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
 
           <p className="mb-3 text-purple-300 font-mono font-bold">
-            * Professionally Stalk Me On
+            * Professional Stalking
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
             {Object.entries(contactInfo?.social || {}).map(
@@ -388,9 +377,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
         className="w-full lg:w-3/5 max-h-[70vh] overflow-y-auto custom-scroll"
       >
         <div className="space-y-4">
-          {" "}
-          {/* Reduced from space-y-6 */}
-          {/* Name Field */}
+          <div className="grid grid-cols-2 gap-2">
           <UndertaleTextField
             label="* What's your name, human?"
             value={formData.name}
@@ -399,6 +386,16 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
             placeholder="Enter your name..."
             className="text-sm" // Add smaller text
           />
+            <UndertaleSelect
+            label="* What kind of work do you need?"
+            options={workTypeOptions}
+            value={formData.workType}
+            onChange={(value: string) => updateField("workType", value)}
+            error={errors.workType}
+            className="text-sm"
+          />
+          </div>
+         
           {/* Email Field */}
           <UndertaleTextField
             label="* Your email address?"
@@ -410,16 +407,8 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
             className="text-sm"
           />
           {/* Work Type */}
-          <UndertaleSelect
-            label="* What kind of work do you need?"
-            options={workTypeOptions}
-            value={formData.workType}
-            onChange={(value: string) => updateField("workType", value)}
-            error={errors.workType}
-            className="text-sm"
-          />
+        
           {/* Timeline (Optional) */}
-         
           {/* Project Description */}
           <div>
             <UndertaleTextField
@@ -478,6 +467,19 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
                   <span className="text-sm">SUBMIT</span>
                 </>
               )}
+            </UndertaleButton>
+            <UndertaleButton
+              onClick={submitForm}
+              disabled={isSubmitting}
+              variant="secondary" // New subtle variant
+              size="small"
+              className="flex-1 px-4 py-2"
+            >
+              <>
+                  <LuSend size={16} />
+                  <span className="text-sm">Reset</span>
+                  </>
+            
             </UndertaleButton>
           </div>
         </div>

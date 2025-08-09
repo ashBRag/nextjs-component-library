@@ -16,7 +16,7 @@ export const UndertaleTextField = ({
 
   return (
     <div className={className}>
-      <label className="block text-yellow-500 font-mono mb-2 text-lg">
+      <label className="block text-yellow-500 font-mono mb-2 text-sm">
         {label}
       </label>
       <InputComponent
@@ -24,7 +24,7 @@ export const UndertaleTextField = ({
         rows={rows}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full px-4 py-3 bg-black/50 border-2 rounded-lg text-white font-mono text-lg focus:outline-none transition-all ${
+        className={`w-full px-4 py-3 bg-black/50 border-2 rounded-lg text-white font-mono text-sm focus:outline-none transition-all ${
           rows ? "resize-none" : ""
         } ${
           error
@@ -98,7 +98,7 @@ export const UndertaleRadioGroup = ({
 }) => {
   return (
     <div className={className}>
-      <label className="block text-yellow-500 font-mono mb-2 text-lg">
+      <label className="block text-yellow-500 font-mono mb-2 text-sm">
         {label}
       </label>
       <div className="space-y-3">
@@ -119,7 +119,7 @@ export const UndertaleRadioGroup = ({
                   : "border-blue-400 bg-black/30 hover:border-yellow-400 hover:bg-yellow-400/10"
               }`}
             >
-              <div className="text-white text-lg">{option.label}</div>
+              <div className="text-white text-sm">{option.label}</div>
               {option.description && (
                 <div className="text-gray-300 text-sm mt-1">
                   {option.description}
@@ -148,13 +148,13 @@ export const UndertaleSelect = ({
 }) => {
   return (
     <div className={className}>
-      <label className="block text-yellow-500 font-mono mb-2 text-lg">
+      <label className="block text-yellow-500 font-mono mb-2 text-sm">
         {label}
       </label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full px-4 py-3 bg-black/50 border-2 rounded-lg text-white font-mono text-lg focus:outline-none transition-all ${
+        className={`w-full px-4 py-3 bg-black/50 border-2 rounded-lg text-white font-mono text-sm focus:outline-none transition-all ${
           error
             ? "border-red-500 shadow-red-500/50 shadow-lg"
             : "border-blue-400 focus:border-yellow-400 focus:shadow-yellow-400/30 focus:shadow-lg"

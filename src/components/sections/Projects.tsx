@@ -6,9 +6,8 @@ import Timeline from "@/components/ui/undertale/Timeline";
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
 import Card from "../ui/undertale/Card";
-import * as SiIcons from "react-icons/si";
-import * as FaIcons from "react-icons/fa";
 import { Project, Projects } from "@/types/projects";
+import IconComponent from "../ui/Icon";
 
 const variants = ["primary", "success", "warning", "danger"] as const;
 
@@ -92,29 +91,6 @@ export default function ProjectsSection({ iconMap }) {
   }
 
   const timelineItems = getTimelineItems();
-  const skillComponent = (skill = { name: "" }) => {
-    const iconConfig = iconMap.find((icon) => icon.name === skill.name) || {
-      icon: "",
-      color: "",
-      name: "",
-    };
-
-    const IconComponent =
-      SiIcons[iconConfig.icon || ""] || FaIcons[iconConfig.icon || ""];
-    return (
-      <li key={skill.name} className="flex flex-col items-center gap-2">
-        <div className="flex flex-col items-center gap-2">
-          {IconComponent && (
-            <IconComponent
-              color={iconConfig.color || "#ffffff"}
-              className="w-10 h-10"
-            />
-          )}
-          <span className="text-lg sm:text-xs">{skill.name}</span>
-        </div>
-      </li>
-    );
-  };
 
   return (
     <section className="flex p-4">
@@ -126,11 +102,14 @@ export default function ProjectsSection({ iconMap }) {
       <Card title={projectInfo?.name || ""} size="md" className="w-3/5">
         <div>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 w-auto my-10">
-            {projectInfo?.tech_stack?.map((skill) =>
-              skillComponent({
-                name: skill,
-              }),
-            )}
+            {projectInfo?.tech_stack?.map((skill) => (
+              <IconComponent
+                key={skill}
+                iconMap={iconMap}
+                name={skill}
+                iconClass="w-8 h-8"
+              />
+            ))}
           </div>
           <ul>
             {projectInfo?.achievements.map((achievement, index) => (

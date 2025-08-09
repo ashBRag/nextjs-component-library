@@ -5,6 +5,7 @@ import ExperienceSection from "@/components/sections/Experience";
 import Header from "@/components/sections/Header";
 import ProjectsSection from "@/components/sections/Projects";
 import ServicesSection from "@/components/sections/Services";
+import SkillsTable from "@/components/sections/Skills";
 import { getSectionData } from "@/lib/api";
 import { Contact } from "@/types/personal";
 import React, { useEffect } from "react";
@@ -40,10 +41,28 @@ export default function Home() {
     skills: [{ name: "", icon: "", color: "" }],
     contact: [{ name: "", icon: "", color: "" }],
   });
+  const [skillsData, setSkillsData] = useState({
+    categories: {
+      frontend: {
+        skills: [{ name: "", icon: "", level: "", color: "" }],
+      },
+      backend: {
+        skills: [{ name: "", icon: "", level: "", color: "" }],
+      },
+      cloud: {
+        skills: [{ name: "", icon: "", level: "", color: "" }],
+      },
+    },
+  });
+  const [workType, setWorkType] = useState('')
 
   const handleIcons = async () => {
-    const iconData = await getSectionData("iconMap");
+    const [iconData, skills] = await Promise.all([
+      getSectionData("iconMap"),
+      getSectionData("skills"),
+    ]);
     setIconMap(iconData);
+    setSkillsData(skills);
   };
   useEffect(() => {
     handleIcons();
@@ -55,7 +74,11 @@ export default function Home() {
         profileImage="/profilePhoto.jpg"
         name="Aishwarya B R"
       />
-      <AboutSection setContactInfo={setContactInfo} iconMap={iconMap.skills} />
+      <AboutSection
+        setContactInfo={setContactInfo}
+        iconMap={iconMap.skills}
+        skillsData={skillsData}
+      />
       <ExperienceSection
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -68,7 +91,14 @@ export default function Home() {
           {
             id: "services",
             label: "Rent-a-Dev",
-            content: <ServicesSection />,
+            content: <ServicesSection setActiveTab={setActiveTab} setWorkType={setWorkType} />,
+          },
+          {
+            id: "skills",
+            label: "Dev Arsenal",
+            content: (
+              <SkillsTable iconMap={iconMap.skills} skillsData={skillsData} />
+            ),
           },
           {
             id: "contact",
@@ -77,14 +107,11 @@ export default function Home() {
               <ContactSection
                 contactInfo={contactInfo}
                 iconMap={iconMap.contact}
+                workType={workType}
               />
             ),
           },
-          {
-            id: "skills",
-            label: "Dev Arsenal",
-            content: <div>Skills</div>,
-          },
+
           /*{
           id:'architecture-diagrams',
           label: "Architecture Autopsy",
@@ -99,7 +126,7 @@ export default function Home() {
           id:'demo',
           label: "It works (on my machine)",
           content: <div>Live Demo</div>
-        },*/
+        },
           {
             id: "blogs",
             label: "Rant Journal",
@@ -126,7 +153,7 @@ export default function Home() {
                 </ul>
               </div>
             ),
-          },
+          },*/
         ]}
         defaultActiveTab="projects"
         className="mt-10"
