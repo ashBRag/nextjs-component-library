@@ -16,7 +16,7 @@ export const UndertaleTextField = ({
 
   return (
     <div className={className}>
-      <label className="block text-yellow-500 font-mono font-bold mb-2 text-lg">
+      <label className="block text-yellow-500 font-mono mb-2 text-lg">
         {label}
       </label>
       <InputComponent
@@ -54,6 +54,10 @@ export const UndertaleButton = ({
       "bg-green-600 border-green-400 shadow-green-400/30 hover:bg-green-500",
     secondary:
       "bg-purple-600 border-purple-400 shadow-purple-400/30 hover:bg-purple-500",
+    "subtle-primary":
+      "bg-green-700/40 border-green-500/50 shadow-green-400/10 hover:bg-green-600/50 text-green-100",
+    "subtle-secondary":
+      "bg-purple-700/40 border-purple-500/50 shadow-purple-400/10 hover:bg-purple-600/50 text-purple-100",
     danger: "bg-red-600 border-red-400 shadow-red-400/30 hover:bg-red-500",
     disabled: "bg-gray-600 border-gray-500",
   };
@@ -71,7 +75,7 @@ export const UndertaleButton = ({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`font-mono font-bold rounded-lg border-4 transition-all transform flex items-center justify-center gap-3 text-white ${variantClass} ${sizeClass} ${
+      className={`font-mono rounded-lg border-4 transition-all transform flex items-center justify-center gap-3 text-white ${variantClass} ${sizeClass} ${
         disabled
           ? "cursor-not-allowed opacity-50"
           : "hover:scale-105 active:scale-95 shadow-lg"
@@ -94,7 +98,7 @@ export const UndertaleRadioGroup = ({
 }) => {
   return (
     <div className={className}>
-      <label className="block text-yellow-500 font-mono font-bold mb-2 text-lg">
+      <label className="block text-yellow-500 font-mono mb-2 text-lg">
         {label}
       </label>
       <div className="space-y-3">
@@ -115,7 +119,7 @@ export const UndertaleRadioGroup = ({
                   : "border-blue-400 bg-black/30 hover:border-yellow-400 hover:bg-yellow-400/10"
               }`}
             >
-              <div className="text-white text-lg font-bold">{option.label}</div>
+              <div className="text-white text-lg">{option.label}</div>
               {option.description && (
                 <div className="text-gray-300 text-sm mt-1">
                   {option.description}
@@ -144,7 +148,7 @@ export const UndertaleSelect = ({
 }) => {
   return (
     <div className={className}>
-      <label className="block text-yellow-500 font-mono font-bold mb-2 text-lg">
+      <label className="block text-yellow-500 font-mono mb-2 text-lg">
         {label}
       </label>
       <select

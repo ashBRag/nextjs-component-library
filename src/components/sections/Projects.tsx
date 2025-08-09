@@ -12,7 +12,7 @@ import { Project, Projects } from "@/types/projects";
 
 const variants = ["primary", "success", "warning", "danger"] as const;
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ iconMap }) {
   const [projectsData, setProjectsData] = useState<Projects | null>(null);
   const [loading, setLoading] = useState(true);
   const [projectInfo, setProjectInfo] = useState<Project | null>({
@@ -92,13 +92,24 @@ export default function ProjectsSection() {
   }
 
   const timelineItems = getTimelineItems();
-  const skillComponent = (skill = { icon: "", name: "" }) => {
+  const skillComponent = (skill = { name: "" }) => {
+    const iconConfig = iconMap.find((icon) => icon.name === skill.name) || {
+      icon: "",
+      color: "",
+      name: "",
+    };
+
     const IconComponent =
-      SiIcons[skill.icon || ""] || FaIcons[skill.icon || ""];
+      SiIcons[iconConfig.icon || ""] || FaIcons[iconConfig.icon || ""];
     return (
       <li key={skill.name} className="flex flex-col items-center gap-2">
         <div className="flex flex-col items-center gap-2">
-          {IconComponent && <IconComponent className="w-10 h-10" />}
+          {IconComponent && (
+            <IconComponent
+              color={iconConfig.color || "#ffffff"}
+              className="w-10 h-10"
+            />
+          )}
           <span className="text-lg sm:text-xs">{skill.name}</span>
         </div>
       </li>
@@ -107,20 +118,23 @@ export default function ProjectsSection() {
 
   return (
     <section className="flex p-4">
-      <Timeline items={timelineItems} className="w-120 mr-10" />
-      <Card title={projectInfo?.name || ""} size="lg">
+      <Timeline
+        items={timelineItems}
+        className="w-2/5 mr-10 max-h-[65vh] overflow-y-auto pr-5
+               custom-scroll"
+      />
+      <Card title={projectInfo?.name || ""} size="md" className="w-3/5">
         <div>
-          <div className="grid grid-cols-6 gap-2 w-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 w-auto my-10">
             {projectInfo?.tech_stack?.map((skill) =>
               skillComponent({
                 name: skill,
-                icon: "",
               }),
             )}
           </div>
           <ul>
             {projectInfo?.achievements.map((achievement, index) => (
-              <li key={"ach" + index}>{achievement}</li>
+              <li key={"ach" + index}>* {achievement}</li>
             ))}
           </ul>
         </div>

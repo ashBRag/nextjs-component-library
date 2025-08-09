@@ -8,6 +8,7 @@ const pathNames = new Map([
   ["projects", "/projects.json"],
   ["services", "/services.json"],
   ["skills", "/skills.json"],
+  ["iconMap", "/iconMap.json"],
 ]);
 
 export async function GET(request: NextRequest) {
@@ -19,7 +20,6 @@ export async function GET(request: NextRequest) {
 
     if (section) {
       const pathName = pathNames.get(section);
-      console.log(pathName);
       if (pathName) {
         console.log(jsonDirectory + pathName);
         const fileContents = await fs.readFile(
@@ -27,7 +27,6 @@ export async function GET(request: NextRequest) {
           "utf8",
         );
         data = JSON.parse(fileContents);
-        console.log(data);
       }
     } else {
       const result: any[] = [];

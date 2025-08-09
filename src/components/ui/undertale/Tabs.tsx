@@ -176,11 +176,11 @@ export default function UndertaleTabs({
             return (
               <li
                 key={tab.id}
-                className="relative max-w-40"
+                className="relative flex-1"
                 role="presentation"
               >
                 <button
-                  className={getCharacterTabStyles(tab, isActive)}
+                  className={`w-full ${getCharacterTabStyles(tab, isActive)}`}
                   onClick={() => onTabChange(tab.id)}
                   type="button"
                   role="tab"

@@ -5,8 +5,9 @@ import ExperienceSection from "@/components/sections/Experience";
 import Header from "@/components/sections/Header";
 import ProjectsSection from "@/components/sections/Projects";
 import ServicesSection from "@/components/sections/Services";
+import { getSectionData } from "@/lib/api";
 import { Contact } from "@/types/personal";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 export default function Home() {
   const [activeTab, setActiveTab] = useState("projects");
@@ -35,7 +36,18 @@ export default function Home() {
       leetcode: "",
     },
   });
+  const [iconMap, setIconMap] = useState({
+    skills: [{ name: "", icon: "", color: "" }],
+    contact: [{ name: "", icon: "", color: "" }],
+  });
 
+  const handleIcons = async () => {
+    const iconData = await getSectionData("iconMap");
+    setIconMap(iconData);
+  };
+  useEffect(() => {
+    handleIcons();
+  }, []);
   return (
     <div>
       <Header
@@ -43,7 +55,7 @@ export default function Home() {
         profileImage="/profilePhoto.jpg"
         name="Aishwarya B R"
       />
-      <AboutSection setContactInfo={setContactInfo} />
+      <AboutSection setContactInfo={setContactInfo} iconMap={iconMap.skills} />
       <ExperienceSection
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -51,7 +63,7 @@ export default function Home() {
           {
             id: "projects",
             label: "Stuff I Built",
-            content: <ProjectsSection />,
+            content: <ProjectsSection iconMap={iconMap.skills} />,
           },
           {
             id: "services",
@@ -61,7 +73,12 @@ export default function Home() {
           {
             id: "contact",
             label: "Find Me Here",
-            content: <ContactSection contactInfo={contactInfo} />,
+            content: (
+              <ContactSection
+                contactInfo={contactInfo}
+                iconMap={iconMap.contact}
+              />
+            ),
           },
           {
             id: "skills",

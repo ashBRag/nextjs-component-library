@@ -2,11 +2,17 @@
 "use client";
 
 import React from "react";
+import * as SiIcons from "react-icons/si";
+import * as FaIcons from "react-icons/fa";
 
 interface Skill {
-  icon: string;
   name: string;
-  color?: string;
+}
+
+interface IconConfig {
+  name: string;
+  icon: string;
+  color: string;
 }
 
 interface SkillsData {
@@ -19,19 +25,15 @@ interface SkillsData {
 
 interface AnimatedSkillsProps {
   skillsData: SkillsData;
-  SiIcons: any;
-  FaIcons: any;
+  iconMap: IconConfig[];
   className?: string;
-  orbitSpeed?: "slow" | "normal" | "fast";
-  direction?: "clockwise" | "counterclockwise";
 }
 
 export function AnimatedSkillsGrid({
   skillsData,
-  SiIcons,
-  FaIcons,
+  iconMap,
   className = "",
-}: Omit<AnimatedSkillsProps, "orbitSpeed" | "direction">) {
+}: AnimatedSkillsProps) {
   const allSkills = [
     ...skillsData.categories.frontend.skills,
     ...skillsData.categories.backend.skills,
@@ -39,8 +41,12 @@ export function AnimatedSkillsGrid({
   ];
 
   const skillComponent = (skill: Skill, index: number) => {
-    const IconComponent =
-      SiIcons[skill.icon || ""] || FaIcons[skill.icon || ""];
+    const iconConfig = iconMap.find((icon) => icon.name === skill.name) || {
+      icon: "",
+      color: "",
+      name: "",
+    };
+    const IconComponent = SiIcons[iconConfig.icon] || FaIcons[iconConfig.icon];
 
     return (
       <li
@@ -54,7 +60,7 @@ export function AnimatedSkillsGrid({
           {IconComponent && (
             <IconComponent
               className="w-8 h-8 drop-shadow-lg transition-transform duration-300 w-10"
-              color={skill.color || "#ffffff"}
+              color={iconConfig.color || "#ffffff"}
             />
           )}
           <span className="text-sm font-medium text-white text-center">
@@ -67,7 +73,7 @@ export function AnimatedSkillsGrid({
 
   return (
     <div className={className}>
-      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+      <ul className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
         {allSkills.map((skill, index) => skillComponent(skill, index))}
       </ul>
 

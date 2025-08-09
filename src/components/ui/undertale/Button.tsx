@@ -65,7 +65,6 @@ import { LuExternalLink } from "react-icons/lu";
 
 // Dark purple variant
 export function UndertaleDownloadButton({
-  onClick,
   href = "/resume.pdf",
   className = "",
   downloadName = "Aishwarya_BR_Resume.pdf",
@@ -77,7 +76,6 @@ export function UndertaleDownloadButton({
       <a
         href={href}
         download={downloadName}
-        onClick={onClick}
         className={`
           relative block px-6 py-3 text-base
           bg-gradient-to-b from-slate-700 to-purple-800
@@ -111,6 +109,7 @@ export const ContactLinkButton = ({
   size = "default",
   showExternalIcon = true,
   className = "",
+  iconColor = "text-current",
 }) => {
   const variants = {
     default: "bg-white/5 hover:bg-white/10 border-transparent",
@@ -147,7 +146,7 @@ export const ContactLinkButton = ({
       `}
     >
       <Icon
-        className="text-current group-hover:scale-110 transition-transform flex-shrink-0"
+        className={`${iconColor} text-current group-hover:scale-110 transition-transform flex-shrink-0`}
         size={iconSizes[size]}
       />
       <span className="text-white font-mono flex-1 text-left">{text}</span>

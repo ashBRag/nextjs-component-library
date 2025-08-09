@@ -40,6 +40,21 @@ const IconComponent = (icon = "") => {
   return Icon;
 };
 
+const getIconColor = (platform: string) => {
+  const colors = {
+    gmail: "text-red-500",
+    phone: "text-green-500",
+    whatsapp: "text-green-600",
+    discord: "text-indigo-500",
+    linkedin: "text-blue-500",
+    peerlist: "text-emerald-500",
+    github: "text-gray-300",
+    gitlab: "text-orange-500",
+    hackerrank: "text-green-600",
+    leetcode: "text-yellow-500",
+  };
+  return colors[platform.toLowerCase()] || "text-gray-400";
+};
 const useContactForm = ({ calendlyUrl = "" }) => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -277,44 +292,104 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
   }
 
   return (
-    <div className="flex flex-row justify-between align-start">
-      <div>
-        <div className="grid grid-cols-2 gap-4 h-40">
-          <ContactLinkButton
-            key="gmail"
-            text="Gmail"
-            href={contactInfo?.gmail || ""}
-            icon={IconComponent("gmail")}
-            className="h-10"
-          />
-          {[
-            ...Object.entries(contactInfo?.messaging || {}),
-            ...Object.entries(contactInfo?.social || {}),
-          ].map(([platform, link]) => (
+    <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between align-start">
+      <div className="mr-10 w-2/5 flex flex-col">
+        {/* Message Section */}
+        <div className="relative p-5 bg-black/20 border-2 border-purple-400/30 rounded-lg mb-4">
+          {/* Undertale-style corner decorations */}
+          <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
+          <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
+          <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
+          <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
+
+          <p className="mb-3 text-purple-300 font-mono font-bold">
+            * Interrupt Me On
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
             <ContactLinkButton
-              key={platform}
-              text={capitalizeFirstLetter(platform)}
-              href={link}
-              icon={IconComponent(platform)}
+              key="gmail"
+              text="Gmail"
+              href={contactInfo?.gmail || ""}
+              icon={IconComponent("gmail")}
               className="h-10"
+              iconColor="text-red-500" // Gmail red
             />
-          ))}
+            {Object.entries(contactInfo?.messaging || {}).map(
+              ([platform, link]) => (
+                <ContactLinkButton
+                  key={platform}
+                  text={capitalizeFirstLetter(platform)}
+                  href={link}
+                  icon={IconComponent(platform)}
+                  className="h-10"
+                  iconColor={getIconColor(platform)}
+                />
+              ),
+            )}
+          </div>
         </div>
-        <div className="grid grid-cols-4 gap-4 h-40">
-          {Object.entries(contactInfo?.code || {}).map(([platform, link]) => (
-            <ContactLinkButton
-              key={platform}
-              text={capitalizeFirstLetter(platform)}
-              href={link}
-              icon={IconComponent(platform)}
-              className="h-10"
-            />
-          ))}
+
+        {/* Social Section */}
+        <div className="relative p-5 bg-black/20 border-2 border-purple-400/30 rounded-lg mb-4">
+          {/* Undertale-style corner decorations */}
+          <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
+          <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
+          <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
+          <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
+
+          <p className="mb-3 text-purple-300 font-mono font-bold">
+            * Professionally Stalk Me On
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            {Object.entries(contactInfo?.social || {}).map(
+              ([platform, link]) => (
+                <ContactLinkButton
+                  key={platform}
+                  text={capitalizeFirstLetter(platform)}
+                  href={link}
+                  icon={IconComponent(platform)}
+                  className="h-10"
+                  iconColor={getIconColor(platform)}
+                />
+              ),
+            )}
+          </div>
+        </div>
+
+        {/* Code Section */}
+        <div className="relative p-5 bg-black/20 border-2 border-purple-400/30 rounded-lg">
+          {/* Undertale-style corner decorations */}
+          <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
+          <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
+          <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
+          <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
+
+          <p className="mb-3 text-purple-300 font-mono font-bold">
+            * My Code Laboratory
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            {Object.entries(contactInfo?.code || {}).map(([platform, link]) => (
+              <ContactLinkButton
+                key={platform}
+                text={capitalizeFirstLetter(platform)}
+                href={link}
+                icon={IconComponent(platform)}
+                className="h-10"
+                iconColor={getIconColor(platform)}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      <UndertaleCard className="w-120" title="Lets do this!" description="">
-        <div className="space-y-6">
+      <UndertaleCard
+        title="Skip the vibe code, let's build it right"
+        description=""
+        className="w-full lg:w-3/5 max-h-[70vh] overflow-y-auto custom-scroll"
+      >
+        <div className="space-y-4">
+          {" "}
+          {/* Reduced from space-y-6 */}
           {/* Name Field */}
           <UndertaleTextField
             label="* What's your name, human?"
@@ -322,8 +397,8 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
             onChange={(value: string) => updateField("name", value)}
             error={errors.name}
             placeholder="Enter your name..."
+            className="text-sm" // Add smaller text
           />
-
           {/* Email Field */}
           <UndertaleTextField
             label="* Your email address?"
@@ -332,8 +407,8 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
             onChange={(value: string) => updateField("email", value)}
             error={errors.email}
             placeholder="your.email@domain.com"
+            className="text-sm"
           />
-
           {/* Work Type */}
           <UndertaleSelect
             label="* What kind of work do you need?"
@@ -341,18 +416,10 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
             value={formData.workType}
             onChange={(value: string) => updateField("workType", value)}
             error={errors.workType}
+            className="text-sm"
           />
-
           {/* Timeline (Optional) */}
-          <UndertaleSelect
-            label="Timeline (Optional)"
-            options={timelineOptions}
-            value={formData.timeline}
-            onChange={(value: string) => updateField("timeline", value)}
-            placeholder="When do you need this done?"
-            error={errors.timeline}
-          />
-
+         
           {/* Project Description */}
           <div>
             <UndertaleTextField
@@ -361,11 +428,15 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
               onChange={(value: string) => updateField("projectDesc", value)}
               error={errors.projectDesc}
               placeholder="Describe your project, requirements, budget, and any other details..."
-              rows={5}
+              rows={4} // Reduced from 5
+              className="text-sm"
             />
-            <div className="flex justify-end mt-2">
+            <div className="flex justify-end mt-1">
+              {" "}
+              {/* Reduced margin */}
               <span
-                className={`font-mono text-sm ${
+                className={`font-mono text-xs ${
+                  // Reduced from text-sm
                   (formData.projectDesc?.length || 0) < 10
                     ? "text-red-400"
                     : "text-green-400"
@@ -375,36 +446,36 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo }) => {
               </span>
             </div>
           </div>
-
-          {/* Meeting Booking Section */}
-
-          {/* Action Buttons */}
-
-          <div className="flex gap-4">
+          {/* Action Buttons - More Subtle */}
+          <div className="flex gap-3 pt-2">
+            {" "}
+            {/* Reduced gap and padding */}
             <UndertaleButton
               onClick={bookMeeting}
               disabled={!canBookMeeting()}
-              variant="secondary"
-              size="default"
+              variant="subtle-secondary" // New subtle variant
+              size="small" // Smaller size
+              className="px-4 py-2" // Override with smaller padding
             >
-              <LuCalendar size={20} />
-              BOOK MEETING
+              <LuCalendar size={16} /> {/* Smaller icon */}
+              <span className="text-sm">BOOK MEETING</span>
             </UndertaleButton>
             <UndertaleButton
               onClick={submitForm}
               disabled={isSubmitting}
-              variant="primary"
-              className="flex-1"
+              variant="subtle-primary" // New subtle variant
+              size="small"
+              className="flex-1 px-4 py-2"
             >
               {isSubmitting ? (
                 <>
-                  <div className="animate-spin">⭐</div>
-                  SENDING...
+                  <div className="animate-spin text-sm">⭐</div>
+                  <span className="text-sm">SENDING...</span>
                 </>
               ) : (
                 <>
-                  <LuSend size={20} />
-                  SUBMIT
+                  <LuSend size={16} />
+                  <span className="text-sm">SUBMIT</span>
                 </>
               )}
             </UndertaleButton>
