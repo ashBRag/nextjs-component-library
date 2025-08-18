@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LuCalendar, LuSend, LuRotateCcw, LuX } from "react-icons/lu";
+import { LuCalendar, LuSend, LuRotateCcw } from "react-icons/lu";
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
 import {
@@ -24,7 +24,7 @@ interface FormData {
 
 interface ContactProps {
   contactInfo: Contact;
-  workType?: string; 
+  workType?: string;
 }
 
 function capitalizeFirstLetter(str = "") {
@@ -56,11 +56,11 @@ const getIconColor = (platform: string) => {
   };
   return colors[platform.toLowerCase()] || "text-gray-400";
 };
-const useContactForm = ({ calendlyUrl = "", workType="" }) => {
+const useContactForm = ({ calendlyUrl = "", workType = "" }) => {
   const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    workType: "",
+    name: "aishwarya.br",
+    email: "ashragh17@gmail.com",
+    workType: "freelance",
     timeline: "",
     projectDesc: "",
   });
@@ -74,7 +74,6 @@ const useContactForm = ({ calendlyUrl = "", workType="" }) => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const [showCalendly, setShowCalendly] = useState(false);
 
   // Validation rules
   const validateField = (field: string, value: string) => {
@@ -179,12 +178,12 @@ const useContactForm = ({ calendlyUrl = "", workType="" }) => {
     });
     setErrors({});
     setShowSuccess(false);
-    setShowCalendly(false);
     setIsSubmitting(false);
   };
 
   const getCalendlyUrl = () => {
     const url = new URL(calendlyUrl);
+    url.searchParams.set("hide_event_type_details", "1");
 
     // Pre-fill Calendly
     if (formData.name) url.searchParams.set("name", formData.name);
@@ -200,17 +199,18 @@ const useContactForm = ({ calendlyUrl = "", workType="" }) => {
     errors,
     isSubmitting,
     showSuccess,
-    showCalendly,
     updateField,
     submitForm,
     resetForm,
     canBookMeeting,
     getCalendlyUrl,
-    setShowCalendly,
   };
 };
 
-const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo, workType="" }) => {
+const UndertaleContactForm: React.FC<ContactProps> = ({
+  contactInfo,
+  workType = "",
+}) => {
   const {
     formData,
     errors,
@@ -223,7 +223,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo, workType=""
     getCalendlyUrl,
   } = useContactForm({ calendlyUrl: contactInfo.availability.calendar });
 
-  const { openPopup } = useCalendly();
+  const { isLoaded } = useCalendly();
 
   const workTypeOptions = [
     {
@@ -243,23 +243,21 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo, workType=""
     },
   ];
 
-  const [showCalendly, setShowCalendly] = useState(false);
 
   const bookMeeting = () => {
-    if (!canBookMeeting()) return;
-    setShowCalendly(true);
-  };
-
-  const closeCalendly = () => {
-    setShowCalendly(false);
-  };
-
-  useEffect(()=>{
-    if(workType){
-      updateField('workType', workType)
+    if (isLoaded && window.Calendly) {
+      window.Calendly.initPopupWidget({ 
+        url: getCalendlyUrl() ,
+      });
     }
-  }, [workType])
+  };
 
+  useEffect(() => {
+    if (workType) {
+      updateField("workType", workType);
+    }
+  }, [workType]);
+  
   if (showSuccess) {
     return (
       <div className="max-w-2xl mx-auto p-6 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
@@ -281,7 +279,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo, workType=""
   }
 
   return (
-    <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between align-start">
+    <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between">
       <div className="mr-10 w-2/5 flex flex-col">
         {/* Message Section */}
         <div className="relative p-5 bg-black/20 border-2 border-purple-400/30 rounded-lg mb-4">
@@ -378,24 +376,24 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo, workType=""
       >
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-2">
-          <UndertaleTextField
-            label="* What's your name, human?"
-            value={formData.name}
-            onChange={(value: string) => updateField("name", value)}
-            error={errors.name}
-            placeholder="Enter your name..."
-            className="text-sm" // Add smaller text
-          />
+            <UndertaleTextField
+              label="* What's your name, human?"
+              value={formData.name}
+              onChange={(value: string) => updateField("name", value)}
+              error={errors.name}
+              placeholder="Enter your name..."
+              className="text-sm" // Add smaller text
+            />
             <UndertaleSelect
-            label="* What kind of work do you need?"
-            options={workTypeOptions}
-            value={formData.workType}
-            onChange={(value: string) => updateField("workType", value)}
-            error={errors.workType}
-            className="text-sm"
-          />
+              label="* What kind of work do you need?"
+              options={workTypeOptions}
+              value={formData.workType}
+              onChange={(value: string) => updateField("workType", value)}
+              error={errors.workType}
+              className="text-sm"
+            />
           </div>
-         
+
           {/* Email Field */}
           <UndertaleTextField
             label="* Your email address?"
@@ -407,7 +405,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo, workType=""
             className="text-sm"
           />
           {/* Work Type */}
-        
+
           {/* Timeline (Optional) */}
           {/* Project Description */}
           <div>
@@ -438,20 +436,19 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo, workType=""
           {/* Action Buttons - More Subtle */}
           <div className="flex gap-3 pt-2">
             {" "}
-            {/* Reduced gap and padding */}
             <UndertaleButton
               onClick={bookMeeting}
               disabled={!canBookMeeting()}
               variant="subtle-secondary" // New subtle variant
               size="small" // Smaller size
-              className="px-4 py-2" // Override with smaller padding
+              className="flex-1 px-4 py-2" // Override with smaller padding
             >
-              <LuCalendar size={16} /> {/* Smaller icon */}
+              <LuCalendar size={16} /> 
               <span className="text-sm">BOOK MEETING</span>
             </UndertaleButton>
             <UndertaleButton
               onClick={submitForm}
-              disabled={isSubmitting}
+              disabled={!canBookMeeting() || isSubmitting}
               variant="subtle-primary" // New subtle variant
               size="small"
               className="flex-1 px-4 py-2"
@@ -469,29 +466,21 @@ const UndertaleContactForm: React.FC<ContactProps> = ({ contactInfo, workType=""
               )}
             </UndertaleButton>
             <UndertaleButton
-              onClick={submitForm}
-              disabled={isSubmitting}
-              variant="secondary" // New subtle variant
+              onClick={resetForm}
+              disabled={!Object.values(formData).filter(val=>!!val).length}
+              variant="subtle-danger" // New subtle variant
               size="small"
               className="flex-1 px-4 py-2"
             >
               <>
-                  <LuSend size={16} />
-                  <span className="text-sm">Reset</span>
-                  </>
-            
+                <LuRotateCcw size={16} />
+                <span className="text-sm">Reset</span>
+              </>
             </UndertaleButton>
           </div>
         </div>
       </UndertaleCard>
-      {/* Calendly Popup */}
-      {showCalendly && (
-        <CalendlyPopup
-          isOpen={openPopup}
-          onClose={closeCalendly}
-          url={getCalendlyUrl()}
-        />
-      )}
+     
     </div>
   );
 };

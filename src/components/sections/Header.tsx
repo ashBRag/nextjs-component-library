@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import { scrollToBottom, scrollToElement } from "@/lib/utils";
 
 interface HeaderProps {
   profileImage: string;
@@ -42,10 +43,11 @@ const Header = ({
   }, []);
 
   const handleMenu = (id = "") => {
-    window.scrollTo({
-      top: window.innerHeight - 100,
-      behavior: "smooth",
-    });
+    // window.scrollTo({
+    //   top: window.innerHeight - 100,
+    //   behavior: "smooth",
+    // });
+    scrollToBottom(2.5)
     setActiveTab(id);
   };
 

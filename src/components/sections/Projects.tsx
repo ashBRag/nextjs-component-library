@@ -9,7 +9,7 @@ import Card from "../ui/undertale/Card";
 import { Project, Projects } from "@/types/projects";
 import IconComponent from "../ui/Icon";
 
-const variants = ["primary", "success", "warning", "danger"] as const;
+const variants = ["determination", "kindness", "integrity", "danger"] as const;
 
 export default function ProjectsSection({ iconMap }) {
   const [projectsData, setProjectsData] = useState<Projects | null>(null);
@@ -20,6 +20,7 @@ export default function ProjectsSection({ iconMap }) {
     achievements: [""],
     tech_stack: [""],
   });
+  const [selectedTimelineItem, setSelectedTimelineItem] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -56,6 +57,7 @@ export default function ProjectsSection({ iconMap }) {
           id: `${exp.company.toLowerCase().replace(/\s+/g, "-")}-${project.name.toLowerCase().replace(/\s+/g, "-")}`,
           title: project.name,
           date: project.duration,
+          character: 'flowey',
           //description: project.achievements.join(' • '),
           badge: {
             text: badgeText, // Use first word of company name
@@ -98,6 +100,9 @@ export default function ProjectsSection({ iconMap }) {
         items={timelineItems}
         className="w-2/5 mr-10 max-h-[65vh] overflow-y-auto pr-5
                custom-scroll"
+        onSelect={(id)=>{setSelectedTimelineItem(id)}}
+        selectedId={selectedTimelineItem}
+        
       />
       <Card title={projectInfo?.name || ""} size="md" className="w-3/5">
         <div>

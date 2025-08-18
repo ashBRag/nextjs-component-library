@@ -15,6 +15,31 @@
     --foreground: #ededed;
   }
 }
+/* Add this to your existing CSS file */
+
+/* Base font sizes for different screen sizes */
+html {
+  font-size: 0.6rem; /* Base font size for mobile */
+}
+
+@media (min-width: 640px) { /* sm */
+  html {
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 768px) { /* md */
+  html {
+    font-size: 0.8rem; /* Reduced from 18px */
+  }
+}
+
+@media (min-width: 1024px) { /* lg */
+  html {
+    font-size: 1rem; /* Reduced from 20px */
+  }
+}
+
 
 body {
   background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);

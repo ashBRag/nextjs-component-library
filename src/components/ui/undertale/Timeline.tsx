@@ -42,6 +42,8 @@ interface UndertaleTimelineProps {
   className?: string;
   theme?: "underground" | "surface" | "dark_world";
   animated?: boolean;
+  selectedId?: string;
+  onSelect?: (id: string) => void;
 }
 
 export default function UndertaleTimeline({
@@ -49,6 +51,8 @@ export default function UndertaleTimeline({
   className = "",
   theme = "underground",
   animated = false,
+  selectedId,
+  onSelect,
 }: UndertaleTimelineProps) {
   const getThemeStyles = () => {
     const themes = {
@@ -59,14 +63,14 @@ export default function UndertaleTimeline({
     return themes[theme];
   };
 
-  const getBadgeStyles = (variant: string = "determination") => {
+  const getBadgeStyles = (variant: string = "perseverance") => {
     const soulColors = {
       determination:
         "bg-red-900/80 text-red-200 border border-red-500 shadow-red-500/30",
       kindness:
         "bg-green-900/80 text-green-200 border border-green-500 shadow-green-500/30",
       justice:
-        "bg-yellow-900/80 text-yellow-200 border border-yellow-500 shadow-yellow-500/30",
+        "bg-yellow-900/80 text-yellow-200 border border-yellow-300 shadow-yellow-300/30",
       bravery:
         "bg-orange-900/80 text-orange-200 border border-orange-500 shadow-orange-500/30",
       patience:
@@ -80,65 +84,36 @@ export default function UndertaleTimeline({
     return `${soulColors[variant as keyof typeof soulColors] || soulColors.determination} ${animationClass}`;
   };
 
-  const getCharacterTitleStyles = (character?: string, hasAction?: boolean) => {
-    if (!hasAction) {
-      return "text-lg font-semibold text-slate-200 font-mono";
-    }
-
+  const getCharacterTitleStyles = (character?: string) => {
     const characterStyles = {
-      sans: "text-lg font-semibold text-yellow-400 hover:text-yellow-300 font-mono",
+      sans: "text-lg font-semibold text-yellow-300 font-mono",
       papyrus:
-        "text-lg font-bold text-orange-400 hover:text-orange-300 uppercase tracking-wider font-mono",
+        "text-lg font-bold text-orange-400 uppercase tracking-wider font-mono",
       flowey:
-        "text-lg font-bold text-yellow-400 hover:text-yellow-300 font-mono",
-      frisk: "text-lg font-semibold text-red-400 hover:text-red-300 font-mono",
+        "text-lg font-bold text-yellow-300 font-mono",
+      frisk: "text-lg font-semibold text-red-400 font-mono",
       toriel:
-        "text-lg font-medium text-purple-400 hover:text-purple-300 font-mono",
+        "text-lg font-medium text-purple-400 font-mono",
       undyne:
-        "text-lg font-bold text-green-400 hover:text-green-300 uppercase font-mono",
+        "text-lg font-bold text-green-400 uppercase font-mono",
       alphys:
-        "text-lg font-semibold text-yellow-400 hover:text-yellow-300 font-mono",
+        "text-lg font-semibold text-yellow-300 font-mono",
       mettaton:
-        "text-lg font-semibold text-pink-400 hover:text-pink-300 italic font-mono",
+        "text-lg font-semibold text-pink-400 italic font-mono",
     };
 
-    const baseStyle = character
+    return character
       ? characterStyles[character as keyof typeof characterStyles]
-      : characterStyles.sans;
-    const hoverEffect = animated
-      ? "hover:underline transition-all duration-200 cursor-pointer underline-offset-2"
-      : "cursor-pointer";
-
-    return `${baseStyle} ${hoverEffect}`;
+      : "text-lg font-semibold text-slate-200 font-mono";
   };
 
-  const getTimelineNodeStyles = (item: UndertaleTimelineItem) => {
+  const getTimelineNodeStyles = () => {
     const baseStyles =
       "absolute flex items-center justify-center w-12 h-12 rounded-full border-2 font-mono text-lg";
-    const positionStyles = "-start-13.5 backdrop-blur-sm";
-
-    const characterColors = {
-      sans: "bg-cyan-900/80 border-cyan-400 text-cyan-200 shadow-cyan-400/50",
-      papyrus:
-        "bg-orange-900/80 border-orange-400 text-orange-200 shadow-orange-400/50",
-      flowey:
-        "bg-yellow-900/80 border-yellow-500 text-yellow-200 shadow-yellow-500/60",
-      frisk: "bg-red-900/80 border-red-500 text-red-200 shadow-red-500/50",
-      toriel:
-        "bg-purple-900/80 border-purple-400 text-purple-200 shadow-purple-400/50",
-      undyne:
-        "bg-green-900/80 border-green-400 text-green-200 shadow-green-400/50",
-      alphys:
-        "bg-yellow-900/80 border-yellow-400 text-yellow-200 shadow-yellow-400/50",
-      mettaton:
-        "bg-pink-900/80 border-pink-400 text-pink-200 shadow-pink-400/50",
-    };
-
+    const positionStyles = "-start-14 backdrop-blur-sm";
     const defaultColor =
       "bg-slate-800/80 border-slate-400 text-slate-200 shadow-slate-400/30";
-    const colorStyle = item.character
-      ? characterColors[item.character]
-      : defaultColor;
+    const colorStyle =  defaultColor;
     const animationStyle = animated
       ? "hover:scale-110 transition-transform duration-300"
       : "";
@@ -146,54 +121,120 @@ export default function UndertaleTimeline({
     return `${baseStyles} ${positionStyles} ${colorStyle} ${animationStyle}`;
   };
 
-  const renderTitle = (item: UndertaleTimelineItem) => {
-    const titleContent = item.title;
+  const getCardGlowStyles = (item: UndertaleTimelineItem) => {
+    if (!item.action) return "";
 
-    if (!item.action) {
-      return (
-        <h3 className={getCharacterTitleStyles(item.character, false)}>
-          {titleContent}
-        </h3>
-      );
+    const isSelected = selectedId === item.id;
+
+    const characterGlows = {
+      sans: isSelected 
+        ? "shadow-lg shadow-cyan-400/30 border-cyan-400/80 bg-slate-800/70" 
+        : "hover:shadow-lg hover:shadow-cyan-400/20 hover:border-cyan-400/60",
+      papyrus: isSelected 
+        ? "shadow-lg shadow-orange-400/30 border-orange-400/80 bg-slate-800/70" 
+        : "hover:shadow-lg hover:shadow-orange-400/20 hover:border-orange-400/60",
+      flowey: isSelected 
+        ? "shadow-lg shadow-yellow-300/30 border-yellow-300/80 bg-slate-800/70" 
+        : "hover:shadow-lg hover:shadow-yellow-300/20 hover:border-yellow-300/60",
+      frisk: isSelected 
+        ? "shadow-lg shadow-red-400/30 border-red-400/80 bg-slate-800/70" 
+        : "hover:shadow-lg hover:shadow-red-400/20 hover:border-red-400/60",
+      toriel: isSelected 
+        ? "shadow-lg shadow-purple-400/30 border-purple-400/80 bg-slate-800/70" 
+        : "hover:shadow-lg hover:shadow-purple-400/20 hover:border-purple-400/60",
+      undyne: isSelected 
+        ? "shadow-lg shadow-green-400/30 border-green-400/80 bg-slate-800/70" 
+        : "hover:shadow-lg hover:shadow-green-400/20 hover:border-green-400/60",
+      alphys: isSelected 
+        ? "shadow-lg shadow-yellow-300/30 border-yellow-300/80 bg-slate-800/70" 
+        : "hover:shadow-lg hover:shadow-yellow-300/20 hover:border-yellow-300/60",
+      mettaton: isSelected 
+        ? "shadow-lg shadow-pink-400/30 border-pink-400/80 bg-slate-800/70" 
+        : "hover:shadow-lg hover:shadow-pink-400/20 hover:border-pink-400/60",
+    };
+
+    const defaultGlow = isSelected 
+      ? "shadow-lg shadow-slate-400/30 border-slate-400/80 bg-slate-800/70" 
+      : "hover:shadow-lg hover:shadow-slate-400/20 hover:border-slate-400/60";
+    
+    const glowStyle = item.character
+      ? characterGlows[item.character]
+      : defaultGlow;
+
+    const baseStyles = isSelected 
+      ? "transition-all duration-300 cursor-pointer" 
+      : "hover:bg-slate-800/60 transition-all duration-300 cursor-pointer";
+
+    return `${glowStyle} ${baseStyles}`;
+  };
+
+  const handleCardClick = (item: UndertaleTimelineItem) => {
+    if (!item.action) return;
+
+    // Update selection state
+    if (onSelect) {
+      onSelect(item.id);
     }
 
-    if (item.action.href) {
-      if (item.action.external) {
-        return (
-          <a
-            href={item.action.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={getCharacterTitleStyles(item.character, true)}
+    if (item.action.onClick) {
+      item.action.onClick();
+    } else if (item.action.href && item.action.external) {
+      window.open(item.action.href, '_blank', 'noopener,noreferrer');
+    }
+    // Next.js Link navigation is handled by the Link component wrapper
+  };
+
+  const renderCardContent = (item: UndertaleTimelineItem) => (
+    <div className={`relative p-4 rounded-lg bg-slate-800/40 border border-slate-600/50 backdrop-blur-sm ${getCardGlowStyles(item)}`}>
+      {/* Content */}
+      <div className="flex items-start mb-2 flex-wrap gap-2">
+        <div className="flex-1 min-w-0">
+          <h3 className={getCharacterTitleStyles(item.character)}>
+            {item.title}
+          </h3>
+        </div>
+        {item.badge && (
+          <span
+            className={`text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap font-mono ${getBadgeStyles(item.badge.variant)}`}
           >
-            {titleContent}
-          </a>
-        );
-      } else {
-        return (
-          <Link
-            href={item.action.href}
-            className={getCharacterTitleStyles(item.character, true)}
-          >
-            {titleContent}
-          </Link>
-        );
-      }
-    } else if (item.action.onClick) {
+            {item.badge.text}
+          </span>
+        )}
+      </div>
+
+      <time className="block mb-3 text-sm font-normal leading-none text-slate-400 font-mono">
+        * {item.date}
+      </time>
+
+      <p className="text-base font-normal text-slate-300 font-mono leading-relaxed">
+        {item.description}
+      </p>
+
+      {/* Small corner decorations for content boxes */}
+      <div className="absolute top-1 left-1 w-1.5 h-1.5 border-l border-t border-slate-500 opacity-50"></div>
+      <div className="absolute top-1 right-1 w-1.5 h-1.5 border-r border-t border-slate-500 opacity-50"></div>
+      <div className="absolute bottom-1 left-1 w-1.5 h-1.5 border-l border-b border-slate-500 opacity-50"></div>
+      <div className="absolute bottom-1 right-1 w-1.5 h-1.5 border-r border-b border-slate-500 opacity-50"></div>
+    </div>
+  );
+
+  const renderCard = (item: UndertaleTimelineItem) => {
+    if (!item.action) {
+      return renderCardContent(item);
+    }
+
+    if (item.action.href && !item.action.external) {
       return (
-        <button
-          onClick={item.action.onClick}
-          className={`${getCharacterTitleStyles(item.character, true)} text-left bg-transparent border-none p-0 font-inherit focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-opacity-50 rounded-sm`}
-        >
-          {titleContent}
-        </button>
+        <Link href={item.action.href} className="block">
+          {renderCardContent(item)}
+        </Link>
       );
     }
 
     return (
-      <h3 className={getCharacterTitleStyles(item.character, false)}>
-        {titleContent}
-      </h3>
+      <div onClick={() => handleCardClick(item)}>
+        {renderCardContent(item)}
+      </div>
     );
   };
 
@@ -201,12 +242,6 @@ export default function UndertaleTimeline({
     <div
       className={`relative backdrop-blur-sm ${getThemeStyles()} ${className}`}
     >
-      {/* Corner decorations */}
-      {/*<div className="absolute top-2 left-2 w-3 h-3 border-l-2 border-t-2 border-current opacity-30"></div>
-      <div className="absolute top-2 right-2 w-3 h-3 border-r-2 border-t-2 border-current opacity-30"></div>
-      <div className="absolute bottom-2 left-2 w-3 h-3 border-l-2 border-b-2 border-current opacity-30"></div>
-      <div className="absolute bottom-2 right-2 w-3 h-3 border-r-2 border-b-2 border-current opacity-30"></div>
-*/}
       <ol
         className={`relative border-s-2 ms-6 ${theme === "underground" ? "border-slate-400" : theme === "surface" ? "border-blue-400" : "border-purple-400"}`}
       >
@@ -216,36 +251,10 @@ export default function UndertaleTimeline({
             className={`${index === items.length - 1 ? "ms-8" : "mb-12 ms-8"} relative`}
           >
             {/* Timeline Node */}
-            <span className={getTimelineNodeStyles(item)}>{item.icon}</span>
+            <span className={getTimelineNodeStyles()}>{item.icon}</span>
 
             {/* Content Container */}
-            <div className="relative p-4 rounded-lg bg-slate-800/40 border border-slate-600/50 backdrop-blur-sm">
-              {/* Content */}
-              <div className="flex items-start mb-2 flex-wrap gap-2">
-                <div className="flex-1 min-w-0">{renderTitle(item)}</div>
-                {item.badge && (
-                  <span
-                    className={`text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap font-mono ${getBadgeStyles(item.badge.variant)}`}
-                  >
-                    {item.badge.text}
-                  </span>
-                )}
-              </div>
-
-              <time className="block mb-3 text-sm font-normal leading-none text-slate-400 font-mono">
-                * {item.date}
-              </time>
-
-              <p className="text-base font-normal text-slate-300 font-mono leading-relaxed">
-                {item.description}
-              </p>
-
-              {/* Small corner decorations for content boxes */}
-              <div className="absolute top-1 left-1 w-1.5 h-1.5 border-l border-t border-slate-500 opacity-50"></div>
-              <div className="absolute top-1 right-1 w-1.5 h-1.5 border-r border-t border-slate-500 opacity-50"></div>
-              <div className="absolute bottom-1 left-1 w-1.5 h-1.5 border-l border-b border-slate-500 opacity-50"></div>
-              <div className="absolute bottom-1 right-1 w-1.5 h-1.5 border-r border-b border-slate-500 opacity-50"></div>
-            </div>
+            {renderCard(item)}
           </li>
         ))}
       </ol>

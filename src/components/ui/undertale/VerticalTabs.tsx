@@ -211,7 +211,7 @@ export default function UndertaleVerticalTabs({
 
   return (
     <div
-      className={`md:flex ${getThemeStyles()} rounded-lg border-2 p-2 ${className}`}
+      className={`md:flex`}
     >
       {/* Tabs List */}
       <ul
@@ -225,7 +225,7 @@ export default function UndertaleVerticalTabs({
       {/* Tab Content */}
       <div
         className={`
-        relative p-6 rounded-lg w-full font-mono backdrop-blur-sm border-2
+        relative p-5 rounded-lg w-full font-mono backdrop-blur-sm border-2
         ${theme === "underground" ? "bg-slate-800/60 border-slate-600 text-slate-200" : ""}
         ${theme === "surface" ? "bg-blue-800/60 border-blue-600 text-blue-200" : ""}
         ${theme === "dark_world" ? "bg-purple-800/60 border-purple-600 text-purple-200" : ""}

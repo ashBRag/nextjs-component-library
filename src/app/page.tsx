@@ -54,7 +54,7 @@ export default function Home() {
       },
     },
   });
-  const [workType, setWorkType] = useState('')
+  const [workType, setWorkType] = useState("");
 
   const handleIcons = async () => {
     const [iconData, skills] = await Promise.all([
@@ -91,7 +91,12 @@ export default function Home() {
           {
             id: "services",
             label: "Rent-a-Dev",
-            content: <ServicesSection setActiveTab={setActiveTab} setWorkType={setWorkType} />,
+            content: (
+              <ServicesSection
+                setActiveTab={setActiveTab}
+                setWorkType={setWorkType}
+              />
+            ),
           },
           {
             id: "skills",

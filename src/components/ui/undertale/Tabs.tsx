@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 interface UndertaleTab {
   id: string;
@@ -33,6 +33,7 @@ interface UndertaleTabsProps {
   className?: string;
   theme?: "underground" | "surface" | "dark_world";
   animated?: boolean;
+  contentHeight?: string | number; // Can be '70%', '400px', 400, etc.
 }
 
 export default function UndertaleTabs({
@@ -42,7 +43,34 @@ export default function UndertaleTabs({
   className = "",
   theme = "underground",
   animated = true,
+  contentHeight = "77vh",
 }: UndertaleTabsProps) {
+  const [computedHeight, setComputedHeight] = useState<string>("77vh");
+
+  useEffect(() => {
+    const calculateHeight = () => {
+      if (typeof contentHeight === "number") {
+        setComputedHeight(`${contentHeight}px`);
+      } else if (typeof contentHeight === "string") {
+        if (contentHeight.includes("%")) {
+          // Convert percentage to vh for viewport-relative sizing
+          const percentage = parseFloat(contentHeight);
+          setComputedHeight(`${percentage}vh`);
+        } else {
+          setComputedHeight(contentHeight);
+        }
+      }
+    };
+
+    calculateHeight();
+    
+    // Recalculate on window resize if using percentage
+    if (typeof contentHeight === "string" && contentHeight.includes("%")) {
+      window.addEventListener("resize", calculateHeight);
+      return () => window.removeEventListener("resize", calculateHeight);
+    }
+  }, [contentHeight]);
+
   const getThemeStyles = () => {
     const themes = {
       underground: "bg-slate-900/90 border-slate-700",
@@ -153,8 +181,6 @@ export default function UndertaleTabs({
       : "bg-slate-800/40 border-slate-600/30 text-slate-200";
   };
 
-  //const activeTabData = tabs.find(tab => tab.id === activeTab);
-
   return (
     <div
       className={`backdrop-blur-sm border-2 rounded-lg ${getThemeStyles()} ${className}`}
@@ -220,15 +246,16 @@ export default function UndertaleTabs({
       </div>
 
       {/* Tab Content */}
-      <div className="relative">
+      <div className="relative" style={{ height: computedHeight }}>
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           return (
             <div
+              id={tab.id}
               key={tab.id}
               className={`${
                 isActive ? "block" : "hidden"
-              } p-6 rounded-b-lg border-2 border-t-0 backdrop-blur-sm font-mono relative ${getSoulTypeContentStyles(tab.soulType)}`}
+              } p-6 rounded-b-lg border-2 border-t-0 backdrop-blur-sm font-mono relative overflow-auto h-full ${getSoulTypeContentStyles(tab.soulType)}`}
               role="tabpanel"
               aria-labelledby={`${tab.id}-tab`}
             >
