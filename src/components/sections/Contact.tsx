@@ -12,7 +12,7 @@ import UndertaleCard from "../ui/undertale/Card";
 import { ContactLinkButton } from "../ui/undertale/Button";
 import { Contact } from "@/types/personal";
 import { useCalendly } from "../forms/calendly/useCalendly";
-import { CalendlyPopup } from "../forms/calendly/Calendly";
+import IconMap from "@/types/iconMap";
 
 interface FormData {
   name: string;
@@ -25,6 +25,7 @@ interface FormData {
 interface ContactProps {
   contactInfo: Contact;
   workType?: string;
+  iconMap?: IconMap
 }
 
 function capitalizeFirstLetter(str = "") {
@@ -41,7 +42,7 @@ const IconComponent = (icon = "") => {
   return Icon;
 };
 
-const getIconColor = (platform: string) => {
+const getIconColor = (platform: string = 'default') => {
   const colors = {
     gmail: "text-red-500",
     phone: "text-green-500",
@@ -53,10 +54,11 @@ const getIconColor = (platform: string) => {
     gitlab: "text-orange-500",
     hackerrank: "text-green-600",
     leetcode: "text-yellow-500",
+    default: "text-gray-400"
   };
-  return colors[platform.toLowerCase()] || "text-gray-400";
+  return colors[platform.toLowerCase()];
 };
-const useContactForm = ({ calendlyUrl = "", workType = "" }) => {
+const useContactForm = ({ calendlyUrl = ""}) => {
   const [formData, setFormData] = useState<FormData>({
     name: "aishwarya.br",
     email: "ashragh17@gmail.com",
@@ -176,7 +178,13 @@ const useContactForm = ({ calendlyUrl = "", workType = "" }) => {
       timeline: "",
       projectDesc: "",
     });
-    setErrors({});
+    setErrors({
+      name: "",
+      email: "",
+      workType: "",
+      timeline: "",
+      projectDesc: "",
+    });
     setShowSuccess(false);
     setIsSubmitting(false);
   };
@@ -279,8 +287,8 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
   }
 
   return (
-    <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row justify-between">
-      <div className="mr-10 w-2/5 flex flex-col">
+    <div className="flex flex-col-reverse sm:flex-col-reverse md:flex-row lg:flex-row justify-between p-5 md:p-0 lg:p-0">
+      <div className="mr-10 w-full lg:w-2/5 flex flex-col justify-between">
         {/* Message Section */}
         <div className="relative p-5 bg-black/20 border-2 border-purple-400/30 rounded-lg mb-4">
           {/* Undertale-style corner decorations */}
@@ -292,7 +300,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
           <p className="mb-3 text-purple-300 font-mono font-bold">
             * Interrupt Me On
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
             <ContactLinkButton
               key="gmail"
               text="Gmail"
@@ -327,7 +335,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
           <p className="mb-3 text-purple-300 font-mono font-bold">
             * Professional Stalking
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
             {Object.entries(contactInfo?.social || {}).map(
               ([platform, link]) => (
                 <ContactLinkButton
@@ -354,7 +362,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
           <p className="mb-3 text-purple-300 font-mono font-bold">
             * My Code Laboratory
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
             {Object.entries(contactInfo?.code || {}).map(([platform, link]) => (
               <ContactLinkButton
                 key={platform}
@@ -373,9 +381,10 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
         title="Skip the vibe code, let's build it right"
         description=""
         className="w-full lg:w-3/5 max-h-[70vh] overflow-y-auto custom-scroll"
+        noBackground
       >
         <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
             <UndertaleTextField
               label="* What's your name, human?"
               value={formData.name}

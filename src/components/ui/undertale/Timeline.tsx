@@ -7,7 +7,7 @@ interface UndertaleTimelineItem {
   id: string;
   title: string;
   date: string;
-  description: string;
+  description?: string;
   badge?: {
     text: string;
     variant?:

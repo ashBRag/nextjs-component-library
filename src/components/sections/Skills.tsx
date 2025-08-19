@@ -1,5 +1,6 @@
 import React from "react";
 import IconComponent from "../ui/Icon";
+import IconMap from "@/types/iconMap";
 
 // Types
 interface Skill {
@@ -134,11 +135,11 @@ const YearsBadge = ({ years }: { years: number }) => {
 };
 
 // Main Component
-const SkillsTable = ({ skillsData, iconMap }: { skillsData: SkillsData }) => {
+const SkillsTable = ({ skillsData, iconMap }: { skillsData: SkillsData, iconMap: IconMap }) => {
   const { getLevelStars, getCategoryCharacter } = useSkillsLogic();
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-10 p-5 text-gray-400">
       {/* Header */}
       <p className="mb-6 text-center text-gray-400 text-sm">
         Skills acquired through determination and countless hours of coding
@@ -170,7 +171,7 @@ const SkillsTable = ({ skillsData, iconMap }: { skillsData: SkillsData }) => {
                         <div className="col-span-4">
                           <IconComponent
                             name={skill.name}
-                            iconMap={iconMap}
+                            iconMap={iconMap.skills}
                             iconClass="w-8 h-8"
                             divClass="flex flex-row items-center gap-2"
                           />

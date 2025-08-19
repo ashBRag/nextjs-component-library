@@ -7,6 +7,7 @@ interface TabbedSectionProps {
     id: string;
     label: string;
     content: React.ReactNode;
+    className?: string;
   }>;
   defaultActiveTab?: string;
   className?: string;
@@ -31,7 +32,7 @@ export default function TabbedSection({
         tabs={tabs}
         activeTab={activeTab}
         onTabChange={setActiveTab}
-        className="m-10"
+        className="m-[2.5vw]"
       />
     </section>
   );

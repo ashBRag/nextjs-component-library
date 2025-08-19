@@ -16,6 +16,7 @@ interface UndertaleCardProps {
     | "alphys"
     | "mettaton";
   size?: "sm" | "md" | "lg";
+  noBackground? : boolean;
   animated?: boolean;
   showBorder?: boolean;
   children?: React.ReactNode;
@@ -32,37 +33,41 @@ export default function Card({
   animated = false,
   showBorder = true,
   children,
+  noBackground = false
 }: UndertaleCardProps) {
   const getVariantStyles = () => {
+    if(noBackground){
+      return "border-cyan-400 text-cyan-100 shadow-cyan-400/20"
+    }
     const variants = {
       // Sans - cool blue vibes
-      sans: "bg-slate-900 border-cyan-400 text-cyan-100 shadow-cyan-400/20",
+      sans: " backdrop-blur-sm bg-slate-900  border-cyan-400 text-cyan-100 shadow-cyan-400/20",
 
       // Papyrus - orange/warm
       papyrus:
-        "bg-orange-900 border-orange-400 text-orange-100 shadow-orange-400/20",
+        " backdrop-blur-sm bg-orange-900 border-orange-400 text-orange-100 shadow-orange-400/20",
 
       // Flowey - dark/sinister
       flowey:
-        "bg-gray-900 border-yellow-500 text-yellow-100 shadow-yellow-500/30",
+        " backdrop-blur-sm bg-gray-900 border-yellow-500 text-yellow-100 shadow-yellow-500/30",
 
       // Frisk - determination red
-      frisk: "bg-red-950 border-red-500 text-red-100 shadow-red-500/25",
+      frisk: " backdrop-blur-sm bg-red-950 border-red-500 text-red-100 shadow-red-500/25",
 
       // Toriel - warm purple/motherly
       toriel:
-        "bg-purple-900 border-purple-400 text-purple-100 shadow-purple-400/20",
+        " backdrop-blur-sm bg-purple-900 border-purple-400 text-purple-100 shadow-purple-400/20",
 
       // Undyne - green/heroic
       undyne:
-        "bg-green-900 border-green-400 text-green-100 shadow-green-400/20",
+        " backdrop-blur-sm bg-green-900 border-green-400 text-green-100 shadow-green-400/20",
 
       // Alphys - yellow/scientific
       alphys:
-        "bg-yellow-900 border-yellow-400 text-yellow-100 shadow-yellow-400/20",
+        " backdrop-blur-sm bg-yellow-900 border-yellow-400 text-yellow-100 shadow-yellow-400/20",
 
       // Mettaton - pink/glamorous
-      mettaton: "bg-pink-900 border-pink-400 text-pink-100 shadow-pink-400/20",
+      mettaton: " backdrop-blur-sm bg-pink-900 border-pink-400 text-pink-100 shadow-pink-400/20",
     };
     return variants[variant];
   };
@@ -135,13 +140,14 @@ export default function Card({
   return (
     <div
       className={`
-      block rounded-lg shadow-lg backdrop-blur-sm
+      relative block rounded-lg shadow-lg text-align:justify
       ${getVariantStyles()}
       ${getSizeStyles()}
       ${getBorderStyles()}
       ${getAnimationStyles()}
       ${getPixelatedStyles()}
       ${className}
+
     `}
     >
       {/* Undertale-style corner decorations */}

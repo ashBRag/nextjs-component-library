@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { scrollToBottom, scrollToElement } from "@/lib/utils";
+import { scrollToBottom } from "@/lib/utils";
 
 interface HeaderProps {
   profileImage: string;
@@ -64,7 +64,7 @@ const Header = ({
         <div className="flex items-center justify-between">
           {/* Profile section - shows when scrolled */}
           {isScrolled && (
-            <div className="flex items-center space-x-3">
+            <div className="hidden sm:flex items-center space-x-3">
               <Image
                 src={profileImage}
                 alt="Profile"
@@ -85,6 +85,28 @@ const Header = ({
               </a>
             </div>
           )}
+         
+         <div className={`md:hidden flex items-center space-x-3`}>
+              <Image
+                src={profileImage}
+                alt="Profile"
+                className="w-10 h-10 rounded-full object-cover border-2 border-yellow-400"
+                width={10}
+                height={10}
+              />
+              <span className="text-yellow-400 font-mono font-bold">
+                {name}
+              </span>
+              {/* Download Resume */}
+              <a
+                href="/resume.pdf"
+                download="Aishwarya_BR_Resume.pdf"
+                className="ml-4 bg-purple-600 hover:bg-purple-500 text-white px-3 py-1 text-sm font-mono border border-white/50 hover:border-white transition-all"
+              >
+                📄 Resume
+              </a>
+            </div>
+          
 
           {/* Desktop Navigation */}
           <div
@@ -104,34 +126,7 @@ const Header = ({
               </button>
             ))}
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden ml-auto bg-yellow-500 text-black p-3 border-4 border-white font-mono font-bold hover:bg-yellow-400 transition-colors"
-          >
-            ☰
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pt-4 border-t-4 border-white bg-black/95 rounded">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleMenu(item.id)}
-                className={`block w-full text-left py-3 px-4 font-mono font-bold uppercase tracking-wider transition-colors duration-200 border-b-2 border-white/20 ${
-                  activeSection === item.id
-                    ? "bg-yellow-500 text-black"
-                    : "text-white hover:bg-yellow-500 hover:text-black"
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        )}
+        </div>      
       </nav>
     </header>
   );

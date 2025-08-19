@@ -38,7 +38,7 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <section className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2 mt-[16vh] mb-[10vh] mx-[2.5vw]">
+    <section className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2 mt-[3vh] md:mt-[16vh] md:mb-[10vh] mx-[2.5vw]">
       <div className="hidden lg:flex lg:flex-col mr-10 pt-2">
         <Image src="/profilePhoto.jpg" alt="Profile Image" />
         <UndertaleDownloadButton
@@ -48,7 +48,7 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
         <UndertaleUI />
       </div>
 
-      <Card title="Meet Aishwarya B R">
+      <Card title="Meet Aishwarya B R" noBackground>
         <div className="flex flex-col gap-2">
           <div className="flex">
             <span className="mr-2">I Am</span>

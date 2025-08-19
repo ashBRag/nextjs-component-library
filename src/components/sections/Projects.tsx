@@ -1,27 +1,49 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, JSX } from "react";
 import Timeline from "@/components/ui/undertale/Timeline";
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
 import Card from "../ui/undertale/Card";
-import { Project, Projects } from "@/types/projects";
+import { Experience, Project, Projects } from "@/types/projects";
 import IconComponent from "../ui/Icon";
+import MobileCarousel from "../ui/undertale/Scroll";
+import IconMap from "@/types/iconMap";
 
-const variants = ["determination", "kindness", "integrity", "danger"] as const;
+const variants = ["determination", "kindness", "integrity"] as const;
 
-export default function ProjectsSection({ iconMap }) {
-  const [projectsData, setProjectsData] = useState<Projects | null>(null);
+
+const DEFAULT_PROJECT: Project = {
+  name: "",
+  duration: "",
+  achievements: [],
+  tech_stack: []
+};
+
+const DEFAULT_EXPERIENCE: Experience ={
+  position: '',
+  company: '',
+  location: '',
+  duration: '',
+  projects: [DEFAULT_PROJECT]
+}
+
+interface ProjectsSectionProps {
+  iconMap: IconMap;
+}
+
+
+export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
+  const [projectsData, setProjectsData] = useState<Projects>({experience: [DEFAULT_EXPERIENCE]})
   const [loading, setLoading] = useState(true);
-  const [projectInfo, setProjectInfo] = useState<Project | null>({
+  const [projectInfo, setProjectInfo] = useState<Project>({
     name: "",
     duration: "",
     achievements: [""],
     tech_stack: [""],
   });
-  const [selectedTimelineItem, setSelectedTimelineItem] = useState<string | null>(null);
-
+  const [selectedTimelineItem, setSelectedTimelineItem] = useState<string>('');
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -43,7 +65,12 @@ export default function ProjectsSection({ iconMap }) {
   const getTimelineItems = () => {
     if (!projectsData) return [];
 
-    const allItems: any[] = [];
+    const allItems: { 
+      id: string; title: string; date: string; 
+      
+    badge: { text: string; variant: "determination" | "kindness" | "integrity"; }; 
+    character: "flowey";
+    icon: JSX.Element; action: { onClick: () => void; }; }[] = [];
 
     projectsData.experience.forEach((exp) => {
       const allCompanies = Array.from(
@@ -57,12 +84,11 @@ export default function ProjectsSection({ iconMap }) {
           id: `${exp.company.toLowerCase().replace(/\s+/g, "-")}-${project.name.toLowerCase().replace(/\s+/g, "-")}`,
           title: project.name,
           date: project.duration,
-          character: 'flowey',
-          //description: project.achievements.join(' • '),
           badge: {
-            text: badgeText, // Use first word of company name
+            text: badgeText,
             variant,
           },
+          character: 'flowey',
           icon: (
             <Image
               src={`/companyLogo/${badgeText.toLowerCase()}.png`}
@@ -84,6 +110,40 @@ export default function ProjectsSection({ iconMap }) {
     return allItems;
   };
 
+  // Component for project card content
+  const ProjectCard = ({ project, company='', duration = '' }: { project: Project, company?: string, duration?: string }) => (
+    <Card 
+    noBackground={!!company}
+    title={project?.name || ""} size="md" className="w-full md:min-h-[60vh]">
+      <div>
+        {company && <div>
+          Company: {company}
+        </div>}
+        <div>
+          {duration}
+        </div>
+        <div className="my-5">* Tech Stack Used: </div>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 w-auto my-6">
+          {project?.tech_stack?.map((skill) => (
+            <IconComponent
+              key={skill}
+              iconMap={iconMap.skills}
+              name={skill}
+              iconClass="w-8 h-8 sm:w-8 sm:h-8"
+            />
+          ))}
+        </div>
+        <ul className="space-y-1">
+          {project?.achievements.map((achievement, index) => (
+            <li key={"ach" + index} className="text-sm sm:text-base">
+              * {achievement}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Card>
+  );
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -95,34 +155,32 @@ export default function ProjectsSection({ iconMap }) {
   const timelineItems = getTimelineItems();
 
   return (
-    <section className="flex p-4">
-      <Timeline
-        items={timelineItems}
-        className="w-2/5 mr-10 max-h-[65vh] overflow-y-auto pr-5
-               custom-scroll"
-        onSelect={(id)=>{setSelectedTimelineItem(id)}}
-        selectedId={selectedTimelineItem}
-        
-      />
-      <Card title={projectInfo?.name || ""} size="md" className="w-3/5">
-        <div>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 w-auto my-10">
-            {projectInfo?.tech_stack?.map((skill) => (
-              <IconComponent
-                key={skill}
-                iconMap={iconMap}
-                name={skill}
-                iconClass="w-8 h-8"
-              />
-            ))}
-          </div>
-          <ul>
-            {projectInfo?.achievements.map((achievement, index) => (
-              <li key={"ach" + index}>* {achievement}</li>
-            ))}
-          </ul>
+    <>
+      {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
+      <section className="hidden md:flex p-4 gap-6">
+        <Timeline
+          items={timelineItems}
+          className="w-2/5 max-h-[65vh] overflow-y-auto pr-5 custom-scroll"
+          onSelect={(id) => {setSelectedTimelineItem(id)}}
+          selectedId={selectedTimelineItem}
+        />
+        <div className="w-3/5">
+          <ProjectCard project={projectInfo} />
         </div>
-      </Card>
-    </section>
+      </section>
+
+      {/* Mobile Layout: Carousel (sm and below) */}
+      <section className="md:hidden">
+        <MobileCarousel
+          items={projectsData.experience?.flatMap(exp => 
+            exp.projects?.map(project => ({
+              id: project.name,
+              content: <ProjectCard project={project} company={exp.company} duration = {exp.duration}/>
+            }))
+          )}         
+          className="p-5"
+        />
+      </section>
+    </>
   );
 }
