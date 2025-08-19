@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 
 interface CarouselItem {
   id: string;
@@ -15,17 +14,13 @@ export default function MobileCarousel({
   items,
   className = "",
 }: MobileCarouselProps) {
-
-  return (<>
- 
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className={className}
-            >
-                {item.content}
-            </div>
-          ))}
-          </>
+  return (
+    <>
+      {items.map((item) => (
+        <div key={item.id} className={className}>
+          {item.content}
+        </div>
+      ))}
+    </>
   );
 }

@@ -8,21 +8,22 @@ export function capitalizeFirstLetter(str = "") {
 export const scrollToElement = (elementId: string, offset = 0) => {
   const element = document.getElementById(elementId);
   if (element) {
-    const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+    const elementPosition =
+      element.getBoundingClientRect().top + window.scrollY;
     const offsetPosition = elementPosition - offset;
-    
+
     window.scrollTo({
       top: offsetPosition,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }
 };
 
 export const scrollToBottom = (gapPercent = 10) => {
   const gapPixels = (window.innerHeight * gapPercent) / 100;
-  
+
   window.scrollTo({
     top: document.documentElement.scrollHeight - window.innerHeight - gapPixels,
-    behavior: 'smooth'
+    behavior: "smooth",
   });
 };

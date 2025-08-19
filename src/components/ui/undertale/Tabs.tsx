@@ -65,7 +65,7 @@ export default function UndertaleTabs({
     };
 
     calculateHeight();
-    
+
     if (typeof contentHeight === "string" && contentHeight.includes("%")) {
       window.addEventListener("resize", calculateHeight);
       return () => window.removeEventListener("resize", calculateHeight);
@@ -81,27 +81,33 @@ export default function UndertaleTabs({
     return themes[theme];
   };
 
-  const getCharacterTabStyles = (tab: UndertaleTab, isActive: boolean, isMobile = false) => {
+  const getCharacterTabStyles = (
+    tab: UndertaleTab,
+    isActive: boolean,
+    isMobile = false,
+  ) => {
     // Sans style only
     const colorStyle = isActive
       ? "text-cyan-300 border-cyan-400 bg-cyan-900/40 shadow-cyan-400/30"
       : "text-cyan-500 border-transparent hover:text-cyan-300 hover:border-cyan-400/50";
-    
+
     const animationStyle = animated
       ? "transition-all duration-300 ease-out"
       : "";
-    
+
     const activeHover = animated && isActive ? "hover:scale-105" : "";
     const shadowStyle = isActive ? "shadow-lg" : "";
-    
+
     // Different styles for mobile bottom menu
-    const borderStyle = isMobile 
-      ? (isActive ? "border-t-2" : "border-transparent")
-      : (isActive ? "border-b-2" : "border-transparent");
-    
-    const roundingStyle = isMobile 
-      ? "rounded-b-lg" 
-      : "rounded-t-lg";
+    const borderStyle = isMobile
+      ? isActive
+        ? "border-t-2"
+        : "border-transparent"
+      : isActive
+        ? "border-b-2"
+        : "border-transparent";
+
+    const roundingStyle = isMobile ? "rounded-b-lg" : "rounded-t-lg";
 
     return `inline-block px-3 py-2 sm:px-6 sm:py-3 ${borderStyle} ${roundingStyle} font-mono relative backdrop-blur-sm ${colorStyle} ${animationStyle} ${activeHover} ${shadowStyle}`;
   };
@@ -122,7 +128,9 @@ export default function UndertaleTabs({
   };
 
   const TabHeaders = ({ isMobile = false }: { isMobile?: boolean }) => (
-    <div className={`${isMobile ? "border-t-2" : "border-b-2"} border-slate-700/50 relative`}>
+    <div
+      className={`${isMobile ? "border-t-2" : "border-b-2"} border-slate-700/50 relative`}
+    >
       <ul
         className="flex flex-wrap text-xs sm:text-sm font-medium text-center relative z-10"
         role="tablist"
@@ -130,7 +138,11 @@ export default function UndertaleTabs({
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           return (
-            <li key={tab.id} className={`${tab.className} relative flex-1`} role="presentation">
+            <li
+              key={tab.id}
+              className={`${tab.className} relative flex-1`}
+              role="presentation"
+            >
               <button
                 className={`w-full ${getCharacterTabStyles(tab, isActive, isMobile)}`}
                 onClick={() => onTabChange(tab.id)}
@@ -177,7 +189,9 @@ export default function UndertaleTabs({
 
                 {/* Selection indicator */}
                 {isActive && (
-                  <div className={`absolute ${isMobile ? "-top-0.5" : "-bottom-0.5"} left-1/2 transform -translate-x-1/2`}>
+                  <div
+                    className={`absolute ${isMobile ? "-top-0.5" : "-bottom-0.5"} left-1/2 transform -translate-x-1/2`}
+                  >
                     <div className="w-2 h-2 bg-current rounded-full animate-pulse"></div>
                   </div>
                 )}
@@ -192,7 +206,9 @@ export default function UndertaleTabs({
   return (
     <>
       {/* Desktop and Tablet Layout */}
-      <div className={`hidden sm:block backdrop-blur-sm border-2 rounded-lg ${getThemeStyles()} ${className}`}>
+      <div
+        className={`hidden sm:block backdrop-blur-sm border-2 rounded-lg ${getThemeStyles()} ${className}`}
+      >
         {/* Corner decorations */}
         <div className="absolute top-2 left-2 w-3 h-3 border-l-2 border-t-2 border-current opacity-20"></div>
         <div className="absolute top-2 right-2 w-3 h-3 border-r-2 border-t-2 border-current opacity-20"></div>
@@ -215,8 +231,8 @@ export default function UndertaleTabs({
                 className={`
                   ${tab.className} 
                   ${
-                  isActive ? "block" : "hidden"
-                } p-6 rounded-b-lg border-2 border-t-0 backdrop-blur-sm font-mono relative overflow-auto h-full ${getSoulTypeContentStyles()}`}
+                    isActive ? "block" : "hidden"
+                  } p-6 rounded-b-lg border-2 border-t-0 backdrop-blur-sm font-mono relative overflow-auto h-full ${getSoulTypeContentStyles()}`}
                 role="tabpanel"
                 aria-labelledby={`${tab.id}-tab`}
               >
@@ -245,26 +261,29 @@ export default function UndertaleTabs({
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
-                <div 
+                <div
                   id={tab.id}
                   key={`mobile-${tab.id}`}
-                  className= {`${tab.className} ${
+                  className={`${tab.className} ${
                     isActive ? "block" : "hidden"
                   } font-mono relative overflow-auto z-10`}
                   role="tabpanel"
                   aria-labelledby={`${tab.id}-tab`}
-                  >{tab.content}
+                >
+                  {tab.content}
                 </div>
               );
             })}
           </div>
 
           {/* Bottom Mobile Menu */}
-          <div className={`fixed bottom-0 left-0 right-0 backdrop-blur-sm  border-t-2 z-50 ${getThemeStyles()}`}>
+          <div
+            className={`fixed bottom-0 left-0 right-0 backdrop-blur-sm  border-t-2 z-50 ${getThemeStyles()}`}
+          >
             {/* Corner decorations */}
             <div className="absolute top-2 left-2 w-3 h-3 border-l-2 border-t-2 border-current opacity-20"></div>
             <div className="absolute top-2 right-2 w-3 h-3 border-r-2 border-t-2 border-current opacity-20"></div>
-            
+
             <TabHeaders isMobile={true} />
           </div>
         </div>

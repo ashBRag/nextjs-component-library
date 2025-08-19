@@ -89,17 +89,12 @@ export default function UndertaleTimeline({
       sans: "text-lg font-semibold text-yellow-300 font-mono",
       papyrus:
         "text-lg font-bold text-orange-400 uppercase tracking-wider font-mono",
-      flowey:
-        "text-lg font-bold text-yellow-300 font-mono",
+      flowey: "text-lg font-bold text-yellow-300 font-mono",
       frisk: "text-lg font-semibold text-red-400 font-mono",
-      toriel:
-        "text-lg font-medium text-purple-400 font-mono",
-      undyne:
-        "text-lg font-bold text-green-400 uppercase font-mono",
-      alphys:
-        "text-lg font-semibold text-yellow-300 font-mono",
-      mettaton:
-        "text-lg font-semibold text-pink-400 italic font-mono",
+      toriel: "text-lg font-medium text-purple-400 font-mono",
+      undyne: "text-lg font-bold text-green-400 uppercase font-mono",
+      alphys: "text-lg font-semibold text-yellow-300 font-mono",
+      mettaton: "text-lg font-semibold text-pink-400 italic font-mono",
     };
 
     return character
@@ -113,7 +108,7 @@ export default function UndertaleTimeline({
     const positionStyles = "-start-14 backdrop-blur-sm";
     const defaultColor =
       "bg-slate-800/80 border-slate-400 text-slate-200 shadow-slate-400/30";
-    const colorStyle =  defaultColor;
+    const colorStyle = defaultColor;
     const animationStyle = animated
       ? "hover:scale-110 transition-transform duration-300"
       : "";
@@ -127,42 +122,42 @@ export default function UndertaleTimeline({
     const isSelected = selectedId === item.id;
 
     const characterGlows = {
-      sans: isSelected 
-        ? "shadow-lg shadow-cyan-400/30 border-cyan-400/80 bg-slate-800/70" 
+      sans: isSelected
+        ? "shadow-lg shadow-cyan-400/30 border-cyan-400/80 bg-slate-800/70"
         : "hover:shadow-lg hover:shadow-cyan-400/20 hover:border-cyan-400/60",
-      papyrus: isSelected 
-        ? "shadow-lg shadow-orange-400/30 border-orange-400/80 bg-slate-800/70" 
+      papyrus: isSelected
+        ? "shadow-lg shadow-orange-400/30 border-orange-400/80 bg-slate-800/70"
         : "hover:shadow-lg hover:shadow-orange-400/20 hover:border-orange-400/60",
-      flowey: isSelected 
-        ? "shadow-lg shadow-yellow-300/30 border-yellow-300/80 bg-slate-800/70" 
+      flowey: isSelected
+        ? "shadow-lg shadow-yellow-300/30 border-yellow-300/80 bg-slate-800/70"
         : "hover:shadow-lg hover:shadow-yellow-300/20 hover:border-yellow-300/60",
-      frisk: isSelected 
-        ? "shadow-lg shadow-red-400/30 border-red-400/80 bg-slate-800/70" 
+      frisk: isSelected
+        ? "shadow-lg shadow-red-400/30 border-red-400/80 bg-slate-800/70"
         : "hover:shadow-lg hover:shadow-red-400/20 hover:border-red-400/60",
-      toriel: isSelected 
-        ? "shadow-lg shadow-purple-400/30 border-purple-400/80 bg-slate-800/70" 
+      toriel: isSelected
+        ? "shadow-lg shadow-purple-400/30 border-purple-400/80 bg-slate-800/70"
         : "hover:shadow-lg hover:shadow-purple-400/20 hover:border-purple-400/60",
-      undyne: isSelected 
-        ? "shadow-lg shadow-green-400/30 border-green-400/80 bg-slate-800/70" 
+      undyne: isSelected
+        ? "shadow-lg shadow-green-400/30 border-green-400/80 bg-slate-800/70"
         : "hover:shadow-lg hover:shadow-green-400/20 hover:border-green-400/60",
-      alphys: isSelected 
-        ? "shadow-lg shadow-yellow-300/30 border-yellow-300/80 bg-slate-800/70" 
+      alphys: isSelected
+        ? "shadow-lg shadow-yellow-300/30 border-yellow-300/80 bg-slate-800/70"
         : "hover:shadow-lg hover:shadow-yellow-300/20 hover:border-yellow-300/60",
-      mettaton: isSelected 
-        ? "shadow-lg shadow-pink-400/30 border-pink-400/80 bg-slate-800/70" 
+      mettaton: isSelected
+        ? "shadow-lg shadow-pink-400/30 border-pink-400/80 bg-slate-800/70"
         : "hover:shadow-lg hover:shadow-pink-400/20 hover:border-pink-400/60",
     };
 
-    const defaultGlow = isSelected 
-      ? "shadow-lg shadow-slate-400/30 border-slate-400/80 bg-slate-800/70" 
+    const defaultGlow = isSelected
+      ? "shadow-lg shadow-slate-400/30 border-slate-400/80 bg-slate-800/70"
       : "hover:shadow-lg hover:shadow-slate-400/20 hover:border-slate-400/60";
-    
+
     const glowStyle = item.character
       ? characterGlows[item.character]
       : defaultGlow;
 
-    const baseStyles = isSelected 
-      ? "transition-all duration-300 cursor-pointer" 
+    const baseStyles = isSelected
+      ? "transition-all duration-300 cursor-pointer"
       : "hover:bg-slate-800/60 transition-all duration-300 cursor-pointer";
 
     return `${glowStyle} ${baseStyles}`;
@@ -179,13 +174,15 @@ export default function UndertaleTimeline({
     if (item.action.onClick) {
       item.action.onClick();
     } else if (item.action.href && item.action.external) {
-      window.open(item.action.href, '_blank', 'noopener,noreferrer');
+      window.open(item.action.href, "_blank", "noopener,noreferrer");
     }
     // Next.js Link navigation is handled by the Link component wrapper
   };
 
   const renderCardContent = (item: UndertaleTimelineItem) => (
-    <div className={`relative p-4 rounded-lg bg-slate-800/40 border border-slate-600/50 backdrop-blur-sm ${getCardGlowStyles(item)}`}>
+    <div
+      className={`relative p-4 rounded-lg bg-slate-800/40 border border-slate-600/50 backdrop-blur-sm ${getCardGlowStyles(item)}`}
+    >
       {/* Content */}
       <div className="flex items-start mb-2 flex-wrap gap-2">
         <div className="flex-1 min-w-0">
@@ -232,16 +229,12 @@ export default function UndertaleTimeline({
     }
 
     return (
-      <div onClick={() => handleCardClick(item)}>
-        {renderCardContent(item)}
-      </div>
+      <div onClick={() => handleCardClick(item)}>{renderCardContent(item)}</div>
     );
   };
 
   return (
-    <div
-      className={`relative ${getThemeStyles()} ${className}`}
-    >
+    <div className={`relative ${getThemeStyles()} ${className}`}>
       <ol
         className={`relative border-s-2 ms-6 ${theme === "underground" ? "border-slate-400" : theme === "surface" ? "border-blue-400" : "border-purple-400"}`}
       >

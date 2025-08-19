@@ -16,7 +16,7 @@ interface UndertaleCardProps {
     | "alphys"
     | "mettaton";
   size?: "sm" | "md" | "lg";
-  noBackground? : boolean;
+  noBackground?: boolean;
   animated?: boolean;
   showBorder?: boolean;
   children?: React.ReactNode;
@@ -33,11 +33,11 @@ export default function Card({
   animated = false,
   showBorder = true,
   children,
-  noBackground = false
+  noBackground = false,
 }: UndertaleCardProps) {
   const getVariantStyles = () => {
-    if(noBackground){
-      return "border-cyan-400 text-cyan-100 shadow-cyan-400/20"
+    if (noBackground) {
+      return "border-cyan-400 text-cyan-100 shadow-cyan-400/20";
     }
     const variants = {
       // Sans - cool blue vibes
@@ -52,7 +52,8 @@ export default function Card({
         " backdrop-blur-sm bg-gray-900 border-yellow-500 text-yellow-100 shadow-yellow-500/30",
 
       // Frisk - determination red
-      frisk: " backdrop-blur-sm bg-red-950 border-red-500 text-red-100 shadow-red-500/25",
+      frisk:
+        " backdrop-blur-sm bg-red-950 border-red-500 text-red-100 shadow-red-500/25",
 
       // Toriel - warm purple/motherly
       toriel:
@@ -67,7 +68,8 @@ export default function Card({
         " backdrop-blur-sm bg-yellow-900 border-yellow-400 text-yellow-100 shadow-yellow-400/20",
 
       // Mettaton - pink/glamorous
-      mettaton: " backdrop-blur-sm bg-pink-900 border-pink-400 text-pink-100 shadow-pink-400/20",
+      mettaton:
+        " backdrop-blur-sm bg-pink-900 border-pink-400 text-pink-100 shadow-pink-400/20",
     };
     return variants[variant];
   };

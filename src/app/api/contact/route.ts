@@ -1,10 +1,10 @@
 // app/api/contact/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
-import { 
-  generateContactConfirmationEmail, 
-  generateInternalNotificationEmail 
-} from '@/lib/email-templates/contact-confirmation';
+import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+import {
+  generateContactConfirmationEmail,
+  generateInternalNotificationEmail,
+} from "@/lib/email-templates/contact-confirmation";
 
 interface ContactFormData {
   name: string;
@@ -26,12 +26,12 @@ interface ContactInfo {
 export async function POST(request: NextRequest) {
   try {
     const body: ContactFormData = await request.json();
-    
+
     // Validate required fields
     if (!body.name || !body.email || !body.workType || !body.projectDesc) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
+        { error: "Missing required fields" },
+        { status: 400 },
       );
     }
 
@@ -39,14 +39,14 @@ export async function POST(request: NextRequest) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(body.email)) {
       return NextResponse.json(
-        { error: 'Invalid email format' },
-        { status: 400 }
+        { error: "Invalid email format" },
+        { status: 400 },
       );
     }
 
     // Create nodemailer transporter
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_APP_PASSWORD,
@@ -54,19 +54,19 @@ export async function POST(request: NextRequest) {
     });
 
     const contactInfo: ContactInfo = {
-      email: 'aishwarya.b.raghavan@gmail.com',
-      whatsapp: 'https://wa.me/+916301706765',
-      linkedin: 'https://linkedin.com/in/aishwaryab-r-a9693457',
-      discord: 'https://discord.com/users/your-discord-id',
-      portfolio: 'https://your-portfolio.com',
-      github: 'https://github.com/your-github',
-    }
+      email: "aishwarya.b.raghavan@gmail.com",
+      whatsapp: "https://wa.me/+916301706765",
+      linkedin: "https://linkedin.com/in/aishwaryab-r-a9693457",
+      discord: "https://discord.com/users/your-discord-id",
+      portfolio: "https://your-portfolio.com",
+      github: "https://github.com/your-github",
+    };
 
     // Generate email content using imported template
     const clientEmailContent = generateContactConfirmationEmail(
       body,
-      contactInfo, 
-      process.env.CALENDLY_URL || ''
+      contactInfo,
+      process.env.CALENDLY_URL || "",
     );
 
     const internalEmailContent = generateInternalNotificationEmail(body);
@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
     // Send confirmation email to client
     await transporter.sendMail({
       from: {
-        name: 'Aishwarya B R',
+        name: "Aishwarya B R",
         address: process.env.EMAIL_USER!,
       },
       to: body.email,
@@ -90,36 +90,32 @@ export async function POST(request: NextRequest) {
       html: internalEmailContent,
     });
 
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Emails sent successfully' 
+    return NextResponse.json({
+      success: true,
+      message: "Emails sent successfully",
     });
-
   } catch (error) {
-    console.error('Email sending failed:', error);
-    
+    console.error("Email sending failed:", error);
+
     // More detailed error logging
     if (error instanceof Error) {
-      console.error('Error details:', {
+      console.error("Error details:", {
         message: error.message,
         stack: error.stack,
       });
     }
-    
+
     return NextResponse.json(
-      { 
-        error: 'Failed to send email',
-        details: process.env.NODE_ENV === 'development' ? error : undefined
+      {
+        error: "Failed to send email",
+        details: process.env.NODE_ENV === "development" ? error : undefined,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
 
 // Optional: Handle other HTTP methods
 export async function GET() {
-  return NextResponse.json(
-    { error: 'Method not allowed' },
-    { status: 405 }
-  );
+  return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
 }

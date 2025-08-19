@@ -4,7 +4,10 @@ export const useCalendly = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    if (!window.Calendly && !document.querySelector('script[src*="calendly"]')) {
+    if (
+      !window.Calendly &&
+      !document.querySelector('script[src*="calendly"]')
+    ) {
       const script = document.createElement("script");
       script.src = "https://assets.calendly.com/assets/external/widget.js";
       script.async = true;

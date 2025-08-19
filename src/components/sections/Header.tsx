@@ -47,7 +47,7 @@ const Header = ({
     //   top: window.innerHeight - 100,
     //   behavior: "smooth",
     // });
-    scrollToBottom(2.5)
+    scrollToBottom(2.5);
     setActiveTab(id);
   };
 
@@ -85,28 +85,25 @@ const Header = ({
               </a>
             </div>
           )}
-         
-         <div className={`md:hidden flex items-center space-x-3`}>
-              <Image
-                src={profileImage}
-                alt="Profile"
-                className="w-10 h-10 rounded-full object-cover border-2 border-yellow-400"
-                width={10}
-                height={10}
-              />
-              <span className="text-yellow-400 font-mono font-bold">
-                {name}
-              </span>
-              {/* Download Resume */}
-              <a
-                href="/resume.pdf"
-                download="Aishwarya_BR_Resume.pdf"
-                className="ml-4 bg-purple-600 hover:bg-purple-500 text-white px-3 py-1 text-sm font-mono border border-white/50 hover:border-white transition-all"
-              >
-                📄 Resume
-              </a>
-            </div>
-          
+
+          <div className={`md:hidden flex items-center space-x-3`}>
+            <Image
+              src={profileImage}
+              alt="Profile"
+              className="w-10 h-10 rounded-full object-cover border-2 border-yellow-400"
+              width={10}
+              height={10}
+            />
+            <span className="text-yellow-400 font-mono font-bold">{name}</span>
+            {/* Download Resume */}
+            <a
+              href="/resume.pdf"
+              download="Aishwarya_BR_Resume.pdf"
+              className="ml-4 bg-purple-600 hover:bg-purple-500 text-white px-3 py-1 text-sm font-mono border border-white/50 hover:border-white transition-all"
+            >
+              📄 Resume
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
           <div
@@ -126,7 +123,7 @@ const Header = ({
               </button>
             ))}
           </div>
-        </div>      
+        </div>
       </nav>
     </header>
   );

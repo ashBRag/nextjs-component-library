@@ -27,17 +27,16 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
         delay: 0.1,
         easeType: "ease-in",
         start: { opacity: 0, transform: "translateX(-100px)" },
-        end: { opacity: 1, transform: "translateX(0px)" }
-       
+        end: { opacity: 1, transform: "translateX(0px)" },
       },
       {
         duration: 2,
         delay: 0.2,
         easeType: "ease-in",
         start: { opacity: 0, transform: "translateY(0)" },
-        end: { opacity: 1, transform: "translateY(-10px)" }
-      }
-    ]
+        end: { opacity: 1, transform: "translateY(-10px)" },
+      },
+    ],
   });
   useEffect(() => {
     async function fetchData() {
@@ -54,15 +53,10 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
 
     fetchData();
   }, []);
-  
-
 
   return (
     <section className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2 mt-[3vh] md:mt-[16vh] md:mb-[10vh] mx-[2.5vw]">
-
-      <div 
-      className="hidden lg:flex lg:flex-col mr-10 pt-2 slide-left"  
-      >
+      <div className="hidden lg:flex lg:flex-col mr-10 pt-2 slide-left">
         <Image src="/profilePhoto.jpg" alt="Profile Image" />
         <UndertaleDownloadButton
           href="/resume.pdf"
@@ -70,49 +64,47 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
         />
         <UndertaleUI />
       </div>
-      
-    <div>
-      <Card     
-      
-      title="Meet Aishwarya B R" noBackground className="slide-right">
-        <div className="flex flex-col gap-2">
-          <div className="flex">
-            <span className="mr-2">I Am</span>
-            <Typewriter
-              options={{
-                strings: [
-                  "A Full Stack Developer",
-                  "A Freelancer",
-                  "A Tech Consultant",
-                  "A Mentor",
-                  "Batman",
-                  "Not Debugging, I Am The Bug",
-                  "A Tech Consultant",
-                  "A Mentor",
-                  "Groot!!",
-                  "Free...........lancer",
-                  "Your Father Luke!",
-                  "A Mentor",
-                  "A Tech Consultant",
-                  "A Freelancer",
-                  "A Full Stack Developer",
-                  "Who? - Yoda",
-                  "Your Density, I Mean Destiny",
-                ],
 
-                autoStart: true,
-                loop: true,
-                delay: 100,
-                deleteSpeed: 100,
-              }}
-            />
+      <div>
+        <Card title="Meet Aishwarya B R" noBackground className="slide-right">
+          <div className="flex flex-col gap-2">
+            <div className="flex">
+              <span className="mr-2">I Am</span>
+              <Typewriter
+                options={{
+                  strings: [
+                    "A Full Stack Developer",
+                    "A Freelancer",
+                    "A Tech Consultant",
+                    "A Mentor",
+                    "Batman",
+                    "Not Debugging, I Am The Bug",
+                    "A Tech Consultant",
+                    "A Mentor",
+                    "Groot!!",
+                    "Free...........lancer",
+                    "Your Father Luke!",
+                    "A Mentor",
+                    "A Tech Consultant",
+                    "A Freelancer",
+                    "A Full Stack Developer",
+                    "Who? - Yoda",
+                    "Your Density, I Mean Destiny",
+                  ],
+
+                  autoStart: true,
+                  loop: true,
+                  delay: 100,
+                  deleteSpeed: 100,
+                }}
+              />
+            </div>
+            <p>{personalData?.about}</p>
+
+            <span className="mt-4 mb-4">Nerd Scout Badges</span>
+            <AnimatedSkillsGrid skillsData={skillsData} iconMap={iconMap} />
           </div>
-          <p>{personalData?.about}</p>
-
-          <span className="mt-4 mb-4">Nerd Scout Badges</span>
-          <AnimatedSkillsGrid skillsData={skillsData} iconMap={iconMap} />
-        </div>
-      </Card>
+        </Card>
       </div>
     </section>
   );

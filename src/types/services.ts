@@ -1,36 +1,36 @@
 export interface Services {
-  services: Service[]
+  services: Service[];
 }
 
 export interface Service {
-  id: string
-  name: string
-  iconId: string
-  description: string
-  features: Feature[]
-  types: Type[]
-  available: boolean
-  rate: Rate
-  duration?: string
+  id: string;
+  name: string;
+  iconId: string;
+  description: string;
+  features: Feature[];
+  types: Type[];
+  available: boolean;
+  rate: Rate;
+  duration?: string;
 }
 
 export interface Feature {
-  text: string
-  iconId: string
+  text: string;
+  iconId: string;
 }
 
 export interface Type {
-  text: string
-  iconId: string
+  text: string;
+  iconId: string;
 }
 
 export interface Rate {
-  hour: Hour[]
+  hour: Hour[];
 }
 
 export interface Hour {
-  timezone: string
-  default: boolean
-  currency: string
-  range: string[]
+  timezone: string;
+  default: boolean;
+  currency: string;
+  range: string[];
 }

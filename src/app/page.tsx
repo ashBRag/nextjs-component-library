@@ -10,12 +10,12 @@ import { getSectionData } from "@/lib/api";
 import { Contact } from "@/types/personal";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 import CoffeeLoader from "@/components/ui/CoffeeLoader";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("projects");
-  const [showLoader, setShowloader] = useState(true)
+  const [showLoader, setShowloader] = useState(true);
   const [contactInfo, setContactInfo] = useState<Contact>({
     gmail: "",
     location: "",
@@ -67,10 +67,10 @@ export default function Home() {
   const {
     data: iconMap,
     isLoading: iconLoading,
-    error: iconError
+    error: iconError,
   } = useQuery({
-    queryKey: ['iconMap'],
-    queryFn: () => getSectionData('iconMap'),
+    queryKey: ["iconMap"],
+    queryFn: () => getSectionData("iconMap"),
     staleTime: 5 * 60 * 1000, // 5 minutes
     gcTime: 10 * 60 * 1000, // 10 minutes
   });
@@ -79,44 +79,47 @@ export default function Home() {
   const {
     data: skillsData,
     isLoading: skillsLoading,
-    error: skillsError
+    error: skillsError,
   } = useQuery({
-    queryKey: ['skills'],
-    queryFn: () => getSectionData('skills'),
+    queryKey: ["skills"],
+    queryFn: () => getSectionData("skills"),
     staleTime: 5 * 60 * 1000,
     gcTime: 10 * 60 * 1000,
   });
 
-  useEffect(()=>{
-    setTimeout(()=>{setShowloader(false)},  7000)
-  }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      setShowloader(false);
+    }, 7000);
+  }, []);
 
-  if(iconLoading  || skillsLoading || showLoader)
-    return <CoffeeLoader 
-  size={300}
-  
-  message="Brewing my portfolio..."
-  className="text-center mt-[25vh]"
-  />
+  if (iconLoading || skillsLoading || showLoader)
+    return (
+      <CoffeeLoader
+        size={300}
+        message="Brewing my portfolio..."
+        className="text-center mt-[25vh]"
+      />
+    );
 
-    // Error state
-    if (iconError || skillsError) {
-      return (
-        <div className="min-h-screen flex items-center justify-center">
-          <div>Error loading data</div>
-        </div>
-      );
-    }
-  
-    // Data validation - ensure both iconMap and skillsData exist
-    if (!iconMap || !skillsData) {
-      return (
-        <div className="min-h-screen flex items-center justify-center">
-          <div>No data available</div>
-        </div>
-      );
-    }
-  
+  // Error state
+  if (iconError || skillsError) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div>Error loading data</div>
+      </div>
+    );
+  }
+
+  // Data validation - ensure both iconMap and skillsData exist
+  if (!iconMap || !skillsData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div>No data available</div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <Header
@@ -125,11 +128,11 @@ export default function Home() {
         name="Aishwarya B R"
       />
       <section className="hidden sm:block">
-      <AboutSection
-        setContactInfo={setContactInfo}
-        iconMap={iconMap.skills}
-        skillsData={skillsData}
-      />
+        <AboutSection
+          setContactInfo={setContactInfo}
+          iconMap={iconMap.skills}
+          skillsData={skillsData}
+        />
       </section>
       <ExperienceSection
         activeTab={activeTab}
@@ -138,12 +141,13 @@ export default function Home() {
           {
             id: "about",
             label: "About Me",
-            content: 
-            <AboutSection 
-              iconMap={iconMap.skills} 
-              setContactInfo={setContactInfo}
-              skillsData={skillsData}
-            />,
+            content: (
+              <AboutSection
+                iconMap={iconMap.skills}
+                setContactInfo={setContactInfo}
+                skillsData={skillsData}
+              />
+            ),
             className: "sm:hidden",
           },
           {
@@ -165,9 +169,7 @@ export default function Home() {
           {
             id: "skills",
             label: "Dev Arsenal",
-            content: (
-              <SkillsTable iconMap={iconMap} skillsData={skillsData} />
-            ),
+            content: <SkillsTable iconMap={iconMap} skillsData={skillsData} />,
           },
           {
             id: "contact",
@@ -181,48 +183,48 @@ export default function Home() {
             ),
           },
 
-        // {
-        //   id:'architecture-diagrams',
-        //   label: "Architecture Autopsy",
-        //   content: <div>Architecture Autopsy</div>
-        // },
-        // {
-        //   id:'git',
-        //   label: "Commit-ment Issues",
-        //   content: <div>Git Contributions</div>
-        // },
-        // {
-        //   id:'demo',
-        //   label: "It works (on my machine)",
-        //   content: <div>Live Demo</div>
-        // },
-        //   {
-        //     id: "blogs",
-        //     label: "Rant Journal",
-        //     content: (
-        //       <div>
-        //         <ul>
-        //           <li>How to leverage AI for techies to do non tech work</li>
+          // {
+          //   id:'architecture-diagrams',
+          //   label: "Architecture Autopsy",
+          //   content: <div>Architecture Autopsy</div>
+          // },
+          // {
+          //   id:'git',
+          //   label: "Commit-ment Issues",
+          //   content: <div>Git Contributions</div>
+          // },
+          // {
+          //   id:'demo',
+          //   label: "It works (on my machine)",
+          //   content: <div>Live Demo</div>
+          // },
+          //   {
+          //     id: "blogs",
+          //     label: "Rant Journal",
+          //     content: (
+          //       <div>
+          //         <ul>
+          //           <li>How to leverage AI for techies to do non tech work</li>
 
-        //           <li>Importance of personal branding</li>
+          //           <li>Importance of personal branding</li>
 
-        //           <li>Designing a chat microservice, minimal, ongoiing</li>
+          //           <li>Designing a chat microservice, minimal, ongoiing</li>
 
-        //           <li>The beauty of mono repo multi app setup</li>
+          //           <li>The beauty of mono repo multi app setup</li>
 
-        //           <li>micro frontend</li>
+          //           <li>micro frontend</li>
 
-        //           <li>ai here, ai there</li>
+          //           <li>ai here, ai there</li>
 
-        //           <li>ai tools for techies, the ones i use</li>
+          //           <li>ai tools for techies, the ones i use</li>
 
-        //           <li>the 3 mr problem</li>
+          //           <li>the 3 mr problem</li>
 
-        //           <li>jira workflow</li>
-        //         </ul>
-        //       </div>
-        //     ),
-        //   },
+          //           <li>jira workflow</li>
+          //         </ul>
+          //       </div>
+          //     ),
+          //   },
         ]}
         defaultActiveTab="projects"
         className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"

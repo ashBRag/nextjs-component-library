@@ -210,9 +210,7 @@ export default function UndertaleVerticalTabs({
   const activeTabContent = tabs.find((tab) => tab.id === activeTab)?.content;
 
   return (
-    <div
-      className={`md:flex`}
-    >
+    <div className={`md:flex`}>
       {/* Tabs List */}
       <ul
         className={`flex-column space-y-3 text-sm font-medium md:me-4 mb-4 md:mb-0 min-w-48 ${tabsClassName}`}

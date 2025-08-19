@@ -30,21 +30,21 @@ export const CalendlyPopup: React.FC<CalendlyPopupProps> = ({
   // Prevent body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     // Cleanup on unmount
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
   if (!isOpen) return null;
 
   return (
-    <div 
+    <div
       className="fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] p-4"
       style={{ zIndex: 10000 }} // Extra high z-index
     >
@@ -61,12 +61,9 @@ export const CalendlyPopup: React.FC<CalendlyPopupProps> = ({
             <LuX size={20} />
           </button>
         </div>
-        
+
         {/* Calendly Widget Container */}
-        <div 
-          ref={widgetRef} 
-          className="flex-1 bg-white overflow-hidden"
-        />
+        <div ref={widgetRef} className="flex-1 bg-white overflow-hidden" />
       </div>
     </div>
   );

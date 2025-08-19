@@ -59,7 +59,8 @@ export const UndertaleButton = ({
     "subtle-secondary":
       "bg-purple-700/40 border-purple-500/50 shadow-purple-400/10 hover:bg-purple-600/50 text-purple-100",
     danger: "bg-red-600 border-red-400 shadow-red-400/30 hover:bg-red-500",
-    "subtle-danger": "bg-red-600/40 border-red-400/50 shadow-red-400/10 hover:bg-red-500/50 text-red=100",
+    "subtle-danger":
+      "bg-red-600/40 border-red-400/50 shadow-red-400/10 hover:bg-red-500/50 text-red=100",
     disabled: "bg-gray-600 border-gray-500",
   };
 

@@ -12,37 +12,37 @@ import IconMap from "@/types/iconMap";
 
 const variants = ["determination", "kindness", "integrity"] as const;
 
-
 const DEFAULT_PROJECT: Project = {
   name: "",
   duration: "",
   achievements: [],
-  tech_stack: []
+  tech_stack: [],
 };
 
-const DEFAULT_EXPERIENCE: Experience ={
-  position: '',
-  company: '',
-  location: '',
-  duration: '',
-  projects: [DEFAULT_PROJECT]
-}
+const DEFAULT_EXPERIENCE: Experience = {
+  position: "",
+  company: "",
+  location: "",
+  duration: "",
+  projects: [DEFAULT_PROJECT],
+};
 
 interface ProjectsSectionProps {
   iconMap: IconMap;
 }
 
-
 export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
-  const [projectsData, setProjectsData] = useState<Projects>({experience: [DEFAULT_EXPERIENCE]})
+  const [projectsData, setProjectsData] = useState<Projects>({
+    experience: [DEFAULT_EXPERIENCE],
+  });
   const [projectInfo, setProjectInfo] = useState<Project>({
     name: "",
     duration: "",
     achievements: [""],
     tech_stack: [""],
   });
-  const [selectedTimelineItem, setSelectedTimelineItem] = useState<string>('');
-  
+  const [selectedTimelineItem, setSelectedTimelineItem] = useState<string>("");
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -52,7 +52,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
         setProjectInfo(project);
       } catch (error) {
         console.error("Failed to fetch projects data:", error);
-      } 
+      }
     }
 
     fetchData();
@@ -62,12 +62,19 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
   const getTimelineItems = () => {
     if (!projectsData) return [];
 
-    const allItems: { 
-      id: string; title: string; date: string; 
-      
-    badge: { text: string; variant: "determination" | "kindness" | "integrity"; }; 
-    character: "flowey";
-    icon: JSX.Element; action: { onClick: () => void; }; }[] = [];
+    const allItems: {
+      id: string;
+      title: string;
+      date: string;
+
+      badge: {
+        text: string;
+        variant: "determination" | "kindness" | "integrity";
+      };
+      character: "flowey";
+      icon: JSX.Element;
+      action: { onClick: () => void };
+    }[] = [];
 
     projectsData.experience.forEach((exp) => {
       const allCompanies = Array.from(
@@ -85,7 +92,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
             text: badgeText,
             variant,
           },
-          character: 'flowey',
+          character: "flowey",
           icon: (
             <Image
               src={`/companyLogo/${badgeText.toLowerCase()}.png`}
@@ -108,17 +115,24 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
   };
 
   // Component for project card content
-  const ProjectCard = ({ project, company='', duration = '' }: { project: Project, company?: string, duration?: string }) => (
-    <Card 
-    noBackground={!!company}
-    title={project?.name || ""} size="md" className="w-full md:min-h-[60vh]">
+  const ProjectCard = ({
+    project,
+    company = "",
+    duration = "",
+  }: {
+    project: Project;
+    company?: string;
+    duration?: string;
+  }) => (
+    <Card
+      noBackground={!!company}
+      title={project?.name || ""}
+      size="md"
+      className="w-full md:min-h-[60vh]"
+    >
       <div>
-        {company && <div>
-          Company: {company}
-        </div>}
-        <div>
-          {duration}
-        </div>
+        {company && <div>Company: {company}</div>}
+        <div>{duration}</div>
         <div className="my-5">* Tech Stack Used: </div>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 w-auto my-6">
           {project?.tech_stack?.map((skill) => (
@@ -150,7 +164,9 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
         <Timeline
           items={timelineItems}
           className="w-2/5 max-h-[65vh] overflow-y-auto pr-5 custom-scroll"
-          onSelect={(id) => {setSelectedTimelineItem(id)}}
+          onSelect={(id) => {
+            setSelectedTimelineItem(id);
+          }}
           selectedId={selectedTimelineItem}
         />
         <div className="w-3/5">
@@ -161,12 +177,18 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
       {/* Mobile Layout: Carousel (sm and below) */}
       <section className="md:hidden">
         <MobileCarousel
-          items={projectsData.experience?.flatMap(exp => 
-            exp.projects?.map(project => ({
+          items={projectsData.experience?.flatMap((exp) =>
+            exp.projects?.map((project) => ({
               id: project.name,
-              content: <ProjectCard project={project} company={exp.company} duration = {exp.duration}/>
-            }))
-          )}         
+              content: (
+                <ProjectCard
+                  project={project}
+                  company={exp.company}
+                  duration={exp.duration}
+                />
+              ),
+            })),
+          )}
           className="p-5"
         />
       </section>

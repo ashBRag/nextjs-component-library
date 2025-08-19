@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { LuChevronLeft, LuChevronRight } from 'react-icons/lu';
+import React, { useState, useEffect, useRef } from "react";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 interface CarouselItem {
   id: string;
@@ -67,10 +67,10 @@ export default function MobileCarousel({
 
   const handleEnd = (clientX: number) => {
     if (!isDragging) return;
-    
+
     const diff = startX - clientX;
     const threshold = 50; // Minimum drag distance to trigger slide change
-    
+
     if (Math.abs(diff) > threshold) {
       if (diff > 0) {
         // Dragged left - next slide
@@ -80,7 +80,7 @@ export default function MobileCarousel({
         prevSlide();
       }
     }
-    
+
     setIsDragging(false);
   };
 
@@ -104,7 +104,9 @@ export default function MobileCarousel({
   };
 
   return (
-    <div className={`relative w-full mx-auto bg-slate-900/90 border-2 border-slate-700 rounded-lg overflow-hidden backdrop-blur-sm ${className}`}>
+    <div
+      className={`relative w-full mx-auto bg-slate-900/90 border-2 border-slate-700 rounded-lg overflow-hidden backdrop-blur-sm ${className}`}
+    >
       {/* Main carousel container */}
       <div
         ref={containerRef}
@@ -129,9 +131,7 @@ export default function MobileCarousel({
               key={item.id}
               className="w-full flex-shrink-0 h-full flex items-center justify-center p-4"
             >
-              <div className="w-full h-full">
-                {item.content}
-              </div>
+              <div className="w-full h-full">{item.content}</div>
             </div>
           ))}
         </div>
@@ -155,8 +155,6 @@ export default function MobileCarousel({
             </button>
           </>
         )}
-
-  
       </div>
 
       {/* Dots indicator */}
@@ -198,7 +196,9 @@ const CarouselExample = () => {
       content: (
         <div className="bg-gradient-to-br from-cyan-900/40 to-slate-900/40 rounded-lg p-6 h-full flex flex-col justify-center items-center text-center">
           <h3 className="text-xl font-bold text-cyan-300 mb-2">Slide 1</h3>
-          <p className="text-slate-300">Your first carousel slide content goes here.</p>
+          <p className="text-slate-300">
+            Your first carousel slide content goes here.
+          </p>
         </div>
       ),
     },
@@ -207,7 +207,9 @@ const CarouselExample = () => {
       content: (
         <div className="bg-gradient-to-br from-blue-900/40 to-slate-900/40 rounded-lg p-6 h-full flex flex-col justify-center items-center text-center">
           <h3 className="text-xl font-bold text-blue-300 mb-2">Slide 2</h3>
-          <p className="text-slate-300">Your second carousel slide content goes here.</p>
+          <p className="text-slate-300">
+            Your second carousel slide content goes here.
+          </p>
         </div>
       ),
     },
@@ -216,7 +218,9 @@ const CarouselExample = () => {
       content: (
         <div className="bg-gradient-to-br from-purple-900/40 to-slate-900/40 rounded-lg p-6 h-full flex flex-col justify-center items-center text-center">
           <h3 className="text-xl font-bold text-purple-300 mb-2">Slide 3</h3>
-          <p className="text-slate-300">Your third carousel slide content goes here.</p>
+          <p className="text-slate-300">
+            Your third carousel slide content goes here.
+          </p>
         </div>
       ),
     },
@@ -225,7 +229,9 @@ const CarouselExample = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 p-4 flex items-center justify-center">
       <div className="w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center text-cyan-300 mb-6">Mobile Carousel</h2>
+        <h2 className="text-2xl font-bold text-center text-cyan-300 mb-6">
+          Mobile Carousel
+        </h2>
         <MobileCarousel
           items={carouselItems}
           autoPlay={true}

@@ -1,27 +1,27 @@
 interface EmailTemplateData {
-    name: string;
-    workType: string;
-    projectDesc: string;
-    hasBookedMeeting?: boolean;
-  }
-  
-  interface ContactInfo {
-    email: string;
-    whatsapp?: string;
-    linkedin: string;
-    discord?: string;
-    portfolio: string;
-    github: string;
-  }
-  
-  export function generateContactConfirmationEmail(
-    data: EmailTemplateData,
-    contactInfo: ContactInfo,
-    calendlyUrl: string
-  ): string {
-    const { name, workType, projectDesc, hasBookedMeeting } = data;
-    
-    return `
+  name: string;
+  workType: string;
+  projectDesc: string;
+  hasBookedMeeting?: boolean;
+}
+
+interface ContactInfo {
+  email: string;
+  whatsapp?: string;
+  linkedin: string;
+  discord?: string;
+  portfolio: string;
+  github: string;
+}
+
+export function generateContactConfirmationEmail(
+  data: EmailTemplateData,
+  contactInfo: ContactInfo,
+  calendlyUrl: string,
+): string {
+  const { name, workType, projectDesc, hasBookedMeeting } = data;
+
+  return `
       <!DOCTYPE html>
       <html>
       <head>
@@ -77,7 +77,9 @@ interface EmailTemplateData {
           ${projectDesc}
         </div>
           
-        ${!hasBookedMeeting ? `
+        ${
+          !hasBookedMeeting
+            ? `
           <div class="meeting-cta">
             <p>⚡ Want to fast-track this?</p>
             <a href="${calendlyUrl}" target="_blank">
@@ -85,12 +87,14 @@ interface EmailTemplateData {
             </a>
             <p>Let's discuss your project in real-time!</p>
           </div>
-        ` : `
+        `
+            : `
           <div style="background: #e8f5e8; border: 1px solid #4caf50; padding: 20px; margin: 20px 0; text-align: center;">
             <p><strong>✅ Meeting already scheduled!</strong></p>
             <p>Looking forward to our call.</p>
           </div>
-        `}
+        `
+        }
   
         <p><strong>📞 In the meantime, feel free to reach out:</strong></p>
         <div class="contact-links">
@@ -113,12 +117,14 @@ interface EmailTemplateData {
       </body>
       </html>
     `;
-  }
-  
-  export function generateInternalNotificationEmail(data: EmailTemplateData): string {
-    const { name, workType, projectDesc, hasBookedMeeting } = data;
-    
-    return `
+}
+
+export function generateInternalNotificationEmail(
+  data: EmailTemplateData,
+): string {
+  const { name, workType, projectDesc, hasBookedMeeting } = data;
+
+  return `
       <!DOCTYPE html>
       <html>
       <head>
@@ -181,8 +187,8 @@ interface EmailTemplateData {
           <div class="field">
             <div class="field-label">📅 Meeting Booked</div>
             <div>
-              <span class="${hasBookedMeeting ? 'status status-yes' : 'status status-no'}">
-                ${hasBookedMeeting ? 'Yes' : 'No'}
+              <span class="${hasBookedMeeting ? "status status-yes" : "status status-no"}">
+                ${hasBookedMeeting ? "Yes" : "No"}
               </span>
             </div>
           </div>
@@ -200,4 +206,4 @@ interface EmailTemplateData {
       </body>
       </html>
     `;
-  }
+}

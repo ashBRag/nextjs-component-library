@@ -25,7 +25,7 @@ interface FormData {
 interface ContactProps {
   contactInfo: Contact;
   workType?: string;
-  iconMap?: IconMap
+  iconMap?: IconMap;
 }
 
 function capitalizeFirstLetter(str = "") {
@@ -42,7 +42,7 @@ const IconComponent = (icon = "") => {
   return Icon;
 };
 
-const getIconColor = (platform: string = 'default') => {
+const getIconColor = (platform: string = "default") => {
   const colors = {
     gmail: "text-red-500",
     phone: "text-green-500",
@@ -54,11 +54,11 @@ const getIconColor = (platform: string = 'default') => {
     gitlab: "text-orange-500",
     hackerrank: "text-green-600",
     leetcode: "text-yellow-500",
-    default: "text-gray-400"
+    default: "text-gray-400",
   };
   return colors[platform.toLowerCase()];
 };
-const useContactForm = ({ calendlyUrl = ""}) => {
+const useContactForm = ({ calendlyUrl = "" }) => {
   const [formData, setFormData] = useState<FormData>({
     name: "aishwarya.br",
     email: "ashragh17@gmail.com",
@@ -251,11 +251,10 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
     },
   ];
 
-
   const bookMeeting = () => {
     if (isLoaded && window.Calendly) {
-      window.Calendly.initPopupWidget({ 
-        url: getCalendlyUrl() ,
+      window.Calendly.initPopupWidget({
+        url: getCalendlyUrl(),
       });
     }
   };
@@ -265,7 +264,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
       updateField("workType", workType);
     }
   }, [workType]);
-  
+
   if (showSuccess) {
     return (
       <div className="max-w-2xl mx-auto p-6 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
@@ -452,7 +451,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
               size="small" // Smaller size
               className="flex-1 px-4 py-2" // Override with smaller padding
             >
-              <LuCalendar size={16} /> 
+              <LuCalendar size={16} />
               <span className="text-sm">BOOK MEETING</span>
             </UndertaleButton>
             <UndertaleButton
@@ -476,7 +475,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
             </UndertaleButton>
             <UndertaleButton
               onClick={resetForm}
-              disabled={!Object.values(formData).filter(val=>!!val).length}
+              disabled={!Object.values(formData).filter((val) => !!val).length}
               variant="subtle-danger" // New subtle variant
               size="small"
               className="flex-1 px-4 py-2"
@@ -489,7 +488,6 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
           </div>
         </div>
       </UndertaleCard>
-     
     </div>
   );
 };

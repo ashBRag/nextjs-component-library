@@ -135,7 +135,13 @@ const YearsBadge = ({ years }: { years: number }) => {
 };
 
 // Main Component
-const SkillsTable = ({ skillsData, iconMap }: { skillsData: SkillsData, iconMap: IconMap }) => {
+const SkillsTable = ({
+  skillsData,
+  iconMap,
+}: {
+  skillsData: SkillsData;
+  iconMap: IconMap;
+}) => {
   const { getLevelStars, getCategoryCharacter } = useSkillsLogic();
 
   return (
