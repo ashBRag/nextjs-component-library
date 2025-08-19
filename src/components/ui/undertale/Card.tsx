@@ -140,7 +140,8 @@ export default function Card({
   return (
     <div
       className={`
-      relative block rounded-lg shadow-lg text-align:justify
+      relative block rounded-lg shadow-lg
+      m-5 md:m-0 lg:m-0
       ${getVariantStyles()}
       ${getSizeStyles()}
       ${getBorderStyles()}

@@ -188,3 +188,54 @@ body::before {
 .custom-scroll-dark::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.5);
 }
+
+@keyframes slideFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-right {
+  animation: slideFromRight 0.5s ease-out 1s both;
+}
+
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-left {
+  animation: slideFromLeft 0.5s ease-out 1s both;
+}
+
+@keyframes slideInFromUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(10);
+  }
+}
+
+.slide-down {
+  animation: slideInFromUp 0.5s ease-out forwards;
+}
+
+.slide-down-hidden {
+  opacity: 0;
+  transform: translateY(-100px);
+}
+

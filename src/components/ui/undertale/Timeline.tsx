@@ -240,7 +240,7 @@ export default function UndertaleTimeline({
 
   return (
     <div
-      className={`relative backdrop-blur-sm ${getThemeStyles()} ${className}`}
+      className={`relative ${getThemeStyles()} ${className}`}
     >
       <ol
         className={`relative border-s-2 ms-6 ${theme === "underground" ? "border-slate-400" : theme === "surface" ? "border-blue-400" : "border-purple-400"}`}
@@ -258,11 +258,6 @@ export default function UndertaleTimeline({
           </li>
         ))}
       </ol>
-
-      {/* Bottom indicator */}
-      <div className="absolute bottom-4 right-4">
-        <div className="w-2 h-2 bg-current opacity-40 animate-pulse"></div>
-      </div>
     </div>
   );
 }

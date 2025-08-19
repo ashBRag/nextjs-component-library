@@ -15,7 +15,6 @@ interface UndertaleProfileImageProps {
     | "mettaton";
   size?: "sm" | "md" | "lg" | "xl";
   animated?: boolean;
-  showSoulHeart?: boolean;
   memoryType?: "save" | "load" | "reset" | "continue";
 }
 
@@ -26,7 +25,6 @@ export default function UndertaleProfileImage({
   character = "sans",
   size = "lg",
   animated = true,
-  showSoulHeart = false,
   memoryType,
 }: UndertaleProfileImageProps) {
   const getSizeStyles = () => {
@@ -124,28 +122,6 @@ export default function UndertaleProfileImage({
             >
               {getMemoryTypeIcon()}
             </div>
-          </div>
-        )}
-
-        {/* Soul Heart */}
-        {showSoulHeart && (
-          <div className="absolute -bottom-3 -right-3">
-            <div
-              className={`
-              w-6 h-6 transform rotate-45 border-2
-              ${character === "frisk" ? "bg-red-500 border-red-600" : "bg-current border-current"}
-              ${animated ? "animate-pulse" : ""}
-            `}
-            >
-              <div className="absolute inset-1 bg-current opacity-80"></div>
-            </div>
-          </div>
-        )}
-
-        {/* HP Bar Style Border Animation */}
-        {animated && (
-          <div className="absolute inset-0 rounded-lg border-2 border-current opacity-0 hover:opacity-100 transition-opacity duration-300">
-            <div className="absolute inset-1 border border-current rounded-lg opacity-50"></div>
           </div>
         )}
       </div>

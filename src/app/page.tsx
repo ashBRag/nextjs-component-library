@@ -8,11 +8,14 @@ import ServicesSection from "@/components/sections/Services";
 import SkillsTable from "@/components/sections/Skills";
 import { getSectionData } from "@/lib/api";
 import { Contact } from "@/types/personal";
-import { Skills } from "@/types/skills";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useQuery } from '@tanstack/react-query';
+import CoffeeLoader from "@/components/ui/CoffeeLoader";
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState("projects");
+  const [showLoader, setShowloader] = useState(true)
   const [contactInfo, setContactInfo] = useState<Contact>({
     gmail: "",
     location: "",
@@ -38,40 +41,82 @@ export default function Home() {
       leetcode: "",
     },
   });
-  const [iconMap, setIconMap] = useState({
-    skills: [{ name: "", icon: "", color: "" }],
-    contact: [{ name: "", icon: "", color: "" }],
-    services: [{ name: "", icon: "", color: "" }],
-  });
-  const [skillsData, setSkillsData] = useState<Skills>({
-    categories: {
-      frontend: {
-        name: "Frontend",
-        skills: [{ name: "", icon: "", level: "", color: "", years: 0 }],
-      },
-      backend: {
-        name: "Backend",
-        skills: [{ name: "", icon: "", level: "", color: "", years: 0 }],
-      },
-      cloud: {
-        name: "Cloud",
-        skills: [{ name: "", icon: "", level: "", color: "", years: 0 }],
-      },
-    },
-  });
+  // const [iconMap, setIconMap] = useState({
+  //   skills: [{ name: "", icon: "", color: "" }],
+  //   contact: [{ name: "", icon: "", color: "" }],
+  //   services: [{ name: "", icon: "", color: "" }],
+  // });
+  // const [skillsData, setSkillsData] = useState<Skills>({
+  //   categories: {
+  //     frontend: {
+  //       name: "Frontend",
+  //       skills: [{ name: "", icon: "", level: "", color: "", years: 0 }],
+  //     },
+  //     backend: {
+  //       name: "Backend",
+  //       skills: [{ name: "", icon: "", level: "", color: "", years: 0 }],
+  //     },
+  //     cloud: {
+  //       name: "Cloud",
+  //       skills: [{ name: "", icon: "", level: "", color: "", years: 0 }],
+  //     },
+  //   },
+  // });
   const [workType, setWorkType] = useState("");
 
-  const handleIcons = async () => {
-    const [iconData, skills] = await Promise.all([
-      getSectionData("iconMap"),
-      getSectionData("skills"),
-    ]);
-    setIconMap(iconData);
-    setSkillsData(skills);
-  };
-  useEffect(() => {
-    handleIcons();
-  }, []);
+  const {
+    data: iconMap,
+    isLoading: iconLoading,
+    error: iconError
+  } = useQuery({
+    queryKey: ['iconMap'],
+    queryFn: () => getSectionData('iconMap'),
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    gcTime: 10 * 60 * 1000, // 10 minutes
+  });
+
+  // Skills query
+  const {
+    data: skillsData,
+    isLoading: skillsLoading,
+    error: skillsError
+  } = useQuery({
+    queryKey: ['skills'],
+    queryFn: () => getSectionData('skills'),
+    staleTime: 5 * 60 * 1000,
+    gcTime: 10 * 60 * 1000,
+  });
+
+  useEffect(()=>{
+    setTimeout(()=>{setShowloader(false)},  7000)
+  }, [])
+
+  if(iconLoading  || skillsLoading || showLoader)
+    return <CoffeeLoader 
+  size={300}
+  
+  message="Brewing my portfolio..."
+  className="text-center mt-[25vh]"
+  />
+
+    // Error state
+    if (iconError || skillsError) {
+      return (
+        <div className="min-h-screen flex items-center justify-center">
+          <div>Error loading data</div>
+        </div>
+      );
+    }
+  
+    // Data validation - ensure both iconMap and skillsData exist
+    if (!iconMap || !skillsData) {
+      return (
+        <div className="min-h-screen flex items-center justify-center">
+          <div>No data available</div>
+        </div>
+      );
+    }
+  
   return (
     <div>
       <Header

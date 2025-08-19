@@ -35,7 +35,6 @@ interface ProjectsSectionProps {
 
 export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
   const [projectsData, setProjectsData] = useState<Projects>({experience: [DEFAULT_EXPERIENCE]})
-  const [loading, setLoading] = useState(true);
   const [projectInfo, setProjectInfo] = useState<Project>({
     name: "",
     duration: "",
@@ -53,9 +52,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
         setProjectInfo(project);
       } catch (error) {
         console.error("Failed to fetch projects data:", error);
-      } finally {
-        setLoading(false);
-      }
+      } 
     }
 
     fetchData();
@@ -143,14 +140,6 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
       </div>
     </Card>
   );
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
 
   const timelineItems = getTimelineItems();
 
