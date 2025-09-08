@@ -9,6 +9,7 @@ import { Experience, Project, Projects } from "@/types/projects";
 import IconComponent from "../ui/Icon";
 import MobileCarousel from "../ui/undertale/Scroll";
 import IconMap from "@/types/iconMap";
+import { FloatingScrollButton } from "../ui/dev/ScrollButton";
 
 const variants = ["determination", "kindness", "integrity"] as const;
 
@@ -125,7 +126,6 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
     duration?: string;
   }) => (
     <Card
-      noBackground={!!company}
       title={project?.name || ""}
       size="md"
       className="w-full md:min-h-[60vh]"
@@ -160,7 +160,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      <section className="hidden md:flex gap-6">
+      <section className="hidden md:flex gap-6" id="projects">
         <Timeline
           items={timelineItems}
           className="w-2/5 max-h-[65vh] overflow-y-auto pr-5 custom-scroll"
@@ -191,6 +191,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
           )}
           className="p-5"
         />
+        <FloatingScrollButton id="skills"/>
       </section>
     </>
   );

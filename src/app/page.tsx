@@ -13,7 +13,8 @@ import { useQuery } from "@tanstack/react-query";
 import CoffeeMachineLoader from "@/components/ui/Loader";
 import TypewriterComponent from "typewriter-effect";
 import Container from "@/components/ui/dev/Container"
-import { FloatingScrollButton } from "@/components/ui/dev/ScrollButton";
+import { useDispatch } from "react-redux";
+import { fetchIconMap } from "@/components/store/reducer";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("projects");
@@ -65,7 +66,7 @@ export default function Home() {
   //   },
   // });
   const [workType, setWorkType] = useState("");
-
+  const dispatch = useDispatch()
   const {
     data: iconMap,
     isLoading: iconLoading,
@@ -93,6 +94,8 @@ export default function Home() {
     setTimeout(() => {
       setShowloader(false);
     }, 5000);
+    dispatch(fetchIconMap())
+    
   }, []);
 
   if (iconLoading || skillsLoading || showLoader)
@@ -133,7 +136,6 @@ export default function Home() {
   return (
     <div>
       <Header
-        setActiveTab={setActiveTab}
         profileImage="/profilePhoto.jpg"
         name="Aishwarya B R"
       />
@@ -246,7 +248,6 @@ title="Rent A Dev"
 
    title="Find Me Here"
         className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
-        theme=""
       >
          <ContactSection
             contactInfo={contactInfo}
@@ -254,7 +255,6 @@ title="Rent A Dev"
             workType={workType}
           />
       </Container>
-            <FloatingScrollButton/>
     </div>
   );
 }

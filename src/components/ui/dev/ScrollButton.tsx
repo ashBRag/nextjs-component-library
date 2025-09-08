@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useScrollToElement } from "@/components/hooks/useScroll";
 
 export  function PortfolioUI() {
   const scrollDown = () => {
@@ -22,27 +22,16 @@ export  function PortfolioUI() {
   );
 }
 
-export  function FloatingScrollButton() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [count, setCount] = useState(1)
-
-
-  const scrollToNext = () => {
-    const currentScrollY = window.pageYOffset;
-    const viewportHeight = window.innerHeight;
-    const bottomOfCurrentView = currentScrollY + viewportHeight - 100;
-    
-    window.scrollTo({
-      top: bottomOfCurrentView,
-      behavior: "smooth",
-    });
-  };
+export  function FloatingScrollButton({id=''}) {
+  const { 
+    scrollToElement, 
+  } = useScrollToElement()
 
   return (
     <>
-      {isVisible && (
+      {id && (
         <button
-          onClick={scrollToNext}
+          onClick={()=>{scrollToElement(id)}}
           className={`
             fixed bottom-8 right-8 z-50
             w-12 h-12 

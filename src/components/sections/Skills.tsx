@@ -1,5 +1,6 @@
 import React from "react";
 import IconComponent from "../ui/Icon";
+import { FloatingScrollButton } from "../ui/dev/ScrollButton";
 
 // Types
 interface Skill {
@@ -111,7 +112,7 @@ const PortfolioSkillsTable = ({
   const { getLevelStars, getStarsColor } = useSkillsLogic();
 
   return (
-    <div className="relative z-10">
+    <div className="relative z-10" id="skills">
       {/* Header */}
      
 

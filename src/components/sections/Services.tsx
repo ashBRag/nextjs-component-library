@@ -9,6 +9,7 @@ import MobileCarousel from "../ui/undertale/Scroll";
 import { Service } from "@/types/services";
 import IconComponent from "../ui/Icon";
 import { IconConfig } from "@/types/iconMap";
+import { FloatingScrollButton } from "../ui/dev/ScrollButton";
 
 interface ServiceSectionProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -58,7 +59,7 @@ export default function ServicesSection({
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      <section className="hidden md:flex gap-6">
+      <section className="hidden md:flex gap-6" id="services">
         <VerticalTabs
           tabs={servicesOptions.map((service) => {
             return {
@@ -225,6 +226,7 @@ export default function ServicesSection({
           }))}
           className="p-5"
         />
+        <FloatingScrollButton id="contact"/>
       </section>
     </>
   );

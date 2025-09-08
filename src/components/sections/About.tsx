@@ -9,7 +9,9 @@ import Card from "../ui/dev/Card";
 import { AnimatedSkillsGrid } from "../ui/undertale/Rotation";
 import { DownloadResumeButton } from "../ui/dev/Button";
 import UndertaleUI from "./Continue";
-import { Animate, useAnimateGroup } from "react-simple-animate";
+import { useDispatch } from 'react-redux'
+import { updateScrollElementId } from "../store/reducer";
+
 
 export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
   const [personalData, setPersonalData] = useState({
@@ -18,32 +20,18 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
     profilePhoto: "",
   });
 
+  const dispatch = useDispatch()
+
   const [loading, setLoading] = useState(true);
   // Animate group hook
-  const { styles, play } = useAnimateGroup({
-    sequences: [
-      {
-        duration: 0.3,
-        delay: 0.1,
-        easeType: "ease-in",
-        start: { opacity: 0, transform: "translateX(-100px)" },
-        end: { opacity: 1, transform: "translateX(0px)" },
-      },
-      {
-        duration: 2,
-        delay: 0.2,
-        easeType: "ease-in",
-        start: { opacity: 0, transform: "translateY(0)" },
-        end: { opacity: 1, transform: "translateY(-10px)" },
-      },
-    ],
-  });
+
   useEffect(() => {
     async function fetchData() {
       try {
         const personal = await getSectionData("personal");
         setPersonalData(personal);
         setContactInfo(personal.contact);
+        dispatch(updateScrollElementId({elementId: 'projects'}))
       } catch (error) {
         console.error("Failed to fetch data:", error);
       } finally {
