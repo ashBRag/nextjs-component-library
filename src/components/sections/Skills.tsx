@@ -1,11 +1,10 @@
 import React from "react";
 import IconComponent from "../ui/Icon";
-import IconMap from "@/types/iconMap";
 
 // Types
 interface Skill {
   name: string;
-  level: string;
+  level: string | number;
   years: number;
   icon?: string;
   color?: string;
@@ -38,78 +37,52 @@ const useSkillsLogic = () => {
   const getLevelColor = (level: string | number) => {
     const numLevel = typeof level === "string" ? parseInt(level) : level;
     const colors = {
-      5: "bg-yellow-500 border-yellow-400 text-yellow-100", // Gold - Master
-      4: "bg-green-500 border-green-400 text-green-100", // Green - Expert
-      3: "bg-blue-500 border-blue-400 text-blue-100", // Blue - Intermediate
-      2: "bg-purple-500 border-purple-400 text-purple-100", // Purple - Beginner
-      1: "bg-gray-500 border-gray-400 text-gray-100", // Gray - Novice
+      5: "bg-yellow-500/20 border-yellow-400 text-yellow-300", // Gold - Master
+      4: "bg-green-500/20 border-green-400 text-green-300", // Green - Expert
+      3: "bg-blue-500/20 border-blue-400 text-blue-300", // Blue - Intermediate
+      2: "bg-purple-500/20 border-purple-400 text-purple-300", // Purple - Beginner
+      1: "bg-[#ABB2BF]/20 border-[#ABB2BF] text-[#ABB2BF]", // Gray - Novice
     };
     return colors[numLevel as keyof typeof colors] || colors[1];
   };
 
-  const getProgressBarColor = (level: string | number) => {
+  const getStarsColor = (level: string | number) => {
     const numLevel = typeof level === "string" ? parseInt(level) : level;
     const colors = {
-      5: "bg-gradient-to-r from-yellow-400 to-yellow-600",
-      4: "bg-gradient-to-r from-green-400 to-green-600",
-      3: "bg-gradient-to-r from-blue-400 to-blue-600",
-      2: "bg-gradient-to-r from-purple-400 to-purple-600",
-      1: "bg-gradient-to-r from-gray-400 to-gray-600",
+      5: "text-yellow-400",
+      4: "text-green-400", 
+      3: "text-blue-400",
+      2: "text-purple-400",
+      1: "text-[#ABB2BF]",
     };
     return colors[numLevel as keyof typeof colors] || colors[1];
   };
 
   const getYearsColor = (years: number) => {
-    if (years >= 5) return "text-yellow-300"; // Gold
-    if (years >= 4) return "text-green-300"; // Green
-    if (years >= 3) return "text-blue-300"; // Blue
-    if (years >= 2) return "text-purple-300"; // Purple
-    return "text-gray-300"; // Gray
-  };
-
-  const getCategoryCharacter = (categoryKey: string) => {
-    const characters = {
-      frontend: { character: "sans", color: "text-cyan-300", prefix: "* " },
-      backend: { character: "papyrus", color: "text-orange-300", prefix: "! " },
-      cloud: { character: "undyne", color: "text-green-300", prefix: "⚔ " },
-      mobile: { character: "alphys", color: "text-yellow-300", prefix: "... " },
-      tools: { character: "toriel", color: "text-purple-300", prefix: "• " },
-    };
-    return (
-      characters[categoryKey as keyof typeof characters] || {
-        character: "frisk",
-        color: "text-red-300",
-        prefix: "* ",
-      }
-    );
+    if (years >= 5) return "text-yellow-300 border-yellow-400/50";
+    if (years >= 4) return "text-green-300 border-green-400/50";
+    if (years >= 3) return "text-blue-300 border-blue-400/50";
+    if (years >= 2) return "text-purple-300 border-purple-400/50";
+    return "text-[#ABB2BF] border-[#ABB2BF]/50";
   };
 
   return {
     getLevelStars,
     getExperienceLabel,
     getLevelColor,
-    getProgressBarColor,
+    getStarsColor,
     getYearsColor,
-    getCategoryCharacter,
   };
 };
 
 const SkillLevelBadge = ({ level }: { level: string | number }) => {
+  const { getLevelColor } = useSkillsLogic();
   const numLevel = typeof level === "string" ? parseInt(level) : level;
-  const getLevelColor = (level: number) => {
-    const colors = {
-      5: "bg-yellow-500 border-yellow-400 text-yellow-100",
-      4: "bg-green-500 border-green-400 text-green-100",
-      3: "bg-blue-500 border-blue-400 text-blue-100",
-      2: "bg-purple-500 border-purple-400 text-purple-100",
-      1: "bg-gray-500 border-gray-400 text-gray-100",
-    };
-    return colors[level as keyof typeof colors] || colors[1];
-  };
 
   return (
     <div
-      className={`px-2 py-1 rounded border-2 font-mono text-xs font-bold ${getLevelColor(numLevel)}`}
+      className={`px-2 py-1 border font-mono text-xs font-medium ${getLevelColor(level)}`}
+      style={{ fontFamily: "'Fira Code', monospace" }}
     >
       LV {numLevel}
     </div>
@@ -117,99 +90,120 @@ const SkillLevelBadge = ({ level }: { level: string | number }) => {
 };
 
 const YearsBadge = ({ years }: { years: number }) => {
-  const getYearsColor = (years: number) => {
-    if (years >= 5) return "text-yellow-300 border-yellow-400/50";
-    if (years >= 4) return "text-green-300 border-green-400/50";
-    if (years >= 3) return "text-blue-300 border-blue-400/50";
-    if (years >= 2) return "text-purple-300 border-purple-400/50";
-    return "text-gray-300 border-gray-400/50";
-  };
+  const { getYearsColor } = useSkillsLogic();
 
   return (
     <div
-      className={`px-2 py-1 border rounded font-mono text-xs ${getYearsColor(years)} bg-black/20`}
+      className={`px-2 py-1 border font-mono text-xs /50 ${getYearsColor(years)}`}
+      style={{ fontFamily: "'Fira Code', monospace" }}
     >
       {years}y
     </div>
   );
 };
 
+
 // Main Component
-const SkillsTable = ({
+const PortfolioSkillsTable = ({
   skillsData,
-  iconMap,
-}: {
-  skillsData: SkillsData;
-  iconMap: IconMap;
+  iconMap
 }) => {
-  const { getLevelStars, getCategoryCharacter } = useSkillsLogic();
+  const { getLevelStars, getStarsColor } = useSkillsLogic();
 
   return (
-    <div className="relative z-10 p-5 text-gray-400">
+    <div className="relative z-10">
       {/* Header */}
-      <p className="mb-6 text-center text-gray-400 text-sm">
+     
+
+      <p 
+        className="mb-6 text-[#ABB2BF] text-sm font-mono text-center"
+        style={{ fontFamily: "'Fira Code', monospace" }}
+      >
         Skills acquired through determination and countless hours of coding
       </p>
 
       {/* Skills by Category */}
-      <div className="flex flex-col sm:flex-col md:flex-row lg:flex-row space-y-2 align-start">
-        {Object.entries(skillsData.categories).map(
-          ([categoryKey, category]) => {
-            const categoryStyle = getCategoryCharacter(categoryKey);
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Object.entries(skillsData.categories).map(([categoryKey, category]) => (
+          <div key={categoryKey} className=" border border-[#ABB2BF]/30 p-4 relative">
+            {/* Corner brackets */}
+            <div className="absolute top-1 left-1 w-3 h-3">
+              <div className="w-full h-0.5 bg-[#ABB2BF]/30"></div>
+              <div className="w-0.5 h-full bg-[#ABB2BF]/30"></div>
+            </div>
+            <div className="absolute top-1 right-1 w-3 h-3">
+              <div className="absolute top-0 right-0 w-full h-0.5 bg-[#ABB2BF]/30"></div>
+              <div className="absolute top-0 right-0 w-0.5 h-full bg-[#ABB2BF]/30"></div>
+            </div>
+            <div className="absolute bottom-1 left-1 w-3 h-3">
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ABB2BF]/30"></div>
+              <div className="absolute bottom-0 left-0 w-0.5 h-full bg-[#ABB2BF]/30"></div>
+            </div>
+            <div className="absolute bottom-1 right-1 w-3 h-3">
+              <div className="absolute bottom-0 right-0 w-full h-0.5 bg-[#ABB2BF]/30"></div>
+              <div className="absolute bottom-0 right-0 w-0.5 h-full bg-[#ABB2BF]/30"></div>
+            </div>
 
-            return (
-              <div key={categoryKey} className="mr-2">
-                {/* Category Header */}
-                <h3 className={`text-lg font-bold ${categoryStyle.color}`}>
-                  {categoryStyle.prefix}
-                  {category.name}
-                </h3>
+            {/* Category Header */}
+            <h4 
+              className="text-white font-medium mb-4 font-mono relative z-10"
+              style={{ fontFamily: "'Fira Code', monospace" }}
+            >
+              <span className="text-[#C778DD]">{category.name}</span>
+            </h4>
 
-                {/* Skills Grid */}
-                <div className="space-y-3 max-h-[60vh] overflow-y-auto custom-scroll">
-                  {category.skills.map((skill, index) => (
-                    <div
-                      key={index}
-                      className="bg-gray-800/50 border border-gray-600 rounded-lg p-3"
-                    >
-                      <div className="grid grid-cols-12 gap-4 items-center">
-                        {/* Skill Name */}
-                        <div className="col-span-4">
-                          <IconComponent
-                            name={skill.name}
-                            iconMap={iconMap.skills}
-                            iconClass="w-8 h-8"
-                            divClass="flex flex-row items-center gap-2"
-                          />
-                        </div>
-
-                        {/* Level Stars */}
-                        <div className="col-span-4 text-center">
-                          <span className="text-yellow-400">
-                            {getLevelStars(skill.level)}
-                          </span>
-                        </div>
-
-                        {/* Level Badge */}
-                        <div className="col-span-3 flex justify-center">
-                          <SkillLevelBadge level={skill.level} />
-                        </div>
-
-                        {/* Years Badge */}
-                        <div className="col-span-1 flex justify-center">
-                          <YearsBadge years={skill.years} />
-                        </div>
-                      </div>
+            {/* Skills List */}
+            <div className="space-y-3 relative z-10">
+              {category.skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="p-2"
+                >
+                  <div className="grid grid-cols-12 gap-2 items-center">
+                    {/* Skill Name & Icon */}
+                    <div className="col-span-5 flex items-center gap-2">
+                      <IconComponent
+                        iconMap={iconMap.skills}
+                        name={skill.name}
+                        iconClass="w-5 h-5"
+                        divClass="flex"
+                        show={false}
+                      />
+                      <span 
+                        className="text-[#ABB2BF] text-sm font-mono truncate"
+                        style={{ fontFamily: "'Fira Code', monospace" }}
+                      >
+                        {skill.name}
+                      </span>
                     </div>
-                  ))}
+
+                    {/* Level Stars */}
+                    <div className="col-span-4 text-center">
+                      <span className={`text-xs font-mono ${getStarsColor(skill.level)}`}>
+                        {getLevelStars(skill.level)}
+                      </span>
+                    </div>
+
+                    {/* Level Badge */}
+                    <div className="col-span-2 flex justify-center">
+                      <SkillLevelBadge level={skill.level} />
+                    </div>
+
+                    {/* Years Badge */}
+                    <div className="col-span-1 flex justify-center">
+                      <YearsBadge years={skill.years} />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            );
-          },
-        )}
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default SkillsTable;
+
+
+export default PortfolioSkillsTable;

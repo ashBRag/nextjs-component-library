@@ -83,19 +83,19 @@ export default function PortfolioProfileImage({
       `}
       >
         {/* Corner Brackets */}
-        <div className="absolute -top-2 -left-2 w-4 h-4">
+        <div className="absolute -top-1 -left-1 w-4 h-4">
           <div className="w-full h-0.5 bg-[#ABB2BF]"></div>
           <div className="w-0.5 h-full bg-[#ABB2BF]"></div>
         </div>
-        <div className="absolute -top-2 -right-2 w-4 h-4">
+        <div className="absolute -top-1 -right-1 w-4 h-4">
           <div className="absolute top-0 right-0 w-full h-0.5 bg-[#ABB2BF]"></div>
           <div className="absolute top-0 right-0 w-0.5 h-full bg-[#ABB2BF]"></div>
         </div>
-        <div className="absolute -bottom-2 -left-2 w-4 h-4">
+        <div className="absolute -bottom-1 -left-1 w-4 h-4">
           <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ABB2BF]"></div>
           <div className="absolute bottom-0 left-0 w-0.5 h-full bg-[#ABB2BF]"></div>
         </div>
-        <div className="absolute -bottom-2 -right-2 w-4 h-4">
+        <div className="absolute -bottom-1 -right-1 w-4 h-4">
           <div className="absolute bottom-0 right-0 w-full h-0.5 bg-[#ABB2BF]"></div>
           <div className="absolute bottom-0 right-0 w-0.5 h-full bg-[#ABB2BF]"></div>
         </div>

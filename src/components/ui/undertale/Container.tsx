@@ -29,24 +29,17 @@ interface UndertaleTab {
 
 interface UndertaleTabsProps {
   tabs: UndertaleTab[];
-  activeTab: string;
-  onTabChange: (tabId: string) => void;
   className?: string;
-  theme?: "underground" | "surface" | "dark_world";
-  animated?: boolean;
+  theme?: "underground" | "surface" | "dark_world" | "";
   contentHeight?: string | number;
   mobileBottomMenu?: boolean; // New prop for mobile layout
 }
 
 export default function UndertaleTabs({
   tabs,
-  activeTab,
-  onTabChange,
   className = "",
   theme = "underground",
-  animated = true,
   contentHeight = "77vh",
-  mobileBottomMenu = true,
 }: UndertaleTabsProps) {
   const [computedHeight, setComputedHeight] = useState<string>("77vh");
 
@@ -81,6 +74,11 @@ export default function UndertaleTabs({
     return themes[theme];
   };
 
+  const getSoulTypeContentStyles = () => {
+    // Default slate colors only
+    return "border-slate-600/30 text-slate-200";
+  };
+
   const getCharacterTabStyles = (
     tab: UndertaleTab,
     isActive: boolean,
@@ -91,11 +89,9 @@ export default function UndertaleTabs({
       ? "text-cyan-300 border-cyan-400 bg-cyan-900/40 shadow-cyan-400/30"
       : "text-cyan-500 border-transparent hover:text-cyan-300 hover:border-cyan-400/50";
 
-    const animationStyle = animated
-      ? "transition-all duration-300 ease-out"
-      : "";
+    const animationStyle = ""
 
-    const activeHover = animated && isActive ? "hover:scale-105" : "";
+    const activeHover = "";
     const shadowStyle = isActive ? "shadow-lg" : "";
 
     // Different styles for mobile bottom menu
@@ -112,20 +108,7 @@ export default function UndertaleTabs({
     return `inline-block px-3 py-2 sm:px-6 sm:py-3 ${borderStyle} ${roundingStyle} font-mono relative backdrop-blur-sm ${colorStyle} ${animationStyle} ${activeHover} ${shadowStyle}`;
   };
 
-  const getCharacterPrefix = (character?: string, isActive?: boolean) => {
-    // Sans prefix only
-    return isActive ? "> " : "";
-  };
 
-  const getCharacterSuffix = (character?: string, isActive?: boolean) => {
-    // Sans suffix only
-    return isActive ? "..." : "";
-  };
-
-  const getSoulTypeContentStyles = () => {
-    // Default slate colors only
-    return "border-slate-600/30 text-slate-200";
-  };
 
   const TabHeaders = ({ isMobile = false }: { isMobile?: boolean }) => (
     <div
@@ -136,7 +119,7 @@ export default function UndertaleTabs({
         role="tablist"
       >
         {tabs.map((tab) => {
-          const isActive = activeTab === tab.id;
+          const isActive = true
           return (
             <li
               key={tab.id}
@@ -145,7 +128,6 @@ export default function UndertaleTabs({
             >
               <button
                 className={`w-full ${getCharacterTabStyles(tab, isActive, isMobile)}`}
-                onClick={() => onTabChange(tab.id)}
                 type="button"
                 role="tab"
                 aria-controls={tab.id}
@@ -171,18 +153,16 @@ export default function UndertaleTabs({
                 <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
                   {tab.icon && (
                     <span
-                      className={animated && isActive ? "animate-pulse" : ""}
+                      className="animate-pulse"
                     >
                       {tab.icon}
                     </span>
                   )}
                   <span className={`text-xs sm:text-sm`}>
                     <span className="hidden sm:inline">
-                      {getCharacterPrefix(tab.character, isActive)}
                     </span>
                     {tab.label}
                     <span className="hidden sm:inline">
-                      {getCharacterSuffix(tab.character, isActive)}
                     </span>
                   </span>
                 </div>
@@ -205,9 +185,8 @@ export default function UndertaleTabs({
 
   return (
     <>
-      {/* Desktop and Tablet Layout */}
       <div
-        className={`hidden sm:block backdrop-blur-sm border-2 rounded-lg ${getThemeStyles()} ${className}`}
+        className={`hidden sm:block backdrop-blur-sm border-2 rounded-lg m-[2.5vw] ${getThemeStyles()} ${className}`}
       >
         {/* Corner decorations */}
         <div className="absolute top-2 left-2 w-3 h-3 border-l-2 border-t-2 border-current opacity-20"></div>
@@ -221,9 +200,9 @@ export default function UndertaleTabs({
         </div>
 
         {/* Tab Content */}
-        <div className="relative" style={{ height: computedHeight }}>
+        <div className="relative">
           {tabs.map((tab) => {
-            const isActive = activeTab === tab.id;
+            const isActive =true
             return (
               <div
                 id={tab.id}
@@ -253,41 +232,6 @@ export default function UndertaleTabs({
           })}
         </div>
       </div>
-
-      {/* Mobile Layout */}
-      {mobileBottomMenu && (
-        <div className="sm:hidden flex flex-col h-screen">
-          <div className="flex-1 relative">
-            {tabs.map((tab) => {
-              const isActive = activeTab === tab.id;
-              return (
-                <div
-                  id={tab.id}
-                  key={`mobile-${tab.id}`}
-                  className={`${tab.className} ${
-                    isActive ? "block" : "hidden"
-                  } font-mono relative overflow-auto z-10`}
-                  role="tabpanel"
-                  aria-labelledby={`${tab.id}-tab`}
-                >
-                  {tab.content}
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Bottom Mobile Menu */}
-          <div
-            className={`fixed bottom-0 left-0 right-0 backdrop-blur-sm  border-t-2 z-50 ${getThemeStyles()}`}
-          >
-            {/* Corner decorations */}
-            <div className="absolute top-2 left-2 w-3 h-3 border-l-2 border-t-2 border-current opacity-20"></div>
-            <div className="absolute top-2 right-2 w-3 h-3 border-r-2 border-t-2 border-current opacity-20"></div>
-
-            <TabHeaders isMobile={true} />
-          </div>
-        </div>
-      )}
     </>
   );
 }

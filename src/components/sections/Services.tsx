@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
-import VerticalTabs from "../ui/undertale/VerticalTabs";
-import Card from "../ui/undertale/Card";
-import { UndertaleButton } from "../ui/undertale/Form";
+import VerticalTabs from "../ui/dev/VerticalTabs";
+import Card from "../ui/dev/Card";
+import { PortfolioButton } from "../ui/dev/Form";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import MobileCarousel from "../ui/undertale/Scroll";
 import { Service } from "@/types/services";
@@ -58,7 +58,7 @@ export default function ServicesSection({
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      <section className="hidden md:flex p-4 gap-6">
+      <section className="hidden md:flex gap-6">
         <VerticalTabs
           tabs={servicesOptions.map((service) => {
             return {
@@ -73,73 +73,55 @@ export default function ServicesSection({
                     <ul>
                       {service.features.map((feature, index) => (
                         <li
-                          className="flex justify-items:center p-2 rounded"
+                          className="flex justify-items:center py-2 rounded"
                           key={service.id + index}
                         >
                           <IconComponent
                             id={feature.iconId}
                             iconMap={iconMap}
                             iconClass="w-6 h-6 mr-2"
+                            divClass="flex"
                           />
 
-                          <div className="text-yellow-300">{feature.text}</div>
+                          <div className="text-[#C778DD]">{feature.text}</div>
                         </li>
                       ))}
                     </ul>
                   </Card>
-                  <div className="relative ml-10 h-fit">
-                    <div className="relative p-5">
-                      <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
-                      <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
-                      <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
-                      <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
+                  <div className="relative ml-10 h-fit w-1/2">
+                    <div className="relative p-5  border border-[#ABB2BF]/30">
+                      <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-[#ABB2BF] opacity-30"></div>
+                      <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-[#ABB2BF] opacity-30"></div>
+                      <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
+                      <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
 
-                      <p className="flex flex-col items-center gap-2 p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 ">
+                      <p className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
                         Rate: {service.rate.hour[1].currency}{" "}
                         {service.rate.hour[1].range[0]} -{" "}
                         {service.rate.hour[1].range[1]} / hour
                       </p>
-                      <p className="text-xs text-center w-full mt-1">
+                      <p className="text-xs text-center w-full mt-1 text-[#ABB2BF] font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
                         * Pricing varies with scope
                       </p>
                     </div>
-                    <div className="relative p-5 mt-2 flex flex-col">
-                      <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
-                      <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
-                      <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
-                      <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
-
-                      <p className="text-center mb-5">
-                        Fill out the form to dive in further
-                      </p>
-                      <UndertaleButton
-                        onClick={() => {
-                          setActiveTab("contact");
-                          setWorkType(service.id);
-                        }}
-                        variant="subtle-primary" // New subtle variant
-                        size="small"
-                      >
-                        Let&apos;s start builing
-                      </UndertaleButton>
-                    </div>
+                  
                     <div>
-                      <p className="py-2 text-center">
-                        {capitalizeFirstLetter(service.id)} Types
+                      <p className="py-2 text-center text-white font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
+                        <span className="text-[#C778DD]">#</span>{capitalizeFirstLetter(service.id)} Types
                       </p>
 
                       <div className="grid grid-cols-1 gap-4">
                         {service.types.map((type, index) => (
                           <div
-                            className="flex items-center
-                    text-sm font-semibold px-3 py-1 rounded-full whitespace-nowrap font-mono 
-                    bg-blue-900/80 text-blue-200 border border-blue-500 shadow-blue-500/30"
+                            className="flex items-center text-sm font-medium px-3 py-1 whitespace-nowrap font-mono bg-[#C778DD]/20 text-[#C778DD] border border-[#C778DD]/50"
                             key={`type-${service.id}-${index}`}
+                            style={{ fontFamily: "'Fira Code', monospace" }}
                           >
                             <IconComponent
                               id={type.iconId}
                               iconMap={iconMap}
                               iconClass="w-4 h-4 mr-2"
+                              divClass="flex"
                             />
                             {type.text}
                           </div>
@@ -163,73 +145,73 @@ export default function ServicesSection({
               <Card
                 title={service.name}
                 description={service.description}
-                noBackground={true}
               >
                 <div className="flex flex-col md:flex-row lg:flex-row">
                   <ul>
                     {service.features.map((feature, index) => (
                       <li
-                        className="flex justify-items:center p-2 rounded"
+                        className="flex justify-center items-center py-2 rounded"
                         key={service.id + index}
                       >
                         <IconComponent
                           id={feature.iconId}
                           iconMap={iconMap}
-                          iconClass="w-6 h-6 mr-2"
+                          iconClass="w-5 h-5"
+                          divClass="flex"
+                          show={false}
                         />
 
-                        <div className="text-yellow-300">{feature.text}</div>
+                        <div className="text-[#C778DD]">{feature.text}</div>
                       </li>
                     ))}
                   </ul>
                   <div className="relative mt-5 h-fit">
-                    <div className="relative p-5">
-                      <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
-                      <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
-                      <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
-                      <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
+                    <div className="relative p-5  border border-[#ABB2BF]/30">
+                      <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-[#ABB2BF] opacity-30"></div>
+                      <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-[#ABB2BF] opacity-30"></div>
+                      <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
+                      <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
 
-                      <p className="flex flex-col items-center gap-2 p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 ">
+                      <p className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
                         Rate: {service.rate.hour[1].currency}{" "}
                         {service.rate.hour[1].range[0]} -{" "}
                         {service.rate.hour[1].range[1]} / hour
                       </p>
-                      <p className="text-xs text-center w-full mt-1">
+                      <p className="text-xs text-center w-full mt-1 text-[#ABB2BF] font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
                         * Pricing varies with scope
                       </p>
                     </div>
-                    <div className="relative p-5 mt-2 flex flex-col">
-                      <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
-                      <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
-                      <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
-                      <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
+                    <div className="relative p-5 mt-2 flex flex-col  border border-[#ABB2BF]/30">
+                      <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-[#ABB2BF] opacity-30"></div>
+                      <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-[#ABB2BF] opacity-30"></div>
+                      <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
+                      <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
 
-                      <p className="text-center mb-5">
+                      <p className="text-center mb-5 text-[#ABB2BF] font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
                         Fill out the form to dive in further
                       </p>
-                      <UndertaleButton
+                      <PortfolioButton
                         onClick={() => {
                           setActiveTab("contact");
                           setWorkType(service.id);
                         }}
-                        variant="subtle-primary" // New subtle variant
+                        variant="primary"
                         size="small"
                       >
-                        Let&apos;s start builing
-                      </UndertaleButton>
+                        Let&apos;s start building
+                      </PortfolioButton>
                     </div>
                     <div>
-                      <p className="py-2 text-center">
-                        {capitalizeFirstLetter(service.id)} Types
+                      <p className="py-2 text-center text-white font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
+                        <span className="text-[#C778DD]">#</span>{capitalizeFirstLetter(service.id)} Types
                       </p>
 
                       <div className="grid grid-cols-2 gap-4">
                         {service.types.map((type, index) => (
                           <div
-                            className="
-                      text-sm font-semibold px-3 py-1 rounded-full whitespace-nowrap font-mono 
-                      bg-blue-900/80 text-blue-200 border border-blue-500 shadow-blue-500/30"
+                            className="text-sm font-medium px-3 py-1 whitespace-nowrap font-mono bg-[#C778DD]/20 text-[#C778DD] border border-[#C778DD]/50"
                             key={`type-${service.id}-${index}`}
+                            style={{ fontFamily: "'Fira Code', monospace" }}
                           >
                             {type.text}
                           </div>

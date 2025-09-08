@@ -3,13 +3,13 @@ import { LuCalendar, LuSend, LuRotateCcw } from "react-icons/lu";
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
 import {
-  UndertaleTextField,
-  UndertaleButton,
-  UndertaleSelect,
-} from "../ui/undertale/Form";
+  PortfolioTextField,
+  PortfolioButton,
+  PortfolioSelect,
+} from "../ui/dev/Form";
 
-import UndertaleCard from "../ui/undertale/Card";
-import { ContactLinkButton } from "../ui/undertale/Button";
+import UndertaleCard from "../ui/dev/Card";
+import { ContactLinkButton } from "../ui/dev/Button";
 import { Contact } from "@/types/personal";
 import { useCalendly } from "../forms/calendly/useCalendly";
 import IconMap from "@/types/iconMap";
@@ -82,26 +82,26 @@ const useContactForm = ({ calendlyUrl = "" }) => {
     switch (field) {
       case "name":
         if (!value.trim())
-          return "* You feel like you should tell me your name.";
+          return "You feel like you should tell me your name.";
         if (value.length < 2)
-          return "* That name seems too short to be real...";
+          return "That name seems too short to be real...";
         return "";
 
       case "email":
-        if (!value.trim()) return "* An email address would be VERY helpful.";
+        if (!value.trim()) return "An email address would be VERY helpful.";
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
-          return "* That doesn't look like a valid email address...";
+          return "That doesn't look like a valid email address...";
         return "";
 
       case "workType":
-        if (!value) return "* You must choose what kind of help you need!";
+        if (!value) return "You must choose what kind of help you need!";
         return "";
 
       case "projectDesc":
         if (!value.trim())
-          return "* Tell me about your project! I'm determined to help.";
+          return "Tell me about your project! I'm determined to help.";
         if (value.length < 20)
-          return "* Could you give me a bit more detail? (At least 20 characters)";
+          return "Could you give me a bit more detail? (At least 20 characters)";
         return "";
 
       default:
@@ -152,9 +152,9 @@ const useContactForm = ({ calendlyUrl = "" }) => {
   };
 
   const submitForm = async () => {
-    if (!validateForm()) {
-      return;
-    }
+    // if (!validateForm()) {
+    //   return;
+    // }
 
     setIsSubmitting(true);
 
@@ -162,7 +162,6 @@ const useContactForm = ({ calendlyUrl = "" }) => {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      console.log("Form submitted:", formData);
       setShowSuccess(true);
     } catch (error) {
       console.error("Submission failed:", error);
@@ -192,6 +191,7 @@ const useContactForm = ({ calendlyUrl = "" }) => {
   const getCalendlyUrl = () => {
     const url = new URL(calendlyUrl);
     url.searchParams.set("hide_event_type_details", "1");
+    url.searchParams.set("hide_gdpr_banner", "1");
 
     // Pre-fill Calendly
     if (formData.name) url.searchParams.set("name", formData.name);
@@ -255,6 +255,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
     if (isLoaded && window.Calendly) {
       window.Calendly.initPopupWidget({
         url: getCalendlyUrl(),
+        
       });
     }
   };
@@ -267,19 +268,19 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
 
   if (showSuccess) {
     return (
-      <div className="max-w-2xl mx-auto p-6 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
-        <div className="bg-gradient-to-b from-yellow-100 to-yellow-200 border-4 border-yellow-600 rounded-lg p-8 text-center">
+      <div className="max-w-2xl mx-auto p-6 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen ">
+        <div className="bg-gradient-to-b from-yellow-100 to-yellow-200 border-4 border-yellow-600  p-8 text-center">
           <h2 className="text-2xl font-bold text-yellow-800 mb-4 font-mono">
-            * DETAILS SENT!
+            DETAILS SENT!
           </h2>
           <p className="text-yellow-600 font-mono mb-6">
-            * I&apos;ll get back to you within 24 hours!
+            I&apos;ll get back to you within 24 hours!
           </p>
 
-          <UndertaleButton onClick={resetForm} className="mx-auto">
+          <PortfolioButton onClick={resetForm} className="mx-auto">
             <LuRotateCcw size={20} />
             START NEW
-          </UndertaleButton>
+          </PortfolioButton>
         </div>
       </div>
     );
@@ -287,17 +288,17 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
 
   return (
     <div className="flex flex-col-reverse sm:flex-col-reverse md:flex-row lg:flex-row justify-between p-5 md:p-0 lg:p-0">
-      <div className="mr-10 w-full lg:w-2/5 flex flex-col justify-between">
+      <div className="mr-10 lg:w-2/5 flex flex-col justify-between">
         {/* Message Section */}
-        <div className="relative p-5 bg-black/20 border-2 border-purple-400/30 rounded-lg mb-4">
-          {/* Undertale-style corner decorations */}
+        <div className="relative p-5 bg-black/20 border-1 border-current/30   mb-4">
+          {/* Portfolio-style corner decorations */}
           <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
           <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
           <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
           <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
 
-          <p className="mb-3 text-purple-300 font-mono font-bold">
-            * Interrupt Me On
+          <p className="mb-3 text-[#C778DD] font-mono font-bold">
+            Interrupt Me On
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
             <ContactLinkButton
@@ -324,15 +325,15 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
         </div>
 
         {/* Social Section */}
-        <div className="relative p-5 bg-black/20 border-2 border-purple-400/30 rounded-lg mb-4">
-          {/* Undertale-style corner decorations */}
+        <div className="relative p-5 bg-black/20 border-1 border-current/30   mb-4">
+          {/* Portfolio-style corner decorations */}
           <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
           <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
           <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
           <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
 
-          <p className="mb-3 text-purple-300 font-mono font-bold">
-            * Professional Stalking
+          <p className="mb-3 text-[#C778DD] font-mono font-bold">
+            Professional Stalking
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
             {Object.entries(contactInfo?.social || {}).map(
@@ -351,15 +352,15 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
         </div>
 
         {/* Code Section */}
-        <div className="relative p-5 bg-black/20 border-2 border-purple-400/30 rounded-lg">
-          {/* Undertale-style corner decorations */}
+        <div className="relative p-5 bg-black/20 border-1 border-current/30">
+          {/* Portfolio-style corner decorations */}
           <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
           <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
           <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
           <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
 
-          <p className="mb-3 text-purple-300 font-mono font-bold">
-            * My Code Laboratory
+          <p className="mb-3 text-[#C778DD] font-mono font-bold">
+            My Code Laboratory
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
             {Object.entries(contactInfo?.code || {}).map(([platform, link]) => (
@@ -378,22 +379,22 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
 
       <UndertaleCard
         title="Skip the vibe code, let's build it right"
+        titleClassName="text-[#C778DD] mb-5"
         description=""
-        className="w-full lg:w-3/5 max-h-[70vh] overflow-y-auto custom-scroll"
-        noBackground
+        className="max-h-[70vh] overflow-y-auto custom-scroll"
       >
         <div className="space-y-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-            <UndertaleTextField
-              label="* What's your name, human?"
+            <PortfolioTextField
+              label="What's your name, human?"
               value={formData.name}
               onChange={(value: string) => updateField("name", value)}
               error={errors.name}
               placeholder="Enter your name..."
               className="text-sm" // Add smaller text
             />
-            <UndertaleSelect
-              label="* What kind of work do you need?"
+            <PortfolioSelect
+              label="What kind of work do you need?"
               options={workTypeOptions}
               value={formData.workType}
               onChange={(value: string) => updateField("workType", value)}
@@ -403,8 +404,8 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
           </div>
 
           {/* Email Field */}
-          <UndertaleTextField
-            label="* Your email address?"
+          <PortfolioTextField
+            label="Your email address?"
             type="email"
             value={formData.email}
             onChange={(value: string) => updateField("email", value)}
@@ -417,8 +418,8 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
           {/* Timeline (Optional) */}
           {/* Project Description */}
           <div>
-            <UndertaleTextField
-              label="* Tell me about your project:"
+            <PortfolioTextField
+              label="Tell me about your project:"
               value={formData.projectDesc}
               onChange={(value: string) => updateField("projectDesc", value)}
               error={errors.projectDesc}
@@ -444,7 +445,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
           {/* Action Buttons - More Subtle */}
           <div className="flex gap-3 pt-2">
             {" "}
-            <UndertaleButton
+            <PortfolioButton
               onClick={bookMeeting}
               disabled={!canBookMeeting()}
               variant="subtle-secondary" // New subtle variant
@@ -453,8 +454,8 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
             >
               <LuCalendar size={16} />
               <span className="text-sm">BOOK MEETING</span>
-            </UndertaleButton>
-            <UndertaleButton
+            </PortfolioButton>
+            <PortfolioButton
               onClick={submitForm}
               disabled={!canBookMeeting() || isSubmitting}
               variant="subtle-primary" // New subtle variant
@@ -472,8 +473,8 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
                   <span className="text-sm">SUBMIT</span>
                 </>
               )}
-            </UndertaleButton>
-            <UndertaleButton
+            </PortfolioButton>
+            <PortfolioButton
               onClick={resetForm}
               disabled={!Object.values(formData).filter((val) => !!val).length}
               variant="subtle-danger" // New subtle variant
@@ -484,7 +485,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
                 <LuRotateCcw size={16} />
                 <span className="text-sm">Reset</span>
               </>
-            </UndertaleButton>
+            </PortfolioButton>
           </div>
         </div>
       </UndertaleCard>

@@ -52,7 +52,7 @@ export default function TabbedSection({
   return (
     <div
       ref={elementRef}
-      className={`${isVisible ? "slide-down" : "slide-down-hidden"} m-[2.5vw] ${className}`}
+      className={`${isVisible ? "" : "slide-down-hidden"} m-[2.5vw] ${className}`}
     >
       <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
     </div>

@@ -1,8 +1,7 @@
 "use client";
 import AboutSection from "@/components/sections/About";
 import ContactSection from "@/components/sections/Contact";
-import ExperienceSection from "@/components/sections/Experience";
-import Header from "@/components/sections/Header";
+import Header from "@/components/ui/dev/Header";
 import ProjectsSection from "@/components/sections/Projects";
 import ServicesSection from "@/components/sections/Services";
 import SkillsTable from "@/components/sections/Skills";
@@ -11,7 +10,10 @@ import { Contact } from "@/types/personal";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import CoffeeLoader from "@/components/ui/CoffeeLoader";
+import CoffeeMachineLoader from "@/components/ui/Loader";
+import TypewriterComponent from "typewriter-effect";
+import Container from "@/components/ui/dev/Container"
+import { FloatingScrollButton } from "@/components/ui/dev/ScrollButton";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("projects");
@@ -90,16 +92,24 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setShowloader(false);
-    }, 7000);
+    }, 5000);
   }, []);
 
   if (iconLoading || skillsLoading || showLoader)
     return (
-      <CoffeeLoader
-        size={300}
-        message="Brewing my portfolio..."
-        className="text-center mt-[25vh]"
+  <div className="mt-[25vh] flex-col justify-center align-center text-center">
+      <CoffeeMachineLoader
       />
+          <div className="mt-5 text-purple-500 font-mono font-bold">
+      <TypewriterComponent 
+      options={{strings:["Brewing Aishwarya's Portfolio"], autoStart:true,
+        delay:100, loop:true
+
+      }}
+      
+      />
+      </div>
+      </div>
     );
 
   // Error state
@@ -134,7 +144,7 @@ export default function Home() {
           skillsData={skillsData}
         />
       </section>
-      <ExperienceSection
+      {/* <ExperienceSection
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         tabs={[
@@ -155,33 +165,7 @@ export default function Home() {
             label: "Stuff I Built",
             content: <ProjectsSection iconMap={iconMap} />,
           },
-          {
-            id: "services",
-            label: "Rent-a-Dev",
-            content: (
-              <ServicesSection
-                setActiveTab={setActiveTab}
-                setWorkType={setWorkType}
-                iconMap={iconMap.services}
-              />
-            ),
-          },
-          {
-            id: "skills",
-            label: "Dev Arsenal",
-            content: <SkillsTable iconMap={iconMap} skillsData={skillsData} />,
-          },
-          {
-            id: "contact",
-            label: "Find Me Here",
-            content: (
-              <ContactSection
-                contactInfo={contactInfo}
-                iconMap={iconMap}
-                workType={workType}
-              />
-            ),
-          },
+        
 
           // {
           //   id:'architecture-diagrams',
@@ -228,7 +212,49 @@ export default function Home() {
         ]}
         defaultActiveTab="projects"
         className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
-      />
+      /> */}
+      <Container
+      title="Stuff I Built"
+
+      className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
+      
+      >
+      <ProjectsSection iconMap={iconMap} />
+      </Container>
+
+<Container
+title="Rent A Dev"
+
+        className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
+      >
+        <ServicesSection
+            setActiveTab={setActiveTab}
+            setWorkType={setWorkType}
+            iconMap={iconMap.services}
+          />
+      </Container>
+<Container
+
+   
+        className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
+        title="Dev Arsenal"
+      >
+        <SkillsTable iconMap={iconMap} skillsData={skillsData} />
+
+      </Container>
+<Container
+
+   title="Find Me Here"
+        className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
+        theme=""
+      >
+         <ContactSection
+            contactInfo={contactInfo}
+            iconMap={iconMap}
+            workType={workType}
+          />
+      </Container>
+            <FloatingScrollButton/>
     </div>
   );
 }

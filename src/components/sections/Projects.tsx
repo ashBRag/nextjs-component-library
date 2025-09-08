@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, JSX } from "react";
-import Timeline from "@/components/ui/undertale/Timeline";
+import Timeline from "@/components/ui/dev/Timeline";
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
-import Card from "../ui/undertale/Card";
+import Card from "../ui/dev/Card";
 import { Experience, Project, Projects } from "@/types/projects";
 import IconComponent from "../ui/Icon";
 import MobileCarousel from "../ui/undertale/Scroll";
@@ -97,7 +97,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
             <Image
               src={`/companyLogo/${badgeText.toLowerCase()}.png`}
               alt="profilePhoto"
-              className="w-10 h-10 rounded-full"
+              className="w-8 h-8 rounded-full"
               width={10}
               height={10}
             />
@@ -160,7 +160,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      <section className="hidden md:flex p-4 gap-6">
+      <section className="hidden md:flex gap-6">
         <Timeline
           items={timelineItems}
           className="w-2/5 max-h-[65vh] overflow-y-auto pr-5 custom-scroll"

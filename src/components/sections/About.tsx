@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
 
-import Image from "../ui/undertale/Image";
+import Image from "../ui/dev/Image";
 import Typewriter from "typewriter-effect";
-import Card from "../ui/undertale/Card";
+import Card from "../ui/dev/Card";
 import { AnimatedSkillsGrid } from "../ui/undertale/Rotation";
-import { UndertaleDownloadButton } from "../ui/undertale/Button";
+import { DownloadResumeButton } from "../ui/dev/Button";
 import UndertaleUI from "./Continue";
 import { Animate, useAnimateGroup } from "react-simple-animate";
 
@@ -55,18 +55,17 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
   }, []);
 
   return (
-    <section className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2 mt-[3vh] md:mt-[16vh] md:mb-[10vh] mx-[2.5vw]">
-      <div className="hidden lg:flex lg:flex-col mr-10 pt-2 slide-left">
-        <Image src="/profilePhoto.jpg" alt="Profile Image" />
-        <UndertaleDownloadButton
+    <section className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2 mt-[3vh] md:mt-[16vh] md:mb-[10vh] mx-[5vw]">
+      <div className="hidden lg:flex lg:flex-col mr-10 slide-left">
+        <Image src="/profilePhoto.jpg" alt="Profile Image" className="mb-10" />
+        <DownloadResumeButton
           href="/resume.pdf"
           downloadName="Aishwarya_BR_Resume.pdf"
         />
         <UndertaleUI />
       </div>
 
-      <div>
-        <Card title="Meet Aishwarya B R" noBackground className="slide-right">
+        <Card title="Meet Aishwarya B R"  className="slide-right" titleClassName="text-[#C778DD]">
           <div className="flex flex-col gap-2">
             <div className="flex">
               <span className="mr-2">I Am</span>
@@ -105,7 +104,6 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
             <AnimatedSkillsGrid skillsData={skillsData} iconMap={iconMap} />
           </div>
         </Card>
-      </div>
     </section>
   );
 }

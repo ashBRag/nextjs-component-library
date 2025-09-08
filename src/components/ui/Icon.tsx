@@ -11,6 +11,7 @@ interface IconComponentProps {
   iconMap: IconConfig[];
   iconClass?: string;
   divClass?: string;
+  show?:boolean;
 }
 
 export default function IconComponent({
@@ -19,6 +20,7 @@ export default function IconComponent({
   iconMap,
   iconClass = "w-8 h-8",
   divClass = "flex flex-col items-center gap-2",
+  show=true,
 }: IconComponentProps) {
   const iconConfig = iconMap.find(
     (icon) => icon.id === id || icon.name === name,
@@ -37,8 +39,8 @@ export default function IconComponent({
       {IconElement && (
         <IconElement color={iconConfig.color} className={iconClass} />
       )}
-      {name && (
-        <span className="text-xs sm:text-xs md:text-sm lg:text-sm">{name}</span>
+      {show && (
+        <span className="text-xs">{name}</span>
       )}
     </div>
   );
