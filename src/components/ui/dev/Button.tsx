@@ -8,8 +8,8 @@ interface PortfolioButtonProps {
   className?: string;
   downloadName?: string;
   children?: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "primary" | "secondary" | "outline";
+  size?: "sm" | "md" | "lg";
   disabled?: boolean;
 }
 
@@ -19,11 +19,10 @@ export function PortfolioButton({
   className = "",
   downloadName,
   children,
-  variant = 'outline',
-  size = 'md',
+  variant = "outline",
+  size = "md",
   disabled = false,
 }: PortfolioButtonProps) {
-  
   const getVariantStyles = () => {
     const variants = {
       primary: `
@@ -37,7 +36,7 @@ export function PortfolioButton({
       outline: `
         bg-transparent text-white border-[#C778DD]
         hover:bg-[#C778DD]/10 hover:text-[#C778DD]
-      `
+      `,
     };
     return variants[variant];
   };
@@ -46,7 +45,7 @@ export function PortfolioButton({
     const sizes = {
       sm: "px-3 py-2 text-sm",
       md: "px-4 py-2 text-base",
-      lg: "px-6 py-3 text-lg"
+      lg: "px-6 py-3 text-lg",
     };
     return sizes[size];
   };
@@ -126,18 +125,17 @@ export function ContactLinkButton({
   icon: React.ComponentType<any>;
   text: string;
   href?: string;
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: "primary" | "secondary" | "outline";
+  size?: "sm" | "md" | "lg";
   showExternalIcon?: boolean;
   className?: string;
   iconColor?: string;
 }) {
-  
   const getSizeStyles = () => {
     const sizes = {
       sm: "p-2 text-sm",
-      md: "p-3 text-base", 
-      lg: "p-4 text-lg"
+      md: "p-3 text-base",
+      lg: "p-4 text-lg",
     };
     return sizes[size];
   };
@@ -146,7 +144,7 @@ export function ContactLinkButton({
     const iconSizes = {
       sm: 16,
       md: 20,
-      lg: 24
+      lg: 24,
     };
     return iconSizes[size];
   };
@@ -164,7 +162,7 @@ export function ContactLinkButton({
       outline: `
         bg-transparent text-[#ABB2BF] border-[#ABB2BF]/30
         hover:bg-[#ABB2BF]/10 hover:text-white hover:border-[#ABB2BF]
-      `
+      `,
     };
     return variants[variant];
   };

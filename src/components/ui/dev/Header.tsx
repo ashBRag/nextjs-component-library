@@ -1,27 +1,28 @@
 "use client";
+import { scrollToElement } from "@/lib/utils";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
 interface HeaderProps {
-    profileImage: string;
+  profileImage: string;
 
   name?: string;
   className?: string;
 }
 
 const Header = ({
-    profileImage = "/profilePhoto.jpg",
+  profileImage = "/profilePhoto.jpg",
 
   name = "Elias",
   className = "",
 }: HeaderProps) => {
-      const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "works", "about-me", "contacts"];
+      const sections = ["home", "projects", "skills", "services", "contact"];
       const currentSection = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
@@ -32,7 +33,6 @@ const Header = ({
       });
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 100);
-
 
       if (currentSection) {
         setActiveSection(currentSection);
@@ -45,23 +45,19 @@ const Header = ({
 
   const handleNavClick = (sectionId: string) => {
     setActiveSection(sectionId);
-    setMobileMenuOpen(false);
-    
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    scrollToElement(sectionId, 180);
   };
 
   const navItems = [
-    { id: "home", label: "home" },
-    { id: "works", label: "works" },
-    { id: "about-me", label: "about-me" },
-    { id: "contacts", label: "contacts" },
+    { id: "about", label: "home" },
+    { id: "projects", label: "projects" },
+    { id: "services", label: "services" },
+    { id: "skills", label: "skills" },
+    { id: "contact", label: "connect" },
   ];
 
   return (
-    <header 
+    <header
       className={`
         fixed top-0 left-0 right-0 z-50 
         transition-all duration-300 
@@ -103,11 +99,13 @@ const Header = ({
               height={32}
               className="w-8 h-8 rounded-full object-cover border-2 border-[#C778DD]"
             />
-            <span className="text-white font-mono font-medium text-sm">{name}</span>
+            <span className="text-white font-mono font-medium text-sm">
+              {name}
+            </span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-8 ml-auto">
             {navItems.map((item) => (
               <button
                 key={item.id}

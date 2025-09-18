@@ -43,10 +43,6 @@ const Header = ({
   }, []);
 
   const handleMenu = (id = "") => {
-    // window.scrollTo({
-    //   top: window.innerHeight - 100,
-    //   behavior: "smooth",
-    // });
     scrollToBottom(2.5);
     setActiveTab(id);
   };
@@ -62,29 +58,8 @@ const Header = ({
     >
       <nav className="mx-10 py-4">
         <div className="flex items-center justify-between">
-          {/* Profile section - shows when scrolled */}
-          {isScrolled && (
-            <div className="hidden sm:flex items-center space-x-3">
-              <Image
-                src={profileImage}
-                alt="Profile"
-                className="w-10 h-10 rounded-full object-cover border-2 border-yellow-400"
-                width={10}
-                height={10}
-              />
-              <span className="text-yellow-400 font-mono font-bold">
-                {name}
-              </span>
-              {/* Download Resume */}
-              <a
-                href="/resume.pdf"
-                download="Aishwarya_BR_Resume.pdf"
-                className="ml-4 bg-purple-600 hover:bg-purple-500 text-white px-3 py-1 text-sm font-mono border border-white/50 hover:border-white transition-all"
-              >
-                📄 Resume
-              </a>
-            </div>
-          )}
+          {/* Left side - Profile section or empty space */}
+          <div className="flex">mee</div>
 
           <div className={`md:hidden flex items-center space-x-3`}>
             <Image
@@ -101,14 +76,12 @@ const Header = ({
               download="Aishwarya_BR_Resume.pdf"
               className="ml-4 bg-purple-600 hover:bg-purple-500 text-white px-3 py-1 text-sm font-mono border border-white/50 hover:border-white transition-all"
             >
-              📄 Resume
+              📄 Resumeee
             </a>
           </div>
 
-          {/* Desktop Navigation */}
-          <div
-            className={`hidden md:flex items-center space-x-1 ${!isScrolled ? "ml-auto" : ""}`}
-          >
+          {/* Desktop Navigation - ALWAYS visible on the right */}
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <button
                 key={item.id}

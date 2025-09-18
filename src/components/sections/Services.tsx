@@ -96,19 +96,29 @@ export default function ServicesSection({
                       <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
                       <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
 
-                      <p className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
+                      <p
+                        className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white font-mono"
+                        style={{ fontFamily: "'Fira Code', monospace" }}
+                      >
                         Rate: {service.rate.hour[1].currency}{" "}
                         {service.rate.hour[1].range[0]} -{" "}
                         {service.rate.hour[1].range[1]} / hour
                       </p>
-                      <p className="text-xs text-center w-full mt-1 text-[#ABB2BF] font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
+                      <p
+                        className="text-xs text-center w-full mt-1 text-[#ABB2BF] font-mono"
+                        style={{ fontFamily: "'Fira Code', monospace" }}
+                      >
                         * Pricing varies with scope
                       </p>
                     </div>
-                  
+
                     <div>
-                      <p className="py-2 text-center text-white font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
-                        <span className="text-[#C778DD]">#</span>{capitalizeFirstLetter(service.id)} Types
+                      <p
+                        className="py-2 text-center text-white font-mono"
+                        style={{ fontFamily: "'Fira Code', monospace" }}
+                      >
+                        <span className="text-[#C778DD]">#</span>
+                        {capitalizeFirstLetter(service.id)} Types
                       </p>
 
                       <div className="grid grid-cols-1 gap-4">
@@ -143,21 +153,18 @@ export default function ServicesSection({
           items={servicesOptions.map((service) => ({
             id: service.id,
             content: (
-              <Card
-                title={service.name}
-                description={service.description}
-              >
+              <Card title={service.name} description={service.description}>
                 <div className="flex flex-col md:flex-row lg:flex-row">
                   <ul>
                     {service.features.map((feature, index) => (
                       <li
-                        className="flex justify-center items-center py-2 rounded"
+                        className="flex items-center py-2 rounded"
                         key={service.id + index}
                       >
                         <IconComponent
                           id={feature.iconId}
                           iconMap={iconMap}
-                          iconClass="w-5 h-5"
+                          iconClass="w-5 h-5 mr-2"
                           divClass="flex"
                           show={false}
                         />
@@ -173,38 +180,29 @@ export default function ServicesSection({
                       <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
                       <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
 
-                      <p className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
+                      <p
+                        className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white font-mono"
+                        style={{ fontFamily: "'Fira Code', monospace" }}
+                      >
                         Rate: {service.rate.hour[1].currency}{" "}
                         {service.rate.hour[1].range[0]} -{" "}
                         {service.rate.hour[1].range[1]} / hour
                       </p>
-                      <p className="text-xs text-center w-full mt-1 text-[#ABB2BF] font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
+                      <p
+                        className="text-xs text-center w-full mt-1 text-[#ABB2BF] font-mono"
+                        style={{ fontFamily: "'Fira Code', monospace" }}
+                      >
                         * Pricing varies with scope
                       </p>
                     </div>
-                    <div className="relative p-5 mt-2 flex flex-col  border border-[#ABB2BF]/30">
-                      <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-[#ABB2BF] opacity-30"></div>
-                      <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-[#ABB2BF] opacity-30"></div>
-                      <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
-                      <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
 
-                      <p className="text-center mb-5 text-[#ABB2BF] font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
-                        Fill out the form to dive in further
-                      </p>
-                      <PortfolioButton
-                        onClick={() => {
-                          setActiveTab("contact");
-                          setWorkType(service.id);
-                        }}
-                        variant="primary"
-                        size="small"
-                      >
-                        Let&apos;s start building
-                      </PortfolioButton>
-                    </div>
                     <div>
-                      <p className="py-2 text-center text-white font-mono" style={{ fontFamily: "'Fira Code', monospace" }}>
-                        <span className="text-[#C778DD]">#</span>{capitalizeFirstLetter(service.id)} Types
+                      <p
+                        className="py-2 text-center text-white font-mono"
+                        style={{ fontFamily: "'Fira Code', monospace" }}
+                      >
+                        <span className="text-[#C778DD]">#</span>
+                        {capitalizeFirstLetter(service.id)} Types
                       </p>
 
                       <div className="grid grid-cols-2 gap-4">
@@ -226,7 +224,7 @@ export default function ServicesSection({
           }))}
           className="p-5"
         />
-        <FloatingScrollButton id="contact"/>
+        {/* <FloatingScrollButton id="contact" /> */}
       </section>
     </>
   );

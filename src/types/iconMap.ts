@@ -2,7 +2,6 @@ export default interface IconMap {
   contact: IconConfig[];
   skills: IconConfig[];
   services: IconConfig[];
-
 }
 
 export interface Contact {

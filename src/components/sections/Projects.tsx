@@ -191,7 +191,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
           )}
           className="p-5"
         />
-        <FloatingScrollButton id="skills"/>
+        {/* <FloatingScrollButton id="skills" /> */}
       </section>
     </>
   );

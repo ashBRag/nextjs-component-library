@@ -15,7 +15,7 @@ export default function PortfolioGrid() {
       const viewportHeight = window.innerHeight;
       const spacingX = viewportWidth / (gridSize + 1); // Distribute across full width
       const spacingY = viewportHeight / (gridSize + 1); // Distribute across full height
-      
+
       const dots = [];
       for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
@@ -39,11 +39,11 @@ export default function PortfolioGrid() {
 
     // Update on window resize
     const handleResize = () => updateDots();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       clearInterval(interval);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

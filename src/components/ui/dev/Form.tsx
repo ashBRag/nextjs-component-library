@@ -199,49 +199,47 @@ export const PortfolioSelect = ({
 }) => {
   return (
     <div className={className}>
-      <label 
-        className="block text-white font-mono mb-2 text-sm"
-        style={{ fontFamily: "'Fira Code', monospace" }}
-      >
-        <span className="text-[#C778DD]">#</span>
-        {label}
-      </label>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className={`
-          w-full px-4 py-3  border border-[#ABB2BF]/30 
-          text-white font-mono text-sm focus:outline-none transition-all
-          ${
-            error
-              ? "border-red-500 focus:border-red-500"
-              : "focus:border-[#C778DD]"
-          }
-        `}
-        style={{ fontFamily: "'Fira Code', monospace" }}
-      >
-        <option value="" className=" text-[#ABB2BF]">
-          {placeholder}
-        </option>
-        {options.map((option) => (
-          <option
-            key={option.value}
-            value={option.value}
-            className=" text-white"
-          >
-            {option.label}
-          </option>
-        ))}
-      </select>
-      {error && (
-        <p 
-          className="text-red-400 font-mono mt-2 text-sm"
-          style={{ fontFamily: "'Fira Code', monospace" }}
+    <label
+      className="block text-white font-mono mb-2 text-sm"
+      style={{ fontFamily: "'Fira Code', monospace" }}
+    >
+      <span className="text-[#C778DD]">#</span>
+      {label}
+    </label>
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className={`
+        w-full px-4 py-3 border border-[#ABB2BF]/30 
+        bg-[#ABB2BF]/10 text-white font-mono text-sm 
+        focus:outline-none transition-all
+        ${
+          error
+            ? "border-red-500 focus:border-red-500"
+            : "focus:border-[#C778DD]"
+        }
+      `}
+      style={{ fontFamily: "'Fira Code', monospace" }}
+    >
+      {options.map((option) => (
+        <option
+          key={option.value}
+          value={option.value}
+          className="bg-black/30 text-white"
         >
-          {error}
-        </p>
-      )}
-    </div>
+          {option.label}
+        </option>
+      ))}
+    </select>
+    {error && (
+      <p
+        className="text-red-400 font-mono mt-2 text-sm"
+        style={{ fontFamily: "'Fira Code', monospace" }}
+      >
+        {error}
+      </p>
+    )}
+  </div>
   );
 };
 

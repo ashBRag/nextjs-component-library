@@ -10,11 +10,11 @@ import { Contact } from "@/types/personal";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import CoffeeMachineLoader from "@/components/ui/Loader";
-import TypewriterComponent from "typewriter-effect";
-import Container from "@/components/ui/dev/Container"
-import { useDispatch } from "react-redux";
+
+import Container from "@/components/ui/dev/Container";
 import { fetchIconMap } from "@/components/store/reducer";
+import { useAppDispatch } from "@/components/store/hooks";
+import { ScreenCenterWrapper } from "@/components/ui/CenterWrapper";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("projects");
@@ -44,29 +44,9 @@ export default function Home() {
       leetcode: "",
     },
   });
-  // const [iconMap, setIconMap] = useState({
-  //   skills: [{ name: "", icon: "", color: "" }],
-  //   contact: [{ name: "", icon: "", color: "" }],
-  //   services: [{ name: "", icon: "", color: "" }],
-  // });
-  // const [skillsData, setSkillsData] = useState<Skills>({
-  //   categories: {
-  //     frontend: {
-  //       name: "Frontend",
-  //       skills: [{ name: "", icon: "", level: "", color: "", years: 0 }],
-  //     },
-  //     backend: {
-  //       name: "Backend",
-  //       skills: [{ name: "", icon: "", level: "", color: "", years: 0 }],
-  //     },
-  //     cloud: {
-  //       name: "Cloud",
-  //       skills: [{ name: "", icon: "", level: "", color: "", years: 0 }],
-  //     },
-  //   },
-  // });
+
   const [workType, setWorkType] = useState("");
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch();
   const {
     data: iconMap,
     isLoading: iconLoading,
@@ -93,26 +73,22 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setShowloader(false);
-    }, 5000);
-    dispatch(fetchIconMap())
-    
+    }, 3000);
+    dispatch(fetchIconMap());
   }, []);
 
   if (iconLoading || skillsLoading || showLoader)
     return (
-  <div className="mt-[25vh] flex-col justify-center align-center text-center">
-      <CoffeeMachineLoader
-      />
-          <div className="mt-5 text-purple-500 font-mono font-bold">
-      <TypewriterComponent 
-      options={{strings:["Brewing Aishwarya's Portfolio"], autoStart:true,
-        delay:100, loop:true
+      <ScreenCenterWrapper>
+        <div className="flex-col justify-items-center align-center text-center">
+          {/* <CoffeeMachineLoader /> */}
+          <div className="loader"></div>
 
-      }}
-      
-      />
-      </div>
-      </div>
+          <div className="mt-15 text-purple-400 font-mono font-bold">
+            Loading Profile....
+          </div>
+        </div>
+      </ScreenCenterWrapper>
     );
 
   // Error state
@@ -135,17 +111,14 @@ export default function Home() {
 
   return (
     <div>
-      <Header
-        profileImage="/profilePhoto.jpg"
-        name="Aishwarya B R"
-      />
-      <section className="hidden sm:block">
+      <Header profileImage="/profilePhoto.jpg" name="Aishwarya B R" />
+      <ScreenCenterWrapper>
         <AboutSection
           setContactInfo={setContactInfo}
           iconMap={iconMap.skills}
           skillsData={skillsData}
         />
-      </section>
+      </ScreenCenterWrapper>
       {/* <ExperienceSection
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -215,45 +188,26 @@ export default function Home() {
         defaultActiveTab="projects"
         className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
       /> */}
-      <Container
-      title="Stuff I Built"
-
-      className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
-      
-      >
-      <ProjectsSection iconMap={iconMap} />
+      <Container title="Stuff I Built">
+        <ProjectsSection iconMap={iconMap} />
       </Container>
 
-<Container
-title="Rent A Dev"
-
-        className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
-      >
+      <Container title="Rent A Dev">
         <ServicesSection
-            setActiveTab={setActiveTab}
-            setWorkType={setWorkType}
-            iconMap={iconMap.services}
-          />
+          setActiveTab={setActiveTab}
+          setWorkType={setWorkType}
+          iconMap={iconMap.services}
+        />
       </Container>
-<Container
-
-   
-        className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
-        title="Dev Arsenal"
-      >
+      <Container title="Dev Arsenal">
         <SkillsTable iconMap={iconMap} skillsData={skillsData} />
-
       </Container>
-<Container
-
-   title="Find Me Here"
-        className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
-      >
-         <ContactSection
-            contactInfo={contactInfo}
-            iconMap={iconMap}
-            workType={workType}
-          />
+      <Container title="Find Me Here" className="w-full">
+        <ContactSection
+          contactInfo={contactInfo}
+          iconMap={iconMap}
+          workType={workType}
+        />
       </Container>
     </div>
   );

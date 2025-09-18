@@ -89,7 +89,7 @@ export default function UndertaleTabs({
       ? "text-cyan-300 border-cyan-400 bg-cyan-900/40 shadow-cyan-400/30"
       : "text-cyan-500 border-transparent hover:text-cyan-300 hover:border-cyan-400/50";
 
-    const animationStyle = ""
+    const animationStyle = "";
 
     const activeHover = "";
     const shadowStyle = isActive ? "shadow-lg" : "";
@@ -108,8 +108,6 @@ export default function UndertaleTabs({
     return `inline-block px-3 py-2 sm:px-6 sm:py-3 ${borderStyle} ${roundingStyle} font-mono relative backdrop-blur-sm ${colorStyle} ${animationStyle} ${activeHover} ${shadowStyle}`;
   };
 
-
-
   const TabHeaders = ({ isMobile = false }: { isMobile?: boolean }) => (
     <div
       className={`${isMobile ? "border-t-2" : "border-b-2"} border-slate-700/50 relative`}
@@ -119,7 +117,7 @@ export default function UndertaleTabs({
         role="tablist"
       >
         {tabs.map((tab) => {
-          const isActive = true
+          const isActive = true;
           return (
             <li
               key={tab.id}
@@ -152,18 +150,12 @@ export default function UndertaleTabs({
 
                 <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
                   {tab.icon && (
-                    <span
-                      className="animate-pulse"
-                    >
-                      {tab.icon}
-                    </span>
+                    <span className="animate-pulse">{tab.icon}</span>
                   )}
                   <span className={`text-xs sm:text-sm`}>
-                    <span className="hidden sm:inline">
-                    </span>
+                    <span className="hidden sm:inline"></span>
                     {tab.label}
-                    <span className="hidden sm:inline">
-                    </span>
+                    <span className="hidden sm:inline"></span>
                   </span>
                 </div>
 
@@ -202,7 +194,7 @@ export default function UndertaleTabs({
         {/* Tab Content */}
         <div className="relative">
           {tabs.map((tab) => {
-            const isActive =true
+            const isActive = true;
             return (
               <div
                 id={tab.id}

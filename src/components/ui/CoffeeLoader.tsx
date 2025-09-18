@@ -25,16 +25,16 @@ export default function CoffeeLoader({
         loop={true}
         autoplay={true}
       />
-    <div className="mt-20 text-mono">
-      <Typewriter
-        options={{
-          strings: [message],
-          autoStart: true,
-          loop: false,
-          delay: 100,
-          deleteSpeed: 100,
-        }}
-      />
+      <div className="mt-20 text-mono">
+        <Typewriter
+          options={{
+            strings: [message],
+            autoStart: true,
+            loop: false,
+            delay: 100,
+            deleteSpeed: 100,
+          }}
+        />
       </div>
     </div>
   );

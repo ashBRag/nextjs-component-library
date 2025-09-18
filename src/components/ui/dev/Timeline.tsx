@@ -38,9 +38,9 @@ export default function PortfolioTimeline({
   const getBadgeStyles = (variant: string = "primary") => {
     const variants = {
       primary: "bg-[#C778DD]/20 text-[#C778DD] border border-[#C778DD]/50",
-      secondary: "bg-[#ABB2BF]/20 text-[#ABB2BF] border border-[#ABB2BF]/50", 
+      secondary: "bg-[#ABB2BF]/20 text-[#ABB2BF] border border-[#ABB2BF]/50",
       success: "bg-green-500/20 text-green-400 border border-green-500/50",
-      warning: "bg-yellow-500/20 text-yellow-400 border border-yellow-500/50"
+      warning: "bg-yellow-500/20 text-yellow-400 border border-yellow-500/50",
     };
     const animationClass = animated ? "animate-pulse" : "";
     return `${variants[variant as keyof typeof variants] || variants.primary} ${animationClass}`;
@@ -51,10 +51,13 @@ export default function PortfolioTimeline({
   };
 
   const getTimelineNodeStyles = () => {
-    const baseStyles = "absolute flex items-center justify-center w-10 h-10 rounded-full border-2 font-mono text-sm";
+    const baseStyles =
+      "absolute flex items-center justify-center w-10 h-10 rounded-full border-2 font-mono text-sm";
     const positionStyles = "-start-12  z-index-12 bg-white";
     const colorStyle = "border-[#C778DD] text-[#C778DD]";
-    const animationStyle = animated ? "hover:scale-110 transition-transform duration-300" : "";
+    const animationStyle = animated
+      ? "hover:scale-110 transition-transform duration-300"
+      : "";
 
     return `${baseStyles} ${positionStyles} ${colorStyle} ${animationStyle}`;
   };
@@ -63,7 +66,7 @@ export default function PortfolioTimeline({
     if (!item.action) return " border border-[#ABB2BF]/30";
 
     const isSelected = selectedId === item.id;
-    
+
     if (isSelected) {
       return " border border-[#C778DD]/50 shadow-lg shadow-[#C778DD]/20";
     }
@@ -86,7 +89,9 @@ export default function PortfolioTimeline({
   };
 
   const renderCardContent = (item: PortfolioTimelineItem) => (
-    <div className={`relative p-6 rounded font-mono transition-all duration-300 ${getCardStyles(item)}`}>
+    <div
+      className={`relative p-6 rounded font-mono transition-all duration-300 ${getCardStyles(item)}`}
+    >
       {/* Corner brackets */}
       <div className="absolute top-2 left-2 w-3 h-3">
         <div className="w-full h-0.5 bg-[#ABB2BF]/50"></div>
@@ -120,7 +125,7 @@ export default function PortfolioTimeline({
           )}
         </div>
 
-        <time 
+        <time
           className="block mb-3 text-sm text-[#C778DD] font-mono"
           style={{ fontFamily: "'Fira Code', monospace" }}
         >
@@ -128,7 +133,7 @@ export default function PortfolioTimeline({
         </time>
 
         {item.description && (
-          <p 
+          <p
             className="text-base text-[#ABB2BF] font-mono leading-relaxed"
             style={{ fontFamily: "'Fira Code', monospace" }}
           >
@@ -153,9 +158,7 @@ export default function PortfolioTimeline({
     }
 
     return (
-      <div onClick={() => handleCardClick(item)}>
-        {renderCardContent(item)}
-      </div>
+      <div onClick={() => handleCardClick(item)}>{renderCardContent(item)}</div>
     );
   };
 
@@ -168,9 +171,7 @@ export default function PortfolioTimeline({
             className={`${index === items.length - 1 ? "ml-6" : "mb-8 ml-6"} relative`}
           >
             {/* Timeline Node */}
-            <span className={getTimelineNodeStyles()}>
-              {item.icon}
-            </span>
+            <span className={getTimelineNodeStyles()}>{item.icon}</span>
 
             {/* Content Container */}
             {renderCard(item)}

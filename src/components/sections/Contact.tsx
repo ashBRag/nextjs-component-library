@@ -13,6 +13,8 @@ import { ContactLinkButton } from "../ui/dev/Button";
 import { Contact } from "@/types/personal";
 import { useCalendly } from "../forms/calendly/useCalendly";
 import IconMap from "@/types/iconMap";
+import { useToast } from "../ui/dev/Toast";
+import { ApiError, submitContactForm } from "@/lib/api";
 
 interface FormData {
   name: string;
@@ -58,11 +60,12 @@ const getIconColor = (platform: string = "default") => {
   };
   return colors[platform.toLowerCase()];
 };
+
 const useContactForm = ({ calendlyUrl = "" }) => {
   const [formData, setFormData] = useState<FormData>({
-    name: "aishwarya.br",
-    email: "ashragh17@gmail.com",
-    workType: "freelance",
+    name: "",
+    email: "",
+    workType: "",
     timeline: "",
     projectDesc: "",
   });
@@ -77,14 +80,15 @@ const useContactForm = ({ calendlyUrl = "" }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
+  // Updated to include all toast types and container
+  const { success, error, warning, info, ToastContainer } = useToast();
+
   // Validation rules
   const validateField = (field: string, value: string) => {
     switch (field) {
       case "name":
-        if (!value.trim())
-          return "You feel like you should tell me your name.";
-        if (value.length < 2)
-          return "That name seems too short to be real...";
+        if (!value.trim()) return "You feel like you should tell me your name.";
+        if (value.length < 2) return "That name seems too short to be real...";
         return "";
 
       case "email":
@@ -118,16 +122,21 @@ const useContactForm = ({ calendlyUrl = "" }) => {
       projectDesc: "",
     };
 
+    let hasErrors = false;
+
     Object.entries(formData).forEach(([fieldName, value]) => {
       // Timeline is optional, skip validation
       if (fieldName === "timeline") return;
 
-      const error = validateField(fieldName, value);
-      if (error) newErrors[fieldName as keyof typeof formData] = error;
+      const errorMessage = validateField(fieldName, value);
+      if (errorMessage) {
+        newErrors[fieldName as keyof typeof formData] = errorMessage;
+        hasErrors = true;
+      }
     });
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    return !hasErrors;
   };
 
   // Check if basic fields are filled for meeting booking
@@ -152,23 +161,84 @@ const useContactForm = ({ calendlyUrl = "" }) => {
   };
 
   const submitForm = async () => {
-    // if (!validateForm()) {
-    //   return;
-    // }
+    // Validate form before submission
+    if (!validateForm()) {
+      error("Please fix the form errors before submitting");
+      return;
+    }
+
+    // Additional business logic validation
+    if (!formData.projectDesc || formData.projectDesc.length < 10) {
+      warning(
+        "Project description seems a bit short. Could you add more details?",
+      );
+      return;
+    }
 
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Show info toast for processing
+      info("Processing your request...");
 
-      setShowSuccess(true);
-    } catch (error) {
-      console.error("Submission failed:", error);
+      // Prepare form data for API
+      const submissionData = {
+        name: formData.name,
+        email: formData.email,
+        workType: formData.workType,
+        projectDesc: formData.projectDesc,
+        timeline: formData.timeline || "", // Optional field
+      };
+
+      // Call the API
+      const response = await submitContactForm(submissionData);
+
+      if (response.success) {
+        // Success case
+        success(
+          "🎉 Your message has been sent successfully! Check your email for confirmation.",
+        );
+
+        // Reset form on success
+        setFormData({
+          name: "",
+          email: "",
+          workType: "",
+          timeline: "",
+          projectDesc: "",
+        });
+        setErrors({
+          name: "",
+          email: "",
+          workType: "",
+          timeline: "",
+          projectDesc: "",
+        });
+      } else {
+        throw new Error(response.message || "Submission failed");
+      }
+    } catch (submitError) {
+      console.error("Submission failed:", submitError);
+
+      if (submitError instanceof ApiError) {
+        // Handle API errors with specific messages
+        if (submitError.status === 400) {
+          error("Please check your form data and try again.");
+        } else if (submitError.status === 500) {
+          error("Server error. Please try again later or contact me directly.");
+        } else {
+          error(`Error: ${submitError.message}`);
+        }
+      } else {
+        error(
+          "Oops! Something went wrong. Please try again or contact me directly.",
+        );
+      }
     } finally {
       setIsSubmitting(false);
     }
   };
+
   const resetForm = () => {
     setFormData({
       name: "",
@@ -186,6 +256,9 @@ const useContactForm = ({ calendlyUrl = "" }) => {
     });
     setShowSuccess(false);
     setIsSubmitting(false);
+
+    // Show toast confirmation
+    info("Form has been reset");
   };
 
   const getCalendlyUrl = () => {
@@ -212,6 +285,7 @@ const useContactForm = ({ calendlyUrl = "" }) => {
     resetForm,
     canBookMeeting,
     getCalendlyUrl,
+    ToastContainer, // Export ToastContainer
   };
 };
 
@@ -223,12 +297,12 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
     formData,
     errors,
     isSubmitting,
-    showSuccess,
     updateField,
     submitForm,
     resetForm,
     canBookMeeting,
     getCalendlyUrl,
+    ToastContainer, // Get ToastContainer from hook
   } = useContactForm({ calendlyUrl: contactInfo.availability.calendar });
 
   const { isLoaded } = useCalendly();
@@ -255,7 +329,6 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
     if (isLoaded && window.Calendly) {
       window.Calendly.initPopupWidget({
         url: getCalendlyUrl(),
-        
       });
     }
   };
@@ -266,230 +339,216 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
     }
   }, [workType]);
 
-  if (showSuccess) {
-    return (
-      <div className="max-w-2xl mx-auto p-6 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen ">
-        <div className="bg-gradient-to-b from-yellow-100 to-yellow-200 border-4 border-yellow-600  p-8 text-center">
-          <h2 className="text-2xl font-bold text-yellow-800 mb-4 font-mono">
-            DETAILS SENT!
-          </h2>
-          <p className="text-yellow-600 font-mono mb-6">
-            I&apos;ll get back to you within 24 hours!
-          </p>
-
-          <PortfolioButton onClick={resetForm} className="mx-auto">
-            <LuRotateCcw size={20} />
-            START NEW
-          </PortfolioButton>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="flex flex-col-reverse sm:flex-col-reverse md:flex-row lg:flex-row justify-between p-5 md:p-0 lg:p-0">
-      <div className="mr-10 lg:w-2/5 flex flex-col justify-between">
-        {/* Message Section */}
-        <div className="relative p-5 bg-black/20 border-1 border-current/30   mb-4">
-          {/* Portfolio-style corner decorations */}
-          <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
-          <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
-          <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
-          <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
-
-          <p className="mb-3 text-[#C778DD] font-mono font-bold">
-            Interrupt Me On
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
-            <ContactLinkButton
-              key="gmail"
-              text="Gmail"
-              href={contactInfo?.gmail || ""}
-              icon={IconComponent("gmail")}
-              className="h-10"
-              iconColor="text-red-500" // Gmail red
-            />
-            {Object.entries(contactInfo?.messaging || {}).map(
-              ([platform, link]) => (
-                <ContactLinkButton
-                  key={platform}
-                  text={capitalizeFirstLetter(platform)}
-                  href={link}
-                  icon={IconComponent(platform)}
-                  className="h-10"
-                  iconColor={getIconColor(platform)}
-                />
-              ),
-            )}
-          </div>
-        </div>
-
-        {/* Social Section */}
-        <div className="relative p-5 bg-black/20 border-1 border-current/30   mb-4">
-          {/* Portfolio-style corner decorations */}
-          <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
-          <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
-          <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
-          <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
-
-          <p className="mb-3 text-[#C778DD] font-mono font-bold">
-            Professional Stalking
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
-            {Object.entries(contactInfo?.social || {}).map(
-              ([platform, link]) => (
-                <ContactLinkButton
-                  key={platform}
-                  text={capitalizeFirstLetter(platform)}
-                  href={link}
-                  icon={IconComponent(platform)}
-                  className="h-10"
-                  iconColor={getIconColor(platform)}
-                />
-              ),
-            )}
-          </div>
-        </div>
-
-        {/* Code Section */}
-        <div className="relative p-5 bg-black/20 border-1 border-current/30">
-          {/* Portfolio-style corner decorations */}
-          <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
-          <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
-          <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
-          <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
-
-          <p className="mb-3 text-[#C778DD] font-mono font-bold">
-            My Code Laboratory
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
-            {Object.entries(contactInfo?.code || {}).map(([platform, link]) => (
-              <ContactLinkButton
-                key={platform}
-                text={capitalizeFirstLetter(platform)}
-                href={link}
-                icon={IconComponent(platform)}
-                className="h-10"
-                iconColor={getIconColor(platform)}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <UndertaleCard
-        title="Skip the vibe code, let's build it right"
-        titleClassName="text-[#C778DD] mb-5"
-        description=""
-        className="max-h-[70vh] overflow-y-auto custom-scroll"
+    <>
+      <div
+        id="contact"
+        className="flex flex-col sm:flex-col md:flex-row lg:flex-row justify-between md:p-0 lg:p-0"
       >
-        <div className="space-y-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-            <PortfolioTextField
-              label="What's your name, human?"
-              value={formData.name}
-              onChange={(value: string) => updateField("name", value)}
-              error={errors.name}
-              placeholder="Enter your name..."
-              className="text-sm" // Add smaller text
-            />
-            <PortfolioSelect
-              label="What kind of work do you need?"
-              options={workTypeOptions}
-              value={formData.workType}
-              onChange={(value: string) => updateField("workType", value)}
-              error={errors.workType}
-              className="text-sm"
-            />
-          </div>
+        <div className="md:mr-10 mb-10 lg:w-2/5 flex flex-col justify-between">
+          {/* Message Section */}
+          <div className="relative p-5 bg-black/20 border-1 border-current/30 mb-4">
+            {/* Portfolio-style corner decorations */}
+            <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
+            <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
+            <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
+            <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
 
-          {/* Email Field */}
-          <PortfolioTextField
-            label="Your email address?"
-            type="email"
-            value={formData.email}
-            onChange={(value: string) => updateField("email", value)}
-            error={errors.email}
-            placeholder="your.email@domain.com"
-            className="text-sm"
-          />
-          {/* Work Type */}
-
-          {/* Timeline (Optional) */}
-          {/* Project Description */}
-          <div>
-            <PortfolioTextField
-              label="Tell me about your project:"
-              value={formData.projectDesc}
-              onChange={(value: string) => updateField("projectDesc", value)}
-              error={errors.projectDesc}
-              placeholder="Describe your project, requirements, budget, and any other details..."
-              rows={4} // Reduced from 5
-              className="text-sm"
-            />
-            <div className="flex justify-end mt-1">
-              {" "}
-              {/* Reduced margin */}
-              <span
-                className={`font-mono text-xs ${
-                  // Reduced from text-sm
-                  (formData.projectDesc?.length || 0) < 10
-                    ? "text-red-400"
-                    : "text-green-400"
-                }`}
-              >
-                {formData.projectDesc?.length}/10 min
-              </span>
+            <p className="mb-3 text-[#C778DD] font-mono font-bold">
+              Interrupt Me On
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+              <ContactLinkButton
+                key="gmail"
+                text="Gmail"
+                href={contactInfo?.gmail || ""}
+                icon={IconComponent("gmail")}
+                className="h-10"
+                iconColor="text-red-500"
+              />
+              {Object.entries(contactInfo?.messaging || {}).map(
+                ([platform, link]) => (
+                  <ContactLinkButton
+                    key={platform}
+                    text={capitalizeFirstLetter(platform)}
+                    href={link}
+                    icon={IconComponent(platform)}
+                    className="h-10"
+                    iconColor={getIconColor(platform)}
+                  />
+                ),
+              )}
             </div>
           </div>
-          {/* Action Buttons - More Subtle */}
-          <div className="flex gap-3 pt-2">
-            {" "}
-            <PortfolioButton
-              onClick={bookMeeting}
-              disabled={!canBookMeeting()}
-              variant="subtle-secondary" // New subtle variant
-              size="small" // Smaller size
-              className="flex-1 px-4 py-2" // Override with smaller padding
-            >
-              <LuCalendar size={16} />
-              <span className="text-sm">BOOK MEETING</span>
-            </PortfolioButton>
-            <PortfolioButton
-              onClick={submitForm}
-              disabled={!canBookMeeting() || isSubmitting}
-              variant="subtle-primary" // New subtle variant
-              size="small"
-              className="flex-1 px-4 py-2"
-            >
-              {isSubmitting ? (
-                <>
-                  <div className="animate-spin text-sm">⭐</div>
-                  <span className="text-sm">SENDING...</span>
-                </>
-              ) : (
-                <>
-                  <LuSend size={16} />
-                  <span className="text-sm">SUBMIT</span>
-                </>
+
+          {/* Social Section */}
+          <div className="relative p-5 bg-black/20 border-1 border-current/30 mb-4">
+            {/* Portfolio-style corner decorations */}
+            <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
+            <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
+            <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
+            <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
+
+            <p className="mb-3 text-[#C778DD] font-mono font-bold">
+              Professional Stalking
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+              {Object.entries(contactInfo?.social || {}).map(
+                ([platform, link]) => (
+                  <ContactLinkButton
+                    key={platform}
+                    text={capitalizeFirstLetter(platform)}
+                    href={link}
+                    icon={IconComponent(platform)}
+                    className="h-10"
+                    iconColor={getIconColor(platform)}
+                  />
+                ),
               )}
-            </PortfolioButton>
-            <PortfolioButton
-              onClick={resetForm}
-              disabled={!Object.values(formData).filter((val) => !!val).length}
-              variant="subtle-danger" // New subtle variant
-              size="small"
-              className="flex-1 px-4 py-2"
-            >
-              <>
-                <LuRotateCcw size={16} />
-                <span className="text-sm">Reset</span>
-              </>
-            </PortfolioButton>
+            </div>
+          </div>
+
+          {/* Code Section */}
+          <div className="relative p-5 bg-black/20 border-1 border-current/30">
+            {/* Portfolio-style corner decorations */}
+            <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
+            <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
+            <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
+            <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
+
+            <p className="mb-3 text-[#C778DD] font-mono font-bold">
+              My Code Laboratory
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+              {Object.entries(contactInfo?.code || {}).map(
+                ([platform, link]) => (
+                  <ContactLinkButton
+                    key={platform}
+                    text={capitalizeFirstLetter(platform)}
+                    href={link}
+                    icon={IconComponent(platform)}
+                    className="h-10"
+                    iconColor={getIconColor(platform)}
+                  />
+                ),
+              )}
+            </div>
           </div>
         </div>
-      </UndertaleCard>
-    </div>
+
+        <UndertaleCard
+          title="Skip the vibe code, let's build it right"
+          titleClassName="text-[#C778DD] mb-5"
+          description=""
+        >
+          <div className="space-y-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+              <PortfolioTextField
+                label="What's your name, human?"
+                value={formData.name}
+                onChange={(value: string) => updateField("name", value)}
+                error={errors.name}
+                placeholder="Enter your name..."
+                className="text-sm"
+              />
+              <PortfolioSelect
+                label="What kind of work do you need?"
+                options={workTypeOptions}
+                value={formData.workType}
+                onChange={(value: string) => updateField("workType", value)}
+                error={errors.workType}
+                className="text-sm"
+              />
+            </div>
+
+            {/* Email Field */}
+            <PortfolioTextField
+              label="Your email address?"
+              type="email"
+              value={formData.email}
+              onChange={(value: string) => updateField("email", value)}
+              error={errors.email}
+              placeholder="your.email@domain.com"
+              className="text-sm"
+            />
+
+            {/* Project Description */}
+            <div>
+              <PortfolioTextField
+                label="Tell me about your project:"
+                value={formData.projectDesc}
+                onChange={(value: string) => updateField("projectDesc", value)}
+                error={errors.projectDesc}
+                placeholder="Describe your project, requirements, budget, and any other details..."
+                rows={4}
+                className="text-sm"
+              />
+              <div className="flex justify-end mt-1">
+                <span
+                  className={`font-mono text-xs ${
+                    (formData.projectDesc?.length || 0) < 10
+                      ? "text-red-400"
+                      : "text-green-400"
+                  }`}
+                >
+                  {formData.projectDesc?.length}/20 min
+                </span>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3 pt-2">
+              <PortfolioButton
+                onClick={bookMeeting}
+                disabled={!canBookMeeting()}
+                variant="subtle-secondary"
+                size="small"
+                className="flex-1 px-4 py-2"
+              >
+                <LuCalendar size={16} />
+                <span className="text-sm">BOOK MEETING</span>
+              </PortfolioButton>
+              <PortfolioButton
+                onClick={submitForm}
+                disabled={!canBookMeeting() || isSubmitting}
+                variant="subtle-primary"
+                size="small"
+                className="flex-1 px-4 py-2"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin text-sm">⭐</div>
+                    <span className="text-sm">SENDING...</span>
+                  </>
+                ) : (
+                  <>
+                    <LuSend size={16} />
+                    <span className="text-sm">SUBMIT</span>
+                  </>
+                )}
+              </PortfolioButton>
+              <PortfolioButton
+                onClick={resetForm}
+                disabled={
+                  !Object.values(formData).filter((val) => !!val).length
+                }
+                variant="subtle-danger"
+                size="small"
+                className="flex-1 px-4 py-2"
+              >
+                <>
+                  <LuRotateCcw size={16} />
+                  <span className="text-sm">Reset</span>
+                </>
+              </PortfolioButton>
+            </div>
+          </div>
+        </UndertaleCard>
+      </div>
+
+      {/* Toast Container - Add this at the end */}
+      <ToastContainer />
+    </>
   );
 };
 

@@ -4,6 +4,8 @@ import "./globals.css";
 import CircuitZap from "@/components/layout/CircuitZap";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
+import { Provider } from "react-redux";
+import { store } from "../components/store/store";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +44,7 @@ export default function RootLayout({
       >
         <QueryClientProvider client={queryClient}>
           <CircuitZap />
-          {children}
+          <Provider store={store}>{children}</Provider>
         </QueryClientProvider>
       </body>
     </html>

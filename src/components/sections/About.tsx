@@ -9,9 +9,8 @@ import Card from "../ui/dev/Card";
 import { AnimatedSkillsGrid } from "../ui/undertale/Rotation";
 import { DownloadResumeButton } from "../ui/dev/Button";
 import UndertaleUI from "./Continue";
-import { useDispatch } from 'react-redux'
+import { useDispatch } from "react-redux";
 import { updateScrollElementId } from "../store/reducer";
-
 
 export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
   const [personalData, setPersonalData] = useState({
@@ -20,7 +19,7 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
     profilePhoto: "",
   });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
   // Animate group hook
@@ -31,7 +30,7 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
         const personal = await getSectionData("personal");
         setPersonalData(personal);
         setContactInfo(personal.contact);
-        dispatch(updateScrollElementId({elementId: 'projects'}))
+        dispatch(updateScrollElementId({ elementId: "projects" }));
       } catch (error) {
         console.error("Failed to fetch data:", error);
       } finally {
@@ -43,7 +42,10 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
   }, []);
 
   return (
-    <section className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2 mt-[3vh] md:mt-[16vh] md:mb-[10vh] mx-[5vw]">
+    <section
+      id="about"
+      className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2 mt-[3vh] md:mt-[16vh] md:mb-[10vh] mx-[5vw]"
+    >
       <div className="hidden lg:flex lg:flex-col mr-10 slide-left">
         <Image src="/profilePhoto.jpg" alt="Profile Image" className="mb-10" />
         <DownloadResumeButton
@@ -53,45 +55,49 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
         <UndertaleUI />
       </div>
 
-        <Card title="Meet Aishwarya B R"  className="slide-right" titleClassName="text-[#C778DD]">
-          <div className="flex flex-col gap-2">
-            <div className="flex">
-              <span className="mr-2">I Am</span>
-              <Typewriter
-                options={{
-                  strings: [
-                    "A Full Stack Developer",
-                    "A Freelancer",
-                    "A Tech Consultant",
-                    "A Mentor",
-                    "Batman",
-                    "Not Debugging, I Am The Bug",
-                    "A Tech Consultant",
-                    "A Mentor",
-                    "Groot!!",
-                    "Free...........lancer",
-                    "Your Father Luke!",
-                    "A Mentor",
-                    "A Tech Consultant",
-                    "A Freelancer",
-                    "A Full Stack Developer",
-                    "Who? - Yoda",
-                    "Your Density, I Mean Destiny",
-                  ],
+      <Card
+        title="Meet Aishwarya B R"
+        className="slide-right"
+        titleClassName="text-[#C778DD]"
+      >
+        <div className="flex flex-col gap-2">
+          <div className="flex">
+            <span className="mr-2">I Am</span>
+            <Typewriter
+              options={{
+                strings: [
+                  "A Full Stack Developer",
+                  "A Freelancer",
+                  "A Tech Consultant",
+                  "A Mentor",
+                  "Batman",
+                  "Not Debugging, I Am The Bug",
+                  "A Tech Consultant",
+                  "A Mentor",
+                  "Groot!!",
+                  "Free...........lancer",
+                  "Your Father Luke!",
+                  "A Mentor",
+                  "A Tech Consultant",
+                  "A Freelancer",
+                  "A Full Stack Developer",
+                  "Who? - Yoda",
+                  "Your Density, I Mean Destiny",
+                ],
 
-                  autoStart: true,
-                  loop: true,
-                  delay: 100,
-                  deleteSpeed: 100,
-                }}
-              />
-            </div>
-            <p>{personalData?.about}</p>
-
-            <span className="mt-4 mb-4">Nerd Scout Badges</span>
-            <AnimatedSkillsGrid skillsData={skillsData} iconMap={iconMap} />
+                autoStart: true,
+                loop: true,
+                delay: 100,
+                deleteSpeed: 100,
+              }}
+            />
           </div>
-        </Card>
+          <p>{personalData?.about}</p>
+
+          <span className="mt-4 mb-4">Nerd Scout Badges</span>
+          <AnimatedSkillsGrid skillsData={skillsData} iconMap={iconMap} />
+        </div>
+      </Card>
     </section>
   );
 }

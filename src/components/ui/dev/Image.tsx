@@ -26,14 +26,14 @@ export default function PortfolioProfileImage({
         height: 112,
       },
       md: {
-        container: "w-48 h-48", 
+        container: "w-48 h-48",
         image: "w-44 h-44",
         width: 176,
         height: 176,
       },
       lg: {
         container: "w-80 h-80",
-        image: "w-76 h-76", 
+        image: "w-76 h-76",
         width: 304,
         height: 304,
       },
@@ -65,10 +65,12 @@ export default function PortfolioProfileImage({
     const colors = {
       available: "text-green-400 border-green-400 bg-green-400/20",
       working: "text-[#C778DD] border-[#C778DD] bg-[#C778DD]/20",
-      learning: "text-blue-400 border-blue-400 bg-blue-400/20", 
+      learning: "text-blue-400 border-blue-400 bg-blue-400/20",
       building: "text-yellow-400 border-yellow-400 bg-yellow-400/20",
     };
-    return statusType ? colors[statusType] : "text-[#C778DD] border-[#C778DD] bg-[#C778DD]/20";
+    return statusType
+      ? colors[statusType]
+      : "text-[#C778DD] border-[#C778DD] bg-[#C778DD]/20";
   };
 
   const sizeConfig = getSizeStyles();
@@ -101,15 +103,17 @@ export default function PortfolioProfileImage({
         </div>
 
         {/* Profile Image Container */}
-        <div className={`absolute inset-2 overflow-hidden border-2 ${getBorderStyles()}`}>
+        <div
+          className={`absolute inset-2 overflow-hidden border-2 ${getBorderStyles()}`}
+        >
           <Image
             src={src}
             alt={alt}
             className={`${sizeConfig.image} object-cover`}
             width={sizeConfig.width}
             height={sizeConfig.height}
-            style={{ 
-              fontFamily: "'Fira Code', monospace"
+            style={{
+              fontFamily: "'Fira Code', monospace",
             }}
           />
         </div>

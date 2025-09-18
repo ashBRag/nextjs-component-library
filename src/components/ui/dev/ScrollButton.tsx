@@ -1,7 +1,7 @@
 "use client";
 import { useScrollToElement } from "@/components/hooks/useScroll";
 
-export  function PortfolioUI() {
+export function PortfolioUI() {
   const scrollDown = () => {
     window.scrollTo({
       top: window.innerHeight - 100,
@@ -10,28 +10,28 @@ export  function PortfolioUI() {
   };
 
   return (
-        <button
-          onClick={scrollDown}
-          className="bg-transparent border border-[#C778DD] text-[#C778DD] hover:bg-[#C778DD] hover:text-white font-mono text-2xl px-4 py-2 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center"
-          style={{ fontFamily: "'Fira Code', monospace" }}
-        >
-          <span className="animate-bounce" style={{ animationDuration: "1s" }}>
-            ▼
-          </span>
-        </button>
+    <button
+      onClick={scrollDown}
+      className="bg-transparent border border-[#C778DD] text-[#C778DD] hover:bg-[#C778DD] hover:text-white font-mono text-2xl px-4 py-2 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center"
+      style={{ fontFamily: "'Fira Code', monospace" }}
+    >
+      <span className="animate-bounce" style={{ animationDuration: "1s" }}>
+        ▼
+      </span>
+    </button>
   );
 }
 
-export  function FloatingScrollButton({id=''}) {
-  const { 
-    scrollToElement, 
-  } = useScrollToElement()
+export function FloatingScrollButton({ id = "" }) {
+  const { scrollToElement } = useScrollToElement();
 
   return (
     <>
       {id && (
         <button
-          onClick={()=>{scrollToElement(id)}}
+          onClick={() => {
+            scrollToElement(id);
+          }}
           className={`
             fixed bottom-8 right-8 z-50
             w-12 h-12 
@@ -65,7 +65,7 @@ export  function FloatingScrollButton({id=''}) {
             <div className="absolute bottom-0 right-0 w-full h-0.5 bg-[#C778DD]/50"></div>
             <div className="absolute bottom-0 right-0 w-0.5 h-full bg-[#C778DD]/50"></div>
           </div>
-          
+
           <span className="animate-bounce relative z-10">↓</span>
         </button>
       )}

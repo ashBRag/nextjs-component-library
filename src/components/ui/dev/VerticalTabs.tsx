@@ -36,8 +36,9 @@ export default function PortfolioVerticalTabs({
       return "relative inline-flex items-center px-4 py-3 text-[#ABB2BF]/50 cursor-not-allowed /50 w-full border border-[#ABB2BF]/20 font-mono";
     }
 
-    const baseStyles = "relative inline-flex items-center px-4 py-3 w-full border font-mono transition-all duration-300";
-    
+    const baseStyles =
+      "relative inline-flex items-center px-4 py-3 w-full border font-mono transition-all duration-300";
+
     if (isActive) {
       return `${baseStyles}  border-[#C778DD] text-[#C778DD] shadow-lg shadow-[#C778DD]/20`;
     }
@@ -123,8 +124,8 @@ export default function PortfolioVerticalTabs({
 
     if (tab.href && !tab.disabled) {
       return (
-        <a 
-          href={tab.href} 
+        <a
+          href={tab.href}
           className={getTabStyles(tab, isActive)}
           style={{ fontFamily: "'Fira Code', monospace" }}
         >

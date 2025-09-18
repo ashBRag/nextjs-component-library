@@ -51,7 +51,7 @@ const useSkillsLogic = () => {
     const numLevel = typeof level === "string" ? parseInt(level) : level;
     const colors = {
       5: "text-yellow-400",
-      4: "text-green-400", 
+      4: "text-green-400",
       3: "text-blue-400",
       2: "text-purple-400",
       1: "text-[#ABB2BF]",
@@ -103,20 +103,15 @@ const YearsBadge = ({ years }: { years: number }) => {
   );
 };
 
-
 // Main Component
-const PortfolioSkillsTable = ({
-  skillsData,
-  iconMap
-}) => {
+const PortfolioSkillsTable = ({ skillsData, iconMap }) => {
   const { getLevelStars, getStarsColor } = useSkillsLogic();
 
   return (
     <div className="relative z-10" id="skills">
       {/* Header */}
-     
 
-      <p 
+      <p
         className="mb-6 text-[#ABB2BF] text-sm font-mono text-center"
         style={{ fontFamily: "'Fira Code', monospace" }}
       >
@@ -125,86 +120,88 @@ const PortfolioSkillsTable = ({
 
       {/* Skills by Category */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Object.entries(skillsData.categories).map(([categoryKey, category]) => (
-          <div key={categoryKey} className=" border border-[#ABB2BF]/30 p-4 relative">
-            {/* Corner brackets */}
-            <div className="absolute top-1 left-1 w-3 h-3">
-              <div className="w-full h-0.5 bg-[#ABB2BF]/30"></div>
-              <div className="w-0.5 h-full bg-[#ABB2BF]/30"></div>
-            </div>
-            <div className="absolute top-1 right-1 w-3 h-3">
-              <div className="absolute top-0 right-0 w-full h-0.5 bg-[#ABB2BF]/30"></div>
-              <div className="absolute top-0 right-0 w-0.5 h-full bg-[#ABB2BF]/30"></div>
-            </div>
-            <div className="absolute bottom-1 left-1 w-3 h-3">
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ABB2BF]/30"></div>
-              <div className="absolute bottom-0 left-0 w-0.5 h-full bg-[#ABB2BF]/30"></div>
-            </div>
-            <div className="absolute bottom-1 right-1 w-3 h-3">
-              <div className="absolute bottom-0 right-0 w-full h-0.5 bg-[#ABB2BF]/30"></div>
-              <div className="absolute bottom-0 right-0 w-0.5 h-full bg-[#ABB2BF]/30"></div>
-            </div>
-
-            {/* Category Header */}
-            <h4 
-              className="text-white font-medium mb-4 font-mono relative z-10"
-              style={{ fontFamily: "'Fira Code', monospace" }}
+        {Object.entries(skillsData.categories).map(
+          ([categoryKey, category]) => (
+            <div
+              key={categoryKey}
+              className=" border border-[#ABB2BF]/30 p-4 relative"
             >
-              <span className="text-[#C778DD]">{category.name}</span>
-            </h4>
+              {/* Corner brackets */}
+              <div className="absolute top-1 left-1 w-3 h-3">
+                <div className="w-full h-0.5 bg-[#ABB2BF]/30"></div>
+                <div className="w-0.5 h-full bg-[#ABB2BF]/30"></div>
+              </div>
+              <div className="absolute top-1 right-1 w-3 h-3">
+                <div className="absolute top-0 right-0 w-full h-0.5 bg-[#ABB2BF]/30"></div>
+                <div className="absolute top-0 right-0 w-0.5 h-full bg-[#ABB2BF]/30"></div>
+              </div>
+              <div className="absolute bottom-1 left-1 w-3 h-3">
+                <div className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ABB2BF]/30"></div>
+                <div className="absolute bottom-0 left-0 w-0.5 h-full bg-[#ABB2BF]/30"></div>
+              </div>
+              <div className="absolute bottom-1 right-1 w-3 h-3">
+                <div className="absolute bottom-0 right-0 w-full h-0.5 bg-[#ABB2BF]/30"></div>
+                <div className="absolute bottom-0 right-0 w-0.5 h-full bg-[#ABB2BF]/30"></div>
+              </div>
 
-            {/* Skills List */}
-            <div className="space-y-3 relative z-10">
-              {category.skills.map((skill, index) => (
-                <div
-                  key={index}
-                  className="p-2"
-                >
-                  <div className="grid grid-cols-12 gap-2 items-center">
-                    {/* Skill Name & Icon */}
-                    <div className="col-span-5 flex items-center gap-2">
-                      <IconComponent
-                        iconMap={iconMap.skills}
-                        name={skill.name}
-                        iconClass="w-5 h-5"
-                        divClass="flex"
-                        show={false}
-                      />
-                      <span 
-                        className="text-[#ABB2BF] text-sm font-mono truncate"
-                        style={{ fontFamily: "'Fira Code', monospace" }}
-                      >
-                        {skill.name}
-                      </span>
-                    </div>
+              {/* Category Header */}
+              <h4
+                className="text-white font-medium mb-4 font-mono relative z-10"
+                style={{ fontFamily: "'Fira Code', monospace" }}
+              >
+                <span className="text-[#C778DD]">{category.name}</span>
+              </h4>
 
-                    {/* Level Stars */}
-                    <div className="col-span-4 text-center">
-                      <span className={`text-xs font-mono ${getStarsColor(skill.level)}`}>
-                        {getLevelStars(skill.level)}
-                      </span>
-                    </div>
+              {/* Skills List */}
+              <div className="space-y-3 relative z-10">
+                {category.skills.map((skill, index) => (
+                  <div key={index} className="p-2">
+                    <div className="grid grid-cols-12 gap-2 items-center">
+                      {/* Skill Name & Icon */}
+                      <div className="col-span-5 flex items-center gap-2">
+                        <IconComponent
+                          iconMap={iconMap.skills}
+                          name={skill.name}
+                          iconClass="w-5 h-5"
+                          divClass="flex"
+                          show={false}
+                        />
+                        <span
+                          className="text-[#ABB2BF] text-sm font-mono truncate"
+                          style={{ fontFamily: "'Fira Code', monospace" }}
+                        >
+                          {skill.name}
+                        </span>
+                      </div>
 
-                    {/* Level Badge */}
-                    <div className="col-span-2 flex justify-center">
-                      <SkillLevelBadge level={skill.level} />
-                    </div>
+                      {/* Level Stars */}
+                      <div className="col-span-4 text-center">
+                        <span
+                          className={`text-xs font-mono ${getStarsColor(skill.level)}`}
+                        >
+                          {getLevelStars(skill.level)}
+                        </span>
+                      </div>
 
-                    {/* Years Badge */}
-                    <div className="col-span-1 flex justify-center">
-                      <YearsBadge years={skill.years} />
+                      {/* Level Badge */}
+                      <div className="col-span-2 flex justify-center">
+                        <SkillLevelBadge level={skill.level} />
+                      </div>
+
+                      {/* Years Badge */}
+                      <div className="col-span-1 flex justify-center">
+                        <YearsBadge years={skill.years} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ),
+        )}
       </div>
     </div>
   );
 };
-
-
 
 export default PortfolioSkillsTable;

@@ -34,7 +34,7 @@ export default function Card({
   const getSizeStyles = () => {
     const sizes = {
       sm: "p-4 text-sm",
-      md: "p-6 text-base", 
+      md: "p-6 text-base",
       lg: "p-8 text-lg",
     };
     return sizes[size];
@@ -85,7 +85,7 @@ export default function Card({
           ${className}
         `}
         style={{
-          fontFamily: "'Fira Code', monospace"
+          fontFamily: "'Fira Code', monospace",
         }}
       >
         {/* Title */}
@@ -124,18 +124,10 @@ export default function Card({
         )}
 
         {/* Content */}
-        {content && (
-          <div className="text-[#ABB2BF] mb-4">
-            {content}
-          </div>
-        )}
+        {content && <div className="text-[#ABB2BF] mb-4">{content}</div>}
 
         {/* Children */}
-        {children && (
-          <div className="text-[#ABB2BF]">
-            {children}
-          </div>
-        )}
+        {children && <div className="text-[#ABB2BF]">{children}</div>}
       </div>
     </div>
   );
