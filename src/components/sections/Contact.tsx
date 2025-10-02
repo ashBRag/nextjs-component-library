@@ -345,7 +345,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
         id="contact"
         className="flex flex-col sm:flex-col md:flex-row lg:flex-row justify-between md:p-0 lg:p-0"
       >
-        <div className="md:mr-10 mb-10 lg:w-2/5 flex flex-col justify-between">
+        <div className="md:mr-10 mb-10 sm:mb-10 md:mb-0 lg:mb-0 md:w-3/5 lg:w-2/5 flex flex-col justify-between">
           {/* Message Section */}
           <div className="relative p-5 bg-black/20 border-1 border-current/30 mb-4">
             {/* Portfolio-style corner decorations */}
@@ -357,7 +357,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
             <p className="mb-3 text-[#C778DD] font-mono font-bold">
               Interrupt Me On
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
               <ContactLinkButton
                 key="gmail"
                 text="Gmail"
@@ -392,7 +392,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
             <p className="mb-3 text-[#C778DD] font-mono font-bold">
               Professional Stalking
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
               {Object.entries(contactInfo?.social || {}).map(
                 ([platform, link]) => (
                   <ContactLinkButton
@@ -419,7 +419,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
             <p className="mb-3 text-[#C778DD] font-mono font-bold">
               My Code Laboratory
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
               {Object.entries(contactInfo?.code || {}).map(
                 ([platform, link]) => (
                   <ContactLinkButton
@@ -440,6 +440,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
           title="Skip the vibe code, let's build it right"
           titleClassName="text-[#C778DD] mb-5"
           description=""
+          className="h-fit"
         >
           <div className="space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">

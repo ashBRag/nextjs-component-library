@@ -44,7 +44,7 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
   return (
     <section
       id="about"
-      className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2 mt-[3vh] md:mt-[16vh] md:mb-[10vh] mx-[5vw]"
+      className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2"
     >
       <div className="hidden lg:flex lg:flex-col mr-10 slide-left">
         <Image src="/profilePhoto.jpg" alt="Profile Image" className="mb-10" />

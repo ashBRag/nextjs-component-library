@@ -2,7 +2,7 @@ import React from "react";
 import { ScreenCenterWrapper } from "../CenterWrapper";
 
 interface PortfolioContainerProps {
-  title: string;
+  title?: string;
   children: React.ReactNode;
   className?: string;
   contentHeight?: string | number;
@@ -23,9 +23,9 @@ export default function PortfolioContainer({
 
   return (
     <ScreenCenterWrapper>
-      <div className={`m-[5vw] ${className}`}>
+      <div className={`m-[5vw] w-full ${className}`}>
         {/* Header with title centered and dividers on both sides */}
-        <div className="flex items-center gap-4 mb-6">
+        {title && <div className="flex items-center gap-4 mb-6">
           <div className="flex-1 h-px bg-[#C778DD]"></div>
           <h3
             className="text-white text-xl font-medium font-mono whitespace-nowrap px-4"
@@ -35,7 +35,7 @@ export default function PortfolioContainer({
             {title}
           </h3>
           <div className="flex-1 h-px bg-[#C778DD]"></div>
-        </div>
+        </div>}
 
         {/* Content area */}
         <div

@@ -17,12 +17,11 @@ const Header = ({
   className = "",
 }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("about");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "projects", "skills", "services", "contact"];
+      const sections = ["about", "projects", "skills", "services", "contact"];
       const currentSection = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
@@ -51,8 +50,8 @@ const Header = ({
   const navItems = [
     { id: "about", label: "home" },
     { id: "projects", label: "projects" },
-    { id: "services", label: "services" },
     { id: "skills", label: "skills" },
+    { id: "services", label: "services" },
     { id: "contact", label: "connect" },
   ];
 
@@ -124,61 +123,7 @@ const Header = ({
               </button>
             ))}
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-[#ABB2BF] hover:text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {mobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-[#ABB2BF]/20">
-            <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`
-                    text-left text-base font-medium transition-colors duration-200
-                    ${
-                      activeSection === item.id
-                        ? "text-white"
-                        : "text-[#ABB2BF] hover:text-white"
-                    }
-                  `}
-                >
-                  <span className="text-[#C778DD]">#</span>
-                  {item.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
       </nav>
     </header>
   );

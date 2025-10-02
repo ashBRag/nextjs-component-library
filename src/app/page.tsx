@@ -15,9 +15,11 @@ import Container from "@/components/ui/dev/Container";
 import { fetchIconMap } from "@/components/store/reducer";
 import { useAppDispatch } from "@/components/store/hooks";
 import { ScreenCenterWrapper } from "@/components/ui/CenterWrapper";
+import TabbedSection from "@/components/sections/Experience";
+import { title } from "process";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("projects");
+  const [activeTab, setActiveTab] = useState("about");
   const [showLoader, setShowloader] = useState(true);
   const [contactInfo, setContactInfo] = useState<Contact>({
     gmail: "",
@@ -109,16 +111,67 @@ export default function Home() {
     );
   }
 
+  const sections = [
+    {
+      id: 'about',
+      label: "About Me",
+      title: "",
+
+      content:
+      <AboutSection
+        setContactInfo={setContactInfo}
+        iconMap={iconMap.skills}
+        skillsData={skillsData}
+      />
+      
+    },
+    {
+      id: 'projects',
+      label: "Stuff I Built",
+      title: "Stuff I Built",
+
+      content:  
+      <ProjectsSection iconMap={iconMap} />
+    }, 
+    {
+      id: 'skills',
+      label: "Dev Arsenal",
+      title: "Dev Arsenal",
+
+      content:  
+      <SkillsTable iconMap={iconMap} skillsData={skillsData} />
+    },
+    {
+      id: 'services',
+      label: "Rent A Dev",
+      title: "Rent A Dev",
+
+      content:  
+      <ServicesSection
+        setActiveTab={setActiveTab}
+        setWorkType={setWorkType}
+        iconMap={iconMap.services}
+      />
+    },
+    {
+      id: 'contact',
+      label: "Find Me Here",
+      title: "Find Me Here",
+
+      content: 
+      <ContactSection
+        contactInfo={contactInfo}
+        iconMap={iconMap}
+        workType={workType}
+      />
+    }
+
+  ]
+
   return (
     <div>
       <Header profileImage="/profilePhoto.jpg" name="Aishwarya B R" />
-      <ScreenCenterWrapper>
-        <AboutSection
-          setContactInfo={setContactInfo}
-          iconMap={iconMap.skills}
-          skillsData={skillsData}
-        />
-      </ScreenCenterWrapper>
+
       {/* <ExperienceSection
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -188,27 +241,23 @@ export default function Home() {
         defaultActiveTab="projects"
         className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
       /> */}
-      <Container title="Stuff I Built">
-        <ProjectsSection iconMap={iconMap} />
-      </Container>
-
-      <Container title="Rent A Dev">
-        <ServicesSection
-          setActiveTab={setActiveTab}
-          setWorkType={setWorkType}
-          iconMap={iconMap.services}
-        />
-      </Container>
-      <Container title="Dev Arsenal">
-        <SkillsTable iconMap={iconMap} skillsData={skillsData} />
-      </Container>
-      <Container title="Find Me Here" className="w-full">
-        <ContactSection
-          contactInfo={contactInfo}
-          iconMap={iconMap}
-          workType={workType}
-        />
-      </Container>
+      <div className="hidden md:block">
+      {
+        sections.map(section=><Container key={'section-' + section.id} 
+        title={section.title}>
+          {section.content}
+        </Container>
+        )
+      }
+      </div>
+     <TabbedSection
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        tabs={sections}
+        defaultActiveTab="about"
+        className="block md:hidden mt-[4vh]"
+      /> 
+  
     </div>
   );
 }
