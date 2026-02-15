@@ -208,7 +208,7 @@ const createTransporter = async () => {
   const oauth2Client = new OAuth2(
     process.env.EMAIL_CLIENT_ID,
     process.env.EMAIL_CLIENT_SECRET,
-    "https://developers.google.com/oauthplayground",
+    "https://developers.google.com/oauthplayground"
   );
 
   oauth2Client.setCredentials({
@@ -216,6 +216,13 @@ const createTransporter = async () => {
   });
 
   try {
+    console.log({
+      type: "OAuth2",
+      user: process.env.EMAIL,
+      clientId: process.env.EMAIL_CLIENT_ID,
+      clientSecret: process.env.EMAIL_CLIENT_SECRET,
+      refreshToken: process.env.EMAIL_REFRESH_TOKEN,
+    });
     const accessToken = await new Promise<string>((resolve, reject) => {
       oauth2Client.getAccessToken((err, token) => {
         if (err) {
@@ -258,7 +265,7 @@ export async function POST(request: NextRequest) {
     if (!body.name || !body.email || !body.workType || !body.projectDesc) {
       return NextResponse.json(
         { error: "Missing required fields" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -267,7 +274,7 @@ export async function POST(request: NextRequest) {
     if (!emailRegex.test(body.email)) {
       return NextResponse.json(
         { error: "Invalid email format" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -288,7 +295,7 @@ export async function POST(request: NextRequest) {
     const clientEmailContent = generateContactConfirmationEmail(
       body,
       contactInfo,
-      process.env.CALENDLY_URL || "",
+      process.env.CALENDLY_URL || ""
     );
 
     const internalEmailContent = generateInternalNotificationEmail(body);
@@ -316,7 +323,7 @@ export async function POST(request: NextRequest) {
 
     console.log(
       "Internal notification email sent:",
-      internalEmailResult.messageId,
+      internalEmailResult.messageId
     );
 
     return NextResponse.json({
@@ -341,7 +348,7 @@ export async function POST(request: NextRequest) {
         error: "Failed to send email",
         details: process.env.NODE_ENV === "development" ? error : undefined,
       },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

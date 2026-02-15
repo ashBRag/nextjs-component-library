@@ -9,6 +9,7 @@ const pathNames = new Map([
   ["services", "/services.json"],
   ["skills", "/skills.json"],
   ["iconMap", "/iconMap.json"],
+  ["blogs", "/blogs.json"],
 ]);
 
 export async function GET(request: NextRequest) {
@@ -24,7 +25,7 @@ export async function GET(request: NextRequest) {
         console.log(jsonDirectory + pathName);
         const fileContents = await fs.readFile(
           jsonDirectory + pathName,
-          "utf8",
+          "utf8"
         );
         data = JSON.parse(fileContents);
       }
@@ -44,7 +45,7 @@ export async function GET(request: NextRequest) {
     console.error(error);
     return NextResponse.json(
       { error: "Failed to load projects data" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

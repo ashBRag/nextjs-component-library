@@ -17,6 +17,7 @@ import { useAppDispatch } from "@/components/store/hooks";
 import { ScreenCenterWrapper } from "@/components/ui/CenterWrapper";
 import TabbedSection from "@/components/sections/Experience";
 import { title } from "process";
+import BlogsSection from "@/components/sections/Blogs";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("about");
@@ -113,60 +114,66 @@ export default function Home() {
 
   const sections = [
     {
-      id: 'about',
+      id: "about",
       label: "About Me",
       title: "",
 
-      content:
-      <AboutSection
-        setContactInfo={setContactInfo}
-        iconMap={iconMap.skills}
-        skillsData={skillsData}
-      />
-      
+      content: (
+        <AboutSection
+          setContactInfo={setContactInfo}
+          iconMap={iconMap.skills}
+          skillsData={skillsData}
+        />
+      ),
     },
     {
-      id: 'projects',
+      id: "projects",
       label: "Stuff I Built",
       title: "Stuff I Built",
 
-      content:  
-      <ProjectsSection iconMap={iconMap} />
-    }, 
+      content: <ProjectsSection iconMap={iconMap} />,
+    },
     {
-      id: 'skills',
+      id: "skills",
       label: "Dev Arsenal",
       title: "Dev Arsenal",
 
-      content:  
-      <SkillsTable iconMap={iconMap} skillsData={skillsData} />
+      content: <SkillsTable iconMap={iconMap} skillsData={skillsData} />,
     },
     {
-      id: 'services',
+      id: "services",
       label: "Rent A Dev",
       title: "Rent A Dev",
 
-      content:  
-      <ServicesSection
-        setActiveTab={setActiveTab}
-        setWorkType={setWorkType}
-        iconMap={iconMap.services}
-      />
+      content: (
+        <ServicesSection
+          setActiveTab={setActiveTab}
+          setWorkType={setWorkType}
+          iconMap={iconMap.services}
+        />
+      ),
     },
     {
-      id: 'contact',
+      id: "contact",
       label: "Find Me Here",
       title: "Find Me Here",
 
-      content: 
-      <ContactSection
-        contactInfo={contactInfo}
-        iconMap={iconMap}
-        workType={workType}
-      />
-    }
+      content: (
+        <ContactSection
+          contactInfo={contactInfo}
+          iconMap={iconMap}
+          workType={workType}
+        />
+      ),
+    },
+    {
+      id: "blogs",
+      label: "Rant Journal",
+      title: "Rant Journal",
 
-  ]
+      content: <BlogsSection />,
+    },
+  ];
 
   return (
     <div>
@@ -242,22 +249,19 @@ export default function Home() {
         className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
       /> */}
       <div className="hidden md:block">
-      {
-        sections.map(section=><Container key={'section-' + section.id} 
-        title={section.title}>
-          {section.content}
-        </Container>
-        )
-      }
+        {sections.map((section) => (
+          <Container key={"section-" + section.id} title={section.title}>
+            {section.content}
+          </Container>
+        ))}
       </div>
-     <TabbedSection
+      <TabbedSection
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         tabs={sections}
         defaultActiveTab="about"
         className="block md:hidden mt-[4vh]"
-      /> 
-  
+      />
     </div>
   );
 }

@@ -53,6 +53,7 @@ const Header = ({
     { id: "skills", label: "skills" },
     { id: "services", label: "services" },
     { id: "contact", label: "connect" },
+    { id: "blogs", label: "blogs" },
   ];
 
   return (
