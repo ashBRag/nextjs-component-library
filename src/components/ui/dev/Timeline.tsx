@@ -43,16 +43,18 @@ export default function PortfolioTimeline({
       warning: "bg-yellow-500/20 text-yellow-400 border border-yellow-500/50",
     };
     const animationClass = animated ? "animate-pulse" : "";
-    return `${variants[variant as keyof typeof variants] || variants.primary} ${animationClass}`;
+    return `${
+      variants[variant as keyof typeof variants] || variants.primary
+    } ${animationClass}`;
   };
 
   const getTitleStyles = () => {
-    return "text-lg font-medium text-white font-mono";
+    return "text-lg font-medium text-white ";
   };
 
   const getTimelineNodeStyles = () => {
     const baseStyles =
-      "absolute flex items-center justify-center w-10 h-10 rounded-full border-2 font-mono text-sm";
+      "absolute flex items-center justify-center w-10 h-10 rounded-full border-2  text-sm";
     const positionStyles = "-start-12  z-index-12 bg-white";
     const colorStyle = "border-[#C778DD] text-[#C778DD]";
     const animationStyle = animated
@@ -90,7 +92,9 @@ export default function PortfolioTimeline({
 
   const renderCardContent = (item: PortfolioTimelineItem) => (
     <div
-      className={`relative p-6 rounded font-mono transition-all duration-300 ${getCardStyles(item)}`}
+      className={`relative p-6 rounded  transition-all duration-300 ${getCardStyles(
+        item
+      )}`}
     >
       {/* Corner brackets */}
       <div className="absolute top-2 left-2 w-3 h-3">
@@ -118,25 +122,19 @@ export default function PortfolioTimeline({
           </div>
           {item.badge && (
             <span
-              className={`text-xs font-medium px-3 py-1 rounded whitespace-nowrap font-mono ${getBadgeStyles(item.badge.variant)}`}
+              className={`text-xs font-medium px-3 py-1 rounded whitespace-nowrap  ${getBadgeStyles(
+                item.badge.variant
+              )}`}
             >
               {item.badge.text}
             </span>
           )}
         </div>
 
-        <time
-          className="block mb-3 text-sm text-[#C778DD] font-mono"
-          style={{ fontFamily: "'Fira Code', monospace" }}
-        >
-          {item.date}
-        </time>
+        <time className="block mb-3 text-sm text-[#C778DD] ">{item.date}</time>
 
         {item.description && (
-          <p
-            className="text-base text-[#ABB2BF] font-mono leading-relaxed"
-            style={{ fontFamily: "'Fira Code', monospace" }}
-          >
+          <p className="text-base text-[#ABB2BF]  leading-relaxed">
             {item.description}
           </p>
         )}
@@ -168,7 +166,9 @@ export default function PortfolioTimeline({
         {items.map((item, index) => (
           <li
             key={item.id}
-            className={`${index === items.length - 1 ? "ml-6" : "mb-8 ml-6"} relative`}
+            className={`${
+              index === items.length - 1 ? "ml-6" : "mb-8 ml-6"
+            } relative`}
           >
             {/* Timeline Node */}
             <span className={getTimelineNodeStyles()}>{item.icon}</span>

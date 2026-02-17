@@ -53,7 +53,7 @@ export default function UndertaleVerticalTabs({
 
   const getCharacterTabStyles = (tab: UndertaleTabItem, isActive: boolean) => {
     if (tab.disabled) {
-      return "relative inline-flex items-center px-4 py-3 text-gray-500 rounded-lg cursor-not-allowed bg-gray-800/50 w-full border border-gray-700 font-mono";
+      return "relative inline-flex items-center px-4 py-3 text-gray-500 rounded-lg cursor-not-allowed bg-gray-800/50 w-full border border-gray-700 ";
     }
 
     const characterStyles = {
@@ -92,7 +92,7 @@ export default function UndertaleVerticalTabs({
     const hoverEffect =
       animated && !isActive ? "hover:scale-105 hover:shadow-lg" : "";
 
-    return `relative inline-flex items-center px-4 py-3 rounded-lg w-full border-2 font-mono backdrop-blur-sm ${characterStyle} ${animationClass} ${hoverEffect}`;
+    return `relative inline-flex items-center px-4 py-3 rounded-lg w-full border-2  backdrop-blur-sm ${characterStyle} ${animationClass} ${hoverEffect}`;
   };
 
   const getIconStyles = (tab: UndertaleTabItem, isActive: boolean) => {
@@ -223,10 +223,22 @@ export default function UndertaleVerticalTabs({
       {/* Tab Content */}
       <div
         className={`
-        relative p-5 rounded-lg w-full font-mono backdrop-blur-sm border-2
-        ${theme === "underground" ? "bg-slate-800/60 border-slate-600 text-slate-200" : ""}
-        ${theme === "surface" ? "bg-blue-800/60 border-blue-600 text-blue-200" : ""}
-        ${theme === "dark_world" ? "bg-purple-800/60 border-purple-600 text-purple-200" : ""}
+        relative p-5 rounded-lg w-full  backdrop-blur-sm border-2
+        ${
+          theme === "underground"
+            ? "bg-slate-800/60 border-slate-600 text-slate-200"
+            : ""
+        }
+        ${
+          theme === "surface"
+            ? "bg-blue-800/60 border-blue-600 text-blue-200"
+            : ""
+        }
+        ${
+          theme === "dark_world"
+            ? "bg-purple-800/60 border-purple-600 text-purple-200"
+            : ""
+        }
         ${contentClassName}
       `}
       >

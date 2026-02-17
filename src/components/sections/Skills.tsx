@@ -82,8 +82,9 @@ const SkillLevelBadge = ({ level }: { level: string | number }) => {
 
   return (
     <div
-      className={`px-2 py-1 border font-mono text-xs font-medium ${getLevelColor(level)}`}
-      style={{ fontFamily: "'Fira Code', monospace" }}
+      className={`px-2 py-1 border  text-xs font-medium ${getLevelColor(
+        level
+      )}`}
     >
       LV {numLevel}
     </div>
@@ -94,10 +95,7 @@ const YearsBadge = ({ years }: { years: number }) => {
   const { getYearsColor } = useSkillsLogic();
 
   return (
-    <div
-      className={`px-2 py-1 border font-mono text-xs /50 ${getYearsColor(years)}`}
-      style={{ fontFamily: "'Fira Code', monospace" }}
-    >
+    <div className={`px-2 py-1 border  text-xs /50 ${getYearsColor(years)}`}>
       {years}y
     </div>
   );
@@ -111,10 +109,7 @@ const PortfolioSkillsTable = ({ skillsData, iconMap }) => {
     <div className="relative z-10" id="skills">
       {/* Header */}
 
-      <p
-        className="mb-6 text-[#ABB2BF] text-sm font-mono text-center"
-        style={{ fontFamily: "'Fira Code', monospace" }}
-      >
+      <p className="mb-6 text-[#ABB2BF] text-sm  text-center">
         Skills acquired through determination and countless hours of coding
       </p>
 
@@ -145,10 +140,7 @@ const PortfolioSkillsTable = ({ skillsData, iconMap }) => {
               </div>
 
               {/* Category Header */}
-              <h4
-                className="text-white font-medium mb-4 font-mono relative z-10"
-                style={{ fontFamily: "'Fira Code', monospace" }}
-              >
+              <h4 className="text-white font-medium mb-4  relative z-10">
                 <span className="text-[#C778DD]">{category.name}</span>
               </h4>
 
@@ -166,10 +158,7 @@ const PortfolioSkillsTable = ({ skillsData, iconMap }) => {
                           divClass="flex"
                           show={false}
                         />
-                        <span
-                          className="text-[#ABB2BF] text-sm font-mono truncate"
-                          style={{ fontFamily: "'Fira Code', monospace" }}
-                        >
+                        <span className="text-[#ABB2BF] text-sm  truncate">
                           {skill.name}
                         </span>
                       </div>
@@ -177,7 +166,7 @@ const PortfolioSkillsTable = ({ skillsData, iconMap }) => {
                       {/* Level Stars */}
                       <div className="col-span-4 text-center">
                         <span
-                          className={`text-xs font-mono ${getStarsColor(skill.level)}`}
+                          className={`text-xs  ${getStarsColor(skill.level)}`}
                         >
                           {getLevelStars(skill.level)}
                         </span>
@@ -197,7 +186,7 @@ const PortfolioSkillsTable = ({ skillsData, iconMap }) => {
                 ))}
               </div>
             </div>
-          ),
+          )
         )}
       </div>
     </div>

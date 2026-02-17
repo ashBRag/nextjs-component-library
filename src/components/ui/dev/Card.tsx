@@ -1,6 +1,7 @@
 import React from "react";
 
 interface PortfolioCardProps {
+  id?: string;
   title: string;
   subtitle?: string;
   description?: string;
@@ -17,6 +18,7 @@ interface PortfolioCardProps {
 }
 
 export default function Card({
+  id,
   title,
   subtitle,
   description,
@@ -60,7 +62,7 @@ export default function Card({
   };
 
   return (
-    <div className={`relative w-full ${className}`}>
+    <div className={`relative w-full ${className}`} id={id}>
       {/* Corner brackets */}
       {showCorners && (
         <>
@@ -78,15 +80,12 @@ export default function Card({
       {/* Main card */}
       <div
         className={`
-          relative  font-mono w-full
+          relative   w-full
           ${getBorderStyles()}
           ${getSizeStyles()}
           ${getAnimationStyles()}
           ${className}
         `}
-        style={{
-          fontFamily: "'Fira Code', monospace",
-        }}
       >
         {/* Title */}
         <h3

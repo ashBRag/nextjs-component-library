@@ -1,7 +1,9 @@
 "use client";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Major_Mono_Display } from "next/font/google";
 import "./globals.css";
 import CircuitZap from "@/components/layout/CircuitZap";
+import { Fira_Code } from "next/font/google";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import { Provider } from "react-redux";
@@ -15,6 +17,20 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const fira = Fira_Code({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-fira",
+  display: "swap",
+});
+
+const majorMono = Major_Mono_Display({
+  subsets: ["latin"],
+  weight: "400", // only one weight available
+  variable: "--font-major",
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -35,15 +51,13 @@ export default function RootLayout({
               Math.min(1000 * 2 ** attemptIndex, 30000),
           },
         },
-      }),
+      })
   );
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${fira.variable} antialiased`}>
         <QueryClientProvider client={queryClient}>
-          <CircuitZap />
+          {/* <CircuitZap /> */}
           <Provider store={store}>{children}</Provider>
         </QueryClientProvider>
       </body>

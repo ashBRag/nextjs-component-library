@@ -43,7 +43,7 @@ const Toast: React.FC<ToastProps> = ({
 
     return `
       relative flex items-center gap-3 p-4 rounded-lg border backdrop-blur-sm 
-      shadow-xl min-w-[320px] max-w-[480px] font-mono text-sm text-white
+      shadow-xl min-w-[320px] max-w-[480px]  text-sm text-white
       transition-all duration-300 ease-out transform
       ${
         isVisible && !isExiting
@@ -129,7 +129,7 @@ const useToast = () => {
   const addToast = (
     type: "success" | "error" | "warning" | "info",
     message: string,
-    duration?: number,
+    duration?: number
   ) => {
     const id = Date.now().toString();
     setToasts((prev) => [...prev, { id, type, message, duration }]);

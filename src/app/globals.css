@@ -8,6 +8,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-major: var(--font-major);
+  --font-fira: var(--font-fira);
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -47,6 +49,7 @@ body {
   position: relative;
   overflow-x: hidden;
   background-color: #282c33;
+  font-family: var(--font-major), monospace;
 }
 
 /* Current zaps */
@@ -202,8 +205,8 @@ body {
   width: 105px; /* 70px * 1.5 */
   height: 60px; /* 40px * 1.5 */
   outline: 3px solid #fff; /* 2px * 1.5 */
-  background:
-    radial-gradient(farthest-side, #000 90%, #0000) 0 0/12px 12px no-repeat,
+  background: radial-gradient(farthest-side, #000 90%, #0000) 0 0/12px 12px
+      no-repeat,
     /* 8px * 1.5 */ linear-gradient(#fff 0 0) 50%/15px 100% no-repeat,
     /* 10px * 1.5 */
       conic-gradient(from 90deg at 15px 15px, #0000 90deg, #fff 0),
@@ -213,57 +216,39 @@ body {
 }
 @keyframes l4 {
   0% {
-    background-position:
-      0 0,
-      50%;
+    background-position: 0 0, 50%;
     clip-path: circle(22.5px at left 6px top 6px);
   } /* 15px * 1.5, 4px * 1.5 */
   12.5% {
-    background-position:
-      50% 0,
-      50%;
+    background-position: 50% 0, 50%;
     clip-path: circle(22.5px at left 50% top 6px);
   } /* 15px * 1.5, 4px * 1.5 */
   25% {
-    background-position:
-      50% 100%,
-      50%;
+    background-position: 50% 100%, 50%;
     clip-path: circle(22.5px at left 50% bottom 6px);
   } /* 15px * 1.5, 4px * 1.5 */
   37.5% {
-    background-position:
-      100% 100%,
-      50%;
+    background-position: 100% 100%, 50%;
     clip-path: circle(22.5px at right 6px bottom 6px);
   } /* 15px * 1.5, 4px * 1.5 */
   50% {
-    background-position:
-      100% 0,
-      50%;
+    background-position: 100% 0, 50%;
     clip-path: circle(22.5px at right 6px top 6px);
   } /* 15px * 1.5, 4px * 1.5 */
   62.5% {
-    background-position:
-      50% 0,
-      50%;
+    background-position: 50% 0, 50%;
     clip-path: circle(22.5px at right 50% top 6px);
   } /* 15px * 1.5, 4px * 1.5 */
   75% {
-    background-position:
-      50% 100%,
-      50%;
+    background-position: 50% 100%, 50%;
     clip-path: circle(22.5px at right 50% bottom 6px);
   } /* 15px * 1.5, 4px * 1.5 */
   82.5% {
-    background-position:
-      0 100%,
-      50%;
+    background-position: 0 100%, 50%;
     clip-path: circle(22.5px at left 6px bottom 6px);
   } /* 15px * 1.5, 4px * 1.5 */
   100% {
-    background-position:
-      0 0,
-      50%;
+    background-position: 0 0, 50%;
     clip-path: circle(22.5px at left 6px top 6px);
   } /* 15px * 1.5, 4px * 1.5 */
 }

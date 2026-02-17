@@ -51,9 +51,7 @@ export const CalendlyPopup: React.FC<CalendlyPopupProps> = ({
       <div className="bg-gradient-to-b from-blue-900 to-purple-900 border-4 border-yellow-400 rounded-lg w-full max-w-4xl flex flex-col h-[90vh] mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between p-3 border-b-2 border-yellow-400 flex-shrink-0">
-          <h3 className="text-yellow-300 font-mono font-bold text-lg">
-            {title}
-          </h3>
+          <h3 className="text-yellow-300  font-bold text-lg">{title}</h3>
           <button
             onClick={onClose}
             className="text-yellow-300 hover:text-red-400 transition-colors"

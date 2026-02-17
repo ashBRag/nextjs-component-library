@@ -68,12 +68,12 @@ const Header = ({
               width={10}
               height={10}
             />
-            <span className="text-yellow-400 font-mono font-bold">{name}</span>
+            <span className="text-yellow-400  font-bold">{name}</span>
             {/* Download Resume */}
             <a
               href="/resume.pdf"
               download="Aishwarya_BR_Resume.pdf"
-              className="ml-4 bg-purple-600 hover:bg-purple-500 text-white px-3 py-1 text-sm font-mono border border-white/50 hover:border-white transition-all"
+              className="ml-4 bg-purple-600 hover:bg-purple-500 text-white px-3 py-1 text-sm  border border-white/50 hover:border-white transition-all"
             >
               📄 Resumeee
             </a>
@@ -85,7 +85,7 @@ const Header = ({
               <button
                 key={item.id}
                 onClick={() => handleMenu(item.id)}
-                className={`px-4 py-2 font-mono font-bold uppercase tracking-wider transition-all duration-200 border-2 ${
+                className={`px-4 py-2  font-bold uppercase tracking-wider transition-all duration-200 border-2 ${
                   activeSection === item.id
                     ? "bg-yellow-500 text-black border-white"
                     : "bg-transparent text-yellow-500 border-white/50 hover:bg-yellow-500 hover:text-black hover:border-white"

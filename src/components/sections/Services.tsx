@@ -96,27 +96,18 @@ export default function ServicesSection({
                       <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
                       <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
 
-                      <p
-                        className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white font-mono"
-                        style={{ fontFamily: "'Fira Code', monospace" }}
-                      >
+                      <p className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white ">
                         Rate: {service.rate.hour[1].currency}{" "}
                         {service.rate.hour[1].range[0]} -{" "}
                         {service.rate.hour[1].range[1]} / hour
                       </p>
-                      <p
-                        className="text-xs text-center w-full mt-1 text-[#ABB2BF] font-mono"
-                        style={{ fontFamily: "'Fira Code', monospace" }}
-                      >
+                      <p className="text-xs text-center w-full mt-1 text-[#ABB2BF] ">
                         * Pricing varies with scope
                       </p>
                     </div>
 
                     <div>
-                      <p
-                        className="py-2 text-center text-white font-mono"
-                        style={{ fontFamily: "'Fira Code', monospace" }}
-                      >
+                      <p className="py-2 text-center text-white ">
                         <span className="text-[#C778DD]">#</span>
                         {capitalizeFirstLetter(service.id)} Types
                       </p>
@@ -124,9 +115,8 @@ export default function ServicesSection({
                       <div className="grid grid-cols-1 gap-4">
                         {service.types.map((type, index) => (
                           <div
-                            className="flex items-center text-sm font-medium px-3 py-1 whitespace-nowrap font-mono bg-[#C778DD]/20 text-[#C778DD] border border-[#C778DD]/50"
+                            className="flex items-center text-sm font-medium px-3 py-1 whitespace-nowrap  bg-[#C778DD]/20 text-[#C778DD] border border-[#C778DD]/50"
                             key={`type-${service.id}-${index}`}
-                            style={{ fontFamily: "'Fira Code', monospace" }}
                           >
                             <IconComponent
                               id={type.iconId}
@@ -180,27 +170,18 @@ export default function ServicesSection({
                       <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
                       <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
 
-                      <p
-                        className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white font-mono"
-                        style={{ fontFamily: "'Fira Code', monospace" }}
-                      >
+                      <p className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white ">
                         Rate: {service.rate.hour[1].currency}{" "}
                         {service.rate.hour[1].range[0]} -{" "}
                         {service.rate.hour[1].range[1]} / hour
                       </p>
-                      <p
-                        className="text-xs text-center w-full mt-1 text-[#ABB2BF] font-mono"
-                        style={{ fontFamily: "'Fira Code', monospace" }}
-                      >
+                      <p className="text-xs text-center w-full mt-1 text-[#ABB2BF] ">
                         * Pricing varies with scope
                       </p>
                     </div>
 
                     <div>
-                      <p
-                        className="py-2 text-center text-white font-mono"
-                        style={{ fontFamily: "'Fira Code', monospace" }}
-                      >
+                      <p className="py-2 text-center text-white ">
                         <span className="text-[#C778DD]">#</span>
                         {capitalizeFirstLetter(service.id)} Types
                       </p>
@@ -208,9 +189,8 @@ export default function ServicesSection({
                       <div className="grid grid-cols-2 gap-4">
                         {service.types.map((type, index) => (
                           <div
-                            className="text-sm font-medium px-3 py-1 whitespace-nowrap font-mono bg-[#C778DD]/20 text-[#C778DD] border border-[#C778DD]/50"
+                            className="text-sm font-medium px-3 py-1 whitespace-nowrap  bg-[#C778DD]/20 text-[#C778DD] border border-[#C778DD]/50"
                             key={`type-${service.id}-${index}`}
-                            style={{ fontFamily: "'Fira Code', monospace" }}
                           >
                             {type.text}
                           </div>

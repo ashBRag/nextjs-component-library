@@ -29,7 +29,7 @@ export function UndertaleDownloadButton({
         className={`
           relative block px-2 py-2 text-lg
           bg-gradient-to-b from-red-500 to-red-700
-          border-4 border-red-800 text-white font-mono font-bold uppercase tracking-wider
+          border-4 border-red-800 text-white  font-bold uppercase tracking-wider
           hover:from-red-400 hover:to-red-600 hover:border-red-700
           active:from-red-600 active:to-red-800
           shadow-2xl hover:shadow-red-500/50
@@ -79,7 +79,7 @@ export function UndertaleDownloadButton({
         className={`
           relative block px-6 py-3 text-base
           bg-gradient-to-b from-slate-700 to-purple-800
-          border-2 border-purple-600/50 text-white font-mono font-semibold tracking-wide
+          border-2 border-purple-600/50 text-white  font-semibold tracking-wide
           hover:from-slate-600 hover:to-purple-700 hover:border-purple-500
           active:from-slate-800 active:to-purple-900
           shadow-lg hover:shadow-purple-600/30
@@ -149,7 +149,7 @@ export const ContactLinkButton = ({
         className={`${iconColor} text-current group-hover:scale-110 transition-transform flex-shrink-0`}
         size={iconSizes[size]}
       />
-      <span className="text-white font-mono flex-1 text-left">{text}</span>
+      <span className="text-white  flex-1 text-left">{text}</span>
       {showExternalIcon && href && (
         <LuExternalLink
           className="text-gray-400 group-hover:text-white transition-colors"

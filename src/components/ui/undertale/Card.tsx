@@ -136,7 +136,7 @@ export default function Card({
 
   const getPixelatedStyles = () => {
     // Add subtle pixelated effect for authentic Undertale feel
-    return "font-mono selection:bg-white/20";
+    return " selection:bg-white/20";
   };
 
   return (

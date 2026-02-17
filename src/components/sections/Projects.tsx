@@ -79,14 +79,16 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
 
     projectsData.experience.forEach((exp) => {
       const allCompanies = Array.from(
-        new Set(projectsData.experience.map((exp) => exp.company)),
+        new Set(projectsData.experience.map((exp) => exp.company))
       );
       const companyIndex = allCompanies.indexOf(exp.company);
       const variant = variants[companyIndex % variants.length];
       const badgeText = exp.company.split(" ")[0];
       exp.projects?.forEach((project) => {
         allItems.push({
-          id: `${exp.company.toLowerCase().replace(/\s+/g, "-")}-${project.name.toLowerCase().replace(/\s+/g, "-")}`,
+          id: `${exp.company.toLowerCase().replace(/\s+/g, "-")}-${project.name
+            .toLowerCase()
+            .replace(/\s+/g, "-")}`,
           title: project.name,
           date: project.duration,
           badge: {
@@ -133,7 +135,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
       <div>
         {company && <div>Company: {company}</div>}
         <div>{duration}</div>
-        <div className="my-5">* Tech Stack Used: </div>
+        <div className="my-5">Tech Stack Used </div>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2 w-auto my-6">
           {project?.tech_stack?.map((skill) => (
             <IconComponent
@@ -187,7 +189,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
                   duration={exp.duration}
                 />
               ),
-            })),
+            }))
           )}
           className="p-5"
         />

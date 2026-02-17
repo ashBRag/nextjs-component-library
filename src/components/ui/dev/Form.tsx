@@ -17,8 +17,7 @@ export const PortfolioTextField = ({
   return (
     <div className={className}>
       <label 
-        className="block text-white font-mono mb-2 text-sm"
-        style={{ fontFamily: "'Fira Code', monospace" }}
+        className="block text-white  mb-2 text-sm"
       >
         <span className="text-[#C778DD]">#</span>
         {label}
@@ -30,7 +29,7 @@ export const PortfolioTextField = ({
         onChange={(e) => onChange(e.target.value)}
         className={`
           w-full px-4 py-3  border border-[#ABB2BF]/30 
-          text-white font-mono text-sm focus:outline-none transition-all
+          text-white  text-sm focus:outline-none transition-all
           ${rows ? "resize-none" : ""}
           ${
             error
@@ -38,13 +37,11 @@ export const PortfolioTextField = ({
               : "focus:border-[#C778DD] focus:shadow-[#C778DD]/20 focus:shadow-lg"
           }
         `}
-        style={{ fontFamily: "'Fira Code', monospace" }}
         placeholder={placeholder}
       />
       {error && (
         <p 
-          className="text-red-400 font-mono mt-2 text-sm"
-          style={{ fontFamily: "'Fira Code', monospace" }}
+          className="text-red-400  mt-2 text-sm"
         >
           {error}
         </p>
@@ -84,7 +81,7 @@ export const PortfolioButton = ({
       onClick={onClick}
       disabled={disabled}
       className={`
-        font-mono border transition-all duration-300 flex items-center justify-center gap-2
+         border transition-all duration-300 flex items-center justify-center gap-2
         ${variantClass} ${sizeClass} 
         ${
           disabled
@@ -93,7 +90,6 @@ export const PortfolioButton = ({
         } 
         ${className}
       `}
-      style={{ fontFamily: "'Fira Code', monospace" }}
     >
       {children}
     </button>
@@ -113,8 +109,7 @@ export const PortfolioRadioGroup = ({
   return (
     <div className={className}>
       <label 
-        className="block text-white font-mono mb-3 text-sm"
-        style={{ fontFamily: "'Fira Code', monospace" }}
+        className="block text-white  mb-3 text-sm"
       >
         <span className="text-[#C778DD]">#</span>
         {label}
@@ -132,14 +127,13 @@ export const PortfolioRadioGroup = ({
             />
             <div
               className={`
-                p-4 border transition-all font-mono relative
+                p-4 border transition-all  relative
                 ${
                   value === option.value
                     ? "border-[#C778DD] bg-[#C778DD]/10 text-white"
                     : "border-[#ABB2BF]/30  text-[#ABB2BF] hover:border-[#C778DD]/50 hover:text-white"
                 }
               `}
-              style={{ fontFamily: "'Fira Code', monospace" }}
             >
               {/* Corner brackets for selected option */}
               {value === option.value && (
@@ -177,8 +171,7 @@ export const PortfolioRadioGroup = ({
       </div>
       {error && (
         <p 
-          className="text-red-400 font-mono mt-2 text-sm"
-          style={{ fontFamily: "'Fira Code', monospace" }}
+          className="text-red-400  mt-2 text-sm"
         >
           {error}
         </p>
@@ -200,8 +193,7 @@ export const PortfolioSelect = ({
   return (
     <div className={className}>
     <label
-      className="block text-white font-mono mb-2 text-sm"
-      style={{ fontFamily: "'Fira Code', monospace" }}
+      className="block text-white  mb-2 text-sm"
     >
       <span className="text-[#C778DD]">#</span>
       {label}
@@ -211,7 +203,7 @@ export const PortfolioSelect = ({
       onChange={(e) => onChange(e.target.value)}
       className={`
         w-full px-4 py-3 border border-[#ABB2BF]/30 
-        bg-[#ABB2BF]/10 text-white font-mono text-sm 
+        bg-[#ABB2BF]/10 text-white  text-sm 
         focus:outline-none transition-all
         ${
           error
@@ -219,7 +211,6 @@ export const PortfolioSelect = ({
             : "focus:border-[#C778DD]"
         }
       `}
-      style={{ fontFamily: "'Fira Code', monospace" }}
     >
       {options.map((option) => (
         <option
@@ -233,8 +224,7 @@ export const PortfolioSelect = ({
     </select>
     {error && (
       <p
-        className="text-red-400 font-mono mt-2 text-sm"
-        style={{ fontFamily: "'Fira Code', monospace" }}
+        className="text-red-400  mt-2 text-sm"
       >
         {error}
       </p>
@@ -246,10 +236,9 @@ export const PortfolioSelect = ({
 // Status Bar Component (for forms)
 export const PortfolioStatusBar = ({ progress, status = "Ready" }) => {
   return (
-    <div className=" border border-[#ABB2BF]/30 p-4 font-mono">
+    <div className=" border border-[#ABB2BF]/30 p-4 ">
       <div 
         className="text-[#ABB2BF] text-sm flex justify-between items-center"
-        style={{ fontFamily: "'Fira Code', monospace" }}
       >
         <span>
           <span className="text-[#C778DD]">></span> Status: {status}
@@ -290,8 +279,7 @@ export const PortfolioFormCard = ({ children, title, className = "" }) => {
 
       {title && (
         <h3 
-          className="text-white font-mono text-lg mb-6"
-          style={{ fontFamily: "'Fira Code', monospace" }}
+          className="text-white  text-lg mb-6"
         >
           <span className="text-[#C778DD]">#</span>
           {title}

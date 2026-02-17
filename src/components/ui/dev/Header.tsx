@@ -65,7 +65,6 @@ const Header = ({
         border-b border-[#ABB2BF]/20 
         ${className}
       `}
-      style={{ fontFamily: "'Fira Code', monospace" }}
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
@@ -79,11 +78,11 @@ const Header = ({
                 height={40}
                 className="w-10 h-10 rounded-full object-cover border-2 border-[#C778DD]"
               />
-              <span className="text-white font-mono font-medium">{name}</span>
+              <span className="text-white  font-medium">{name}</span>
               <a
                 href="/resume.pdf"
                 download={`${name}_Resume.pdf`}
-                className="ml-4 bg-transparent border border-[#C778DD] text-[#C778DD] hover:bg-[#C778DD] hover:text-white px-3 py-1 text-sm font-mono transition-all duration-300"
+                className="ml-4 bg-transparent border border-[#C778DD] text-[#C778DD] hover:bg-[#C778DD] hover:text-white px-3 py-1 text-sm  transition-all duration-300"
               >
                 Resume
               </a>
@@ -99,9 +98,7 @@ const Header = ({
               height={32}
               className="w-8 h-8 rounded-full object-cover border-2 border-[#C778DD]"
             />
-            <span className="text-white font-mono font-medium text-sm">
-              {name}
-            </span>
+            <span className="text-white  font-medium text-sm">{name}</span>
           </div>
 
           {/* Desktop Navigation */}

@@ -51,7 +51,7 @@ export function PortfolioButton({
   };
 
   const baseStyles = `
-    font-mono border transition-all duration-300 ease-out
+     border transition-all duration-300 ease-out
     disabled:opacity-50 disabled:cursor-not-allowed
     hover:scale-105 active:scale-95
     ${getVariantStyles()}
@@ -66,7 +66,6 @@ export function PortfolioButton({
         download={downloadName}
         onClick={onClick}
         className={baseStyles}
-        style={{ fontFamily: "'Fira Code', monospace" }}
       >
         {children}
       </a>
@@ -74,12 +73,7 @@ export function PortfolioButton({
   }
 
   return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      className={baseStyles}
-      style={{ fontFamily: "'Fira Code', monospace" }}
-    >
+    <button onClick={onClick} disabled={disabled} className={baseStyles}>
       {children}
     </button>
   );
@@ -176,13 +170,12 @@ export function ContactLinkButton({
     <Component
       {...props}
       className={`
-        flex items-center gap-3 border font-mono transition-all duration-300 group
+        flex items-center gap-3 border  transition-all duration-300 group
         hover:scale-105 active:scale-95
         ${getVariantStyles()}
         ${getSizeStyles()}
         ${className}
       `}
-      style={{ fontFamily: "'Fira Code', monospace" }}
     >
       <Icon
         className={`${iconColor} group-hover:text-[#C778DD] transition-colors flex-shrink-0`}

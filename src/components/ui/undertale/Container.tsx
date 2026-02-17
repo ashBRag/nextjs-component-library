@@ -82,7 +82,7 @@ export default function UndertaleTabs({
   const getCharacterTabStyles = (
     tab: UndertaleTab,
     isActive: boolean,
-    isMobile = false,
+    isMobile = false
   ) => {
     // Sans style only
     const colorStyle = isActive
@@ -100,17 +100,19 @@ export default function UndertaleTabs({
         ? "border-t-2"
         : "border-transparent"
       : isActive
-        ? "border-b-2"
-        : "border-transparent";
+      ? "border-b-2"
+      : "border-transparent";
 
     const roundingStyle = isMobile ? "rounded-b-lg" : "rounded-t-lg";
 
-    return `inline-block px-3 py-2 sm:px-6 sm:py-3 ${borderStyle} ${roundingStyle} font-mono relative backdrop-blur-sm ${colorStyle} ${animationStyle} ${activeHover} ${shadowStyle}`;
+    return `inline-block px-3 py-2 sm:px-6 sm:py-3 ${borderStyle} ${roundingStyle}  relative backdrop-blur-sm ${colorStyle} ${animationStyle} ${activeHover} ${shadowStyle}`;
   };
 
   const TabHeaders = ({ isMobile = false }: { isMobile?: boolean }) => (
     <div
-      className={`${isMobile ? "border-t-2" : "border-b-2"} border-slate-700/50 relative`}
+      className={`${
+        isMobile ? "border-t-2" : "border-b-2"
+      } border-slate-700/50 relative`}
     >
       <ul
         className="flex flex-wrap text-xs sm:text-sm font-medium text-center relative z-10"
@@ -125,7 +127,11 @@ export default function UndertaleTabs({
               role="presentation"
             >
               <button
-                className={`w-full ${getCharacterTabStyles(tab, isActive, isMobile)}`}
+                className={`w-full ${getCharacterTabStyles(
+                  tab,
+                  isActive,
+                  isMobile
+                )}`}
                 type="button"
                 role="tab"
                 aria-controls={tab.id}
@@ -162,7 +168,9 @@ export default function UndertaleTabs({
                 {/* Selection indicator */}
                 {isActive && (
                   <div
-                    className={`absolute ${isMobile ? "-top-0.5" : "-bottom-0.5"} left-1/2 transform -translate-x-1/2`}
+                    className={`absolute ${
+                      isMobile ? "-top-0.5" : "-bottom-0.5"
+                    } left-1/2 transform -translate-x-1/2`}
                   >
                     <div className="w-2 h-2 bg-current rounded-full animate-pulse"></div>
                   </div>
@@ -203,7 +211,7 @@ export default function UndertaleTabs({
                   ${tab.className} 
                   ${
                     isActive ? "block" : "hidden"
-                  } p-6 rounded-b-lg border-2 border-t-0 backdrop-blur-sm font-mono relative overflow-auto custom-scroll h-full ${getSoulTypeContentStyles()}`}
+                  } p-6 rounded-b-lg border-2 border-t-0 backdrop-blur-sm  relative overflow-auto custom-scroll h-full ${getSoulTypeContentStyles()}`}
                 role="tabpanel"
                 aria-labelledby={`${tab.id}-tab`}
               >

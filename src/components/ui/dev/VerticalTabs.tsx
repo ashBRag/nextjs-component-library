@@ -33,11 +33,11 @@ export default function PortfolioVerticalTabs({
 
   const getTabStyles = (tab: PortfolioTabItem, isActive: boolean) => {
     if (tab.disabled) {
-      return "relative inline-flex items-center px-4 py-3 text-[#ABB2BF]/50 cursor-not-allowed /50 w-full border border-[#ABB2BF]/20 font-mono";
+      return "relative inline-flex items-center px-4 py-3 text-[#ABB2BF]/50 cursor-not-allowed /50 w-full border border-[#ABB2BF]/20 ";
     }
 
     const baseStyles =
-      "relative inline-flex items-center px-4 py-3 w-full border font-mono transition-all duration-300";
+      "relative inline-flex items-center px-4 py-3 w-full border  transition-all duration-300";
 
     if (isActive) {
       return `${baseStyles}  border-[#C778DD] text-[#C778DD] shadow-lg shadow-[#C778DD]/20`;
@@ -78,7 +78,6 @@ export default function PortfolioVerticalTabs({
         onClick={() => handleTabClick(tab)}
         disabled={tab.disabled}
         aria-current={isActive ? "page" : undefined}
-        style={{ fontFamily: "'Fira Code', monospace" }}
       >
         {/* Corner brackets for active tab */}
         {isActive && (
@@ -124,11 +123,7 @@ export default function PortfolioVerticalTabs({
 
     if (tab.href && !tab.disabled) {
       return (
-        <a
-          href={tab.href}
-          className={getTabStyles(tab, isActive)}
-          style={{ fontFamily: "'Fira Code', monospace" }}
-        >
+        <a href={tab.href} className={getTabStyles(tab, isActive)}>
           {tab.icon && (
             <span className={getIconStyles(tab, isActive)} aria-hidden="true">
               {tab.icon}
@@ -161,10 +156,9 @@ export default function PortfolioVerticalTabs({
       {/* Tab Content */}
       <div
         className={`
-          relative  p-2 w-full font-mono 
+          relative  p-2 w-full  
           text-[#ABB2BF] ${contentClassName}
         `}
-        style={{ fontFamily: "'Fira Code', monospace" }}
       >
         <div className="relative z-10">{activeTabContent}</div>
       </div>

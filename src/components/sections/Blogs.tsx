@@ -58,7 +58,7 @@ export default function BlogsSection() {
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      <section className="hidden md:flex gap-6" id="blogs">
+      {/* <section className="hidden md:flex gap-6" id="blogs">
         <VerticalTabs
           tabs={blogTypesOptions.map((type, index) => {
             return {
@@ -89,7 +89,7 @@ export default function BlogsSection() {
             };
           })}
         />
-      </section>
+      </section> */}
 
       {/* Mobile Layout: Carousel (sm and below) */}
       {/* <section className="md:hidden">
@@ -125,7 +125,7 @@ export default function BlogsSection() {
                       <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-[#ABB2BF] opacity-30"></div>
 
                       <p
-                        className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white font-mono"
+                        className="flex flex-col items-center gap-2 p-3 bg-[#C778DD]/10 backdrop-blur-sm border border-[#C778DD]/30 text-white "
                         style={{ fontFamily: "'Fira Code', monospace" }}
                       >
                         Rate: {blog.rate.hour[1].currency}{" "}
@@ -133,7 +133,7 @@ export default function BlogsSection() {
                         {blog.rate.hour[1].range[1]} / hour
                       </p>
                       <p
-                        className="text-xs text-center w-full mt-1 text-[#ABB2BF] font-mono"
+                        className="text-xs text-center w-full mt-1 text-[#ABB2BF] "
                         style={{ fontFamily: "'Fira Code', monospace" }}
                       >
                         * Pricing varies with scope
@@ -142,7 +142,7 @@ export default function BlogsSection() {
 
                     <div>
                       <p
-                        className="py-2 text-center text-white font-mono"
+                        className="py-2 text-center text-white "
                         style={{ fontFamily: "'Fira Code', monospace" }}
                       >
                         <span className="text-[#C778DD]">#</span>
@@ -152,7 +152,7 @@ export default function BlogsSection() {
                       <div className="grid grid-cols-2 gap-4">
                         {blog.types.map((type, index) => (
                           <div
-                            className="text-sm font-medium px-3 py-1 whitespace-nowrap font-mono bg-[#C778DD]/20 text-[#C778DD] border border-[#C778DD]/50"
+                            className="text-sm font-medium px-3 py-1 whitespace-nowrap  bg-[#C778DD]/20 text-[#C778DD] border border-[#C778DD]/50"
                             key={`type-${blog.id}-${index}`}
                             style={{ fontFamily: "'Fira Code', monospace" }}
                           >

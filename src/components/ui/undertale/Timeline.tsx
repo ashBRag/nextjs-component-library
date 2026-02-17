@@ -81,30 +81,31 @@ export default function UndertaleTimeline({
         "bg-purple-900/80 text-purple-200 border border-purple-500 shadow-purple-500/30",
     };
     const animationClass = animated ? "animate-pulse" : "";
-    return `${soulColors[variant as keyof typeof soulColors] || soulColors.determination} ${animationClass}`;
+    return `${
+      soulColors[variant as keyof typeof soulColors] || soulColors.determination
+    } ${animationClass}`;
   };
 
   const getCharacterTitleStyles = (character?: string) => {
     const characterStyles = {
-      sans: "text-lg font-semibold text-yellow-300 font-mono",
-      papyrus:
-        "text-lg font-bold text-orange-400 uppercase tracking-wider font-mono",
-      flowey: "text-lg font-bold text-yellow-300 font-mono",
-      frisk: "text-lg font-semibold text-red-400 font-mono",
-      toriel: "text-lg font-medium text-purple-400 font-mono",
-      undyne: "text-lg font-bold text-green-400 uppercase font-mono",
-      alphys: "text-lg font-semibold text-yellow-300 font-mono",
-      mettaton: "text-lg font-semibold text-pink-400 italic font-mono",
+      sans: "text-lg font-semibold text-yellow-300 ",
+      papyrus: "text-lg font-bold text-orange-400 uppercase tracking-wider ",
+      flowey: "text-lg font-bold text-yellow-300 ",
+      frisk: "text-lg font-semibold text-red-400 ",
+      toriel: "text-lg font-medium text-purple-400 ",
+      undyne: "text-lg font-bold text-green-400 uppercase ",
+      alphys: "text-lg font-semibold text-yellow-300 ",
+      mettaton: "text-lg font-semibold text-pink-400 italic ",
     };
 
     return character
       ? characterStyles[character as keyof typeof characterStyles]
-      : "text-lg font-semibold text-slate-200 font-mono";
+      : "text-lg font-semibold text-slate-200 ";
   };
 
   const getTimelineNodeStyles = () => {
     const baseStyles =
-      "absolute flex items-center justify-center w-12 h-12 rounded-full border-2 font-mono text-lg";
+      "absolute flex items-center justify-center w-12 h-12 rounded-full border-2  text-lg";
     const positionStyles = "-start-14 backdrop-blur-sm";
     const defaultColor =
       "bg-slate-800/80 border-slate-400 text-slate-200 shadow-slate-400/30";
@@ -181,7 +182,9 @@ export default function UndertaleTimeline({
 
   const renderCardContent = (item: UndertaleTimelineItem) => (
     <div
-      className={`relative p-4 rounded-lg bg-slate-800/40 border border-slate-600/50 backdrop-blur-sm ${getCardGlowStyles(item)}`}
+      className={`relative p-4 rounded-lg bg-slate-800/40 border border-slate-600/50 backdrop-blur-sm ${getCardGlowStyles(
+        item
+      )}`}
     >
       {/* Content */}
       <div className="flex items-start mb-2 flex-wrap gap-2">
@@ -192,18 +195,20 @@ export default function UndertaleTimeline({
         </div>
         {item.badge && (
           <span
-            className={`text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap font-mono ${getBadgeStyles(item.badge.variant)}`}
+            className={`text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap  ${getBadgeStyles(
+              item.badge.variant
+            )}`}
           >
             {item.badge.text}
           </span>
         )}
       </div>
 
-      <time className="block mb-3 text-sm font-normal leading-none text-slate-400 font-mono">
+      <time className="block mb-3 text-sm font-normal leading-none text-slate-400 ">
         * {item.date}
       </time>
 
-      <p className="text-base font-normal text-slate-300 font-mono leading-relaxed">
+      <p className="text-base font-normal text-slate-300  leading-relaxed">
         {item.description}
       </p>
 
@@ -236,12 +241,20 @@ export default function UndertaleTimeline({
   return (
     <div className={`relative ${getThemeStyles()} ${className}`}>
       <ol
-        className={`relative border-s-2 ms-6 ${theme === "underground" ? "border-slate-400" : theme === "surface" ? "border-blue-400" : "border-purple-400"}`}
+        className={`relative border-s-2 ms-6 ${
+          theme === "underground"
+            ? "border-slate-400"
+            : theme === "surface"
+            ? "border-blue-400"
+            : "border-purple-400"
+        }`}
       >
         {items.map((item, index) => (
           <li
             key={item.id}
-            className={`${index === items.length - 1 ? "ms-8" : "mb-12 ms-8"} relative`}
+            className={`${
+              index === items.length - 1 ? "ms-8" : "mb-12 ms-8"
+            } relative`}
           >
             {/* Timeline Node */}
             <span className={getTimelineNodeStyles()}>{item.icon}</span>

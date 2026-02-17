@@ -112,9 +112,6 @@ export default function PortfolioProfileImage({
             className={`${sizeConfig.image} object-cover`}
             width={sizeConfig.width}
             height={sizeConfig.height}
-            style={{
-              fontFamily: "'Fira Code', monospace",
-            }}
           />
         </div>
 
@@ -123,11 +120,10 @@ export default function PortfolioProfileImage({
           <div className="absolute -top-3 -right-3">
             <div
               className={`
-              w-8 h-8 border-2 flex items-center justify-center font-mono text-lg font-bold
+              w-8 h-8 border-2 flex items-center justify-center  text-lg font-bold
               ${getStatusColor()} backdrop-blur-sm
               ${animated ? "animate-pulse" : ""}
             `}
-              style={{ fontFamily: "'Fira Code', monospace" }}
             >
               {getStatusIcon()}
             </div>

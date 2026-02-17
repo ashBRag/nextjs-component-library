@@ -18,6 +18,8 @@ import { ScreenCenterWrapper } from "@/components/ui/CenterWrapper";
 import TabbedSection from "@/components/sections/Experience";
 import { title } from "process";
 import BlogsSection from "@/components/sections/Blogs";
+import FloatingCubes from "@/components/ui/dev/Background";
+import SpaceBackground from "@/components/ui/dev/SpaceBackground";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("about");
@@ -87,7 +89,7 @@ export default function Home() {
           {/* <CoffeeMachineLoader /> */}
           <div className="loader"></div>
 
-          <div className="mt-15 text-purple-400 font-mono font-bold">
+          <div className="mt-15 text-purple-400  font-bold">
             Loading Profile....
           </div>
         </div>
@@ -248,6 +250,7 @@ export default function Home() {
         defaultActiveTab="projects"
         className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
       /> */}
+      <FloatingCubes />
       <div className="hidden md:block">
         {sections.map((section) => (
           <Container key={"section-" + section.id} title={section.title}>

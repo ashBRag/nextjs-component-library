@@ -12,8 +12,7 @@ export function PortfolioUI() {
   return (
     <button
       onClick={scrollDown}
-      className="bg-transparent border border-[#C778DD] text-[#C778DD] hover:bg-[#C778DD] hover:text-white font-mono text-2xl px-4 py-2 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center"
-      style={{ fontFamily: "'Fira Code', monospace" }}
+      className="bg-transparent border border-[#C778DD] text-[#C778DD] hover:bg-[#C778DD] hover:text-white  text-2xl px-4 py-2 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center"
     >
       <span className="animate-bounce" style={{ animationDuration: "1s" }}>
         ▼
@@ -41,11 +40,10 @@ export function FloatingScrollButton({ id = "" }) {
             hover:bg-[#C778DD]/20 hover:border-[#C778DD]
             transition-all duration-300
             flex items-center justify-center
-            font-mono text-lg
+             text-lg
             hover:scale-110 active:scale-95
             shadow-lg hover:shadow-[#C778DD]/20
           `}
-          style={{ fontFamily: "'Fira Code', monospace" }}
           aria-label="Scroll to next section"
         >
           {/* Corner brackets */}

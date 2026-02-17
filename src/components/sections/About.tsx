@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
 
-import Image from "../ui/dev/Image";
+import Image from "next/image";
 import Typewriter from "typewriter-effect";
 import Card from "../ui/dev/Card";
 import { AnimatedSkillsGrid } from "../ui/undertale/Rotation";
@@ -46,16 +46,26 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
       id="about"
       className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2"
     >
-      <div className="hidden lg:flex lg:flex-col mr-10 slide-left">
-        <Image src="/profilePhoto.jpg" alt="Profile Image" className="mb-10" />
+      <div
+        className="hidden lg:flex lg:flex-col mr-10 slide-left"
+        id="profile-image"
+      >
+        <Image
+          src="/profilePhoto.png"
+          alt="Profile Image"
+          className="mb-10"
+          width={304}
+          height={304}
+        />
         <DownloadResumeButton
           href="/resume.pdf"
           downloadName="Aishwarya_BR_Resume.pdf"
         />
-        <UndertaleUI />
+        {/* <UndertaleUI /> */}
       </div>
 
       <Card
+        id="about-me-card"
         title="Meet Aishwarya B R"
         className="slide-right"
         titleClassName="text-[#C778DD]"

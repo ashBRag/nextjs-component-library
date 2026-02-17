@@ -176,7 +176,7 @@ export default function MobileCarousel({
       )}
 
       {/* Slide counter */}
-      <div className="absolute top-2 right-2 bg-slate-800/80 text-cyan-300 px-2 py-1 rounded text-xs font-mono backdrop-blur-sm">
+      <div className="absolute top-2 right-2 bg-slate-800/80 text-cyan-300 px-2 py-1 rounded text-xs  backdrop-blur-sm">
         {currentIndex + 1} / {items.length}
       </div>
 

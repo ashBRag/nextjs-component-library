@@ -170,7 +170,7 @@ const useContactForm = ({ calendlyUrl = "" }) => {
     // Additional business logic validation
     if (!formData.projectDesc || formData.projectDesc.length < 10) {
       warning(
-        "Project description seems a bit short. Could you add more details?",
+        "Project description seems a bit short. Could you add more details?"
       );
       return;
     }
@@ -196,7 +196,7 @@ const useContactForm = ({ calendlyUrl = "" }) => {
       if (response.success) {
         // Success case
         success(
-          "🎉 Your message has been sent successfully! Check your email for confirmation.",
+          "🎉 Your message has been sent successfully! Check your email for confirmation."
         );
 
         // Reset form on success
@@ -231,7 +231,7 @@ const useContactForm = ({ calendlyUrl = "" }) => {
         }
       } else {
         error(
-          "Oops! Something went wrong. Please try again or contact me directly.",
+          "Oops! Something went wrong. Please try again or contact me directly."
         );
       }
     } finally {
@@ -345,7 +345,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
         id="contact"
         className="flex flex-col sm:flex-col md:flex-row lg:flex-row justify-between md:p-0 lg:p-0"
       >
-        <div className="md:mr-10 mb-10 sm:mb-10 md:mb-0 lg:mb-0 md:w-3/5 lg:w-2/5 flex flex-col justify-between">
+        <div className="md:mr-10 mb-10 sm:mb-10 md:mb-0 lg:mb-0 md:w-1/2 lg:w-3/5 flex flex-col justify-between">
           {/* Message Section */}
           <div className="relative p-5 bg-black/20 border-1 border-current/30 mb-4">
             {/* Portfolio-style corner decorations */}
@@ -354,9 +354,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
             <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
             <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
 
-            <p className="mb-3 text-[#C778DD] font-mono font-bold">
-              Interrupt Me On
-            </p>
+            <p className="mb-3 text-[#C778DD]  font-bold">Interrupt Me On</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
               <ContactLinkButton
                 key="gmail"
@@ -376,7 +374,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
                     className="h-10"
                     iconColor={getIconColor(platform)}
                   />
-                ),
+                )
               )}
             </div>
           </div>
@@ -389,7 +387,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
             <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
             <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
 
-            <p className="mb-3 text-[#C778DD] font-mono font-bold">
+            <p className="mb-3 text-[#C778DD]  font-bold">
               Professional Stalking
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
@@ -403,7 +401,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
                     className="h-10"
                     iconColor={getIconColor(platform)}
                   />
-                ),
+                )
               )}
             </div>
           </div>
@@ -416,9 +414,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
             <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
             <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
 
-            <p className="mb-3 text-[#C778DD] font-mono font-bold">
-              My Code Laboratory
-            </p>
+            <p className="mb-3 text-[#C778DD]  font-bold">My Code Laboratory</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
               {Object.entries(contactInfo?.code || {}).map(
                 ([platform, link]) => (
@@ -430,7 +426,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
                     className="h-10"
                     iconColor={getIconColor(platform)}
                   />
-                ),
+                )
               )}
             </div>
           </div>
@@ -486,7 +482,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
               />
               <div className="flex justify-end mt-1">
                 <span
-                  className={`font-mono text-xs ${
+                  className={` text-xs ${
                     (formData.projectDesc?.length || 0) < 10
                       ? "text-red-400"
                       : "text-green-400"
@@ -499,7 +495,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
 
             {/* Action Buttons */}
             <div className="flex gap-3 pt-2">
-              <PortfolioButton
+              {/* <PortfolioButton
                 onClick={bookMeeting}
                 disabled={!canBookMeeting()}
                 variant="subtle-secondary"
@@ -508,7 +504,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
               >
                 <LuCalendar size={16} />
                 <span className="text-sm">BOOK MEETING</span>
-              </PortfolioButton>
+              </PortfolioButton> */}
               <PortfolioButton
                 onClick={submitForm}
                 disabled={!canBookMeeting() || isSubmitting}
@@ -547,7 +543,6 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
         </UndertaleCard>
       </div>
 
-      {/* Toast Container - Add this at the end */}
       <ToastContainer />
     </>
   );
