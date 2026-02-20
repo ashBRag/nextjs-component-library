@@ -12,7 +12,12 @@ import UndertaleUI from "./Continue";
 import { useDispatch } from "react-redux";
 import { updateScrollElementId } from "../store/reducer";
 
-export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
+export default function AboutSection({
+  setContactInfo,
+  iconMap,
+  skillsData,
+  id = "",
+}) {
   const [personalData, setPersonalData] = useState({
     name: "",
     about: "",
@@ -43,7 +48,7 @@ export default function AboutSection({ setContactInfo, iconMap, skillsData }) {
 
   return (
     <section
-      id="about"
+      id={id}
       className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2"
     >
       <div

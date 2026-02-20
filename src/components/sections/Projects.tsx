@@ -9,7 +9,6 @@ import { Experience, Project, Projects } from "@/types/projects";
 import IconComponent from "../ui/Icon";
 import MobileCarousel from "../ui/undertale/Scroll";
 import IconMap from "@/types/iconMap";
-import { FloatingScrollButton } from "../ui/dev/ScrollButton";
 
 const variants = ["determination", "kindness", "integrity"] as const;
 
@@ -30,9 +29,10 @@ const DEFAULT_EXPERIENCE: Experience = {
 
 interface ProjectsSectionProps {
   iconMap: IconMap;
+  id: string;
 }
 
-export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
+export default function ProjectsSection({ iconMap, id }: ProjectsSectionProps) {
   const [projectsData, setProjectsData] = useState<Projects>({
     experience: [DEFAULT_EXPERIENCE],
   });
@@ -162,7 +162,7 @@ export default function ProjectsSection({ iconMap }: ProjectsSectionProps) {
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      <section className="hidden md:flex gap-6" id="projects">
+      <section className="hidden md:flex gap-6" id={id}>
         <Timeline
           items={timelineItems}
           className="w-2/5 max-h-[65vh] overflow-y-auto pr-5 custom-scroll"

@@ -101,9 +101,8 @@ export default function Home() {
   const sections = [
     {
       id: "about",
-      label: "About Me",
-      title: "",
-
+      label: "home",
+      // title: "About Me",
       content: (
         <AboutSection
           setContactInfo={setContactInfo}
@@ -114,25 +113,25 @@ export default function Home() {
     },
     {
       id: "projects",
-      label: "Stuff I Built",
+      label: "projects",
       title: "Stuff I Built",
-
-      content: <ProjectsSection iconMap={iconMap} />,
+      content: <ProjectsSection id="projects" iconMap={iconMap} />,
     },
     {
       id: "skills",
-      label: "Dev Arsenal",
+      label: "skills",
       title: "Dev Arsenal",
-
-      content: <SkillsTable iconMap={iconMap} skillsData={skillsData} />,
+      content: (
+        <SkillsTable id="skills" iconMap={iconMap} skillsData={skillsData} />
+      ),
     },
     {
       id: "services",
-      label: "Rent A Dev",
+      label: "services",
       title: "Rent A Dev",
-
       content: (
         <ServicesSection
+          id="services"
           setActiveTab={setActiveTab}
           setWorkType={setWorkType}
           iconMap={iconMap.services}
@@ -141,11 +140,12 @@ export default function Home() {
     },
     {
       id: "contact",
-      label: "Find Me Here",
+      label: "connect",
       title: "Find Me Here",
 
       content: (
         <ContactSection
+          id="contact"
           contactInfo={contactInfo}
           iconConfig={iconMap.contact}
           workType={workType}
@@ -154,39 +154,21 @@ export default function Home() {
     },
     {
       id: "blogs",
-      label: "Rant Journal",
+      label: "blogs",
       title: "Rant Journal",
-
-      content: <BlogsSection />,
+      content: <BlogsSection id="blogs" />,
     },
   ];
 
   return (
     <div>
-      <Header profileImage="/profilePhoto.jpg" name="Aishwarya B R" />
+      <Header
+        profileImage="/profilePhoto.jpg"
+        name="Aishwarya B R"
+        navItems={sections.map(({ id, label }) => ({ id, label }))}
+      />
 
-      {/* <ExperienceSection
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        tabs={[
-          {
-            id: "about",
-            label: "About Me",
-            content: (
-              <AboutSection
-                iconMap={iconMap.skills}
-                setContactInfo={setContactInfo}
-                skillsData={skillsData}
-              />
-            ),
-            className: "sm:hidden",
-          },
-          {
-            id: "projects",
-            label: "Stuff I Built",
-            content: <ProjectsSection iconMap={iconMap} />,
-          },
-        
+      {/* 
 
           // {
           //   id:'architecture-diagrams',
@@ -230,14 +212,16 @@ export default function Home() {
           //       </div>
           //     ),
           //   },
-        ]}
-        defaultActiveTab="projects"
-        className="mt-[10vh] md:mt-[2vh] lg:mt-[2vh]"
+ 
       /> */}
       <FloatingCubes />
       <div className="hidden md:block">
         {sections.map((section) => (
-          <Container key={"section-" + section.id} title={section.title}>
+          <Container
+            key={"section-" + section.id}
+            id={"section-" + section.id}
+            title={section.title}
+          >
             {section.content}
           </Container>
         ))}

@@ -2,59 +2,40 @@
 import { scrollToElement } from "@/lib/utils";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-
+interface NavItem {
+  id: string;
+  label: string;
+}
 interface HeaderProps {
   profileImage: string;
-
   name?: string;
   className?: string;
+  navItems: NavItem[];
 }
 
 const Header = ({
   profileImage = "/profilePhoto.jpg",
-
   name = "Elias",
   className = "",
+  navItems = [{ id: "", label: "" }],
 }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("about");
+  const [activeSection, setActiveSection] = useState("section-about");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["about", "projects", "skills", "services", "contact"];
-      const currentSection = sections.find((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 100);
-
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
+      setIsScrolled(window.scrollY > 100);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleNavClick = (sectionId: string) => {
+    const scrollToSection = "section-" + sectionId;
     setActiveSection(sectionId);
-    scrollToElement(sectionId, 180);
+    scrollToElement(scrollToSection, 100);
   };
-
-  const navItems = [
-    { id: "about", label: "home" },
-    { id: "projects", label: "projects" },
-    { id: "skills", label: "skills" },
-    { id: "services", label: "services" },
-    { id: "contact", label: "connect" },
-    { id: "blogs", label: "blogs" },
-  ];
 
   return (
     <header
@@ -108,10 +89,10 @@ const Header = ({
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
                 className={`
-                  text-base font-medium transition-colors duration-200
+                  text-base font-medium transition-colors duration-200 cursor-pointer
                   ${
                     activeSection === item.id
-                      ? "text-white"
+                      ? "text-white font-extrabold"
                       : "text-[#ABB2BF] hover:text-white"
                   }
                 `}

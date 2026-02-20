@@ -15,12 +15,14 @@ interface ServiceSectionProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
   setWorkType: React.Dispatch<React.SetStateAction<string>>;
   iconMap: IconConfig[];
+  id: string;
 }
 
 export default function ServicesSection({
   setActiveTab,
   setWorkType,
   iconMap,
+  id,
 }: ServiceSectionProps) {
   const [servicesOptions, setServicesOptions] = useState<Service[]>([
     {
@@ -59,7 +61,7 @@ export default function ServicesSection({
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      <section className="hidden md:flex gap-6" id="services">
+      <section className="hidden md:flex gap-6" id={id}>
         <VerticalTabs
           tabs={servicesOptions.map((service) => {
             return {

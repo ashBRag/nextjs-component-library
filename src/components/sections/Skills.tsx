@@ -102,11 +102,11 @@ const YearsBadge = ({ years }: { years: number }) => {
 };
 
 // Main Component
-const PortfolioSkillsTable = ({ skillsData, iconMap }) => {
+const PortfolioSkillsTable = ({ skillsData, iconMap, id = "" }) => {
   const { getLevelStars, getStarsColor } = useSkillsLogic();
 
   return (
-    <div className="relative z-10" id="skills">
+    <div className="relative z-10" id={id}>
       {/* Header */}
 
       <p className="mb-6 text-[#ABB2BF] text-sm  text-center">

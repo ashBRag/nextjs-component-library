@@ -5,7 +5,7 @@ import VerticalTabs from "../ui/dev/VerticalTabs";
 import Card from "../ui/dev/Card";
 import { Blog, BlogType } from "@/types/blogs";
 
-export default function BlogsSection() {
+export default function BlogsSection({ id = "" }) {
   const [blogsOptions, setBlogsOptions] = useState<
     Partial<Record<BlogType, Blog[]>>
   >({
@@ -50,7 +50,7 @@ export default function BlogsSection() {
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      <section className="hidden md:flex gap-6" id="blogs">
+      <section className="hidden md:flex gap-6" id={id}>
         <VerticalTabs
           tabs={blogTypesOptions.map((type, index) => {
             return {
@@ -58,21 +58,21 @@ export default function BlogsSection() {
               name: type.label,
               content: (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {blogsOptions[type.type].map((blog) => (
+                  {blogsOptions[type.type].map((blog, index) => (
                     <Card
                       title={blog.title}
                       clickable
                       onClick={() => {
                         window.open(blog.url, "_blank");
                       }}
-                      key={blog.title}
+                      key={`${type.type}-${index}`}
                       coverImage={blog.imageUrl}
                       coverImageHeight={300}
                       className="w-300 h-[60vh]"
                       content={
                         <div>
                           {blog.tags.map((tag) => (
-                            <span>#{tag} </span>
+                            <span key={tag}>#{tag} </span>
                           ))}
                         </div>
                       }

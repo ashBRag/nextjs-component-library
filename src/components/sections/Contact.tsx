@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { LuCalendar, LuSend, LuRotateCcw } from "react-icons/lu";
+import { LuSend, LuRotateCcw } from "react-icons/lu";
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
 import {
@@ -27,28 +27,12 @@ interface ContactProps {
   contactInfo: Contact;
   workType?: string;
   iconConfig?: IconConfig[];
+  id: string;
 }
 
 const IconComponent = (icon = "") => {
   const Icon = SiIcons[icon] || FaIcons[icon];
   return Icon;
-};
-
-const getIconColor = (platform: string = "default") => {
-  const colors = {
-    gmail: "text-red-500",
-    phone: "text-green-500",
-    whatsapp: "text-green-600",
-    discord: "text-indigo-500",
-    linkedin: "text-blue-500",
-    peerlist: "text-emerald-500",
-    github: "text-gray-300",
-    gitlab: "text-orange-500",
-    hackerrank: "text-green-600",
-    leetcode: "text-yellow-500",
-    default: "text-gray-400",
-  };
-  return colors[platform.toLowerCase()];
 };
 
 const useContactForm = () => {
@@ -268,6 +252,7 @@ const ContactForm: React.FC<ContactProps> = ({
   contactInfo,
   workType = "",
   iconConfig,
+  id,
 }) => {
   const {
     formData,
@@ -311,7 +296,7 @@ const ContactForm: React.FC<ContactProps> = ({
   return (
     <>
       <div
-        id="contact"
+        id={id}
         className="flex flex-col sm:flex-col md:flex-row lg:flex-row justify-between md:p-0 lg:p-0"
       >
         <div className="md:mr-10 mb-10 sm:mb-10 md:mb-0 lg:mb-0 md:w-1/2 lg:w-4/5 flex flex-col gap-2">
@@ -362,7 +347,7 @@ const ContactForm: React.FC<ContactProps> = ({
                 return (
                   <ContactLinkButton
                     key={contact.id}
-                    text={icon?.name}
+                    text={icon?.name || ""}
                     href={contact.url}
                     icon={IconComponent(icon?.icon)}
                     className="h-10"
@@ -390,7 +375,7 @@ const ContactForm: React.FC<ContactProps> = ({
                 return (
                   <ContactLinkButton
                     key={contact.id}
-                    text={icon?.name}
+                    text={icon?.name || ""}
                     href={contact.url}
                     icon={IconComponent(icon?.icon)}
                     className="h-10"
@@ -418,7 +403,7 @@ const ContactForm: React.FC<ContactProps> = ({
                 return (
                   <ContactLinkButton
                     key={contact.id}
-                    text={icon?.name}
+                    text={icon?.name || ""}
                     href={contact.url}
                     icon={IconComponent(icon?.icon)}
                     className="h-10"

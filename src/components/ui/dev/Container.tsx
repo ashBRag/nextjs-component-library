@@ -6,12 +6,14 @@ interface PortfolioContainerProps {
   children: React.ReactNode;
   className?: string;
   contentHeight?: string | number;
+  id: string;
 }
 
 export default function PortfolioContainer({
   title,
   children,
   className = "",
+  id = "",
   contentHeight = "auto",
 }: PortfolioContainerProps) {
   const getContentHeight = () => {
@@ -23,7 +25,7 @@ export default function PortfolioContainer({
 
   return (
     <ScreenCenterWrapper>
-      <div className={`m-[5vw] w-full ${className}`}>
+      <div className={`m-[5vw] w-full ${className}`} id={id}>
         {/* Header with title centered and dividers on both sides */}
         {title && (
           <div className="flex items-center gap-4 mb-6">
