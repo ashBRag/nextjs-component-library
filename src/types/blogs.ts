@@ -1,19 +1,24 @@
-export interface Blog {
-  title: string;
-  source: string;
-  url: string;
-  description: string;
-  image: string;
-  createdAt: Date;
-  tags: string[];
-  type: string;
-}
-export interface BlogTypes {
-  label: string;
-  type: string;
+export enum BlogType {
+  CleanCode = "clean-code",
+  Architecture = "architecture",
 }
 
-export interface Blogs {
-  blogs: Blog[];
-  types: BlogTypes[];
+export interface BlogTypeItem {
+  type: BlogType;
+  label: string;
+}
+
+export interface Blog {
+  title: string;
+  description: string;
+  url: string;
+  alt: string;
+  imageUrl: string;
+  createdAt: string;
+  tags: string[];
+}
+
+export interface BlogData {
+  types: BlogTypeItem[];
+  blogs: Partial<Record<BlogType, Blog[]>>;
 }

@@ -15,35 +15,16 @@ export interface Availability {
 }
 
 export interface Contact {
-  gmail: string;
   location: string;
   timezone: string;
   preferredContact: string;
-  availability: CalendarAvailability;
-  messaging: Messaging;
-  social: Social;
-  code: Code;
+  messaging: ContactType[];
+  social: ContactType[];
+  code: ContactType[];
+  blog: ContactType[];
 }
 
-export interface CalendarAvailability {
-  calendar: string;
-  meetingTypes: string[];
-}
-
-export interface Messaging {
-  phone: string;
-  whatsapp: string;
-  discord: string;
-}
-
-export interface Social {
-  linkedin: string;
-  peerlist: string;
-}
-
-export interface Code {
-  github: string;
-  gitlab: string;
-  hackerrank: string;
-  leetcode: string;
+export interface ContactType {
+  id: string;
+  url: string;
 }

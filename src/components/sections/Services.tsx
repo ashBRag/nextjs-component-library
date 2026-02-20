@@ -69,7 +69,7 @@ export default function ServicesSection({
                   <Card
                     title={service.name}
                     description={service.description}
-                    className="w-1/2"
+                    className="w-1/2 h-[70vh]"
                   >
                     <ul>
                       {service.features.map((feature, index) => (

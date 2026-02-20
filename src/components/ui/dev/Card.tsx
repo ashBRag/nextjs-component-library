@@ -1,8 +1,9 @@
 import React from "react";
+import Image from "next/image";
 
 interface PortfolioCardProps {
   id?: string;
-  title: string;
+  title: string | React.ReactNode;
   subtitle?: string;
   description?: string;
   content?: React.ReactNode;
@@ -15,6 +16,14 @@ interface PortfolioCardProps {
   showBorder?: boolean;
   showCorners?: boolean;
   children?: React.ReactNode;
+  /** Cover image src — renders above title when provided */
+  coverImage?: string;
+  /** Alt text for cover image */
+  coverImageAlt?: string;
+  /** Height of the cover image in px. Defaults to 200 */
+  coverImageHeight?: number;
+  clickable?: boolean;
+  onClick?: () => void;
 }
 
 export default function Card({
@@ -32,6 +41,11 @@ export default function Card({
   showBorder = true,
   showCorners = true,
   children,
+  coverImage,
+  coverImageAlt = "",
+  coverImageHeight = 200,
+  clickable = false,
+  onClick,
 }: PortfolioCardProps) {
   const getSizeStyles = () => {
     const sizes = {
@@ -61,16 +75,22 @@ export default function Card({
     return "border border-[#ABB2BF]/30";
   };
 
+  const handleClick = () => {
+    if (clickable && onClick) {
+      onClick();
+    }
+  };
+
   return (
     <div className={`relative w-full ${className}`} id={id}>
       {/* Corner brackets */}
       {showCorners && (
         <>
-          <div className="absolute -top-2 -left-2 w-6 h-6">
+          <div className="absolute -top-2 -left-2 w-6 h-6 z-10">
             <div className="w-full h-0.5 bg-[#ABB2BF]"></div>
             <div className="w-0.5 h-6 bg-[#ABB2BF]"></div>
           </div>
-          <div className="absolute -bottom-2 -right-2 w-6 h-6">
+          <div className="absolute -bottom-2 -right-2 w-6 h-6 z-10">
             <div className="absolute bottom-0 right-0 w-full h-0.5 bg-[#ABB2BF]"></div>
             <div className="absolute bottom-0 right-0 w-0.5 h-6 bg-[#ABB2BF]"></div>
           </div>
@@ -80,53 +100,67 @@ export default function Card({
       {/* Main card */}
       <div
         className={`
-          relative   w-full
+          relative w-full h-full overflow-hidden 
           ${getBorderStyles()}
-          ${getSizeStyles()}
           ${getAnimationStyles()}
           ${className}
+          ${
+            clickable
+              ? "cursor-pointer hover:border-[#C778DD]/50 hover:text-white hover:/50"
+              : ""
+          }
         `}
+        onClick={handleClick}
       >
-        {/* Title */}
-        <h3
-          className={`
-            font-medium mb-2
-            ${getTitleSizeStyles()}
-            ${titleClassName}
-          `}
-        >
-          {title}
-        </h3>
-
-        {/* Subtitle */}
-        {subtitle && (
-          <h4
-            className={`
-              text-base mb-4 text-[#C778DD]
-              ${subtitleClassName}
-            `}
-          >
-            {subtitle}
-          </h4>
+        {/* Cover image */}
+        {coverImage && (
+          <Image
+            src={coverImage}
+            alt={coverImageAlt}
+            width={coverImageHeight}
+            height={coverImageHeight}
+            className="object-cover"
+            style={{ width: "100%", height: "25vh" }}
+          />
         )}
 
-        {/* Description */}
-        {description && (
-          <p
-            className={`
-              text-[#ABB2BF] leading-relaxed mb-4
-              ${descriptionClassName}
-            `}
-          >
-            {description}
-          </p>
-        )}
+        {/* Text content */}
+        <div className={getSizeStyles()}>
+          {/* Title */}
+          {typeof title === "string" ? (
+            <h3
+              className={`font-medium mb-2 ${getTitleSizeStyles()} ${titleClassName}`}
+            >
+              {title}
+            </h3>
+          ) : (
+            title
+          )}
 
-        {/* Content */}
-        {content && <div className="text-[#ABB2BF] mb-4">{content}</div>}
+          {/* Subtitle */}
+          {subtitle && (
+            <h4
+              className={`text-base mb-4 text-[#C778DD] ${subtitleClassName}`}
+            >
+              {subtitle}
+            </h4>
+          )}
 
-        {/* Children */}
-        {children && <div className="text-[#ABB2BF]">{children}</div>}
+          {/* Description */}
+          {description && (
+            <p
+              className={`text-[#ABB2BF] leading-relaxed mb-4 ${descriptionClassName}`}
+            >
+              {description}
+            </p>
+          )}
+
+          {/* Content */}
+          {content && <div className="text-[#ABB2BF] mb-4">{content}</div>}
+
+          {/* Children */}
+          {children && <div className="text-[#ABB2BF]">{children}</div>}
+        </div>
       </div>
     </div>
   );

@@ -285,7 +285,7 @@ export async function POST(request: NextRequest) {
     const contactInfo: ContactInfo = {
       email: "aishwarya.br.dev@gmail.com",
       whatsapp: "https://wa.me/+916301706765",
-      linkedin: "https://linkedin.com/in/aishwaryab-r-a9693457",
+      linkedin: "https://linkedin.com/in/aishwarya-raghavan-a9693457",
       discord: "https://discord.com/users/your-discord-id",
       portfolio: "https://your-portfolio.com",
       github: "https://github.com/your-github",

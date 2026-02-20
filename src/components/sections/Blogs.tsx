@@ -3,32 +3,24 @@ import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
 import VerticalTabs from "../ui/dev/VerticalTabs";
 import Card from "../ui/dev/Card";
-// import { capitalizeFirstLetter } from "@/lib/utils";
-// import MobileCarousel from "../ui/undertale/Scroll";
-import { Blog, BlogTypes } from "@/types/blogs";
-// import IconComponent from "../ui/Icon";
-import { IconConfig } from "@/types/iconMap";
-import Image from "next/image";
-
-interface BlogSectionProps {
-  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
-  setWorkType: React.Dispatch<React.SetStateAction<string>>;
-  iconMap: IconConfig[];
-}
+import { Blog, BlogType } from "@/types/blogs";
 
 export default function BlogsSection() {
-  const [blogsOptions, setBlogsOptions] = useState<Blog[]>([
-    {
-      source: "",
-      type: "",
-      title: "",
-      url: "",
-      description: "",
-      image: "",
-      createdAt: new Date(),
-      tags: [""],
-    },
-  ]);
+  const [blogsOptions, setBlogsOptions] = useState<
+    Partial<Record<BlogType, Blog[]>>
+  >({
+    "clean-code": [
+      {
+        title: "",
+        description: "",
+        url: "",
+        alt: "",
+        imageUrl: "",
+        createdAt: "",
+        tags: [""],
+      },
+    ],
+  });
   const [loading, setLoading] = useState(true);
   const [blogTypesOptions, setBlogTypesOptions] = useState<BlogTypes[]>([
     {
@@ -58,38 +50,40 @@ export default function BlogsSection() {
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      {/* <section className="hidden md:flex gap-6" id="blogs">
+      <section className="hidden md:flex gap-6" id="blogs">
         <VerticalTabs
           tabs={blogTypesOptions.map((type, index) => {
             return {
               id: "blog" + index,
               name: type.label,
               content: (
-                <div className="flex flex-row">
-                  {blogsOptions
-                    .filter((blog) => blog.type === type.type)
-                    .map((blog) => (
-                      <Card
-                        title={blog.title}
-                        description={blog.description}
-                        className="w-1/2"
-                        key={blog.title}
-                      >
-                        <Image
-                          src={blog.image}
-                          alt="Profile"
-                          width={40}
-                          height={40}
-                          className="w-10 h-10 rounded-full object-cover border-2 border-[#C778DD]"
-                        />
-                      </Card>
-                    ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {blogsOptions[type.type].map((blog) => (
+                    <Card
+                      title={blog.title}
+                      clickable
+                      onClick={() => {
+                        window.open(blog.url, "_blank");
+                      }}
+                      key={blog.title}
+                      coverImage={blog.imageUrl}
+                      coverImageHeight={300}
+                      className="w-300 h-[60vh]"
+                      content={
+                        <div>
+                          {blog.tags.map((tag) => (
+                            <span>#{tag} </span>
+                          ))}
+                        </div>
+                      }
+                    ></Card>
+                  ))}
                 </div>
               ),
             };
           })}
         />
-      </section> */}
+      </section>
 
       {/* Mobile Layout: Carousel (sm and below) */}
       {/* <section className="md:hidden">

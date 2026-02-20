@@ -25,29 +25,13 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("about");
   const [showLoader, setShowloader] = useState(true);
   const [contactInfo, setContactInfo] = useState<Contact>({
-    gmail: "",
     location: "",
     timezone: "",
     preferredContact: "",
-    availability: {
-      calendar: "",
-      meetingTypes: [""],
-    },
-    messaging: {
-      phone: "",
-      whatsapp: "",
-      discord: "",
-    },
-    social: {
-      linkedin: "",
-      peerlist: "",
-    },
-    code: {
-      github: "",
-      gitlab: "",
-      hackerrank: "",
-      leetcode: "",
-    },
+    messaging: [{ id: "", url: "" }],
+    social: [{ id: "", url: "" }],
+    code: [{ id: "", url: "" }],
+    blog: [{ id: "", url: "" }],
   });
 
   const [workType, setWorkType] = useState("");
@@ -163,7 +147,7 @@ export default function Home() {
       content: (
         <ContactSection
           contactInfo={contactInfo}
-          iconMap={iconMap}
+          iconConfig={iconMap.contact}
           workType={workType}
         />
       ),

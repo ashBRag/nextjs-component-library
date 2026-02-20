@@ -11,8 +11,7 @@ import {
 import UndertaleCard from "../ui/dev/Card";
 import { ContactLinkButton } from "../ui/dev/Button";
 import { Contact } from "@/types/personal";
-import { useCalendly } from "../forms/calendly/useCalendly";
-import IconMap from "@/types/iconMap";
+import { IconConfig } from "@/types/iconMap";
 import { useToast } from "../ui/dev/Toast";
 import { ApiError, submitContactForm } from "@/lib/api";
 
@@ -27,20 +26,11 @@ interface FormData {
 interface ContactProps {
   contactInfo: Contact;
   workType?: string;
-  iconMap?: IconMap;
-}
-
-function capitalizeFirstLetter(str = "") {
-  if (str.length === 0) {
-    return ""; // Handle empty strings
-  }
-  return str.charAt(0).toUpperCase() + str.slice(1)?.toLowerCase();
+  iconConfig?: IconConfig[];
 }
 
 const IconComponent = (icon = "") => {
-  const Icon =
-    SiIcons["Si" + capitalizeFirstLetter(icon)] ||
-    FaIcons["Fa" + capitalizeFirstLetter(icon)];
+  const Icon = SiIcons[icon] || FaIcons[icon];
   return Icon;
 };
 
@@ -61,7 +51,7 @@ const getIconColor = (platform: string = "default") => {
   return colors[platform.toLowerCase()];
 };
 
-const useContactForm = ({ calendlyUrl = "" }) => {
+const useContactForm = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -261,20 +251,6 @@ const useContactForm = ({ calendlyUrl = "" }) => {
     info("Form has been reset");
   };
 
-  const getCalendlyUrl = () => {
-    const url = new URL(calendlyUrl);
-    url.searchParams.set("hide_event_type_details", "1");
-    url.searchParams.set("hide_gdpr_banner", "1");
-
-    // Pre-fill Calendly
-    if (formData.name) url.searchParams.set("name", formData.name);
-    if (formData.email) url.searchParams.set("email", formData.email);
-    if (formData.projectDesc) url.searchParams.set("a1", formData.projectDesc);
-    if (formData.timeline) url.searchParams.set("a2", formData.timeline);
-
-    return url.toString();
-  };
-
   return {
     formData,
     errors,
@@ -284,14 +260,14 @@ const useContactForm = ({ calendlyUrl = "" }) => {
     submitForm,
     resetForm,
     canBookMeeting,
-    getCalendlyUrl,
     ToastContainer, // Export ToastContainer
   };
 };
 
-const UndertaleContactForm: React.FC<ContactProps> = ({
+const ContactForm: React.FC<ContactProps> = ({
   contactInfo,
   workType = "",
+  iconConfig,
 }) => {
   const {
     formData,
@@ -301,11 +277,8 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
     submitForm,
     resetForm,
     canBookMeeting,
-    getCalendlyUrl,
     ToastContainer, // Get ToastContainer from hook
-  } = useContactForm({ calendlyUrl: contactInfo.availability.calendar });
-
-  const { isLoaded } = useCalendly();
+  } = useContactForm();
 
   const workTypeOptions = [
     {
@@ -325,19 +298,15 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
     },
   ];
 
-  const bookMeeting = () => {
-    if (isLoaded && window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: getCalendlyUrl(),
-      });
-    }
-  };
-
   useEffect(() => {
     if (workType) {
       updateField("workType", workType);
     }
   }, [workType]);
+
+  const getIconConfig = (platform = "") => {
+    return iconConfig?.find((config) => config.id === platform);
+  };
 
   return (
     <>
@@ -345,9 +314,9 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
         id="contact"
         className="flex flex-col sm:flex-col md:flex-row lg:flex-row justify-between md:p-0 lg:p-0"
       >
-        <div className="md:mr-10 mb-10 sm:mb-10 md:mb-0 lg:mb-0 md:w-1/2 lg:w-3/5 flex flex-col justify-between">
+        <div className="md:mr-10 mb-10 sm:mb-10 md:mb-0 lg:mb-0 md:w-1/2 lg:w-4/5 flex flex-col gap-2">
           {/* Message Section */}
-          <div className="relative p-5 bg-black/20 border-1 border-current/30 mb-4">
+          <div className="relative p-5 bg-black/20 border-1 border-current/30">
             {/* Portfolio-style corner decorations */}
             <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
             <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
@@ -356,31 +325,26 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
 
             <p className="mb-3 text-[#C778DD]  font-bold">Interrupt Me On</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
-              <ContactLinkButton
-                key="gmail"
-                text="Gmail"
-                href={contactInfo?.gmail || ""}
-                icon={IconComponent("gmail")}
-                className="h-10"
-                iconColor="text-red-500"
-              />
-              {Object.entries(contactInfo?.messaging || {}).map(
-                ([platform, link]) => (
+              {contactInfo.messaging.map((contact) => {
+                let icon = iconConfig?.find(
+                  (config) => config.id === contact.id
+                ) || { name: "", icon: "", color: "" };
+                return (
                   <ContactLinkButton
-                    key={platform}
-                    text={capitalizeFirstLetter(platform)}
-                    href={link}
-                    icon={IconComponent(platform)}
+                    key={contact.id}
+                    text={icon.name}
+                    href={contact.url}
+                    icon={IconComponent(icon?.icon)}
                     className="h-10"
-                    iconColor={getIconColor(platform)}
+                    iconColor={icon?.color}
                   />
-                )
-              )}
+                );
+              })}
             </div>
           </div>
 
           {/* Social Section */}
-          <div className="relative p-5 bg-black/20 border-1 border-current/30 mb-4">
+          <div className="relative p-5 bg-black/20 border-1 border-current/30">
             {/* Portfolio-style corner decorations */}
             <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
             <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
@@ -391,18 +355,21 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
               Professional Stalking
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
-              {Object.entries(contactInfo?.social || {}).map(
-                ([platform, link]) => (
+              {contactInfo.social.map((contact) => {
+                let icon = iconConfig?.find(
+                  (config) => config.id === contact.id
+                );
+                return (
                   <ContactLinkButton
-                    key={platform}
-                    text={capitalizeFirstLetter(platform)}
-                    href={link}
-                    icon={IconComponent(platform)}
+                    key={contact.id}
+                    text={icon?.name}
+                    href={contact.url}
+                    icon={IconComponent(icon?.icon)}
                     className="h-10"
-                    iconColor={getIconColor(platform)}
+                    iconColor={icon?.color}
                   />
-                )
-              )}
+                );
+              })}
             </div>
           </div>
 
@@ -416,48 +383,68 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
 
             <p className="mb-3 text-[#C778DD]  font-bold">My Code Laboratory</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
-              {Object.entries(contactInfo?.code || {}).map(
-                ([platform, link]) => (
+              {contactInfo.code.map((contact) => {
+                let icon = iconConfig?.find(
+                  (config) => config.id === contact.id
+                );
+                return (
                   <ContactLinkButton
-                    key={platform}
-                    text={capitalizeFirstLetter(platform)}
-                    href={link}
-                    icon={IconComponent(platform)}
+                    key={contact.id}
+                    text={icon?.name}
+                    href={contact.url}
+                    icon={IconComponent(icon?.icon)}
                     className="h-10"
-                    iconColor={getIconColor(platform)}
+                    iconColor={icon?.color}
                   />
-                )
-              )}
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Blog Section */}
+          <div className="relative p-5 bg-black/20 border-1 border-current/30">
+            {/* Portfolio-style corner decorations */}
+            <div className="absolute top-2 left-2 w-2 h-2 border-l-2 border-t-2 border-current opacity-30"></div>
+            <div className="absolute top-2 right-2 w-2 h-2 border-r-2 border-t-2 border-current opacity-30"></div>
+            <div className="absolute bottom-2 left-2 w-2 h-2 border-l-2 border-b-2 border-current opacity-30"></div>
+            <div className="absolute bottom-2 right-2 w-2 h-2 border-r-2 border-b-2 border-current opacity-30"></div>
+
+            <p className="mb-3 text-[#C778DD]  font-bold">My Thoughts Cloud</p>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+              {contactInfo.blog.map((contact) => {
+                let icon = iconConfig?.find(
+                  (config) => config.id === contact.id
+                );
+                return (
+                  <ContactLinkButton
+                    key={contact.id}
+                    text={icon?.name}
+                    href={contact.url}
+                    icon={IconComponent(icon?.icon)}
+                    className="h-10"
+                    iconColor={icon?.color}
+                  />
+                );
+              })}
             </div>
           </div>
         </div>
 
         <UndertaleCard
+          className="w-1/2"
           title="Skip the vibe code, let's build it right"
           titleClassName="text-[#C778DD] mb-5"
           description=""
-          className="h-fit"
         >
           <div className="space-y-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-              <PortfolioTextField
-                label="What's your name, human?"
-                value={formData.name}
-                onChange={(value: string) => updateField("name", value)}
-                error={errors.name}
-                placeholder="Enter your name..."
-                className="text-sm"
-              />
-              <PortfolioSelect
-                label="What kind of work do you need?"
-                options={workTypeOptions}
-                value={formData.workType}
-                onChange={(value: string) => updateField("workType", value)}
-                error={errors.workType}
-                className="text-sm"
-              />
-            </div>
-
+            <PortfolioTextField
+              label="What's your name, human?"
+              value={formData.name}
+              onChange={(value: string) => updateField("name", value)}
+              error={errors.name}
+              placeholder="Enter your name..."
+              className="text-sm"
+            />
             {/* Email Field */}
             <PortfolioTextField
               label="Your email address?"
@@ -466,6 +453,14 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
               onChange={(value: string) => updateField("email", value)}
               error={errors.email}
               placeholder="your.email@domain.com"
+              className="text-sm"
+            />
+            <PortfolioSelect
+              label="What kind of work do you need?"
+              options={workTypeOptions}
+              value={formData.workType}
+              onChange={(value: string) => updateField("workType", value)}
+              error={errors.workType}
               className="text-sm"
             />
 
@@ -477,7 +472,7 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
                 onChange={(value: string) => updateField("projectDesc", value)}
                 error={errors.projectDesc}
                 placeholder="Describe your project, requirements, budget, and any other details..."
-                rows={4}
+                rows={3}
                 className="text-sm"
               />
               <div className="flex justify-end mt-1">
@@ -495,16 +490,6 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
 
             {/* Action Buttons */}
             <div className="flex gap-3 pt-2">
-              {/* <PortfolioButton
-                onClick={bookMeeting}
-                disabled={!canBookMeeting()}
-                variant="subtle-secondary"
-                size="small"
-                className="flex-1 px-4 py-2"
-              >
-                <LuCalendar size={16} />
-                <span className="text-sm">BOOK MEETING</span>
-              </PortfolioButton> */}
               <PortfolioButton
                 onClick={submitForm}
                 disabled={!canBookMeeting() || isSubmitting}
@@ -548,4 +533,4 @@ const UndertaleContactForm: React.FC<ContactProps> = ({
   );
 };
 
-export default UndertaleContactForm;
+export default ContactForm;

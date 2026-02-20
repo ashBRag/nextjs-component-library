@@ -177,17 +177,19 @@ export function ContactLinkButton({
         ${className}
       `}
     >
-      <Icon
-        className={`${iconColor} group-hover:text-[#C778DD] transition-colors flex-shrink-0`}
-        size={getIconSize()}
-      />
+      {Icon && (
+        <Icon
+          className={`${iconColor} group-hover:text-[#C778DD] transition-colors flex-shrink-0`}
+          size={getIconSize()}
+        />
+      )}
       <span className="flex-1 text-left">{text}</span>
-      {showExternalIcon && href && (
+      {/* {showExternalIcon && href && (
         <LuExternalLink
           className="text-[#ABB2BF] group-hover:text-[#C778DD] transition-colors"
           size={getIconSize() * 0.8}
         />
-      )}
+      )} */}
     </Component>
   );
 }
