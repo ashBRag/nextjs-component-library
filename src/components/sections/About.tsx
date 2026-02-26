@@ -2,22 +2,15 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
-
 import Image from "next/image";
 import Typewriter from "typewriter-effect";
 import Card from "../ui/dev/Card";
 import { AnimatedSkillsGrid } from "../ui/undertale/Rotation";
 import { DownloadResumeButton } from "../ui/dev/Button";
-import UndertaleUI from "./Continue";
 import { useDispatch } from "react-redux";
 import { updateScrollElementId } from "../store/reducer";
 
-export default function AboutSection({
-  setContactInfo,
-  iconMap,
-  skillsData,
-  id = "",
-}) {
+export default function AboutSection({ setContactInfo, skillsData }) {
   const [personalData, setPersonalData] = useState({
     name: "",
     about: "",
@@ -47,10 +40,7 @@ export default function AboutSection({
   }, []);
 
   return (
-    <section
-      id={id}
-      className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2"
-    >
+    <section className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2">
       <div
         className="hidden lg:flex lg:flex-col mr-10 slide-left"
         id="profile-image"
@@ -86,7 +76,6 @@ export default function AboutSection({
                   "A Tech Consultant",
                   "A Mentor",
                   "Batman",
-                  "Not Debugging, I Am The Bug",
                   "A Tech Consultant",
                   "A Mentor",
                   "Groot!!",
@@ -96,7 +85,6 @@ export default function AboutSection({
                   "A Tech Consultant",
                   "A Freelancer",
                   "A Full Stack Developer",
-                  "Who? - Yoda",
                   "Your Density, I Mean Destiny",
                 ],
 
@@ -110,7 +98,7 @@ export default function AboutSection({
           <p>{personalData?.about}</p>
 
           <span className="mt-4 mb-4">Nerd Scout Badges</span>
-          <AnimatedSkillsGrid skillsData={skillsData} iconMap={iconMap} />
+          <AnimatedSkillsGrid skillsData={skillsData} />
         </div>
       </Card>
     </section>

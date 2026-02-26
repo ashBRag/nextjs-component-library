@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
 import VerticalTabs from "../ui/dev/VerticalTabs";
 import Card from "../ui/dev/Card";
-import { Blog, BlogType } from "@/types/blogs";
+import { Blog, BlogType, BlogTypeItem } from "@/types/blogs";
 
-export default function BlogsSection({ id = "" }) {
+export default function BlogsSection() {
   const [blogsOptions, setBlogsOptions] = useState<
     Partial<Record<BlogType, Blog[]>>
   >({
@@ -22,9 +22,9 @@ export default function BlogsSection({ id = "" }) {
     ],
   });
   const [loading, setLoading] = useState(true);
-  const [blogTypesOptions, setBlogTypesOptions] = useState<BlogTypes[]>([
+  const [blogTypesOptions, setBlogTypesOptions] = useState<BlogTypeItem[]>([
     {
-      type: "",
+      type: BlogType.CleanCode,
       label: "",
     },
   ]);
@@ -50,7 +50,7 @@ export default function BlogsSection({ id = "" }) {
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      <section className="hidden md:flex gap-6" id={id}>
+      <section className="hidden md:flex gap-6">
         <VerticalTabs
           tabs={blogTypesOptions.map((type, index) => {
             return {
@@ -58,7 +58,7 @@ export default function BlogsSection({ id = "" }) {
               name: type.label,
               content: (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {blogsOptions[type.type].map((blog, index) => (
+                  {blogsOptions[type.type]?.map((blog, index) => (
                     <Card
                       title={blog.title}
                       clickable

@@ -2,7 +2,6 @@ interface EmailTemplateData {
   name: string;
   workType: string;
   projectDesc: string;
-  hasBookedMeeting?: boolean;
 }
 
 interface ContactInfo {
@@ -17,9 +16,9 @@ interface ContactInfo {
 export function generateContactConfirmationEmail(
   data: EmailTemplateData,
   contactInfo: ContactInfo,
-  calendlyUrl: string,
+  calendlyUrl: string
 ): string {
-  const { name, workType, projectDesc, hasBookedMeeting } = data;
+  const { name, workType, projectDesc } = data;
 
   return `
       <!DOCTYPE html>
@@ -77,29 +76,17 @@ export function generateContactConfirmationEmail(
           ${projectDesc}
         </div>
           
-        ${
-          !hasBookedMeeting
-            ? `
-          <div class="meeting-cta">
-            <p>⚡ Want to fast-track this?</p>
-            <a href="${calendlyUrl}" target="_blank">
-              📅 Book a 30-minute call
-            </a>
-            <p>Let's discuss your project in real-time!</p>
-          </div>
-        `
-            : `
-          <div style="background: #e8f5e8; border: 1px solid #4caf50; padding: 20px; margin: 20px 0; text-align: center;">
-            <p><strong>✅ Meeting already scheduled!</strong></p>
-            <p>Looking forward to our call.</p>
-          </div>
-        `
-        }
+        <div class="meeting-cta">
+          <p>⚡ Want to fast-track this?</p>
+          <a href="${calendlyUrl}" target="_blank">
+            📅 Book a 30-minute call
+          </a>
+          <p>Let's discuss your project in real-time!</p>
+        </div>
   
         <p><strong>📞 In the meantime, feel free to reach out:</strong></p>
         <div class="contact-links">
           <a href="mailto:${contactInfo.email}">📧 Email</a>
-          <a href="${contactInfo.whatsapp}" target="_blank">💬 WhatsApp</a>
           <a href="${contactInfo.linkedin}" target="_blank">💼 LinkedIn</a>
           <a href="${contactInfo.discord}" target="_blank">🎮 Discord</a>
         </div>
@@ -120,9 +107,9 @@ export function generateContactConfirmationEmail(
 }
 
 export function generateInternalNotificationEmail(
-  data: EmailTemplateData,
+  data: EmailTemplateData
 ): string {
-  const { name, workType, projectDesc, hasBookedMeeting } = data;
+  const { name, workType, projectDesc } = data;
 
   return `
       <!DOCTYPE html>
@@ -183,16 +170,7 @@ export function generateInternalNotificationEmail(
             <div class="field-label">💼 Work Type</div>
             <div>${workType}</div>
           </div>
-  
-          <div class="field">
-            <div class="field-label">📅 Meeting Booked</div>
-            <div>
-              <span class="${hasBookedMeeting ? "status status-yes" : "status status-no"}">
-                ${hasBookedMeeting ? "Yes" : "No"}
-              </span>
-            </div>
-          </div>
-  
+   
           <div class="field">
             <div class="field-label">📝 Project Description</div>
             <div style="white-space: pre-wrap;">${projectDesc}</div>

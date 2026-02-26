@@ -1,14 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
-import { IconConfig } from "@/types/iconMap";
+import { useAppSelector } from "@/components/store/hooks";
+
+type IconMapKey = "skills" | "services" | "contact";
 
 interface IconComponentProps {
   name?: string;
   id?: string;
-  iconMap: IconConfig[];
+  section: IconMapKey; // which slice of iconMap to look in
   iconClass?: string;
   divClass?: string;
   show?: boolean;
@@ -17,18 +18,16 @@ interface IconComponentProps {
 export default function IconComponent({
   name,
   id,
-  iconMap,
+  section,
   iconClass = "w-8 h-8",
   divClass = "flex flex-col items-center gap-2",
   show = true,
 }: IconComponentProps) {
+  const iconMap = useAppSelector((state) => state.portfolio.iconMap[section]);
+
   const iconConfig = iconMap.find(
-    (icon) => icon.id === id || icon.name === name,
-  ) || {
-    icon: "",
-    color: "#ffffff",
-    name: "",
-  };
+    (icon) => icon.id === id || icon.name === name
+  ) ?? { icon: "", color: "#ffffff", name: "" };
 
   const IconElement =
     (SiIcons as Record<string, any>)[iconConfig.icon] ||

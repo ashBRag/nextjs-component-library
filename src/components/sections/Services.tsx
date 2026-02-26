@@ -3,27 +3,12 @@ import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
 import VerticalTabs from "../ui/dev/VerticalTabs";
 import Card from "../ui/dev/Card";
-import { PortfolioButton } from "../ui/dev/Form";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import MobileCarousel from "../ui/undertale/Scroll";
 import { Service } from "@/types/services";
 import IconComponent from "../ui/Icon";
-import { IconConfig } from "@/types/iconMap";
-import { FloatingScrollButton } from "../ui/dev/ScrollButton";
 
-interface ServiceSectionProps {
-  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
-  setWorkType: React.Dispatch<React.SetStateAction<string>>;
-  iconMap: IconConfig[];
-  id: string;
-}
-
-export default function ServicesSection({
-  setActiveTab,
-  setWorkType,
-  iconMap,
-  id,
-}: ServiceSectionProps) {
+export default function ServicesSection() {
   const [servicesOptions, setServicesOptions] = useState<Service[]>([
     {
       id: "",
@@ -61,7 +46,7 @@ export default function ServicesSection({
   return (
     <>
       {/* Desktop/Tablet Layout: Timeline + Project Details (md and above) */}
-      <section className="hidden md:flex gap-6" id={id}>
+      <section className="hidden md:flex gap-6">
         <VerticalTabs
           tabs={servicesOptions.map((service) => {
             return {
@@ -81,7 +66,7 @@ export default function ServicesSection({
                         >
                           <IconComponent
                             id={feature.iconId}
-                            iconMap={iconMap}
+                            section="services"
                             iconClass="w-6 h-6 mr-2"
                             divClass="flex"
                           />
@@ -122,7 +107,7 @@ export default function ServicesSection({
                           >
                             <IconComponent
                               id={type.iconId}
-                              iconMap={iconMap}
+                              section="services"
                               iconClass="w-4 h-4 mr-2"
                               divClass="flex"
                             />
@@ -155,7 +140,7 @@ export default function ServicesSection({
                       >
                         <IconComponent
                           id={feature.iconId}
-                          iconMap={iconMap}
+                          section="services"
                           iconClass="w-5 h-5 mr-2"
                           divClass="flex"
                           show={false}

@@ -8,12 +8,6 @@ interface Skill {
   name: string;
 }
 
-interface IconConfig {
-  name: string;
-  icon: string;
-  color: string;
-}
-
 interface SkillsData {
   categories: {
     frontend: { skills: Skill[] };
@@ -24,13 +18,11 @@ interface SkillsData {
 
 interface AnimatedSkillsProps {
   skillsData: SkillsData;
-  iconMap: IconConfig[];
   className?: string;
 }
 
 export function AnimatedSkillsGrid({
   skillsData,
-  iconMap,
   className = "",
 }: AnimatedSkillsProps) {
   const allSkills = [
@@ -51,7 +43,7 @@ export function AnimatedSkillsGrid({
             }}
           >
             <IconComponent
-              iconMap={iconMap}
+              section="skills"
               name={skill.name}
               iconClass="w-8 h-8 drop-shadow-lg transition-transform duration-300 w-10"
               divClass="flex flex-col items-center gap-2 p-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20  transition-all duration-300"

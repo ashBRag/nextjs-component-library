@@ -1,24 +1,5 @@
 import React from "react";
 import IconComponent from "../ui/Icon";
-import { FloatingScrollButton } from "../ui/dev/ScrollButton";
-
-// Types
-interface Skill {
-  name: string;
-  level: string | number;
-  years: number;
-  icon?: string;
-  color?: string;
-}
-
-interface SkillCategory {
-  name: string;
-  skills: Skill[];
-}
-
-interface SkillsData {
-  categories: Record<string, SkillCategory>;
-}
 
 // Logic Hook
 const useSkillsLogic = () => {
@@ -102,11 +83,11 @@ const YearsBadge = ({ years }: { years: number }) => {
 };
 
 // Main Component
-const PortfolioSkillsTable = ({ skillsData, iconMap, id = "" }) => {
+const PortfolioSkillsTable = ({ skillsData }) => {
   const { getLevelStars, getStarsColor } = useSkillsLogic();
 
   return (
-    <div className="relative z-10" id={id}>
+    <div className="relative z-10">
       {/* Header */}
 
       <p className="mb-6 text-[#ABB2BF] text-sm  text-center">
@@ -152,7 +133,7 @@ const PortfolioSkillsTable = ({ skillsData, iconMap, id = "" }) => {
                       {/* Skill Name & Icon */}
                       <div className="col-span-5 flex items-center gap-2">
                         <IconComponent
-                          iconMap={iconMap.skills}
+                          section="skills"
                           name={skill.name}
                           iconClass="w-5 h-5"
                           divClass="flex"

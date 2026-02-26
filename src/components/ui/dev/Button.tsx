@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import { LuExternalLink } from "react-icons/lu";
+import IconComponent from "../Icon";
 
 interface PortfolioButtonProps {
   href?: string;
@@ -112,11 +112,10 @@ export function ContactLinkButton({
   href,
   variant = "outline",
   size = "md",
-  showExternalIcon = true,
   className = "",
   iconColor = "text-[#C778DD]",
 }: {
-  icon: React.ComponentType<any>;
+  icon: any;
   text: string;
   href?: string;
   variant?: "primary" | "secondary" | "outline";
@@ -177,12 +176,13 @@ export function ContactLinkButton({
         ${className}
       `}
     >
-      {Icon && (
-        <Icon
-          className={`${iconColor} group-hover:text-[#C778DD] transition-colors flex-shrink-0`}
-          size={getIconSize()}
-        />
-      )}
+      {/* {Icon && (
+        // <Icon
+        //   className={`${iconColor} group-hover:text-[#C778DD] transition-colors flex-shrink-0`}
+        //   size={getIconSize()}
+        // />
+      )} */}
+      {Icon}
       <span className="flex-1 text-left">{text}</span>
       {/* {showExternalIcon && href && (
         <LuExternalLink

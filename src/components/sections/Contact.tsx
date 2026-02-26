@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { LuSend, LuRotateCcw } from "react-icons/lu";
-import * as SiIcons from "react-icons/si";
-import * as FaIcons from "react-icons/fa";
 import {
   PortfolioTextField,
   PortfolioButton,
@@ -11,9 +9,9 @@ import {
 import UndertaleCard from "../ui/dev/Card";
 import { ContactLinkButton } from "../ui/dev/Button";
 import { Contact } from "@/types/personal";
-import { IconConfig } from "@/types/iconMap";
 import { useToast } from "../ui/dev/Toast";
 import { ApiError, submitContactForm } from "@/lib/api";
+import IconComponent from "../ui/Icon";
 
 interface FormData {
   name: string;
@@ -25,15 +23,8 @@ interface FormData {
 
 interface ContactProps {
   contactInfo: Contact;
-  workType?: string;
-  iconConfig?: IconConfig[];
   id: string;
 }
-
-const IconComponent = (icon = "") => {
-  const Icon = SiIcons[icon] || FaIcons[icon];
-  return Icon;
-};
 
 const useContactForm = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -248,12 +239,7 @@ const useContactForm = () => {
   };
 };
 
-const ContactForm: React.FC<ContactProps> = ({
-  contactInfo,
-  workType = "",
-  iconConfig,
-  id,
-}) => {
+const ContactForm: React.FC<ContactProps> = ({ contactInfo, id }) => {
   const {
     formData,
     errors,
@@ -283,16 +269,6 @@ const ContactForm: React.FC<ContactProps> = ({
     },
   ];
 
-  useEffect(() => {
-    if (workType) {
-      updateField("workType", workType);
-    }
-  }, [workType]);
-
-  const getIconConfig = (platform = "") => {
-    return iconConfig?.find((config) => config.id === platform);
-  };
-
   return (
     <>
       <div
@@ -311,17 +287,13 @@ const ContactForm: React.FC<ContactProps> = ({
             <p className="mb-3 text-[#C778DD]  font-bold">Interrupt Me On</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
               {contactInfo.messaging.map((contact) => {
-                let icon = iconConfig?.find(
-                  (config) => config.id === contact.id
-                ) || { name: "", icon: "", color: "" };
                 return (
                   <ContactLinkButton
                     key={contact.id}
-                    text={icon.name}
+                    text={contact.id}
                     href={contact.url}
-                    icon={IconComponent(icon?.icon)}
+                    icon={<IconComponent id={contact.id} section="contact" />}
                     className="h-10"
-                    iconColor={icon?.color}
                   />
                 );
               })}
@@ -341,17 +313,13 @@ const ContactForm: React.FC<ContactProps> = ({
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
               {contactInfo.social.map((contact) => {
-                let icon = iconConfig?.find(
-                  (config) => config.id === contact.id
-                );
                 return (
                   <ContactLinkButton
                     key={contact.id}
-                    text={icon?.name || ""}
+                    text={contact.id}
                     href={contact.url}
-                    icon={IconComponent(icon?.icon)}
+                    icon={<IconComponent id={contact.id} section="contact" />}
                     className="h-10"
-                    iconColor={icon?.color}
                   />
                 );
               })}
@@ -369,17 +337,13 @@ const ContactForm: React.FC<ContactProps> = ({
             <p className="mb-3 text-[#C778DD]  font-bold">My Code Laboratory</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
               {contactInfo.code.map((contact) => {
-                let icon = iconConfig?.find(
-                  (config) => config.id === contact.id
-                );
                 return (
                   <ContactLinkButton
                     key={contact.id}
-                    text={icon?.name || ""}
+                    text={contact.id}
                     href={contact.url}
-                    icon={IconComponent(icon?.icon)}
+                    icon={<IconComponent id={contact.id} section="contact" />}
                     className="h-10"
-                    iconColor={icon?.color}
                   />
                 );
               })}
@@ -397,17 +361,13 @@ const ContactForm: React.FC<ContactProps> = ({
             <p className="mb-3 text-[#C778DD]  font-bold">My Thoughts Cloud</p>
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
               {contactInfo.blog.map((contact) => {
-                let icon = iconConfig?.find(
-                  (config) => config.id === contact.id
-                );
                 return (
                   <ContactLinkButton
                     key={contact.id}
-                    text={icon?.name || ""}
+                    text={contact.id}
                     href={contact.url}
-                    icon={IconComponent(icon?.icon)}
+                    icon={<IconComponent id={contact.id} section="contact" />}
                     className="h-10"
-                    iconColor={icon?.color}
                   />
                 );
               })}

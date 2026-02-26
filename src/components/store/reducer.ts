@@ -1,30 +1,32 @@
+import { getSectionData } from "@/lib/api";
 import IconMap from "@/types/iconMap";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "";
+
+type FetchStatus = "idle" | "loading" | "success" | "error";
 
 interface InitialState {
   iconMap: IconMap;
+  iconMapStatus: FetchStatus;
   elementId: string;
 }
+
 export const initialState: InitialState = {
   iconMap: {
     contact: [{ id: "", name: "", icon: "", color: "" }],
     skills: [{ id: "", name: "", icon: "", color: "" }],
     services: [{ id: "", name: "", icon: "", color: "" }],
   },
+  iconMapStatus: "idle",
   elementId: "",
 };
 
 export const fetchIconMap = createAsyncThunk(
   "sectionData/fetchIcons",
   async () => {
-    const data = await fetch(`${API_BASE_URL}/api/portfolio?section=iconMap`);
-    if (!data.ok) {
-      throw "Failed to fetch icons";
-    }
+    const data = await getSectionData("iconMap");
+    if (!data.ok) throw new Error("Failed to fetch icons");
     return await data.json();
-  },
+  }
 );
 
 export const portfolioSlice = createSlice({
@@ -36,12 +38,19 @@ export const portfolioSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchIconMap.fulfilled, (state, action) => {
-      state.iconMap = action.payload;
-    });
+    builder
+      .addCase(fetchIconMap.pending, (state) => {
+        state.iconMapStatus = "loading";
+      })
+      .addCase(fetchIconMap.fulfilled, (state, action) => {
+        state.iconMap = action.payload;
+        state.iconMapStatus = "success";
+      })
+      .addCase(fetchIconMap.rejected, (state) => {
+        state.iconMapStatus = "error";
+      });
   },
 });
 
 export const { updateScrollElementId } = portfolioSlice.actions;
-
 export default portfolioSlice.reducer;
