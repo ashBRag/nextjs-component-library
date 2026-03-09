@@ -7,8 +7,6 @@ import Typewriter from "typewriter-effect";
 import Card from "../ui/dev/Card";
 import { AnimatedSkillsGrid } from "../ui/undertale/Rotation";
 import { DownloadResumeButton } from "../ui/dev/Button";
-import { useDispatch } from "react-redux";
-import { updateScrollElementId } from "../store/reducer";
 
 export default function AboutSection({ setContactInfo, skillsData }) {
   const [personalData, setPersonalData] = useState({
@@ -16,8 +14,6 @@ export default function AboutSection({ setContactInfo, skillsData }) {
     about: "",
     profilePhoto: "",
   });
-
-  const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(true);
   // Animate group hook
@@ -28,7 +24,6 @@ export default function AboutSection({ setContactInfo, skillsData }) {
         const personal = await getSectionData("personal");
         setPersonalData(personal);
         setContactInfo(personal.contact);
-        dispatch(updateScrollElementId({ elementId: "projects" }));
       } catch (error) {
         console.error("Failed to fetch data:", error);
       } finally {

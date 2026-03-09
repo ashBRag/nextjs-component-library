@@ -24,8 +24,7 @@ export const fetchIconMap = createAsyncThunk(
   "sectionData/fetchIcons",
   async () => {
     const data = await getSectionData("iconMap");
-    if (!data.ok) throw new Error("Failed to fetch icons");
-    return await data.json();
+    return data;
   }
 );
 

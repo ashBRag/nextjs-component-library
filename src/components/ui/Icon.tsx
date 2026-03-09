@@ -23,7 +23,10 @@ export default function IconComponent({
   divClass = "flex flex-col items-center gap-2",
   show = true,
 }: IconComponentProps) {
-  const iconMap = useAppSelector((state) => state.portfolio.iconMap[section]);
+  const iconMap = useAppSelector((state) => {
+    //console.log(state);
+    return state.portfolio.iconMap[section];
+  });
 
   const iconConfig = iconMap.find(
     (icon) => icon.id === id || icon.name === name
