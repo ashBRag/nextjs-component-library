@@ -4,7 +4,7 @@ import { getSectionData } from "@/lib/api";
 import VerticalTabs from "../ui/dev/VerticalTabs";
 import Card from "../ui/dev/Card";
 import { capitalizeFirstLetter } from "@/lib/utils";
-import MobileCarousel from "../ui/undertale/Scroll";
+import MobileCarousel from "../ui/dev/Scroll";
 import { Service } from "@/types/services";
 import IconComponent from "../ui/Icon";
 

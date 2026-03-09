@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Tabs from "@/components/ui/undertale/Tabs";
+import Tabs from "@/components/ui/dev/Tabs";
 
 interface TabbedSectionProps {
   tabs: Array<{
@@ -39,7 +39,7 @@ export default function TabbedSection({
       {
         threshold: 0.1,
         rootMargin: "0px 0px -200px 0px", // Trigger animation later (when more in view)
-      },
+      }
     );
 
     if (elementRef.current) {
@@ -52,7 +52,9 @@ export default function TabbedSection({
   return (
     <div
       ref={elementRef}
-      className={`${isVisible ? "" : "slide-down-hidden"} m-[2.5vw] ${className}`}
+      className={`${
+        isVisible ? "" : "slide-down-hidden"
+      } m-[2.5vw] ${className}`}
     >
       <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
     </div>

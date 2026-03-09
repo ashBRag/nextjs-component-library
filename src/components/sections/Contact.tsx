@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { LuSend, LuRotateCcw } from "react-icons/lu";
 import {
   PortfolioTextField,
@@ -6,7 +6,7 @@ import {
   PortfolioSelect,
 } from "../ui/dev/Form";
 
-import UndertaleCard from "../ui/dev/Card";
+import Card from "../ui/dev/Card";
 import { ContactLinkButton } from "../ui/dev/Button";
 import { Contact } from "@/types/personal";
 import { useToast } from "../ui/dev/Toast";
@@ -375,7 +375,7 @@ const ContactForm: React.FC<ContactProps> = ({ contactInfo, id }) => {
           </div>
         </div>
 
-        <UndertaleCard
+        <Card
           className="w-1/2"
           title="Skip the vibe code, let's build it right"
           titleClassName="text-[#C778DD] mb-5"
@@ -470,7 +470,7 @@ const ContactForm: React.FC<ContactProps> = ({ contactInfo, id }) => {
               </PortfolioButton>
             </div>
           </div>
-        </UndertaleCard>
+        </Card>
       </div>
 
       <ToastContainer />

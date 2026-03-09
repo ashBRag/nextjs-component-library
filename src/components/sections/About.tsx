@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
 import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
 import Typewriter from "typewriter-effect";
 import Card from "../ui/dev/Card";
-import { AnimatedSkillsGrid } from "../ui/undertale/Rotation";
+import { AnimatedSkillsGrid } from "../ui/dev/Rotation";
 import { DownloadResumeButton } from "../ui/dev/Button";
 
 export default function AboutSection({ setContactInfo, skillsData }) {
@@ -51,7 +53,6 @@ export default function AboutSection({ setContactInfo, skillsData }) {
           href="/resume.pdf"
           downloadName="Aishwarya_BR_Resume.pdf"
         />
-        {/* <UndertaleUI /> */}
       </div>
 
       <Card

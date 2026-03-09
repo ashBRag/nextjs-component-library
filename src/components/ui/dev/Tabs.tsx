@@ -2,52 +2,34 @@
 
 import React, { useState, useEffect } from "react";
 
-interface UndertaleTab {
+interface Tab {
   id: string;
   label: string;
   content: React.ReactNode;
-  character?:
-    | "sans"
-    | "papyrus"
-    | "flowey"
-    | "frisk"
-    | "toriel"
-    | "undyne"
-    | "alphys"
-    | "mettaton";
-  soulType?:
-    | "determination"
-    | "kindness"
-    | "justice"
-    | "bravery"
-    | "patience"
-    | "integrity"
-    | "perseverance";
   icon?: React.ReactNode;
   className?: string;
 }
 
-interface UndertaleTabsProps {
-  tabs: UndertaleTab[];
+interface TabsProps {
+  tabs: Tab[];
   activeTab: string;
   onTabChange: (tabId: string) => void;
   className?: string;
-  theme?: "underground" | "surface" | "dark_world";
   animated?: boolean;
   contentHeight?: string | number;
   mobileBottomMenu?: boolean; // New prop for mobile layout
 }
 
-export default function UndertaleTabs({
+export default function Tabs({
   tabs,
   activeTab,
   onTabChange,
   className = "",
-  theme = "underground",
+
   animated = true,
   contentHeight = "77vh",
   mobileBottomMenu = true,
-}: UndertaleTabsProps) {
+}: TabsProps) {
   const [computedHeight, setComputedHeight] = useState<string>("77vh");
 
   useEffect(() => {
@@ -73,16 +55,11 @@ export default function UndertaleTabs({
   }, [contentHeight]);
 
   const getThemeStyles = () => {
-    const themes = {
-      underground: "bg-slate-900/90 border-slate-700",
-      surface: "bg-blue-900/90 border-blue-700",
-      dark_world: "bg-purple-900/90 border-purple-700",
-    };
-    return themes[theme];
+    return "bg-slate-900/90 border-slate-700";
   };
 
   const getCharacterTabStyles = (
-    tab: UndertaleTab,
+    tab: Tab,
     isActive: boolean,
     isMobile = false
   ) => {
@@ -112,12 +89,12 @@ export default function UndertaleTabs({
     return `inline-block px-3 py-2 sm:px-6 sm:py-3 ${borderStyle} ${roundingStyle}  relative backdrop-blur-sm ${colorStyle} ${animationStyle} ${activeHover} ${shadowStyle}`;
   };
 
-  const getCharacterPrefix = (character?: string, isActive?: boolean) => {
+  const getCharacterPrefix = (isActive?: boolean) => {
     // Sans prefix only
     return isActive ? "> " : "";
   };
 
-  const getCharacterSuffix = (character?: string, isActive?: boolean) => {
+  const getCharacterSuffix = (isActive?: boolean) => {
     // Sans suffix only
     return isActive ? "..." : "";
   };
@@ -184,11 +161,11 @@ export default function UndertaleTabs({
                   )}
                   <span className={`text-xs sm:text-sm`}>
                     <span className="hidden sm:inline">
-                      {getCharacterPrefix(tab.character, isActive)}
+                      {getCharacterPrefix(isActive)}
                     </span>
                     {tab.label}
                     <span className="hidden sm:inline">
-                      {getCharacterSuffix(tab.character, isActive)}
+                      {getCharacterSuffix(isActive)}
                     </span>
                   </span>
                 </div>

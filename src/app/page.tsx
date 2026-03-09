@@ -242,11 +242,7 @@ export default function Home() {
     (state) => state.portfolio.iconMapStatus
   );
 
-  const {
-    data: skillsData,
-    isLoading: skillsLoading,
-    error: skillsError,
-  } = useQuery({
+  const { data: skillsData, isLoading: skillsLoading } = useQuery({
     queryKey: ["skills"],
     queryFn: () => getSectionData("skills"),
     staleTime: 5 * 60 * 1000,
@@ -338,13 +334,13 @@ export default function Home() {
           </Container>
         ))}
       </div>
-      <TabbedSection
+      {/* <TabbedSection
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         tabs={sections}
         defaultActiveTab="about"
         className="block md:hidden mt-[4vh]"
-      />
+      /> */}
     </div>
   );
 }

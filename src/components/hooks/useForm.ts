@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { useState, useCallback, useMemo } from "react";
 import {
   UseFormConfig,
@@ -9,7 +11,7 @@ import {
 import { FormValidator } from "../../utils/formValidations";
 
 export const useForm = <T extends Record<string, any>>(
-  config: UseFormConfig<T>,
+  config: UseFormConfig<T>
 ): UseFormReturn<T> => {
   const {
     initialValues,
@@ -36,13 +38,13 @@ export const useForm = <T extends Record<string, any>>(
   // Create validator instance
   const validator = useMemo(
     () => new FormValidator<T>(validationRules),
-    [validationRules],
+    [validationRules]
   );
 
   // Computed values
   const isDirty = useMemo(() => {
     return Object.keys(initialValues).some(
-      (key) => values[key as keyof T] !== initialValues[key as keyof T],
+      (key) => values[key as keyof T] !== initialValues[key as keyof T]
     );
   }, [values, initialValues]);
 
@@ -69,7 +71,7 @@ export const useForm = <T extends Record<string, any>>(
         }
       }
     },
-    [errors, validateOnChange, validator, values],
+    [errors, validateOnChange, validator, values]
   );
 
   const setValues = useCallback((newValues: Partial<T>) => {
@@ -100,7 +102,7 @@ export const useForm = <T extends Record<string, any>>(
     (field: keyof T, isTouched: boolean = true) => {
       setTouchedState((prev) => ({ ...prev, [field]: isTouched }));
     },
-    [],
+    []
   );
 
   // Validation operations
@@ -110,7 +112,7 @@ export const useForm = <T extends Record<string, any>>(
       setErrorsState((prev) => ({ ...prev, [field]: error }));
       return !error;
     },
-    [validator, values],
+    [validator, values]
   );
 
   const validateForm = useCallback((): FormValidationResult<T> => {
@@ -144,7 +146,7 @@ export const useForm = <T extends Record<string, any>>(
         setIsSubmitting(false);
       }
     },
-    [validateForm, onSubmit, values],
+    [validateForm, onSubmit, values]
   );
 
   // Reset form
@@ -164,7 +166,7 @@ export const useForm = <T extends Record<string, any>>(
       setTouchedState({});
       setIsSubmitting(false);
     },
-    [initialValues],
+    [initialValues]
   );
 
   // Get field props helper
@@ -181,7 +183,7 @@ export const useForm = <T extends Record<string, any>>(
       error: errors[field],
       name: String(field),
     }),
-    [values, setValue, setTouched, validateOnBlur, validateField, errors],
+    [values, setValue, setTouched, validateOnBlur, validateField, errors]
   );
 
   return {

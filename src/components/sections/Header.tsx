@@ -14,13 +14,13 @@ const Header = ({
   name = "Aishwarya B R",
   setActiveTab,
 }: HeaderProps) => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  //const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 100);
+      //const scrollPosition = window.scrollY;
+      //setIsScrolled(scrollPosition > 100);
 
       const sections = ["services", "contact"];
       const currentSection = sections.find((section) => {

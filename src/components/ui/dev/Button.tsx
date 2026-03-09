@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
-import IconComponent from "../Icon";
 
 interface PortfolioButtonProps {
   href?: string;
@@ -113,7 +112,6 @@ export function ContactLinkButton({
   variant = "outline",
   size = "md",
   className = "",
-  iconColor = "text-[#C778DD]",
 }: {
   icon: any;
   text: string;
@@ -131,15 +129,6 @@ export function ContactLinkButton({
       lg: "p-4 text-lg",
     };
     return sizes[size];
-  };
-
-  const getIconSize = () => {
-    const iconSizes = {
-      sm: 16,
-      md: 20,
-      lg: 24,
-    };
-    return iconSizes[size];
   };
 
   const getVariantStyles = () => {
@@ -176,20 +165,8 @@ export function ContactLinkButton({
         ${className}
       `}
     >
-      {/* {Icon && (
-        // <Icon
-        //   className={`${iconColor} group-hover:text-[#C778DD] transition-colors flex-shrink-0`}
-        //   size={getIconSize()}
-        // />
-      )} */}
       {Icon}
       <span className="flex-1 text-left">{text}</span>
-      {/* {showExternalIcon && href && (
-        <LuExternalLink
-          className="text-[#ABB2BF] group-hover:text-[#C778DD] transition-colors"
-          size={getIconSize() * 0.8}
-        />
-      )} */}
     </Component>
   );
 }

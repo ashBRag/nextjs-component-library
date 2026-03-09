@@ -3,12 +3,12 @@ import React from "react";
 
 // Text Field Component
 export const PortfolioTextField = ({
-  label,
+  label = "",
   type = "text",
-  value,
+  value = "",
   onChange,
   error,
-  placeholder,
+  placeholder = "",
   rows = 0,
   className = "",
 }) => {
@@ -16,9 +16,7 @@ export const PortfolioTextField = ({
 
   return (
     <div className={className}>
-      <label 
-        className="block text-white  mb-2 text-sm"
-      >
+      <label className="block text-white  mb-2 text-sm">
         <span className="text-[#C778DD]">#</span>
         {label}
       </label>
@@ -39,13 +37,7 @@ export const PortfolioTextField = ({
         `}
         placeholder={placeholder}
       />
-      {error && (
-        <p 
-          className="text-red-400  mt-2 text-sm"
-        >
-          {error}
-        </p>
-      )}
+      {error && <p className="text-red-400  mt-2 text-sm">{error}</p>}
     </div>
   );
 };
@@ -61,8 +53,10 @@ export const PortfolioButton = ({
 }) => {
   const variants = {
     primary: "bg-[#C778DD] border-[#C778DD] text-white hover:bg-[#C778DD]/80",
-    secondary: "bg-transparent border-[#C778DD] text-[#C778DD] hover:bg-[#C778DD]/10",
-    outline: "bg-transparent border-[#ABB2BF] text-[#ABB2BF] hover:border-[#C778DD] hover:text-[#C778DD]",
+    secondary:
+      "bg-transparent border-[#C778DD] text-[#C778DD] hover:bg-[#C778DD]/10",
+    outline:
+      "bg-transparent border-[#ABB2BF] text-[#ABB2BF] hover:border-[#C778DD] hover:text-[#C778DD]",
     danger: "bg-red-600 border-red-600 text-white hover:bg-red-500",
     disabled: "bg-[#ABB2BF]/20 border-[#ABB2BF]/20 text-[#ABB2BF]/50",
   };
@@ -83,11 +77,7 @@ export const PortfolioButton = ({
       className={`
          border transition-all duration-300 flex items-center justify-center gap-2
         ${variantClass} ${sizeClass} 
-        ${
-          disabled
-            ? "cursor-not-allowed"
-            : "hover:scale-105 active:scale-95"
-        } 
+        ${disabled ? "cursor-not-allowed" : "hover:scale-105 active:scale-95"} 
         ${className}
       `}
     >
@@ -108,9 +98,7 @@ export const PortfolioRadioGroup = ({
 }) => {
   return (
     <div className={className}>
-      <label 
-        className="block text-white  mb-3 text-sm"
-      >
+      <label className="block text-white  mb-3 text-sm">
         <span className="text-[#C778DD]">#</span>
         {label}
       </label>
@@ -156,7 +144,7 @@ export const PortfolioRadioGroup = ({
                   </div>
                 </>
               )}
-              
+
               <div className="relative z-10">
                 <div className="text-sm font-medium">{option.label}</div>
                 {option.description && (
@@ -169,13 +157,7 @@ export const PortfolioRadioGroup = ({
           </label>
         ))}
       </div>
-      {error && (
-        <p 
-          className="text-red-400  mt-2 text-sm"
-        >
-          {error}
-        </p>
-      )}
+      {error && <p className="text-red-400  mt-2 text-sm">{error}</p>}
     </div>
   );
 };
@@ -187,21 +169,18 @@ export const PortfolioSelect = ({
   value,
   onChange,
   error,
-  placeholder = "Select an option...",
   className = "",
 }) => {
   return (
     <div className={className}>
-    <label
-      className="block text-white  mb-2 text-sm"
-    >
-      <span className="text-[#C778DD]">#</span>
-      {label}
-    </label>
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className={`
+      <label className="block text-white  mb-2 text-sm">
+        <span className="text-[#C778DD]">#</span>
+        {label}
+      </label>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={`
         w-full px-4 py-3 border border-[#ABB2BF]/30 
         bg-[#ABB2BF]/10 text-white  text-sm 
         focus:outline-none transition-all
@@ -211,25 +190,19 @@ export const PortfolioSelect = ({
             : "focus:border-[#C778DD]"
         }
       `}
-    >
-      {options.map((option) => (
-        <option
-          key={option.value}
-          value={option.value}
-          className="bg-black/30 text-white"
-        >
-          {option.label}
-        </option>
-      ))}
-    </select>
-    {error && (
-      <p
-        className="text-red-400  mt-2 text-sm"
       >
-        {error}
-      </p>
-    )}
-  </div>
+        {options.map((option) => (
+          <option
+            key={option.value}
+            value={option.value}
+            className="bg-black/30 text-white"
+          >
+            {option.label}
+          </option>
+        ))}
+      </select>
+      {error && <p className="text-red-400  mt-2 text-sm">{error}</p>}
+    </div>
   );
 };
 
@@ -237,15 +210,13 @@ export const PortfolioSelect = ({
 export const PortfolioStatusBar = ({ progress, status = "Ready" }) => {
   return (
     <div className=" border border-[#ABB2BF]/30 p-4 ">
-      <div 
-        className="text-[#ABB2BF] text-sm flex justify-between items-center"
-      >
+      <div className="text-[#ABB2BF] text-sm flex justify-between items-center">
         <span>
-          <span className="text-[#C778DD]">></span> Status: {status}
+          <span className="text-[#C778DD]">{">"}</span> Status: {status}
         </span>
         <span>Progress: {progress}%</span>
         <div className="w-20 h-2 bg-[#ABB2BF]/20 relative">
-          <div 
+          <div
             className="h-full bg-[#C778DD] transition-all duration-300"
             style={{ width: `${progress}%` }}
           ></div>
@@ -278,16 +249,13 @@ export const PortfolioFormCard = ({ children, title, className = "" }) => {
       </div>
 
       {title && (
-        <h3 
-          className="text-white  text-lg mb-6"
-        >
+        <h3 className="text-white  text-lg mb-6">
           <span className="text-[#C778DD]">#</span>
           {title}
         </h3>
       )}
-      
+
       <div className="relative z-10">{children}</div>
     </div>
   );
 };
-

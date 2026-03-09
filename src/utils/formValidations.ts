@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import {
   ValidationRules,
   FormErrors,
@@ -35,12 +37,16 @@ export class FormValidator<T extends Record<string, any>> {
 
     // Min length validation
     if (rule.minLength && stringValue.length < rule.minLength) {
-      return `${this.getFieldLabel(field)} must be at least ${rule.minLength} characters`;
+      return `${this.getFieldLabel(field)} must be at least ${
+        rule.minLength
+      } characters`;
     }
 
     // Max length validation
     if (rule.maxLength && stringValue.length > rule.maxLength) {
-      return `${this.getFieldLabel(field)} must be no more than ${rule.maxLength} characters`;
+      return `${this.getFieldLabel(field)} must be no more than ${
+        rule.maxLength
+      } characters`;
     }
 
     // Pattern validation
@@ -113,7 +119,7 @@ export const createValidationRules = <T extends Record<string, any>>(): {
   maxLength: (length: number, message?: string) => ValidationRule<string>;
   pattern: (regex: RegExp, message?: string) => ValidationRule<string>;
   custom: (
-    validator: (value: T[keyof T], formData?: T) => string | null,
+    validator: (value: T[keyof T], formData?: T) => string | null
   ) => ValidationRule<T[keyof T]>;
 } => ({
   required: (message?: string) => ({

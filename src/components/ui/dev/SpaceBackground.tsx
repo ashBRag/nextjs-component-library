@@ -27,7 +27,7 @@ export default function SpaceBackground({
     const glitchEl = glitchRef.current;
     if (!noiseEl || !cubeEl || !glitchEl) return;
 
-    const nx = noiseEl.getContext("2d")!;
+    //const nx = noiseEl.getContext("2d")!;
     const cx = cubeEl.getContext("2d")!;
     const gx = glitchEl.getContext("2d")!;
 
@@ -45,20 +45,20 @@ export default function SpaceBackground({
     const TILE = 256;
     const tileCv = document.createElement("canvas");
     tileCv.width = tileCv.height = TILE;
-    const tc = tileCv.getContext("2d")!;
+    //const tc = tileCv.getContext("2d")!;
 
-    function drawNoise() {
-      const id = tc.createImageData(TILE, TILE);
-      for (let i = 0; i < id.data.length; i += 4) {
-        const v = (Math.random() * 255) | 0;
-        id.data[i] = id.data[i + 1] = id.data[i + 2] = v;
-        id.data[i + 3] = 255;
-      }
-      tc.putImageData(id, 0, 0);
-      const pat = nx.createPattern(tileCv, "repeat")!;
-      nx.fillStyle = pat;
-      nx.fillRect(0, 0, noiseEl!.width, noiseEl!.height);
-    }
+    // function drawNoise() {
+    //   const id = tc.createImageData(TILE, TILE);
+    //   for (let i = 0; i < id.data.length; i += 4) {
+    //     const v = (Math.random() * 255) | 0;
+    //     id.data[i] = id.data[i + 1] = id.data[i + 2] = v;
+    //     id.data[i + 3] = 255;
+    //   }
+    //   tc.putImageData(id, 0, 0);
+    //   const pat = nx.createPattern(tileCv, "repeat")!;
+    //   nx.fillStyle = pat;
+    //   nx.fillRect(0, 0, noiseEl!.width, noiseEl!.height);
+    // }
 
     // ---- Cubes ----
     interface Cube {

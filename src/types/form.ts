@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // Generic form types
 export interface ValidationRule<T = any> {
   required?: boolean;

@@ -7,7 +7,7 @@ import Image from "next/image";
 import Card from "../ui/dev/Card";
 import { Experience, Project, Projects } from "@/types/projects";
 import IconComponent from "../ui/Icon";
-import MobileCarousel from "../ui/undertale/Scroll";
+import MobileCarousel from "../ui/dev/Scroll";
 
 const variants = ["determination", "kindness", "integrity"] as const;
 
