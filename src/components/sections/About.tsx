@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 "use client";
 import { useEffect, useState } from "react";
+
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
 import Typewriter from "typewriter-effect";
@@ -10,7 +10,38 @@ import Card from "../ui/dev/Card";
 import { AnimatedSkillsGrid } from "../ui/dev/Rotation";
 import { DownloadResumeButton } from "../ui/dev/Button";
 
-export default function AboutSection({ setContactInfo, skillsData }) {
+interface SkillsData {
+  categories: {
+    frontend: { skills: Array<{ name: string; level: string }> };
+    backend: { skills: Array<{ name: string; level: string }> };
+    cloud: { skills: Array<{ name: string; level: string }> };
+  };
+}
+interface AboutSectionProps {
+  setContactInfo: (contactInfo: any) => void;
+  skillsData: SkillsData;
+}
+
+/*
+- Fetches personal data from the API and updates the state.
+- Displays a profile image and a typewriter effect that cycles through various descriptions.
+- Shows an "About Me" card with the fetched personal data and a grid of skills.
+- Provides a button to download the resume.   
+
+  @param {AboutSectionProps} props - The props for the AboutSection component, including a function to set contact information and an array of skills data.
+  @return {JSX.Element} The rendered AboutSection component.  
+  @example
+    <AboutSection
+      setContactInfo={(contactInfo) => console.log(contactInfo)}
+      skillsData={[{ name: "JavaScript", level: "Advanced" }, { name: "React", level: "Intermediate" }]}
+    />    
+  
+*/
+
+export default function AboutSection({
+  setContactInfo,
+  skillsData,
+}: AboutSectionProps) {
   const [personalData, setPersonalData] = useState({
     name: "",
     about: "",
@@ -93,7 +124,6 @@ export default function AboutSection({ setContactInfo, skillsData }) {
           </div>
           <p>{personalData?.about}</p>
 
-          <span className="mt-4 mb-4">Nerd Scout Badges</span>
           <AnimatedSkillsGrid skillsData={skillsData} />
         </div>
       </Card>

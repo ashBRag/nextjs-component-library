@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { BlogMetadata } from "@/types/blogs";
+
 export class ApiError extends Error {
   status: number;
   constructor(message: string | undefined, status: number) {
@@ -14,7 +16,7 @@ async function fetchApi(
     method?: string;
     headers?: Record<string, string>;
     body?: any;
-  } = {},
+  } = {}
 ) {
   const url = `${process.env.NEXT_PUBLIC_API_URL || ""}/api${endpoint}`;
   console.log("url", url);
@@ -42,7 +44,7 @@ async function fetchApi(
       const errorData = await response.json().catch(() => ({}));
       throw new ApiError(
         errorData.error || `HTTP error! status: ${response.status}`,
-        response.status,
+        response.status
       );
     }
 
@@ -73,4 +75,12 @@ export const submitContactForm = (formData: {
     method: "POST",
     headers: {},
     body: formData,
+  });
+
+// Fetch blog routes
+
+export const fetchBlogData = (blogUrls): Promise<BlogMetadata[]> =>
+  fetchApi("/blog", {
+    method: "POST",
+    body: { blogUrls },
   });

@@ -1,24 +1,22 @@
-export enum BlogType {
-  CleanCode = "clean-code",
-  Architecture = "architecture",
-}
-
 export interface BlogTypeItem {
-  type: BlogType;
+  type: string;
   label: string;
 }
 
 export interface Blog {
-  title: string;
-  description: string;
   url: string;
-  alt: string;
-  imageUrl: string;
-  createdAt: string;
-  tags: string[];
+  souurce: string;
 }
 
 export interface BlogData {
   types: BlogTypeItem[];
-  blogs: Partial<Record<BlogType, Blog[]>>;
+  blogs: Partial<Record<string, Blog[]>>;
+}
+
+export interface BlogMetaData {
+  title: string;
+  url: string;
+  description: string;
+  previewImage: string;
+  publishedDate: string;
 }
