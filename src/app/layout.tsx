@@ -5,6 +5,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "../components/store/store";
+import "@/styles/globals.css";
+import "@/styles/themes/light.css";
+import "@/styles/themes/dark.css";
+import "@/styles/profiles/base/index.css";
 
 const fira = Fira_Code({
   subsets: ["latin"],
