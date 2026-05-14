@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { BlogMetadata } from "@/types/blogs";
+import { BlogItem } from "@/types/blogs";
 
 export class ApiError extends Error {
   status: number;
@@ -79,7 +79,9 @@ export const submitContactForm = (formData: {
 
 // Fetch blog routes
 
-export const fetchBlogData = (blogUrls): Promise<BlogMetadata[]> =>
+export const fetchBlogData = (
+  blogUrls: { url: string }[]
+): Promise<BlogItem[]> =>
   fetchApi("/blog", {
     method: "POST",
     body: { blogUrls },

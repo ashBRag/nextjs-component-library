@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react-hooks/exhaustive-deps */
 
 "use client";
 import { useEffect, useState } from "react";
@@ -66,6 +67,8 @@ export default function AboutSection({
 
     fetchData();
   }, []);
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <section className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2">

@@ -1,4 +1,4 @@
-import { BlogMetaData } from "@/types/blogs";
+import { BlogItem } from "@/types/blogs";
 
 /**
  * Abstract class representing a blog metadata fetcher.
@@ -13,7 +13,7 @@ import { BlogMetaData } from "@/types/blogs";
  *     const metadata = await fetchMetadata("https://medium.com/@username/blog-post-url");
  */
 abstract class FetchBlogMetaData {
-  abstract fetchBlogMetaData(url: string): Promise<BlogMetaData>;
+  abstract fetchBlogMetaData(url: string): Promise<BlogItem>;
 }
 
 /**
@@ -30,12 +30,11 @@ abstract class FetchBlogMetaData {
  */
 
 class MediumBlogMetadataFetcher extends FetchBlogMetaData {
-  async fetchBlogMetaData(url: string): Promise<BlogMetaData> {
+  async fetchBlogMetaData(url: string): Promise<BlogItem> {
     try {
       const parsedUrl = new URL(url); // Ensure the URL is valid and parsed
       // Append ?format=json to the URL for Medium blogs
       parsedUrl.searchParams.append("format", "json");
-      console.log("url", parsedUrl);
       const response = await fetch(parsedUrl.toString(), {
         headers: {
           "User-Agent":
@@ -56,6 +55,10 @@ class MediumBlogMetadataFetcher extends FetchBlogMetaData {
 
       // Guard: if Cloudflare returned HTML, fail fast with a clear message
       if (jsonResponse.trimStart().startsWith("<")) {
+        console.error(
+          "Received HTML response, likely blocked by Cloudflare:",
+          jsonResponse.trim().substring(0, 200) // Log the beginning of the response for debugging
+        );
         throw new Error(
           "Received HTML instead of JSON — likely blocked by Cloudflare"
         );
@@ -67,7 +70,6 @@ class MediumBlogMetadataFetcher extends FetchBlogMetaData {
         ""
       );
       const data = JSON.parse(sanitizedResponse);
-      console.log(data);
 
       // Extract metadata from the JSON response
       const title = data.payload.value.title || "No title available";
@@ -80,25 +82,10 @@ class MediumBlogMetadataFetcher extends FetchBlogMetaData {
         ? new Date(data.payload.value.firstPublishedAt).toISOString()
         : "No date available";
 
-      console.log("Fetched metadata for URL:", url, {
-        title,
-        description,
-        previewImage,
-        publishedDate,
-      });
-
       return { url, title, description, previewImage, publishedDate };
     } catch (error) {
       console.error(error);
-      if (error instanceof Error) {
-        throw new Error(
-          `Error fetching blog metadata for URL ${url}: ${error.message}`
-        );
-      } else {
-        throw new Error(
-          `Error fetching blog metadata for URL ${url}: ${String(error)}`
-        );
-      }
+      throw new Error(`Failed to fetch metadata for Medium blogs`);
     }
   }
 }

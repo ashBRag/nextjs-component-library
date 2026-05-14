@@ -1,15 +1,13 @@
 "use client";
 
-import { useState, useEffect, JSX } from "react";
-import Timeline from "@/components/ui/dev/Timeline";
+import { useState, useEffect } from "react";
+import Timeline, { PortfolioTimelineItem } from "@/components/ui/dev/Timeline";
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
 import Card from "../ui/dev/Card";
 import { Experience, Project, Projects } from "@/types/projects";
 import IconComponent from "../ui/Icon";
 import MobileCarousel from "../ui/dev/Scroll";
-
-const variants = ["determination", "kindness", "integrity"] as const;
 
 const DEFAULT_PROJECT: Project = {
   name: "",
@@ -57,26 +55,9 @@ export default function ProjectsSection() {
   const getTimelineItems = () => {
     if (!projectsData) return [];
 
-    const allItems: {
-      id: string;
-      title: string;
-      date: string;
-
-      badge: {
-        text: string;
-        variant: "determination" | "kindness" | "integrity";
-      };
-      character: "flowey";
-      icon: JSX.Element;
-      action: { onClick: () => void };
-    }[] = [];
+    const allItems: PortfolioTimelineItem[] = [];
 
     projectsData.experience.forEach((exp) => {
-      const allCompanies = Array.from(
-        new Set(projectsData.experience.map((exp) => exp.company))
-      );
-      const companyIndex = allCompanies.indexOf(exp.company);
-      const variant = variants[companyIndex % variants.length];
       const badgeText = exp.company.split(" ")[0];
       exp.projects?.forEach((project) => {
         allItems.push({
@@ -87,9 +68,7 @@ export default function ProjectsSection() {
           date: project.duration,
           badge: {
             text: badgeText,
-            variant,
           },
-          character: "flowey",
           icon: (
             <Image
               src={`/companyLogo/${badgeText.toLowerCase()}.png`}
@@ -187,7 +166,6 @@ export default function ProjectsSection() {
           )}
           className="p-5"
         />
-        {/* <FloatingScrollButton id="skills" /> */}
       </section>
     </>
   );

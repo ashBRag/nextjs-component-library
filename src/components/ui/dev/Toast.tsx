@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useState, useEffect } from "react";
 import { LuX, LuCircle, LuInfo, LuTriangle } from "react-icons/lu";
 

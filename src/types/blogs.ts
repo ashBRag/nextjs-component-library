@@ -1,22 +1,16 @@
-export interface BlogTypeItem {
+export interface BlogData {
   type: string;
   label: string;
+  blogs: BlogItem[];
 }
 
-export interface Blog {
+export interface BlogItem {
   url: string;
-  souurce: string;
-}
-
-export interface BlogData {
-  types: BlogTypeItem[];
-  blogs: Partial<Record<string, Blog[]>>;
-}
-
-export interface BlogMetaData {
-  title: string;
-  url: string;
-  description: string;
-  previewImage: string;
-  publishedDate: string;
+  source?: string;
+  id?: string;
+  title?: string;
+  description?: string;
+  previewImage?: string;
+  publishedAt?: string;
+  tags?: string[];
 }

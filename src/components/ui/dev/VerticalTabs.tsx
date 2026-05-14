@@ -9,7 +9,7 @@ interface PortfolioTabItem {
   content: React.ReactNode;
   disabled?: boolean;
   href?: string;
-  onClick?: () => void;
+  onClick?: (tab: PortfolioTabItem) => void;
 }
 
 interface PortfolioVerticalTabsProps {
@@ -19,6 +19,7 @@ interface PortfolioVerticalTabsProps {
   tabsClassName?: string;
   contentClassName?: string;
   animated?: boolean;
+  horizontal?: boolean;
 }
 
 export default function PortfolioVerticalTabs({
@@ -28,6 +29,7 @@ export default function PortfolioVerticalTabs({
   tabsClassName = "",
   contentClassName = "",
   animated = true,
+  horizontal = false,
 }: PortfolioVerticalTabsProps) {
   const [activeTab, setActiveTab] = useState(defaultActiveTab || tabs[0]?.id);
 
@@ -61,7 +63,7 @@ export default function PortfolioVerticalTabs({
     if (tab.disabled) return;
 
     if (tab.onClick) {
-      tab.onClick();
+      tab.onClick(tab);
     }
 
     if (!tab.href) {
@@ -143,15 +145,27 @@ export default function PortfolioVerticalTabs({
   const activeTabContent = tabs.find((tab) => tab.id === activeTab)?.content;
 
   return (
-    <div className={`md:flex ${className}`}>
+    <div
+      className={`flex ${horizontal ? "flex-col" : "flex-row"}  ${className}`}
+    >
       {/* Tabs List */}
-      <ul
-        className={`flex-column space-y-3 text-sm font-medium md:me-4 mb-4 md:mb-0 min-w-48 ${tabsClassName}`}
-      >
-        {tabs.map((tab) => (
-          <li key={tab.id}>{renderTabContent(tab)}</li>
-        ))}
-      </ul>
+      {horizontal ? (
+        <ul
+          className={`flex space-x-4 text-sm font-medium md:mb-4 mb-2 ${tabsClassName}`}
+        >
+          {tabs.map((tab) => (
+            <li key={tab.id}>{renderTabContent(tab)}</li>
+          ))}
+        </ul>
+      ) : (
+        <ul
+          className={`flex-column space-y-3 text-sm font-medium md:me-4 mb-4 md:mb-0 min-w-48 ${tabsClassName}`}
+        >
+          {tabs.map((tab) => (
+            <li key={tab.id}>{renderTabContent(tab)}</li>
+          ))}
+        </ul>
+      )}
 
       {/* Tab Content */}
       <div

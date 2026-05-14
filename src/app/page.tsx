@@ -204,6 +204,7 @@
 //   );
 // }
 
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import AboutSection from "@/components/sections/About";
 import ContactSection from "@/components/sections/Contact";
@@ -220,12 +221,10 @@ import Container from "@/components/ui/dev/Container";
 import { fetchIconMap } from "@/components/store/reducer";
 import { useAppDispatch, useAppSelector } from "@/components/store/hooks";
 import { ScreenCenterWrapper } from "@/components/ui/CenterWrapper";
-import TabbedSection from "@/components/sections/Experience";
 import BlogsSection from "@/components/sections/Blogs";
 import FloatingCubes from "@/components/ui/dev/Background";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("about");
   const [showLoader, setShowloader] = useState(true);
   const [contactInfo, setContactInfo] = useState<Contact>({
     location: "",

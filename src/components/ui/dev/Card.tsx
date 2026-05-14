@@ -11,7 +11,7 @@ interface PortfolioCardProps {
   titleClassName?: string;
   subtitleClassName?: string;
   descriptionClassName?: string;
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "compact";
   animated?: boolean;
   showBorder?: boolean;
   showCorners?: boolean;
@@ -52,6 +52,7 @@ export default function Card({
       sm: "p-4 text-sm",
       md: "p-6 text-base",
       lg: "p-8 text-lg",
+      compact: "pl-8 pr-8 text-sm",
     };
     return sizes[size];
   };
@@ -61,6 +62,7 @@ export default function Card({
       sm: "text-lg",
       md: "text-xl",
       lg: "text-2xl",
+      compact: "text-lg",
     };
     return titleSizes[size];
   };
@@ -114,27 +116,40 @@ export default function Card({
       >
         {/* Cover image */}
         {coverImage && (
-          <Image
-            src={coverImage}
-            alt={coverImageAlt}
-            width={coverImageHeight}
-            height={coverImageHeight}
-            className="object-cover"
-            style={{ width: "100%", height: "25vh" }}
-          />
+          <div className="relative w-full aspect-video overflow-hidden rounded-t-lg flex items-center justify-center">
+            <Image
+              src={coverImage}
+              alt={coverImageAlt}
+              fill
+              className="object-cover object-center opacity-20"
+            />
+            {/* dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20" />
+            <div className={`relative z-10 ${getSizeStyles()}`}>
+              <h3
+                className={`font-medium mb-2 text-center text-white ${getTitleSizeStyles()} ${titleClassName}`}
+              >
+                {title}
+              </h3>
+            </div>
+          </div>
         )}
 
         {/* Text content */}
         <div className={getSizeStyles()}>
           {/* Title */}
-          {typeof title === "string" ? (
-            <h3
-              className={`font-medium mb-2 ${getTitleSizeStyles()} ${titleClassName}`}
-            >
-              {title}
-            </h3>
+          {!coverImage ? (
+            typeof title === "string" ? (
+              <h3
+                className={`font-medium mb-2 ${getTitleSizeStyles()} ${titleClassName}`}
+              >
+                {title}
+              </h3>
+            ) : (
+              title
+            )
           ) : (
-            title
+            ""
           )}
 
           {/* Subtitle */}

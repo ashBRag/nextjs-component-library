@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 
-interface PortfolioTimelineItem {
+export interface PortfolioTimelineItem {
   id: string;
   title: string;
   date: string;
