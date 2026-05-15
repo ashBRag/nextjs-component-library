@@ -1,0 +1,55 @@
+/* ============================================================
+   toast.css — structure only. No colors, no hardcoded values.
+   ============================================================ */
+
+/* Container */
+.toast-container {
+  @apply fixed bottom-4 right-4 z-50 flex flex-col-reverse gap-3;
+}
+
+/* Root */
+.toast {
+  @apply relative flex items-center gap-3 p-4 rounded-lg border
+           backdrop-blur-sm shadow-xl min-w-[320px] max-w-[480px]
+           text-sm;
+  transition: transform 300ms ease-out, opacity 300ms ease-out,
+    scale 300ms ease-out;
+}
+
+/* Entry / exit state — transforms only, colors in profile */
+.toast--hidden {
+  @apply translate-x-full opacity-0 scale-95;
+}
+
+.toast--visible {
+  @apply translate-x-0 opacity-100 scale-100;
+}
+
+/* Progress bar */
+.toast__progress {
+  @apply absolute bottom-0 left-0 h-1 rounded-b-lg;
+  width: 100%;
+  background-color: var(--toast-accent-color);
+  transition: width var(--toast-duration, 4000ms) linear;
+}
+
+.toast__progress--exiting {
+  width: 0%;
+}
+
+/* Icon */
+.toast__icon {
+  @apply flex-shrink-0;
+  color: var(--toast-accent-color);
+}
+
+/* Message */
+.toast__message {
+  @apply flex-1 leading-relaxed;
+}
+
+/* Close button */
+.toast__close {
+  @apply flex-shrink-0 p-1 rounded;
+  transition: background-color 200ms;
+}

@@ -9,9 +9,10 @@ import {
 import Card from "../ui/components/card/Card";
 import { ContactLinkButton } from "../ui/dev/Button";
 import { Contact } from "@/types/personal";
-import { useToast } from "../ui/dev/Toast";
+import { useToast } from "@/components/hooks/useToast";
 import { ApiError, submitContactForm } from "@/lib/api";
 import IconComponent from "../ui/Icon";
+// import { ToastContainer } from "../ui/components/toast/Toast";
 
 interface FormData {
   name: string;
@@ -46,7 +47,7 @@ const useContactForm = () => {
   const [showSuccess, setShowSuccess] = useState(false);
 
   // Updated to include all toast types and container
-  const { success, error, warning, info, ToastContainer } = useToast();
+  const { success, error, warning, info } = useToast();
 
   // Validation rules
   const validateField = (field: string, value: string) => {
@@ -235,7 +236,6 @@ const useContactForm = () => {
     submitForm,
     resetForm,
     canBookMeeting,
-    ToastContainer, // Export ToastContainer
   };
 };
 
@@ -248,7 +248,6 @@ const ContactForm: React.FC<ContactProps> = ({ contactInfo, id }) => {
     submitForm,
     resetForm,
     canBookMeeting,
-    ToastContainer, // Get ToastContainer from hook
   } = useContactForm();
 
   const workTypeOptions = [
@@ -473,7 +472,7 @@ const ContactForm: React.FC<ContactProps> = ({ contactInfo, id }) => {
         </Card>
       </div>
 
-      <ToastContainer />
+      {/* <ToastContainer toasts={}/> */}
     </>
   );
 };
