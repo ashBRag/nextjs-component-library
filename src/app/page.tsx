@@ -220,7 +220,7 @@ import { useQuery } from "@tanstack/react-query";
 import Container from "@/components/ui/dev/Container";
 import { fetchIconMap } from "@/components/store/reducer";
 import { useAppDispatch, useAppSelector } from "@/components/store/hooks";
-import { ScreenCenterWrapper } from "@/components/ui/CenterWrapper";
+import { ScreenCenterWrapper } from "@/components/ui/components/wrapper/CenterWrapper";
 import BlogsSection from "@/components/sections/Blogs";
 import FloatingCubes from "@/components/ui/dev/Background";
 
