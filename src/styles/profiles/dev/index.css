@@ -36,6 +36,18 @@
   --color-warning: #e5c07b;
   --color-error: #e06c75;
   --color-info: #61afef;
+
+  /* Tabs */
+  --color-tab-inactive: #67e8f9; /* cyan-400 approx */
+  --color-tab-hover: #a5f3fc; /* cyan-300 approx */
+  --color-tab-border-hover: rgb(103 232 249 / 0.5);
+  --color-tab-active: #a5f3fc;
+  --color-tab-border-active: #22d3ee;
+  --color-tab-bg-active: rgb(22 78 99 / 0.4); /* cyan-900/40 */
+  --color-tab-shadow-active: rgb(34 211 238 / 0.3);
+  --color-bg-surface: rgb(15 23 42 / 0.9); /* slate-900/90 */
+  --color-border-subtle: rgb(51 65 85 / 0.5); /* slate-700/50 */
+  --color-text-primary: #e2e8f0; /* slate-200 */
 }
 
 [data-profile="dev"][data-theme="light"] {
@@ -47,4 +59,15 @@
   --color-fg-muted: #383a4280;
   --color-border: #38383830;
   --color-btn-fg: #383a42;
+
+  /* Tabs */
+  --color-tab-inactive: #0891b2;
+  --color-tab-hover: #0e7490;
+  --color-tab-active: #0e7490;
+  --color-tab-border-active: #0891b2;
+  --color-tab-bg-active: rgb(207 250 254 / 0.5);
+  --color-tab-shadow-active: rgb(8 145 178 / 0.25);
+  --color-bg-surface: rgb(248 250 252 / 0.95);
+  --color-border-subtle: rgb(148 163 184 / 0.4);
+  --color-text-primary: #1e293b;
 }

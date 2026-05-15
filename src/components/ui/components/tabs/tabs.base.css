@@ -1,0 +1,211 @@
+.tabs {
+  @apply relative;
+}
+
+.tabs--desktop {
+  @apply hidden sm:block backdrop-blur-sm border-2 rounded-lg;
+}
+
+.tabs--mobile {
+  @apply sm:hidden flex flex-col h-screen;
+}
+
+/* Corner decorations */
+.tabs__corner {
+  @apply absolute w-3 h-3 pointer-events-none;
+  color: inherit;
+  opacity: var(--tabs-corner-opacity, 0.2);
+  border-color: currentColor;
+}
+
+.tabs__corner--tl {
+  @apply top-2 left-2 border-l-2 border-t-2;
+}
+.tabs__corner--tr {
+  @apply top-2 right-2 border-r-2 border-t-2;
+}
+.tabs__corner--bl {
+  @apply bottom-2 left-2 border-l-2 border-b-2;
+}
+.tabs__corner--br {
+  @apply bottom-2 right-2 border-r-2 border-b-2;
+}
+
+/* Header */
+.tabs__header {
+  @apply relative;
+}
+
+.tabs__header--desktop {
+  @apply border-b-2 mb-0;
+}
+
+.tabs__header--mobile {
+  @apply border-t-2;
+}
+
+/* Tab list */
+.tabs__list {
+  @apply flex flex-wrap text-xs sm:text-sm font-medium text-center relative z-10;
+}
+
+/* Tab item */
+.tabs__item {
+  @apply relative flex-1;
+}
+
+/* Trigger */
+.tabs__trigger {
+  @apply w-full inline-block px-3 py-2 sm:px-6 sm:py-3 relative backdrop-blur-sm;
+  transition-property: color, border-color, background-color, box-shadow,
+    transform, opacity;
+}
+
+.tabs--animated .tabs__trigger {
+  @apply transition-all duration-300 ease-out;
+}
+
+.tabs__trigger--desktop {
+  @apply rounded-t-lg border-b-2 border-transparent;
+}
+
+.tabs__trigger--desktop.tabs__trigger--active {
+  @apply border-b-2;
+}
+
+.tabs--animated .tabs__trigger--active:hover {
+  @apply scale-105;
+}
+
+.tabs__trigger--mobile {
+  @apply rounded-b-lg border-t-2 border-transparent;
+}
+
+.tabs__trigger--mobile.tabs__trigger--active {
+  @apply border-t-2;
+}
+
+/* Trigger corner decorations (small, inside button) */
+.tabs__trigger-corners {
+  @apply absolute inset-0 pointer-events-none;
+}
+
+.tabs__trigger-corners .tabs__corner {
+  @apply w-1.5 h-1.5;
+  opacity: var(--tabs-trigger-corner-opacity, 0.5);
+}
+
+.tabs__trigger-corners--desktop .tabs__corner--tl {
+  @apply top-1 left-1 border-l border-t;
+}
+.tabs__trigger-corners--desktop .tabs__corner--tr {
+  @apply top-1 right-1 border-r border-t;
+}
+
+.tabs__trigger-corners--mobile .tabs__corner--tl {
+  @apply bottom-1 left-1 border-l border-b;
+}
+.tabs__trigger-corners--mobile .tabs__corner--tr {
+  @apply bottom-1 right-1 border-r border-b;
+}
+
+/* Inner layout */
+.tabs__trigger-inner {
+  @apply flex flex-col sm:flex-row items-center gap-1 sm:gap-2;
+}
+
+/* Icon */
+.tabs__icon {
+  @apply flex-shrink-0;
+}
+
+.tabs--animated .tabs__icon--active {
+  @apply animate-pulse;
+}
+
+/* Label */
+.tabs__label {
+  @apply text-xs sm:text-sm;
+}
+
+/* Prefix/suffix — hidden on mobile, visible on sm+ via CSS */
+.tabs__label-prefix,
+.tabs__label-suffix {
+  @apply hidden sm:inline;
+}
+
+/* Prefix/suffix content set in profile CSS via ::before / ::after
+     to keep decorative strings out of logic */
+.tabs__label-prefix::before {
+  content: var(--tabs-label-prefix-active, "");
+}
+
+.tabs__label-suffix::after {
+  content: var(--tabs-label-suffix-active, "");
+}
+
+/* Selection indicator dot */
+.tabs__indicator {
+  @apply absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full animate-pulse;
+  background-color: currentColor;
+}
+
+.tabs__indicator--desktop {
+  @apply -bottom-0.5;
+}
+
+.tabs__indicator--mobile {
+  @apply -top-0.5;
+}
+
+/* Panels container */
+.tabs__panels {
+  @apply relative;
+  height: var(--tabs-content-height, 77vh);
+}
+
+.tabs__panels--mobile {
+  @apply flex-1;
+  height: auto;
+}
+
+/* Panel */
+.tabs__panel {
+  @apply relative overflow-auto h-full;
+}
+
+.tabs__panel--hidden {
+  @apply hidden;
+}
+
+.tabs__panel--active {
+  @apply block;
+}
+
+/* Desktop panel: bordered below the header */
+.tabs--desktop .tabs__panel {
+  @apply p-6 rounded-b-lg border-2 border-t-0 backdrop-blur-sm;
+}
+
+/* Panel inner corners */
+.tabs__panel .tabs__corner {
+  @apply w-2 h-2;
+  opacity: var(--tabs-panel-corner-opacity, 0.3);
+}
+
+/* Panel content */
+.tabs__panel-content {
+  @apply relative z-10;
+}
+
+/* Panel pulse indicator */
+.tabs__panel-indicator {
+  @apply absolute bottom-3 right-3 w-1.5 h-1.5 animate-pulse;
+  background-color: currentColor;
+  opacity: var(--tabs-panel-indicator-opacity, 0.4);
+}
+
+/* Mobile bottom bar */
+.tabs__mobile-bar {
+  @apply fixed bottom-0 left-0 right-0 backdrop-blur-sm border-t-2 z-50 relative;
+}
