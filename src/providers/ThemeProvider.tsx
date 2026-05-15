@@ -20,7 +20,7 @@ export interface ThemeContextValue {
 }
 // Map of profile names to their dynamic import functions for styles
 const profileImports: Partial<Record<Profile, () => Promise<unknown>>> = {
-  designer: () => import("../../styles/profiles/designer/index.css"),
+  designer: () => import("@/styles/profiles/designer/index.css"),
 };
 
 export const ThemeCntxt = createContext<ThemeContextValue>({

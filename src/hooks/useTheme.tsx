@@ -1,6 +1,6 @@
 "use client";
 import { use } from "react";
-import { ThemeCntxt, ThemeContextValue } from "../providers/ThemeProvider";
+import { ThemeCntxt, ThemeContextValue } from "@/providers/ThemeProvider";
 
 export function useTheme(): ThemeContextValue {
   const ctx = use(ThemeCntxt);
