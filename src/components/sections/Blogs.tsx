@@ -1,11 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 "use client";
 import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
 import VerticalTabs from "../ui/dev/VerticalTabs";
 import Card from "../ui/dev/Card";
-import { BlogData, BlogItem } from "@/types/blogs";
+import { BlogData } from "@/types/blogs";
 
 export default function BlogsSection() {
   const [loading, setLoading] = useState(true);
@@ -53,7 +51,7 @@ export default function BlogsSection() {
                             <div className="font-bold">{blog.title}</div>
                             <div className="text-sm text-gray-500 mt-10 flex items-center gap-2">
                               {blog.tags?.map((tag) => (
-                                <div>#{tag}</div>
+                                <div key={tag}>#{tag}</div>
                               ))}
                             </div>
                             <div className="text-sm text-gray-500 mt-2">

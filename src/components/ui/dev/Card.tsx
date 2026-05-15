@@ -43,7 +43,6 @@ export default function Card({
   children,
   coverImage,
   coverImageAlt = "",
-  coverImageHeight = 200,
   clickable = false,
   onClick,
 }: PortfolioCardProps) {
