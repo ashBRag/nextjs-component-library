@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { scrollToBottom } from "@/lib/utils";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 interface HeaderProps {
   profileImage: string;
@@ -58,7 +59,6 @@ const Header = ({
       <nav className="mx-10 py-4">
         <div className="flex items-center justify-between">
           {/* Left side - Profile section or empty space */}
-          <div className="flex">mee</div>
 
           <div className={`md:hidden flex items-center space-x-3`}>
             <Image
@@ -75,7 +75,7 @@ const Header = ({
               download="Aishwarya_BR_Resume.pdf"
               className="ml-4 bg-purple-600 hover:bg-purple-500 text-white px-3 py-1 text-sm  border border-white/50 hover:border-white transition-all"
             >
-              📄 Resumeee
+              📄 Resume
             </a>
           </div>
 
@@ -94,6 +94,7 @@ const Header = ({
                 {item.label}
               </button>
             ))}
+            <ThemeSwitcher />
           </div>
         </div>
       </nav>

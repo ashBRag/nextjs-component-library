@@ -6,7 +6,7 @@ import {
   PortfolioSelect,
 } from "../ui/dev/Form";
 
-import Card from "../ui/dev/Card";
+import Card from "../ui/components/card/Card";
 import { ContactLinkButton } from "../ui/dev/Button";
 import { Contact } from "@/types/personal";
 import { useToast } from "../ui/dev/Toast";

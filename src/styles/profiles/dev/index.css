@@ -1,3 +1,17 @@
+[data-profile="dev"] body {
+  background-color: var(--background);
+}
+
+[data-profile="dev"] .current-zap {
+  background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+}
+[data-profile="dev"] .current-zap-vertical {
+  background: linear-gradient(180deg, transparent, #00ff88, transparent);
+}
+[data-profile="dev"] {
+  --background: #282c33;
+}
+
 [data-profile="dev"] {
   /* ── Accent ── */
   --color-accent: #c778dd;
@@ -25,8 +39,10 @@
 }
 
 [data-profile="dev"][data-theme="light"] {
+  --background: #fafafa;
   --color-bg: #fafafa;
   --color-bg-surface: #f0f0f0;
+  --color-bg-elevated: #e8e8e8;
   --color-fg: #383a42;
   --color-fg-muted: #383a4280;
   --color-border: #38383830;

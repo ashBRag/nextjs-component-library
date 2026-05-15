@@ -1,4 +1,5 @@
 "use client";
+import { ThemeSwitcher } from "@/components/sections/ThemeSwitcher";
 import { scrollToElement } from "@/lib/utils";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
@@ -101,6 +102,7 @@ const Header = ({
                 {item.label}
               </button>
             ))}
+            <ThemeSwitcher />
           </div>
         </div>
       </nav>

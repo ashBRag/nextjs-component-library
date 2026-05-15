@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Timeline, { PortfolioTimelineItem } from "@/components/ui/dev/Timeline";
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
-import Card from "../ui/dev/Card";
+import Card from "../ui/components/card/Card";
 import { Experience, Project, Projects } from "@/types/projects";
 import IconComponent from "../ui/Icon";
 import MobileCarousel from "../ui/dev/Scroll";
