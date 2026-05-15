@@ -1,0 +1,49 @@
+@layer components {
+  .dropdown__trigger {
+    @apply p-2 transition-colors duration-200;
+    color: var(--color-fg);
+  }
+  .dropdown__trigger:hover {
+    color: var(--color-accent);
+  }
+
+  .dropdown__panel {
+    @apply min-w-48 py-1 border;
+    background-color: var(--color-bg-elevated);
+    border-color: var(--color-border);
+  }
+
+  .dropdown__group {
+    @apply px-1;
+  }
+
+  .dropdown__heading {
+    @apply px-3 py-1.5 text-xs uppercase tracking-widest;
+    color: var(--color-fg-muted);
+  }
+
+  .dropdown__item {
+    @apply relative w-full text-left px-3 py-2 text-sm
+             flex items-center gap-2
+             transition-colors duration-150;
+    color: var(--color-fg);
+  }
+  .dropdown__item:hover {
+    background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    color: var(--color-accent);
+  }
+
+  .dropdown__item--active {
+    color: var(--color-accent);
+  }
+
+  .dropdown__item-dot {
+    @apply w-1.5 h-1.5 rounded-full shrink-0;
+    background-color: var(--color-accent);
+  }
+
+  .dropdown__divider {
+    @apply my-1;
+    border-color: var(--color-border);
+  }
+}

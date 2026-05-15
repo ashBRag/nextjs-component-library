@@ -99,7 +99,6 @@ export default function AboutSection({
       <Card
         id="about-me-card"
         title="Meet Aishwarya B R"
-        className="slide-right"
         titleClassName="text-[#C778DD]"
       >
         <div className="flex flex-col gap-2">
