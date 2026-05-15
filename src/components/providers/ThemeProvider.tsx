@@ -8,7 +8,7 @@
 import React, { createContext, useEffect, useRef, useState } from "react";
 
 export type Theme = "light" | "dark";
-export type Profile = "dev" | "base";
+export type Profile = "dev" | "designer";
 
 // Defines the shape of the theme context value
 export interface ThemeContextValue {
@@ -20,7 +20,7 @@ export interface ThemeContextValue {
 }
 // Map of profile names to their dynamic import functions for styles
 const profileImports: Partial<Record<Profile, () => Promise<unknown>>> = {
-  base: () => import("../../styles/profiles/base/index.css"),
+  designer: () => import("../../styles/profiles/designer/index.css"),
 };
 
 export const ThemeCntxt = createContext<ThemeContextValue>({

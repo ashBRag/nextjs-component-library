@@ -8,9 +8,9 @@ import { LuDownload } from "react-icons/lu";
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
 import Typewriter from "typewriter-effect";
-import Card from "../ui/dev/Card";
 import { AnimatedSkillsGrid } from "../ui/dev/Rotation";
 import { Button } from "../ui/components/button/Button";
+import Card from "../ui/components/card/Card";
 
 interface SkillsData {
   categories: {

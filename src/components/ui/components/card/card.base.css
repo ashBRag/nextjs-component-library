@@ -1,0 +1,109 @@
+@layer components {
+  /* ── Base ── */
+  .card {
+    @apply relative w-full h-full overflow-hidden
+             transition-all duration-300 ease-out;
+  }
+
+  .card--bordered {
+    @apply border border-[var(--color-border)];
+  }
+
+  .card--animated:hover {
+    border-color: var(--color-accent-muted);
+  }
+
+  .card--clickable {
+    @apply cursor-pointer;
+  }
+  .card--clickable:hover {
+    border-color: var(--color-accent-muted);
+    @apply text-white;
+  }
+
+  /* ── Sizes ── */
+  .card__body--sm {
+    @apply p-4 text-sm;
+  }
+  .card__body--md {
+    @apply p-6 text-base;
+  }
+  .card__body--lg {
+    @apply p-8 text-lg;
+  }
+  .card__body--compact {
+    @apply px-8 text-sm;
+  }
+
+  /* ── Corner brackets ── */
+  .card__corner-wrapper {
+    @apply relative w-full;
+  }
+
+  .card__corner--tl {
+    @apply absolute -top-2 -left-2 w-6 h-6 z-10;
+  }
+  .card__corner--tl-h {
+    @apply w-full h-0.5 bg-[var(--color-fg)];
+  }
+  .card__corner--tl-v {
+    @apply w-0.5 h-6 bg-[var(--color-fg)];
+  }
+
+  .card__corner--br {
+    @apply absolute -bottom-2 -right-2 w-6 h-6 z-10;
+  }
+  .card__corner--br-h {
+    @apply absolute bottom-0 right-0 w-full h-0.5 bg-[var(--color-fg)];
+  }
+  .card__corner--br-v {
+    @apply absolute bottom-0 right-0 w-0.5 h-6 bg-[var(--color-fg)];
+  }
+
+  /* ── Cover image ── */
+  .card__cover {
+    @apply relative w-full aspect-video overflow-hidden
+             rounded-t-lg flex items-center justify-center;
+  }
+
+  .card__cover-img {
+    @apply object-cover object-center opacity-20;
+  }
+
+  .card__cover-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/70 to-black/20;
+  }
+
+  .card__cover-title {
+    @apply relative z-10 font-medium mb-2 text-center text-white;
+  }
+
+  /* ── Typography ── */
+  .card__title {
+    @apply font-medium mb-2 text-white;
+  }
+  .card__title--sm {
+    @apply text-lg;
+  }
+  .card__title--md {
+    @apply text-xl;
+  }
+  .card__title--lg {
+    @apply text-2xl;
+  }
+  .card__title--compact {
+    @apply text-lg;
+  }
+
+  .card__subtitle {
+    @apply text-base mb-4;
+    color: var(--color-accent);
+  }
+
+  .card__description,
+  .card__content,
+  .card__children {
+    @apply leading-relaxed mb-4;
+    color: var(--color-fg);
+  }
+}

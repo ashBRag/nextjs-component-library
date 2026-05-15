@@ -2,6 +2,8 @@
 @import "./themes/light.css";
 @import "./themes/dark.css";
 @import "../components/ui/components/button/button.base.css";
+@import "../components/ui/components/card/card.base.css";
+
 @import "./profiles/dev/index.css";
 
 @theme inline {
