@@ -1,2 +1,36 @@
 @import "../base/index.css"; /* inherit base */
 @import "./button.css";
+[data-profile="dev"] {
+  /* ── Accent ── */
+  --color-accent: #c778dd;
+  --color-accent-muted: #c778dd80;
+
+  /* ── Foreground ── */
+  --color-fg: #abb2bf;
+  --color-fg-muted: #abb2bf80;
+  --color-btn-fg: #fff;
+
+  /* ── Background ── */
+  --color-bg: #282c33;
+  --color-bg-surface: #2d3139;
+  --color-bg-elevated: #343a45;
+
+  /* ── Border ── */
+  --color-border: #abb2bf30;
+  --color-border-focus: #c778dd;
+
+  /* ── Semantic ── */
+  --color-success: #98c379;
+  --color-warning: #e5c07b;
+  --color-error: #e06c75;
+  --color-info: #61afef;
+}
+
+[data-profile="dev"][data-theme="light"] {
+  --color-bg: #fafafa;
+  --color-bg-surface: #f0f0f0;
+  --color-fg: #383a42;
+  --color-fg-muted: #383a4280;
+  --color-border: #38383830;
+  --color-btn-fg: #383a42;
+}

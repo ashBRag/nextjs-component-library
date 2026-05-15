@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "./themes/light.css";
 @import "./themes/dark.css";
+@import "../components/ui/components/button/button.base.css";
+@import "./profiles/dev/index.css";
 
 @theme inline {
   --color-background: var(--background);

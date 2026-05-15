@@ -5,10 +5,10 @@
   The component also handles dynamic imports of profile-specific styles, 
   ensuring that only the necessary styles are loaded when a profile is selected.
 */
-import React, { createContext, useEffect, useRef, useState, use } from "react";
+import React, { createContext, useEffect, useRef, useState } from "react";
 
 export type Theme = "light" | "dark";
-export type Profile = "dev" | "general" | "artistic";
+export type Profile = "dev" | "base";
 
 // Defines the shape of the theme context value
 export interface ThemeContextValue {
@@ -20,8 +20,7 @@ export interface ThemeContextValue {
 }
 // Map of profile names to their dynamic import functions for styles
 const profileImports: Partial<Record<Profile, () => Promise<unknown>>> = {
-  general: () => import("@/styles/profiles/general/index.css"),
-  artistic: () => import("@/styles/profiles/artistic/index.css"),
+  base: () => import("../../styles/profiles/base/index.css"),
 };
 
 export const ThemeCntxt = createContext<ThemeContextValue>({

@@ -5,14 +5,10 @@ interface ButtonProps {
   size?: "sm" | "md" | "lg";
   iconBefore?: React.ReactNode;
   iconAfter?: React.ReactNode;
-  href?: string;
-  download?: string;
   disabled?: boolean;
   className?: string;
   children?: React.ReactNode;
   onClick?: () => void;
-  target?: string;
-  rel?: string;
 }
 
 export function Button({
@@ -20,14 +16,10 @@ export function Button({
   size = "md",
   iconBefore,
   iconAfter,
-  href,
-  download,
   disabled = false,
   className = "",
   children,
   onClick,
-  target,
-  rel,
 }: ButtonProps) {
   const cls = ["btn", `btn--${variant}`, `btn--${size}`, className]
     .filter(Boolean)
@@ -44,21 +36,6 @@ export function Button({
       )}
     </>
   );
-
-  if (href) {
-    return (
-      <a
-        href={href}
-        download={download}
-        onClick={onClick}
-        target={target}
-        rel={rel}
-        className={cls}
-      >
-        {content}
-      </a>
-    );
-  }
 
   return (
     <button onClick={onClick} disabled={disabled} className={cls}>

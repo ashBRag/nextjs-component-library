@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-implicit-any */
 import React from "react";
 import IconComponent from "../ui/Icon";
 
@@ -83,6 +84,7 @@ const YearsBadge = ({ years }: { years: number }) => {
 };
 
 // Main Component
+
 const PortfolioSkillsTable = ({ skillsData }) => {
   const { getLevelStars, getStarsColor } = useSkillsLogic();
 
@@ -122,7 +124,7 @@ const PortfolioSkillsTable = ({ skillsData }) => {
 
               {/* Category Header */}
               <h4 className="text-white font-medium mb-4  relative z-10">
-                <span className="text-[#C778DD]">{category.name}</span>
+                <span className="text-[#C778DD]">{category.name || ""}</span>
               </h4>
 
               {/* Skills List */}

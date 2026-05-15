@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
-import { Providers } from "./providers";
+import { Providers } from "../components/providers/providers";
 import "@/styles/globals.css";
 import "@/styles/profiles/base/index.css";
 

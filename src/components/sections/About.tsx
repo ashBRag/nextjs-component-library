@@ -3,13 +3,14 @@
 
 "use client";
 import { useEffect, useState } from "react";
+import { LuDownload } from "react-icons/lu";
 
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
 import Typewriter from "typewriter-effect";
 import Card from "../ui/dev/Card";
 import { AnimatedSkillsGrid } from "../ui/dev/Rotation";
-import { DownloadResumeButton } from "../ui/dev/Button";
+import { Button } from "../ui/components/button/Button";
 
 interface SkillsData {
   categories: {
@@ -70,6 +71,13 @@ export default function AboutSection({
 
   if (loading) return <div>Loading...</div>;
 
+  const handleDownload = () => {
+    const a = document.createElement("a");
+    a.href = "/Resume.pdf";
+    a.download = "Resume.pdf";
+    a.click();
+  };
+
   return (
     <section className="flex flex-col sm:flex-col md:flex-row lg:flex-row gap-2">
       <div
@@ -83,10 +91,9 @@ export default function AboutSection({
           width={304}
           height={304}
         />
-        <DownloadResumeButton
-          href="/resume.pdf"
-          downloadName="Aishwarya_BR_Resume.pdf"
-        />
+        <Button iconAfter={<LuDownload />} onClick={handleDownload}>
+          Download Resume
+        </Button>
       </div>
 
       <Card
