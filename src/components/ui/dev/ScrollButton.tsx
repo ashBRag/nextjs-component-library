@@ -1,5 +1,5 @@
 "use client";
-import { useScrollToElement } from "@/components/hooks/useScroll";
+import { useScrollToElement } from "@/hooks/useScroll";
 
 export function PortfolioUI() {
   const scrollDown = () => {

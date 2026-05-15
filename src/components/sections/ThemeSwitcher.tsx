@@ -2,7 +2,7 @@
 
 import { IoSettingsOutline } from "react-icons/io5";
 import { DropdownMenu } from "@/components/ui/components/menu/Menu";
-import { useTheme } from "@/components/hooks/useTheme";
+import { useTheme } from "@/hooks/useTheme";
 import type { Profile, Theme } from "@/components/providers/ThemeProvider";
 
 const THEMES: { label: string; value: Theme }[] = [
