@@ -1,3 +1,5 @@
+@import "./navList.css";
+
 [data-profile="dev"] body {
   background-color: var(--background);
 }
@@ -48,6 +50,21 @@
   --color-bg-surface: rgb(15 23 42 / 0.9); /* slate-900/90 */
   --color-border-subtle: rgb(51 65 85 / 0.5); /* slate-700/50 */
   --color-text-primary: #e2e8f0; /* slate-200 */
+
+  /* Nav */
+  --color-nav-inactive: #abb2bf;
+  --color-nav-hover: #ffffff;
+  --color-nav-border: rgb(171 178 191 / 0.3);
+  --color-nav-border-hover: rgb(199 120 221 / 0.5);
+  --color-nav-active: #c778dd;
+  --color-nav-border-active: #c778dd;
+  --color-nav-bg-active: transparent;
+  --color-nav-shadow-active: rgb(199 120 221 / 0.2);
+  --color-nav-disabled: rgb(171 178 191 / 0.5);
+  --color-nav-border-disabled: rgb(171 178 191 / 0.2);
+  --color-nav-content-text: #abb2bf;
+  --nav-label-prefix: "#";
+  --nav-disabled-opacity: 0.5;
 }
 
 [data-profile="dev"][data-theme="light"] {
@@ -70,4 +87,16 @@
   --color-bg-surface: rgb(248 250 252 / 0.95);
   --color-border-subtle: rgb(148 163 184 / 0.4);
   --color-text-primary: #1e293b;
+
+  /* Nav */
+  --color-nav-inactive: #6b7280;
+  --color-nav-hover: #111827;
+  --color-nav-border: rgb(107 114 128 / 0.3);
+  --color-nav-border-hover: rgb(147 51 234 / 0.4);
+  --color-nav-active: #7c3aed;
+  --color-nav-border-active: #7c3aed;
+  --color-nav-shadow-active: rgb(124 58 237 / 0.15);
+  --color-nav-disabled: rgb(107 114 128 / 0.4);
+  --color-nav-border-disabled: rgb(107 114 128 / 0.15);
+  --color-nav-content-text: #374151;
 }

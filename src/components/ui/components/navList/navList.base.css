@@ -1,0 +1,159 @@
+@reference "../../../../styles/globals.css";
+
+.nav-list {
+  @apply flex;
+}
+
+.nav-list--vertical {
+  @apply flex-row;
+}
+
+.nav-list--horizontal {
+  @apply flex-col;
+}
+
+/* List */
+.nav-list__list {
+  @apply flex-col space-y-3 text-sm font-medium;
+}
+
+.nav-list--vertical .nav-list__list {
+  @apply flex min-w-48 me-4 mb-0 md:mb-0;
+}
+
+.nav-list--horizontal .nav-list__list {
+  @apply flex flex-row space-y-0 space-x-4 mb-2 md:mb-4;
+}
+
+/* Item */
+.nav-list__item {
+  @apply block;
+}
+
+/* Trigger — shared */
+.nav-list__trigger {
+  @apply relative inline-flex items-center px-4 py-3 w-full border;
+  color: var(--color-nav-inactive);
+  border-color: var(--color-nav-border);
+  transition: color 300ms, border-color 300ms, background-color 300ms;
+}
+
+.nav-list__trigger:hover:not(.nav-list__trigger--disabled) {
+  color: var(--color-nav-hover);
+  border-color: var(--color-nav-border-hover);
+}
+
+.nav-list__trigger--active {
+  color: var(--color-nav-active);
+  border-color: var(--color-nav-border-active);
+  box-shadow: 0 8px 24px var(--color-nav-shadow-active);
+}
+
+.nav-list__trigger--disabled {
+  @apply cursor-not-allowed;
+  color: var(--color-nav-disabled);
+  border-color: var(--color-nav-border-disabled);
+}
+
+.nav-list__trigger--link {
+  @apply no-underline;
+}
+
+/* Corner brackets */
+.nav-list__corners {
+  @apply absolute inset-0 pointer-events-none;
+}
+
+.nav-list__corner {
+  @apply absolute w-2 h-2;
+}
+
+.nav-list__corner::before,
+.nav-list__corner::after {
+  content: "";
+  @apply absolute block;
+  background-color: var(--color-nav-active);
+}
+
+.nav-list__corner--tl {
+  @apply top-1 left-1;
+}
+.nav-list__corner--tl::before {
+  @apply w-full h-px top-0 left-0;
+}
+.nav-list__corner--tl::after {
+  @apply w-px h-full top-0 left-0;
+}
+
+.nav-list__corner--tr {
+  @apply top-1 right-1;
+}
+.nav-list__corner--tr::before {
+  @apply w-full h-px top-0 right-0;
+}
+.nav-list__corner--tr::after {
+  @apply w-px h-full top-0 right-0;
+}
+
+.nav-list__corner--bl {
+  @apply bottom-1 left-1;
+}
+.nav-list__corner--bl::before {
+  @apply w-full h-px bottom-0 left-0;
+}
+.nav-list__corner--bl::after {
+  @apply w-px h-full bottom-0 left-0;
+}
+
+.nav-list__corner--br {
+  @apply bottom-1 right-1;
+}
+.nav-list__corner--br::before {
+  @apply w-full h-px bottom-0 right-0;
+}
+.nav-list__corner--br::after {
+  @apply w-px h-full bottom-0 right-0;
+}
+
+/* Icon */
+.nav-list__icon {
+  @apply w-4 h-4 me-3 flex-shrink-0;
+}
+
+.nav-list--animated .nav-list__icon {
+  @apply transition-transform duration-300;
+}
+
+.nav-list--animated .nav-list__icon--active {
+  @apply scale-110;
+}
+
+.nav-list__icon--disabled {
+  opacity: var(--nav-disabled-opacity, 0.5);
+}
+
+/* Label */
+.nav-list__label {
+  @apply flex items-center gap-0;
+}
+
+.nav-list__label-prefix::before {
+  content: var(--nav-label-prefix, "#");
+  color: var(--color-nav-active);
+}
+
+/* Active indicator */
+.nav-list__indicator {
+  @apply ml-auto w-2 h-2 block animate-pulse;
+  background-color: var(--color-nav-active);
+}
+
+/* Content pane */
+.nav-list__content {
+  @apply relative p-2 w-full;
+  color: var(--color-nav-content-text);
+}
+
+.nav-list__content-inner {
+  @apply relative z-10;
+}

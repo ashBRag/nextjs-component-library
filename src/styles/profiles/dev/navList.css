@@ -1,0 +1,7 @@
+.nav-list__trigger {
+  background-color: transparent;
+}
+
+.nav-list__trigger--active {
+  background-color: var(--color-nav-bg-active);
+}

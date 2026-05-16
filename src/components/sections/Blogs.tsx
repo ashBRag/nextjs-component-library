@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
-import VerticalTabs from "../ui/dev/VerticalTabs";
+import VerticalTabs from "@/components/ui/components/navList/NavList";
 import Card from "../ui/components/card/Card";
 import { BlogData } from "@/types/blogs";
 

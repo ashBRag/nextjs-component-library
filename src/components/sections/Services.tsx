@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
-import VerticalTabs from "../ui/dev/VerticalTabs";
-import Card from "../ui/components/card/Card";
+import VerticalTabs from "@/components/ui/components/navList/NavList";
+import Card from "@/components/ui/components/card/Card";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import MobileCarousel from "../ui/dev/Scroll";
 import { Service } from "@/types/services";
