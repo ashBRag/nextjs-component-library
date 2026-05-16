@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Timeline, { PortfolioTimelineItem } from "@/components/ui/dev/Timeline";
+import Timeline, { TimelineItem } from "@/components/timeline/Timeline";
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
 import Card from "../components/card/Card";
@@ -55,7 +55,7 @@ export default function ProjectsSection() {
   const getTimelineItems = () => {
     if (!projectsData) return [];
 
-    const allItems: PortfolioTimelineItem[] = [];
+    const allItems: TimelineItem[] = [];
 
     projectsData.experience.forEach((exp) => {
       const badgeText = exp.company.split(" ")[0];

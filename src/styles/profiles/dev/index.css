@@ -65,6 +65,60 @@
   --color-nav-content-text: #abb2bf;
   --nav-label-prefix: "#";
   --nav-disabled-opacity: 0.5;
+
+  /* Timeline */
+  --color-timeline-line: rgb(199 120 221 / 0.3);
+  --color-timeline-node-border: #c778dd;
+  --color-timeline-node-text: #c778dd;
+  --color-timeline-node-bg: #ffffff;
+  --color-timeline-title: #ffffff;
+  --color-timeline-date: #c778dd;
+  --color-timeline-description: #abb2bf;
+  --color-card-border: rgb(171 178 191 / 0.3);
+  --color-card-border-hover: rgb(199 120 221 / 0.5);
+  --color-card-border-active: rgb(199 120 221 / 0.5);
+  --color-card-shadow-hover: rgb(199 120 221 / 0.1);
+  --color-card-shadow-active: rgb(199 120 221 / 0.2);
+  --color-corner: rgb(171 178 191 / 0.5);
+
+  /* Badge — primary */
+  --color-badge-primary-text: #c778dd;
+  --color-badge-primary-bg: rgb(199 120 221 / 0.2);
+  --color-badge-primary-border: rgb(199 120 221 / 0.5);
+
+  /* Badge — secondary */
+  --color-badge-secondary-text: #abb2bf;
+  --color-badge-secondary-bg: rgb(171 178 191 / 0.2);
+  --color-badge-secondary-border: rgb(171 178 191 / 0.5);
+
+  /* Badge — success */
+  --color-badge-success-text: #4ade80;
+  --color-badge-success-bg: rgb(34 197 94 / 0.2);
+  --color-badge-success-border: rgb(34 197 94 / 0.5);
+
+  /* Badge — warning */
+  --color-badge-warning-text: #facc15;
+  --color-badge-warning-bg: rgb(234 179 8 / 0.2);
+  --color-badge-warning-border: rgb(234 179 8 / 0.5);
+
+  /* Form fields — shared token set */
+  --color-accent: #c778dd;
+  --color-field-label: #ffffff;
+  --color-field-text: #ffffff;
+  --color-field-placeholder: #abb2bf;
+  --color-field-bg: rgb(171 178 191 / 0.1);
+  --color-field-border: rgb(171 178 191 / 0.3);
+  --color-field-border-hover: rgb(199 120 221 / 0.5);
+  --color-field-border-focus: #c778dd;
+  --color-field-shadow-focus: rgb(199 120 221 / 0.2);
+  --color-field-border-error: #ef4444;
+  --color-field-shadow-error: rgb(239 68 68 / 0.2);
+  --color-field-error-text: #f87171;
+  --color-radio-selected-bg: rgb(199 120 221 / 0.1);
+  --color-status-text: #abb2bf;
+  --color-status-track-bg: rgb(171 178 191 / 0.2);
+  --field-label-prefix: "#";
+  --status-bar-prefix: ">";
 }
 
 [data-profile="dev"][data-theme="light"] {
@@ -99,4 +153,30 @@
   --color-nav-disabled: rgb(107 114 128 / 0.4);
   --color-nav-border-disabled: rgb(107 114 128 / 0.15);
   --color-nav-content-text: #374151;
+
+  /* Timeline */
+  --color-timeline-line: rgb(199 120 221 / 0.4);
+  --color-timeline-node-bg: #f8fafc;
+  --color-timeline-title: #0f172a;
+  --color-timeline-date: #7c3aed;
+  --color-timeline-description: #475569;
+  --color-card-border: rgb(107 114 128 / 0.3);
+  --color-card-border-hover: rgb(124 58 237 / 0.4);
+  --color-card-border-active: rgb(124 58 237 / 0.5);
+  --color-card-shadow-hover: rgb(124 58 237 / 0.08);
+  --color-card-shadow-active: rgb(124 58 237 / 0.15);
+  --color-corner: rgb(107 114 128 / 0.4);
+
+  /* form fields */
+  --color-field-label: #0f172a;
+  --color-field-text: #0f172a;
+  --color-field-placeholder: #6b7280;
+  --color-field-bg: rgb(255 255 255 / 0.8);
+  --color-field-border: rgb(107 114 128 / 0.3);
+  --color-field-border-hover: rgb(124 58 237 / 0.4);
+  --color-field-border-focus: #7c3aed;
+  --color-field-shadow-focus: rgb(124 58 237 / 0.15);
+  --color-radio-selected-bg: rgb(124 58 237 / 0.08);
+  --color-status-text: #374151;
+  --color-status-track-bg: rgb(107 114 128 / 0.15);
 }

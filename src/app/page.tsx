@@ -217,12 +217,12 @@ import { Contact } from "@/types/personal";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import Container from "@/components/ui/dev/Container";
+import Container from "@/sections/Container";
 import { fetchIconMap } from "@/store/reducer";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { ScreenCenterWrapper } from "@/components/wrapper/CenterWrapper";
 import BlogsSection from "@/sections/Blogs";
-import FloatingCubes from "@/components/ui/dev/Background";
+import FloatingCubes from "@/styles/profiles/dev/Background";
 
 export default function Home() {
   const [showLoader, setShowloader] = useState(true);

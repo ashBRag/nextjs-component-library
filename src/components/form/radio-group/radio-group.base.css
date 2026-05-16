@@ -1,0 +1,117 @@
+@reference "../../../styles/globals.css";
+
+.radio-group {
+  @apply block;
+}
+
+.radio-group__label {
+  @apply block mb-3 text-sm;
+  color: var(--color-field-label);
+}
+
+.radio-group__label-prefix::before {
+  content: var(--field-label-prefix, "#");
+  color: var(--color-accent);
+}
+
+.radio-group__options {
+  @apply space-y-3;
+}
+
+.radio-group__item {
+  @apply block cursor-pointer;
+}
+
+.radio-group__input {
+  @apply sr-only;
+}
+
+.radio-group__option {
+  @apply p-4 border transition-all relative;
+  border-color: var(--color-field-border);
+  color: var(--color-field-placeholder);
+}
+
+.radio-group__option:hover {
+  border-color: var(--color-field-border-hover);
+  color: var(--color-field-text);
+}
+
+.radio-group__option--selected {
+  border-color: var(--color-accent);
+  background-color: var(--color-radio-selected-bg);
+  color: var(--color-field-text);
+}
+
+/* Corners */
+.radio-group__corners {
+  @apply absolute inset-0 pointer-events-none;
+}
+
+.radio-group__corner {
+  @apply absolute w-2 h-2;
+}
+
+.radio-group__corner::before,
+.radio-group__corner::after {
+  content: "";
+  @apply absolute block;
+  background-color: var(--color-accent);
+}
+
+.radio-group__corner--tl {
+  @apply top-1 left-1;
+}
+.radio-group__corner--tl::before {
+  @apply w-full h-px top-0 left-0;
+}
+.radio-group__corner--tl::after {
+  @apply w-px h-full top-0 left-0;
+}
+
+.radio-group__corner--tr {
+  @apply top-1 right-1;
+}
+.radio-group__corner--tr::before {
+  @apply w-full h-px top-0 right-0;
+}
+.radio-group__corner--tr::after {
+  @apply w-px h-full top-0 right-0;
+}
+
+.radio-group__corner--bl {
+  @apply bottom-1 left-1;
+}
+.radio-group__corner--bl::before {
+  @apply w-full h-px bottom-0 left-0;
+}
+.radio-group__corner--bl::after {
+  @apply w-px h-full bottom-0 left-0;
+}
+
+.radio-group__corner--br {
+  @apply bottom-1 right-1;
+}
+.radio-group__corner--br::before {
+  @apply w-full h-px bottom-0 right-0;
+}
+.radio-group__corner--br::after {
+  @apply w-px h-full bottom-0 right-0;
+}
+
+.radio-group__option-inner {
+  @apply relative z-10;
+}
+
+.radio-group__option-label {
+  @apply text-sm font-medium;
+}
+
+.radio-group__option-description {
+  @apply text-xs mt-1 opacity-70;
+}
+
+.radio-group__error {
+  @apply mt-2 text-sm;
+  color: var(--color-field-error-text);
+}

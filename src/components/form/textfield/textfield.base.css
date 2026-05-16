@@ -1,0 +1,45 @@
+@reference "../../../styles/globals.css";
+
+.text-field {
+  @apply block;
+}
+
+.text-field__label {
+  @apply block mb-2 text-sm;
+  color: var(--color-field-label);
+}
+
+.text-field__label-prefix::before {
+  content: var(--field-label-prefix, "#");
+  color: var(--color-accent);
+}
+
+.text-field__input {
+  @apply w-full px-4 py-3 border text-sm focus:outline-none transition-all;
+  border-color: var(--color-field-border);
+  color: var(--color-field-text);
+  background-color: var(--color-field-bg);
+}
+
+.text-field__input:focus {
+  border-color: var(--color-field-border-focus);
+  box-shadow: 0 0 12px var(--color-field-shadow-focus);
+}
+
+.text-field__input--textarea {
+  @apply resize-none;
+}
+
+.text-field__input--error {
+  border-color: var(--color-field-border-error);
+  box-shadow: 0 0 12px var(--color-field-shadow-error);
+}
+
+.text-field__input--error:focus {
+  border-color: var(--color-field-border-error);
+}
+
+.text-field__error {
+  @apply mt-2 text-sm;
+  color: var(--color-field-error-text);
+}

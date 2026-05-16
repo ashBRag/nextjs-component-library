@@ -1,0 +1,182 @@
+@reference "../../styles/globals.css";
+
+/* Root */
+.timeline {
+  @apply relative;
+}
+
+/* List */
+.timeline__list {
+  @apply relative border-l-2 ml-6;
+  border-color: var(--color-timeline-line);
+}
+
+/* Item */
+.timeline__item {
+  @apply relative ml-6 mb-8;
+}
+
+.timeline__item:last-child {
+  @apply mb-0;
+}
+
+/* Node */
+.timeline__node {
+  @apply absolute flex items-center justify-center
+         w-10 h-10 rounded-full border-2 text-sm
+         -start-12 z-10;
+  border-color: var(--color-timeline-node-border);
+  color: var(--color-timeline-node-text);
+  background-color: var(--color-timeline-node-bg);
+}
+
+.timeline--animated .timeline__node {
+  @apply transition-transform duration-300;
+}
+
+.timeline--animated .timeline__node:hover {
+  @apply scale-110;
+}
+
+/* Card */
+.timeline__card {
+  @apply relative p-6 rounded border transition-all duration-300;
+  border-color: var(--color-card-border);
+}
+
+.timeline__card--selected {
+  border-color: var(--color-card-border-active);
+  box-shadow: 0 8px 24px var(--color-card-shadow-active);
+}
+
+.timeline__card--interactive {
+  @apply cursor-pointer;
+}
+
+.timeline__card--interactive:hover {
+  border-color: var(--color-card-border-hover);
+  box-shadow: 0 8px 24px var(--color-card-shadow-hover);
+}
+
+.timeline__card-link {
+  @apply block;
+}
+
+/* Corner brackets */
+.timeline__corners {
+  @apply absolute inset-0 pointer-events-none;
+}
+
+.timeline__corner {
+  @apply absolute w-3 h-3;
+}
+
+.timeline__corner::before,
+.timeline__corner::after {
+  content: "";
+  @apply absolute block;
+  background-color: var(--color-corner);
+}
+
+.timeline__corner--tl {
+  @apply top-2 left-2;
+}
+.timeline__corner--tl::before {
+  @apply w-full h-px top-0 left-0;
+}
+.timeline__corner--tl::after {
+  @apply w-px h-full top-0 left-0;
+}
+
+.timeline__corner--tr {
+  @apply top-2 right-2;
+}
+.timeline__corner--tr::before {
+  @apply w-full h-px top-0 right-0;
+}
+.timeline__corner--tr::after {
+  @apply w-px h-full top-0 right-0;
+}
+
+.timeline__corner--bl {
+  @apply bottom-2 left-2;
+}
+.timeline__corner--bl::before {
+  @apply w-full h-px bottom-0 left-0;
+}
+.timeline__corner--bl::after {
+  @apply w-px h-full bottom-0 left-0;
+}
+
+.timeline__corner--br {
+  @apply bottom-2 right-2;
+}
+.timeline__corner--br::before {
+  @apply w-full h-px bottom-0 right-0;
+}
+.timeline__corner--br::after {
+  @apply w-px h-full bottom-0 right-0;
+}
+
+/* Card inner */
+.timeline__card-inner {
+  @apply relative z-10;
+}
+
+.timeline__card-header {
+  @apply flex items-start mb-3 flex-wrap gap-2;
+}
+
+.timeline__title-wrapper {
+  @apply flex-1 min-w-0;
+}
+
+.timeline__title {
+  @apply text-lg font-medium;
+  color: var(--color-timeline-title);
+}
+
+/* Badge */
+.timeline__badge {
+  @apply text-xs font-medium px-3 py-1 rounded whitespace-nowrap border;
+}
+
+.timeline--animated .timeline__badge {
+  @apply animate-pulse;
+}
+
+.timeline__badge--primary {
+  color: var(--color-badge-primary-text);
+  background-color: var(--color-badge-primary-bg);
+  border-color: var(--color-badge-primary-border);
+}
+
+.timeline__badge--secondary {
+  color: var(--color-badge-secondary-text);
+  background-color: var(--color-badge-secondary-bg);
+  border-color: var(--color-badge-secondary-border);
+}
+
+.timeline__badge--success {
+  color: var(--color-badge-success-text);
+  background-color: var(--color-badge-success-bg);
+  border-color: var(--color-badge-success-border);
+}
+
+.timeline__badge--warning {
+  color: var(--color-badge-warning-text);
+  background-color: var(--color-badge-warning-bg);
+  border-color: var(--color-badge-warning-border);
+}
+
+/* Date */
+.timeline__date {
+  @apply block mb-3 text-sm;
+  color: var(--color-timeline-date);
+}
+
+/* Description */
+.timeline__description {
+  @apply text-base leading-relaxed;
+  color: var(--color-timeline-description);
+}

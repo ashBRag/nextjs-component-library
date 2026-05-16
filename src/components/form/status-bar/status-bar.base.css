@@ -1,0 +1,28 @@
+@reference "../../../styles/globals.css";
+
+.status-bar {
+  @apply border p-4;
+  border-color: var(--color-field-border);
+}
+
+.status-bar__inner {
+  @apply flex justify-between items-center text-sm;
+  color: var(--color-status-text);
+}
+
+.status-bar__status-prefix::before {
+  content: var(--status-bar-prefix, ">");
+  color: var(--color-accent);
+  margin-right: 0.25rem;
+}
+
+.status-bar__track {
+  @apply relative w-20 h-2;
+  background-color: var(--color-status-track-bg);
+}
+
+.status-bar__fill {
+  @apply absolute inset-y-0 left-0 transition-all duration-300;
+  width: var(--status-progress, 0%);
+  background-color: var(--color-accent);
+}

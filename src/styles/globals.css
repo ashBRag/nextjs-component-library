@@ -4,7 +4,10 @@
 @import "../components/button/button.base.css";
 @import "../components/card/card.base.css";
 @import "../components/menu/menu.base.css";
+@import "../components/navList/navList.base.css";
+@import "../components/menu/menu.base.css";
 @import "../components/tabs/tabs.base.css";
+@import "../components/timeline/timeline.base.css";
 @import "../components/toast/toast.base.css";
 
 @import "./profiles/dev/index.css";

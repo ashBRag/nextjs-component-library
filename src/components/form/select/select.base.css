@@ -1,0 +1,35 @@
+@reference "../../../styles/globals.css";
+
+.select-field {
+  @apply block;
+}
+
+.select-field__label {
+  @apply block mb-2 text-sm;
+  color: var(--color-field-label);
+}
+
+.select-field__label-prefix::before {
+  content: var(--field-label-prefix, "#");
+  color: var(--color-accent);
+}
+
+.select-field__input {
+  @apply w-full px-4 py-3 border text-sm focus:outline-none transition-all;
+  border-color: var(--color-field-border);
+  color: var(--color-field-text);
+  background-color: var(--color-field-bg);
+}
+
+.select-field__input:focus {
+  border-color: var(--color-field-border-focus);
+}
+
+.select-field__input--error {
+  border-color: var(--color-field-border-error);
+}
+
+.select-field__error {
+  @apply mt-2 text-sm;
+  color: var(--color-field-error-text);
+}
