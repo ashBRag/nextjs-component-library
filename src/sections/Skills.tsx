@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-implicit-any */
 import React from "react";
-import IconComponent from "../ui/Icon";
+import IconComponent from "../components/ui/Icon";
 
 // Logic Hook
 const useSkillsLogic = () => {

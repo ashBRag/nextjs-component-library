@@ -4,9 +4,9 @@ import { getSectionData } from "@/lib/api";
 import VerticalTabs from "@/components/ui/components/navList/NavList";
 import Card from "@/components/ui/components/card/Card";
 import { capitalizeFirstLetter } from "@/lib/utils";
-import MobileCarousel from "../ui/dev/Scroll";
+import MobileCarousel from "../components/ui/dev/Scroll";
 import { Service } from "@/types/services";
-import IconComponent from "../ui/Icon";
+import IconComponent from "../components/ui/Icon";
 
 export default function ServicesSection() {
   const [servicesOptions, setServicesOptions] = useState<Service[]>([

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Tabs from "../ui/components/tabs/Tabs";
+import Tabs from "../components/ui/components/tabs/Tabs";
 
 interface TabbedSectionProps {
   tabs: Array<{

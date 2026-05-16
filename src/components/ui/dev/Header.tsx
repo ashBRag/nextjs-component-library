@@ -1,5 +1,5 @@
 "use client";
-import { ThemeSwitcher } from "@/components/sections/ThemeSwitcher";
+import { ThemeSwitcher } from "@/sections/ThemeSwitcher";
 import { scrollToElement } from "@/lib/utils";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";

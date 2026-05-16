@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import Timeline, { PortfolioTimelineItem } from "@/components/ui/dev/Timeline";
 import { getSectionData } from "@/lib/api";
 import Image from "next/image";
-import Card from "../ui/components/card/Card";
+import Card from "../components/ui/components/card/Card";
 import { Experience, Project, Projects } from "@/types/projects";
-import IconComponent from "../ui/Icon";
-import MobileCarousel from "../ui/dev/Scroll";
+import IconComponent from "../components/ui/Icon";
+import MobileCarousel from "../components/ui/dev/Scroll";
 
 const DEFAULT_PROJECT: Project = {
   name: "",

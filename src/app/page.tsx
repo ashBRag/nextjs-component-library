@@ -206,12 +206,12 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import AboutSection from "@/components/sections/About";
-import ContactSection from "@/components/sections/Contact";
+import AboutSection from "@/sections/About";
+import ContactSection from "@/sections/Contact";
 import Header from "@/components/ui/dev/Header";
-import ProjectsSection from "@/components/sections/Projects";
-import ServicesSection from "@/components/sections/Services";
-import SkillsTable from "@/components/sections/Skills";
+import ProjectsSection from "@/sections/Projects";
+import ServicesSection from "@/sections/Services";
+import SkillsTable from "@/sections/Skills";
 import { getSectionData } from "@/lib/api";
 import { Contact } from "@/types/personal";
 import React, { useEffect } from "react";
@@ -221,7 +221,7 @@ import Container from "@/components/ui/dev/Container";
 import { fetchIconMap } from "@/components/store/reducer";
 import { useAppDispatch, useAppSelector } from "@/components/store/hooks";
 import { ScreenCenterWrapper } from "@/components/ui/components/wrapper/CenterWrapper";
-import BlogsSection from "@/components/sections/Blogs";
+import BlogsSection from "@/sections/Blogs";
 import FloatingCubes from "@/components/ui/dev/Background";
 
 export default function Home() {
