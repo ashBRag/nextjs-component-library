@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getSectionData } from "@/lib/api";
-import VerticalTabs from "@/components/ui/components/navList/NavList";
-import Card from "@/components/ui/components/card/Card";
+import VerticalTabs from "@/components/navList/NavList";
+import Card from "@/components/card/Card";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import MobileCarousel from "../components/ui/dev/Scroll";
 import { Service } from "@/types/services";
@@ -191,7 +191,6 @@ export default function ServicesSection() {
           }))}
           className="p-5"
         />
-        {/* <FloatingScrollButton id="contact" /> */}
       </section>
     </>
   );

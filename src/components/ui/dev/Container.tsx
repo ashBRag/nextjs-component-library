@@ -1,5 +1,5 @@
 import React from "react";
-import { ScreenCenterWrapper } from "@/components/ui/components/wrapper/CenterWrapper";
+import { ScreenCenterWrapper } from "@/components/wrapper/CenterWrapper";
 
 interface PortfolioContainerProps {
   title?: string;

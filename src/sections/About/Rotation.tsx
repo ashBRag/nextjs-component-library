@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import IconComponent from "../Icon";
+import IconComponent from "../../components/ui/Icon";
 
 interface Skill {
   name: string;

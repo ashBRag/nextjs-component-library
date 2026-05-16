@@ -4,14 +4,14 @@ import {
   PortfolioTextField,
   PortfolioButton,
   PortfolioSelect,
-} from "../components/ui/dev/Form";
+} from "../ui/dev/Form";
 
-import Card from "../components/card/Card";
-import { ContactLinkButton } from "../components/ui/dev/Button";
+import Card from "../card/Card";
+import { ContactLinkButton } from "../ui/dev/Button";
 import { Contact } from "@/types/personal";
 import { useToast } from "@/hooks/useToast";
 import { ApiError, submitContactForm } from "@/lib/api";
-import IconComponent from "../components/ui/Icon";
+import IconComponent from "../ui/Icon";
 // import { ToastContainer } from "../ui/components/toast/Toast";
 
 interface FormData {

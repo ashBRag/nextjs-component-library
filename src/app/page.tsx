@@ -206,9 +206,9 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import AboutSection from "@/sections/About";
+import AboutSection from "@/sections/About/About";
 import ContactSection from "@/sections/Contact";
-import Header from "@/components/ui/dev/Header";
+import Header from "@/sections/Header/Header";
 import ProjectsSection from "@/sections/Projects";
 import ServicesSection from "@/sections/Services";
 import SkillsTable from "@/sections/Skills";
@@ -220,7 +220,7 @@ import { useQuery } from "@tanstack/react-query";
 import Container from "@/components/ui/dev/Container";
 import { fetchIconMap } from "@/store/reducer";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { ScreenCenterWrapper } from "@/components/ui/components/wrapper/CenterWrapper";
+import { ScreenCenterWrapper } from "@/components/wrapper/CenterWrapper";
 import BlogsSection from "@/sections/Blogs";
 import FloatingCubes from "@/components/ui/dev/Background";
 

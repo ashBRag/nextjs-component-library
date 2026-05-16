@@ -1,7 +1,7 @@
 "use client";
 
 import { IoSettingsOutline } from "react-icons/io5";
-import { DropdownMenu } from "@/components/ui/components/menu/Menu";
+import { DropdownMenu } from "@/components/menu/Menu";
 import { useTheme } from "@/hooks/useTheme";
 import type { Theme } from "@/providers/ThemeProvider";
 // import type { Profile } from "@/providers/ThemeProvider";
