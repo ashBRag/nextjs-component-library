@@ -4,7 +4,7 @@
 
 import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
-import { useAppSelector } from "@/components/store/hooks";
+import { useAppSelector } from "@/store/hooks";
 
 type IconMapKey = "skills" | "services" | "contact";
 
