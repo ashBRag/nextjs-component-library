@@ -1,4 +1,4 @@
-@reference "../../styles/globals.css";
+@reference "tailwindcss";
 
 .nav-list {
   @apply flex;
@@ -32,7 +32,7 @@
 
 /* Trigger — shared */
 .nav-list__trigger {
-  @apply relative inline-flex items-center px-4 py-3 w-full border;
+  @apply relative inline-flex items-center gap-4 px-4 py-3 w-full border;
   color: var(--color-nav-inactive);
   border-color: var(--color-nav-border);
   transition: color 300ms, border-color 300ms, background-color 300ms;

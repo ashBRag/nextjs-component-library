@@ -1,4 +1,4 @@
-[data-profile="dev"] {
+[data-profile="designer"] {
   /* ── Accent ── */
   --color-accent: #c778dd;
   --color-accent-muted: #c778dd80;
@@ -24,7 +24,7 @@
   --color-info: #61afef;
 }
 
-[data-profile="dev"][data-theme="light"] {
+[data-profile="designer"][data-theme="light"] {
   --color-bg: #fafafa;
   --color-bg-surface: #f0f0f0;
   --color-fg: #383a42;

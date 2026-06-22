@@ -40,16 +40,16 @@
   --color-info: #61afef;
 
   /* Tabs */
-  --color-tab-inactive: #67e8f9; /* cyan-400 approx */
-  --color-tab-hover: #a5f3fc; /* cyan-300 approx */
-  --color-tab-border-hover: rgb(103 232 249 / 0.5);
-  --color-tab-active: #a5f3fc;
-  --color-tab-border-active: #22d3ee;
-  --color-tab-bg-active: rgb(22 78 99 / 0.4); /* cyan-900/40 */
-  --color-tab-shadow-active: rgb(34 211 238 / 0.3);
-  --color-bg-surface: rgb(15 23 42 / 0.9); /* slate-900/90 */
-  --color-border-subtle: rgb(51 65 85 / 0.5); /* slate-700/50 */
-  --color-text-primary: #e2e8f0; /* slate-200 */
+  --color-tab-inactive: #abb2bf;
+  --color-tab-hover: #e0b0ff;
+  --color-tab-border-hover: rgb(199 120 221 / 0.5);
+  --color-tab-active: #c778dd;
+  --color-tab-border-active: #c778dd;
+  --color-tab-bg-active: rgb(199 120 221 / 0.1);
+  --color-tab-shadow-active: rgb(199 120 221 / 0.2);
+  --color-bg-surface: rgb(15 23 42 / 0.9);
+  --color-border-subtle: rgb(51 65 85 / 0.5);
+  --color-text-primary: #e2e8f0;
 
   /* Nav */
   --color-nav-inactive: #abb2bf;
@@ -132,12 +132,12 @@
   --color-btn-fg: #383a42;
 
   /* Tabs */
-  --color-tab-inactive: #0891b2;
-  --color-tab-hover: #0e7490;
-  --color-tab-active: #0e7490;
-  --color-tab-border-active: #0891b2;
-  --color-tab-bg-active: rgb(207 250 254 / 0.5);
-  --color-tab-shadow-active: rgb(8 145 178 / 0.25);
+  --color-tab-inactive: #6b7280;
+  --color-tab-hover: #a855f7;
+  --color-tab-active: #c778dd;
+  --color-tab-border-active: #c778dd;
+  --color-tab-bg-active: rgb(199 120 221 / 0.08);
+  --color-tab-shadow-active: rgb(199 120 221 / 0.15);
   --color-bg-surface: rgb(248 250 252 / 0.95);
   --color-border-subtle: rgb(148 163 184 / 0.4);
   --color-text-primary: #1e293b;
@@ -146,10 +146,10 @@
   --color-nav-inactive: #6b7280;
   --color-nav-hover: #111827;
   --color-nav-border: rgb(107 114 128 / 0.3);
-  --color-nav-border-hover: rgb(147 51 234 / 0.4);
-  --color-nav-active: #7c3aed;
-  --color-nav-border-active: #7c3aed;
-  --color-nav-shadow-active: rgb(124 58 237 / 0.15);
+  --color-nav-border-hover: rgb(199 120 221 / 0.4);
+  --color-nav-active: #c778dd;
+  --color-nav-border-active: #c778dd;
+  --color-nav-shadow-active: rgb(199 120 221 / 0.15);
   --color-nav-disabled: rgb(107 114 128 / 0.4);
   --color-nav-border-disabled: rgb(107 114 128 / 0.15);
   --color-nav-content-text: #374151;
@@ -179,4 +179,18 @@
   --color-radio-selected-bg: rgb(124 58 237 / 0.08);
   --color-status-text: #374151;
   --color-status-track-bg: rgb(107 114 128 / 0.15);
+
+  /* Badge */
+  --color-badge-primary-text: #9333ea;
+  --color-badge-primary-bg: rgb(147 51 234 / 0.1);
+  --color-badge-primary-border: rgb(147 51 234 / 0.3);
+  --color-badge-secondary-text: #4b5563;
+  --color-badge-secondary-bg: rgb(107 114 128 / 0.1);
+  --color-badge-secondary-border: rgb(107 114 128 / 0.3);
+  --color-badge-success-text: #16a34a;
+  --color-badge-success-bg: rgb(22 163 74 / 0.1);
+  --color-badge-success-border: rgb(22 163 74 / 0.3);
+  --color-badge-warning-text: #ca8a04;
+  --color-badge-warning-bg: rgb(202 138 4 / 0.1);
+  --color-badge-warning-border: rgb(202 138 4 / 0.3);
 }

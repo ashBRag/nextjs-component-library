@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import "./timeline.css";
+import "./timeline.base.css";
 
 export interface TimelineItem {
   id: string;

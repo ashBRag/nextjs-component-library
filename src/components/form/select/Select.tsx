@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import "./select.css";
+import "./select.base.css";
 
 interface SelectOption {
   value: string;

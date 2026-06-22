@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import "./text-field.css";
+import "./text-field.base.css";
 
 interface TextFieldProps {
   label?: string;

@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { BlogItem } from "@/types/blogs";
-
 export class ApiError extends Error {
   status: number;
   constructor(message: string | undefined, status: number) {
@@ -10,7 +8,7 @@ export class ApiError extends Error {
   }
 }
 
-async function fetchApi(
+export async function fetchApi(
   endpoint: string,
   options: {
     method?: string;
@@ -56,33 +54,3 @@ async function fetchApi(
     throw new ApiError("Network error occurred", 500);
   }
 }
-// All data
-export const getAllData = () => fetchApi("/portfolio");
-
-// particular section data
-export const getSectionData = (sectionName: string) =>
-  fetchApi("/portfolio?section=" + sectionName);
-
-// Contact form submission
-export const submitContactForm = (formData: {
-  name: string;
-  email: string;
-  workType: string;
-  projectDesc: string;
-  timeline?: string;
-}) =>
-  fetchApi("/contact", {
-    method: "POST",
-    headers: {},
-    body: formData,
-  });
-
-// Fetch blog routes
-
-export const fetchBlogData = (
-  blogUrls: { url: string }[]
-): Promise<BlogItem[]> =>
-  fetchApi("/blog", {
-    method: "POST",
-    body: { blogUrls },
-  });

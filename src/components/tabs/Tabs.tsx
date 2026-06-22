@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import "./tabs.css";
+import "./tabs.base.css";
 
 interface Tab {
   id: string;

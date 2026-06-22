@@ -1,0 +1,52 @@
+@reference "tailwindcss";
+
+@layer components {
+  .badge {
+    @apply inline-flex items-center px-3 py-1 text-xs font-medium border
+           transition-colors duration-200;
+  }
+
+  .badge--rounded {
+    @apply rounded-full;
+  }
+
+  .badge--squared {
+    @apply rounded-sm;
+  }
+
+  .badge--primary {
+    color: var(--color-badge-primary-text);
+    background-color: var(--color-badge-primary-bg);
+    border-color: var(--color-badge-primary-border);
+  }
+
+  .badge--secondary {
+    color: var(--color-badge-secondary-text);
+    background-color: var(--color-badge-secondary-bg);
+    border-color: var(--color-badge-secondary-border);
+  }
+
+  .badge--success {
+    color: var(--color-badge-success-text);
+    background-color: var(--color-badge-success-bg);
+    border-color: var(--color-badge-success-border);
+  }
+
+  .badge--warning {
+    color: var(--color-badge-warning-text);
+    background-color: var(--color-badge-warning-bg);
+    border-color: var(--color-badge-warning-border);
+  }
+
+  .badge--sm {
+    @apply px-2 py-0.5 text-[0.65rem];
+  }
+
+  .badge--md {
+    @apply px-3 py-1 text-xs;
+  }
+
+  .badge--lg {
+    @apply px-4 py-1.5 text-sm;
+  }
+}

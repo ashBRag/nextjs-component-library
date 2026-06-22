@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 @layer components {
   .dropdown__trigger {
     @apply p-2 transition-colors duration-200;

@@ -1,34 +1,68 @@
+@reference "tailwindcss";
+
 .tabs {
   @apply relative;
 }
 
 .tabs--desktop {
-  @apply hidden sm:block backdrop-blur-sm border-2 rounded-lg;
+  @apply hidden sm:block border rounded-lg;
+  border-color: var(--color-tab-border-active, var(--color-border));
 }
 
 .tabs--mobile {
   @apply sm:hidden flex flex-col h-screen;
 }
 
-/* Corner decorations */
-.tabs__corner {
-  @apply absolute w-3 h-3 pointer-events-none;
-  color: inherit;
-  opacity: var(--tabs-corner-opacity, 0.2);
-  border-color: currentColor;
+/* Corner decorations — matches navList pattern */
+.tabs > .tabs__corner {
+  @apply absolute w-2 h-2 pointer-events-none;
 }
 
-.tabs__corner--tl {
-  @apply top-2 left-2 border-l-2 border-t-2;
+.tabs > .tabs__corner::before,
+.tabs > .tabs__corner::after {
+  content: "";
+  @apply absolute block;
+  background-color: var(--color-tab-active, var(--color-accent));
 }
-.tabs__corner--tr {
-  @apply top-2 right-2 border-r-2 border-t-2;
+
+.tabs > .tabs__corner--tl {
+  @apply top-1 left-1;
 }
-.tabs__corner--bl {
-  @apply bottom-2 left-2 border-l-2 border-b-2;
+.tabs > .tabs__corner--tl::before {
+  @apply w-full h-px top-0 left-0;
 }
-.tabs__corner--br {
-  @apply bottom-2 right-2 border-r-2 border-b-2;
+.tabs > .tabs__corner--tl::after {
+  @apply w-px h-full top-0 left-0;
+}
+
+.tabs > .tabs__corner--tr {
+  @apply top-1 right-1;
+}
+.tabs > .tabs__corner--tr::before {
+  @apply w-full h-px top-0 right-0;
+}
+.tabs > .tabs__corner--tr::after {
+  @apply w-px h-full top-0 right-0;
+}
+
+.tabs > .tabs__corner--bl {
+  @apply bottom-1 left-1;
+}
+.tabs > .tabs__corner--bl::before {
+  @apply w-full h-px bottom-0 left-0;
+}
+.tabs > .tabs__corner--bl::after {
+  @apply w-px h-full bottom-0 left-0;
+}
+
+.tabs > .tabs__corner--br {
+  @apply bottom-1 right-1;
+}
+.tabs > .tabs__corner--br::before {
+  @apply w-full h-px bottom-0 right-0;
+}
+.tabs > .tabs__corner--br::after {
+  @apply w-px h-full bottom-0 right-0;
 }
 
 /* Header */
@@ -37,81 +71,90 @@
 }
 
 .tabs__header--desktop {
-  @apply border-b-2 mb-0;
+  @apply border-b;
+  border-color: var(--color-border-subtle, var(--color-border));
 }
 
 .tabs__header--mobile {
-  @apply border-t-2;
+  @apply border-t;
+  border-color: var(--color-border-subtle, var(--color-border));
 }
 
 /* Tab list */
 .tabs__list {
-  @apply flex flex-wrap text-xs sm:text-sm font-medium text-center relative z-10;
+  @apply flex text-sm font-medium relative z-10;
 }
 
 /* Tab item */
 .tabs__item {
-  @apply relative flex-1;
+  @apply relative;
 }
 
 /* Trigger */
 .tabs__trigger {
-  @apply w-full inline-block px-3 py-2 sm:px-6 sm:py-3 relative backdrop-blur-sm;
-  transition-property: color, border-color, background-color, box-shadow,
-    transform, opacity;
+  @apply relative inline-flex items-center px-4 py-3 border;
+  border-color: transparent;
+  color: var(--color-tab-inactive, var(--color-nav-inactive));
+  transition: color 300ms, border-color 300ms, background-color 300ms;
 }
 
-.tabs--animated .tabs__trigger {
-  @apply transition-all duration-300 ease-out;
+.tabs__trigger:hover:not(.tabs__trigger--active) {
+  color: var(--color-tab-hover, var(--color-nav-hover));
+}
+
+.tabs__trigger--active {
+  color: var(--color-tab-active, var(--color-accent));
+  border-color: var(--color-tab-border-active, var(--color-accent));
+  box-shadow: 0 8px 24px var(--color-tab-shadow-active, transparent);
 }
 
 .tabs__trigger--desktop {
-  @apply rounded-t-lg border-b-2 border-transparent;
-}
-
-.tabs__trigger--desktop.tabs__trigger--active {
-  @apply border-b-2;
-}
-
-.tabs--animated .tabs__trigger--active:hover {
-  @apply scale-105;
+  @apply border-b-0;
 }
 
 .tabs__trigger--mobile {
-  @apply rounded-b-lg border-t-2 border-transparent;
+  @apply border-t-0;
 }
 
-.tabs__trigger--mobile.tabs__trigger--active {
-  @apply border-t-2;
-}
-
-/* Trigger corner decorations (small, inside button) */
+/* Trigger corner brackets — navList style */
 .tabs__trigger-corners {
   @apply absolute inset-0 pointer-events-none;
 }
 
 .tabs__trigger-corners .tabs__corner {
-  @apply w-1.5 h-1.5;
-  opacity: var(--tabs-trigger-corner-opacity, 0.5);
+  @apply absolute w-2 h-2;
 }
 
-.tabs__trigger-corners--desktop .tabs__corner--tl {
-  @apply top-1 left-1 border-l border-t;
-}
-.tabs__trigger-corners--desktop .tabs__corner--tr {
-  @apply top-1 right-1 border-r border-t;
+.tabs__trigger-corners .tabs__corner::before,
+.tabs__trigger-corners .tabs__corner::after {
+  content: "";
+  @apply absolute block;
+  background-color: var(--color-tab-active, var(--color-accent));
 }
 
-.tabs__trigger-corners--mobile .tabs__corner--tl {
-  @apply bottom-1 left-1 border-l border-b;
+.tabs__trigger-corners .tabs__corner--tl {
+  @apply top-1 left-1;
 }
-.tabs__trigger-corners--mobile .tabs__corner--tr {
-  @apply bottom-1 right-1 border-r border-b;
+.tabs__trigger-corners .tabs__corner--tl::before {
+  @apply w-full h-px top-0 left-0;
+}
+.tabs__trigger-corners .tabs__corner--tl::after {
+  @apply w-px h-full top-0 left-0;
+}
+
+.tabs__trigger-corners .tabs__corner--tr {
+  @apply top-1 right-1;
+}
+.tabs__trigger-corners .tabs__corner--tr::before {
+  @apply w-full h-px top-0 right-0;
+}
+.tabs__trigger-corners .tabs__corner--tr::after {
+  @apply w-px h-full top-0 right-0;
 }
 
 /* Inner layout */
 .tabs__trigger-inner {
-  @apply flex flex-col sm:flex-row items-center gap-1 sm:gap-2;
+  @apply flex items-center gap-2;
 }
 
 /* Icon */
@@ -125,37 +168,32 @@
 
 /* Label */
 .tabs__label {
-  @apply text-xs sm:text-sm;
+  @apply flex items-center text-sm;
 }
 
-/* Prefix/suffix — hidden on mobile, visible on sm+ via CSS */
 .tabs__label-prefix,
 .tabs__label-suffix {
   @apply hidden sm:inline;
 }
 
-/* Prefix/suffix content set in profile CSS via ::before / ::after
-     to keep decorative strings out of logic */
 .tabs__label-prefix::before {
   content: var(--tabs-label-prefix-active, "");
+  color: var(--color-tab-active, var(--color-accent));
 }
 
 .tabs__label-suffix::after {
   content: var(--tabs-label-suffix-active, "");
 }
 
-/* Selection indicator dot */
+/* Active indicator — square beside label, like navList */
 .tabs__indicator {
-  @apply absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full animate-pulse;
-  background-color: currentColor;
+  @apply ml-2 w-2 h-2 block animate-pulse;
+  background-color: var(--color-tab-active, var(--color-accent));
 }
 
-.tabs__indicator--desktop {
-  @apply -bottom-0.5;
-}
-
+.tabs__indicator--desktop,
 .tabs__indicator--mobile {
-  @apply -top-0.5;
+  @apply static translate-x-0;
 }
 
 /* Panels container */
@@ -182,30 +220,79 @@
   @apply block;
 }
 
-/* Desktop panel: bordered below the header */
+/* Desktop panel */
 .tabs--desktop .tabs__panel {
-  @apply p-6 rounded-b-lg border-2 border-t-0 backdrop-blur-sm;
+  @apply p-6;
 }
 
 /* Panel inner corners */
-.tabs__panel .tabs__corner {
-  @apply w-2 h-2;
-  opacity: var(--tabs-panel-corner-opacity, 0.3);
+.tabs__panel > .tabs__corner {
+  @apply absolute w-2 h-2 pointer-events-none;
+}
+
+.tabs__panel > .tabs__corner::before,
+.tabs__panel > .tabs__corner::after {
+  content: "";
+  @apply absolute block;
+  background-color: var(--color-tab-active, var(--color-accent));
+  opacity: 0.3;
+}
+
+.tabs__panel > .tabs__corner--tl {
+  @apply top-1 left-1;
+}
+.tabs__panel > .tabs__corner--tl::before {
+  @apply w-full h-px top-0 left-0;
+}
+.tabs__panel > .tabs__corner--tl::after {
+  @apply w-px h-full top-0 left-0;
+}
+
+.tabs__panel > .tabs__corner--tr {
+  @apply top-1 right-1;
+}
+.tabs__panel > .tabs__corner--tr::before {
+  @apply w-full h-px top-0 right-0;
+}
+.tabs__panel > .tabs__corner--tr::after {
+  @apply w-px h-full top-0 right-0;
+}
+
+.tabs__panel > .tabs__corner--bl {
+  @apply bottom-1 left-1;
+}
+.tabs__panel > .tabs__corner--bl::before {
+  @apply w-full h-px bottom-0 left-0;
+}
+.tabs__panel > .tabs__corner--bl::after {
+  @apply w-px h-full bottom-0 left-0;
+}
+
+.tabs__panel > .tabs__corner--br {
+  @apply bottom-1 right-1;
+}
+.tabs__panel > .tabs__corner--br::before {
+  @apply w-full h-px bottom-0 right-0;
+}
+.tabs__panel > .tabs__corner--br::after {
+  @apply w-px h-full bottom-0 right-0;
 }
 
 /* Panel content */
 .tabs__panel-content {
   @apply relative z-10;
+  color: var(--color-text-primary, var(--color-fg));
 }
 
 /* Panel pulse indicator */
 .tabs__panel-indicator {
   @apply absolute bottom-3 right-3 w-1.5 h-1.5 animate-pulse;
-  background-color: currentColor;
-  opacity: var(--tabs-panel-indicator-opacity, 0.4);
+  background-color: var(--color-tab-active, var(--color-accent));
+  opacity: 0.4;
 }
 
 /* Mobile bottom bar */
 .tabs__mobile-bar {
-  @apply fixed bottom-0 left-0 right-0 backdrop-blur-sm border-t-2 z-50 relative;
+  @apply fixed bottom-0 left-0 right-0 border-t z-50 relative;
+  border-color: var(--color-border-subtle, var(--color-border));
 }

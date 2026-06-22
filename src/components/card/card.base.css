@@ -1,3 +1,5 @@
+@reference "tailwindcss";
+
 @layer components {
   /* ── Base ── */
   .card {
@@ -32,7 +34,7 @@
     @apply p-8 text-lg;
   }
   .card__body--compact {
-    @apply px-8 text-sm;
+    @apply px-8 py-4 text-sm;
   }
 
   /* ── Corner brackets ── */
@@ -44,20 +46,20 @@
     @apply absolute -top-2 -left-2 w-6 h-6 z-10;
   }
   .card__corner--tl-h {
-    @apply w-full h-0.5 bg-[var(--color-fg)];
+    @apply w-full h-0.5 bg-[var(--color-accent)];
   }
   .card__corner--tl-v {
-    @apply w-0.5 h-6 bg-[var(--color-fg)];
+    @apply w-0.5 h-6 bg-[var(--color-accent)];
   }
 
   .card__corner--br {
     @apply absolute -bottom-2 -right-2 w-6 h-6 z-10;
   }
   .card__corner--br-h {
-    @apply absolute bottom-0 right-0 w-full h-0.5 bg-[var(--color-fg)];
+    @apply absolute bottom-0 right-0 w-full h-0.5 bg-[var(--color-accent)];
   }
   .card__corner--br-v {
-    @apply absolute bottom-0 right-0 w-0.5 h-6 bg-[var(--color-fg)];
+    @apply absolute bottom-0 right-0 w-0.5 h-6 bg-[var(--color-accent)];
   }
 
   /* ── Cover image ── */
@@ -80,7 +82,8 @@
 
   /* ── Typography ── */
   .card__title {
-    @apply font-medium mb-2 text-white;
+    @apply font-medium mb-2;
+    color: var(--color-fg);
   }
   .card__title--sm {
     @apply text-lg;

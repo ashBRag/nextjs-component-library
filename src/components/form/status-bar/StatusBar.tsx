@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import "./status-bar.css";
+import "./status-bar.base.css";
 
 interface StatusBarProps {
   progress: number;
