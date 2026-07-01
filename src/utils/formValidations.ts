@@ -171,6 +171,9 @@ export const createValidationRules = <T extends Record<string, any>>(): {
   }),
 
   custom: (validator: (value: T[keyof T], formData?: T) => string | null) => ({
-    custom: validator,
+    custom: validator as (
+      value: T[keyof T],
+      formData?: Record<string, any>,
+    ) => string | null,
   }),
 });

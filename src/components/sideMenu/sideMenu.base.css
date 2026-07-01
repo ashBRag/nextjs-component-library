@@ -5,16 +5,46 @@
     @apply sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto
            pr-4 border-l;
     border-color: var(--color-border);
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-accent-muted) transparent;
+  }
+
+  .side-menu::-webkit-scrollbar {
+    width: 6px;
+  }
+  .side-menu::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .side-menu::-webkit-scrollbar-thumb {
+    background: var(--color-accent-muted);
+    border-radius: 8px;
+  }
+  .side-menu::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
   }
 
   .side-menu__title {
-    @apply text-xs font-semibold uppercase tracking-wide mb-3 pl-4;
+    @apply text-base font-bold tracking-tight mb-4 pl-4;
     color: var(--color-fg);
-    opacity: 0.6;
+  }
+
+  .side-menu__group {
+    @apply mb-3;
+  }
+
+  .side-menu__group-label {
+    @apply text-[0.65rem] font-semibold uppercase tracking-wide mb-1.5 pl-4;
+    color: var(--color-fg);
+    opacity: 0.45;
   }
 
   .side-menu__list {
     @apply flex flex-col gap-1 list-none m-0 p-0;
+  }
+
+  .side-menu__divider {
+    @apply border-0 border-t mt-3;
+    border-color: var(--color-border);
   }
 
   .side-menu__link {

@@ -11,7 +11,7 @@ interface ToastEntry {
 }
 
 const useToast = () => {
-  const [toasts, setToasts] = useState<ToastEntry[]>([]);
+  const [, setToasts] = useState<ToastEntry[]>([]);
 
   const addToast = (type: ToastType, message: string, duration?: number) => {
     const id = Date.now().toString();

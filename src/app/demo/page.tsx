@@ -42,27 +42,64 @@ import type { TimelineItem } from "@/components/timeline/Timeline";
 import { componentGroups } from "./componentConfig";
 import generatedProps from "./generatedProps.json";
 
-const sideMenuItems = [
-  { id: "theme-profile", label: "Theme & Profile" },
-  { id: "typography", label: "Typography" },
-  { id: "badge", label: "Badge" },
-  { id: "chip", label: "Chip" },
-  { id: "button", label: "Button" },
-  { id: "card", label: "Card" },
-  { id: "divider", label: "Divider" },
-  { id: "table", label: "Table" },
-  { id: "dialog", label: "Dialog" },
-  { id: "drawer", label: "Drawer" },
-  { id: "text-field", label: "TextField" },
-  { id: "radio-group", label: "RadioGroup" },
-  { id: "select", label: "Select" },
-  { id: "status-bar", label: "StatusBar" },
-  { id: "dropdown-menu", label: "DropdownMenu" },
-  { id: "tabs", label: "Tabs" },
-  { id: "nav-list", label: "NavList" },
-  { id: "timeline", label: "Timeline" },
-  { id: "screen-center-wrapper", label: "ScreenCenterWrapper" },
+const sideMenuGroups = [
+  {
+    label: "General",
+    items: [
+      { id: "theme-profile", label: "Theme & Profile" },
+      { id: "typography", label: "Typography" },
+    ],
+  },
+  {
+    label: "Data Display",
+    items: [
+      { id: "badge", label: "Badge" },
+      { id: "chip", label: "Chip" },
+      { id: "card", label: "Card" },
+      { id: "table", label: "Table" },
+    ],
+  },
+  {
+    label: "Actions",
+    items: [
+      { id: "button", label: "Button" },
+      { id: "dropdown-menu", label: "DropdownMenu" },
+    ],
+  },
+  {
+    label: "Overlays",
+    items: [
+      { id: "dialog", label: "Dialog" },
+      { id: "drawer", label: "Drawer" },
+    ],
+  },
+  {
+    label: "Forms",
+    items: [
+      { id: "text-field", label: "TextField" },
+      { id: "radio-group", label: "RadioGroup" },
+      { id: "select", label: "Select" },
+      { id: "status-bar", label: "StatusBar" },
+    ],
+  },
+  {
+    label: "Navigation",
+    items: [
+      { id: "tabs", label: "Tabs" },
+      { id: "nav-list", label: "NavList" },
+      { id: "timeline", label: "Timeline" },
+    ],
+  },
+  {
+    label: "Layout",
+    items: [
+      { id: "divider", label: "Divider" },
+      { id: "screen-center-wrapper", label: "ScreenCenterWrapper" },
+    ],
+  },
 ];
+
+const sideMenuItems = sideMenuGroups.flatMap((g) => g.items);
 
 const layoutCls: Record<"flex" | "grid" | "stack", string> = {
   flex: "flex gap-4 flex-wrap items-center",
@@ -102,6 +139,7 @@ function ComponentGroupSection({
   return (
     <section id={group.id} className="space-y-4 scroll-mt-8">
       <h2 className="text-xl font-semibold">{group.title}</h2>
+      <InterfaceBlock id={group.id} />
       {group.sections.map((section, si) => (
         <div key={si} className="space-y-2">
           {section.label && (
@@ -124,7 +162,6 @@ function ComponentGroupSection({
           </div>
         </div>
       ))}
-      <InterfaceBlock id={group.id} />
     </section>
   );
 }
@@ -193,334 +230,357 @@ export default function DemoPage() {
   return (
     <div className="p-8 max-w-6xl mx-auto flex gap-8 items-start">
       <SideMenu
-        items={sideMenuItems}
+        groups={sideMenuGroups}
         activeId={activeSection}
         onSelect={setActiveSection}
         title="Components"
         className="hidden lg:block w-56 shrink-0"
       />
       <div className="space-y-12 flex-1 min-w-0">
-      <h1 className="text-2xl font-bold">Component Demo</h1>
+        <h1 className="text-2xl font-bold">Component Demo</h1>
 
-      {/* Theme & Profile */}
-      {activeSection === "theme-profile" && (
-        <section id="theme-profile" className="space-y-4">
-          <h2 className="text-xl font-semibold">Theme & Profile</h2>
-          <div className="flex gap-8 flex-wrap">
-            <RadioGroup
-              label="Theme"
-              name="theme"
-              options={[
-                { value: "dark", label: "Dark" },
-                { value: "light", label: "Light" },
-              ]}
-              value={theme}
-              onChange={applyTheme}
-            />
-            <RadioGroup
-              label="Profile"
-              name="profile"
-              options={[
-                { value: "dev", label: "Dev" },
-                { value: "designer", label: "Designer" },
-              ]}
-              value={profile}
-              onChange={applyProfile}
-            />
-          </div>
-        </section>
-      )}
-
-      {/* Typography */}
-      <ComponentGroupSection groupId="typography" activeSection={activeSection} />
-
-      {/* Badge */}
-      <ComponentGroupSection groupId="badge" activeSection={activeSection} />
-
-      {/* Chip */}
-      {activeSection === "chip" && (
-        <>
-          <ComponentGroupSection groupId="chip" activeSection={activeSection} />
-          <section className="space-y-2">
-            <h3 className="text-lg font-medium">Removable</h3>
-            <div className="flex gap-2 flex-wrap items-center">
-              {chips.map((chip) => (
-                <Chip
-                  key={chip}
-                  variant="outline"
-                  onRemove={() =>
-                    setChips((prev) => prev.filter((c) => c !== chip))
-                  }
-                >
-                  {chip}
-                </Chip>
-              ))}
+        {/* Theme & Profile */}
+        {activeSection === "theme-profile" && (
+          <section id="theme-profile" className="space-y-4">
+            <h2 className="text-xl font-semibold">Theme & Profile</h2>
+            <div className="flex gap-8 flex-wrap">
+              <RadioGroup
+                label="Theme"
+                name="theme"
+                options={[
+                  { value: "dark", label: "Dark" },
+                  { value: "light", label: "Light" },
+                ]}
+                value={theme}
+                onChange={applyTheme}
+              />
+              <RadioGroup
+                label="Profile"
+                name="profile"
+                options={[
+                  { value: "dev", label: "Dev" },
+                  { value: "designer", label: "Designer" },
+                ]}
+                value={profile}
+                onChange={applyProfile}
+              />
             </div>
           </section>
-        </>
-      )}
+        )}
 
-      {/* Button */}
-      <ComponentGroupSection groupId="button" activeSection={activeSection} />
+        {/* Typography */}
+        <ComponentGroupSection
+          groupId="typography"
+          activeSection={activeSection}
+        />
 
-      {/* Card */}
-      <ComponentGroupSection groupId="card" activeSection={activeSection} />
+        {/* Badge */}
+        <ComponentGroupSection groupId="badge" activeSection={activeSection} />
 
-      {/* Divider */}
-      <ComponentGroupSection groupId="divider" activeSection={activeSection} />
+        {/* Chip */}
+        {activeSection === "chip" && (
+          <>
+            <ComponentGroupSection
+              groupId="chip"
+              activeSection={activeSection}
+            />
+            <section className="space-y-2">
+              <h3 className="text-lg font-medium">Removable</h3>
+              <div className="flex gap-2 flex-wrap items-center">
+                {chips.map((chip) => (
+                  <Chip
+                    key={chip}
+                    variant="outline"
+                    onRemove={() =>
+                      setChips((prev) => prev.filter((c) => c !== chip))
+                    }
+                  >
+                    {chip}
+                  </Chip>
+                ))}
+              </div>
+            </section>
+          </>
+        )}
 
-      {/* Table */}
-      <ComponentGroupSection groupId="table" activeSection={activeSection} />
+        {/* Button */}
+        <ComponentGroupSection groupId="button" activeSection={activeSection} />
 
-      {/* Dialog */}
-      {activeSection === "dialog" && (
-        <section id="dialog" className="space-y-4">
-          <h2 className="text-xl font-semibold">Dialog</h2>
-          <Button variant="primary" onClick={() => setDialogOpen(true)}>
-            Open Dialog
-          </Button>
-          <Dialog
-            open={dialogOpen}
-            onClose={() => setDialogOpen(false)}
-            title="Confirm action"
-            footer={
-              <>
-                <Button variant="outline" onClick={() => setDialogOpen(false)}>
-                  Cancel
-                </Button>
-                <Button variant="primary" onClick={() => setDialogOpen(false)}>
-                  Confirm
-                </Button>
-              </>
-            }
-          >
-            <p>Are you sure you want to proceed with this action?</p>
-          </Dialog>
-          <InterfaceBlock id="dialog" />
-        </section>
-      )}
+        {/* Card */}
+        <ComponentGroupSection groupId="card" activeSection={activeSection} />
 
-      {/* Drawer */}
-      {activeSection === "drawer" && (
-        <section id="drawer" className="space-y-4">
-          <h2 className="text-xl font-semibold">Drawer</h2>
-          <div className="flex gap-2 flex-wrap">
-            <Button variant="outline" onClick={() => setDrawerSide("left")}>
-              Open Left
+        {/* Divider */}
+        <ComponentGroupSection
+          groupId="divider"
+          activeSection={activeSection}
+        />
+
+        {/* Table */}
+        <ComponentGroupSection groupId="table" activeSection={activeSection} />
+
+        {/* Dialog */}
+        {activeSection === "dialog" && (
+          <section id="dialog" className="space-y-4">
+            <h2 className="text-xl font-semibold">Dialog</h2>
+            <InterfaceBlock id="dialog" />
+            <Button variant="primary" onClick={() => setDialogOpen(true)}>
+              Open Dialog
             </Button>
-            <Button variant="outline" onClick={() => setDrawerSide("right")}>
-              Open Right
-            </Button>
-            <Button variant="outline" onClick={() => setDrawerSide("top")}>
-              Open Top
-            </Button>
-            <Button variant="outline" onClick={() => setDrawerSide("bottom")}>
-              Open Bottom
-            </Button>
-          </div>
-          <Drawer
-            open={drawerSide !== null}
-            onClose={() => setDrawerSide(null)}
-            side={drawerSide ?? "right"}
-            title="Drawer title"
-            footer={
-              <Button variant="primary" onClick={() => setDrawerSide(null)}>
-                Done
+            <Dialog
+              open={dialogOpen}
+              onClose={() => setDialogOpen(false)}
+              title="Confirm action"
+              footer={
+                <>
+                  <Button
+                    variant="outline"
+                    onClick={() => setDialogOpen(false)}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => setDialogOpen(false)}
+                  >
+                    Confirm
+                  </Button>
+                </>
+              }
+            >
+              <p>Are you sure you want to proceed with this action?</p>
+            </Dialog>
+          </section>
+        )}
+
+        {/* Drawer */}
+        {activeSection === "drawer" && (
+          <section id="drawer" className="space-y-4">
+            <h2 className="text-xl font-semibold">Drawer</h2>
+            <InterfaceBlock id="drawer" />
+            <div className="flex gap-2 flex-wrap">
+              <Button variant="outline" onClick={() => setDrawerSide("left")}>
+                Open Left
               </Button>
-            }
-          >
-            <p>Drawer content slides in from the {drawerSide} side.</p>
-          </Drawer>
-          <InterfaceBlock id="drawer" />
-        </section>
-      )}
-
-      {/* TextField */}
-      {activeSection === "text-field" && (
-        <section id="text-field" className="space-y-4">
-          <h2 className="text-xl font-semibold">TextField</h2>
-          <TextField
-            label="Name"
-            value={textValue}
-            onChange={setTextValue}
-            placeholder="Enter your name"
-          />
-          <TextField
-            label="Message"
-            value={textareaValue}
-            onChange={setTextareaValue}
-            placeholder="Write a message..."
-            rows={3}
-          />
-          <TextField
-            label="With Error"
-            value=""
-            onChange={() => {}}
-            error="This field is required"
-          />
-          <InterfaceBlock id="text-field" />
-        </section>
-      )}
-
-      {/* RadioGroup */}
-      {activeSection === "radio-group" && (
-        <section id="radio-group" className="space-y-4">
-          <h2 className="text-xl font-semibold">RadioGroup</h2>
-          <RadioGroup
-            label="Pick an option"
-            options={[
-              { value: "a", label: "Option A", description: "First option" },
-              { value: "b", label: "Option B", description: "Second option" },
-              { value: "c", label: "Option C" },
-            ]}
-            value={radioValue}
-            onChange={setRadioValue}
-          />
-          <InterfaceBlock id="radio-group" />
-        </section>
-      )}
-
-      {/* Select */}
-      {activeSection === "select" && (
-        <section id="select" className="space-y-4">
-          <h2 className="text-xl font-semibold">Select</h2>
-          <Select
-            label="Choose one"
-            options={[
-              { value: "opt1", label: "Option 1" },
-              { value: "opt2", label: "Option 2" },
-              { value: "opt3", label: "Option 3" },
-            ]}
-            value={selectValue}
-            onChange={setSelectValue}
-          />
-          <InterfaceBlock id="select" />
-        </section>
-      )}
-
-      {/* StatusBar */}
-      {activeSection === "status-bar" && (
-        <section id="status-bar" className="space-y-4">
-          <h2 className="text-xl font-semibold">StatusBar</h2>
-          <StatusBar progress={progress} status="Processing" />
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setProgress((p) => Math.max(0, p - 10))}
+              <Button variant="outline" onClick={() => setDrawerSide("right")}>
+                Open Right
+              </Button>
+              <Button variant="outline" onClick={() => setDrawerSide("top")}>
+                Open Top
+              </Button>
+              <Button variant="outline" onClick={() => setDrawerSide("bottom")}>
+                Open Bottom
+              </Button>
+            </div>
+            <Drawer
+              open={drawerSide !== null}
+              onClose={() => setDrawerSide(null)}
+              side={drawerSide ?? "right"}
+              title="Drawer title"
+              footer={
+                <Button variant="primary" onClick={() => setDrawerSide(null)}>
+                  Done
+                </Button>
+              }
             >
-              -10
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setProgress((p) => Math.min(100, p + 10))}
-            >
-              +10
-            </Button>
-          </div>
-          <InterfaceBlock id="status-bar" />
-        </section>
-      )}
+              <p>Drawer content slides in from the {drawerSide} side.</p>
+            </Drawer>
+          </section>
+        )}
 
-      {/* DropdownMenu */}
-      {activeSection === "dropdown-menu" && (
-        <section id="dropdown-menu" className="space-y-4">
-          <h2 className="text-xl font-semibold">DropdownMenu</h2>
-          <DropdownMenu
-            trigger={<span>Open Menu</span>}
-            groups={[
-              {
-                heading: "Actions",
-                items: [
-                  { label: "Edit", value: "edit", onClick: () => {} },
-                  { label: "Duplicate", value: "duplicate", onClick: () => {} },
-                ],
-              },
-              {
-                heading: "Danger",
-                items: [
-                  {
-                    label: "Delete",
-                    value: "delete",
-                    active: true,
-                    onClick: () => {},
-                  },
-                ],
-              },
-            ]}
-          />
-          <InterfaceBlock id="dropdown-menu" />
-        </section>
-      )}
+        {/* TextField */}
+        {activeSection === "text-field" && (
+          <section id="text-field" className="space-y-4">
+            <h2 className="text-xl font-semibold">TextField</h2>
+            <InterfaceBlock id="text-field" />
+            <TextField
+              label="Name"
+              value={textValue}
+              onChange={setTextValue}
+              placeholder="Enter your name"
+            />
+            <TextField
+              label="Message"
+              value={textareaValue}
+              onChange={setTextareaValue}
+              placeholder="Write a message..."
+              rows={3}
+            />
+            <TextField
+              label="With Error"
+              value=""
+              onChange={() => {}}
+              error="This field is required"
+            />
+          </section>
+        )}
 
-      {/* Tabs */}
-      {activeSection === "tabs" && (
-        <section id="tabs" className="space-y-4">
-          <h2 className="text-xl font-semibold">Tabs</h2>
-          <Tabs
-            tabs={[
-              {
-                id: "tab1",
-                label: "Tab One",
-                content: <p className="p-4">Content for tab one.</p>,
-              },
-              {
-                id: "tab2",
-                label: "Tab Two",
-                content: <p className="p-4">Content for tab two.</p>,
-              },
-              {
-                id: "tab3",
-                label: "Tab Three",
-                content: <p className="p-4">Content for tab three.</p>,
-              },
-            ]}
-            activeTab={activeTab}
-            onTabChange={setActiveTab}
-            contentHeight="200px"
-            mobileBottomMenu={false}
-          />
-          <InterfaceBlock id="tabs" />
-        </section>
-      )}
+        {/* RadioGroup */}
+        {activeSection === "radio-group" && (
+          <section id="radio-group" className="space-y-4">
+            <h2 className="text-xl font-semibold">RadioGroup</h2>
+            <InterfaceBlock id="radio-group" />
+            <RadioGroup
+              label="Pick an option"
+              options={[
+                { value: "a", label: "Option A", description: "First option" },
+                { value: "b", label: "Option B", description: "Second option" },
+                { value: "c", label: "Option C" },
+              ]}
+              value={radioValue}
+              onChange={setRadioValue}
+            />
+          </section>
+        )}
 
-      {/* NavList */}
-      {activeSection === "nav-list" && (
-        <section id="nav-list" className="space-y-4">
-          <h2 className="text-xl font-semibold">NavList</h2>
-          <NavList
-            tabs={[
-              {
-                id: "nav1",
-                name: "Dashboard",
-                content: <p>Dashboard content</p>,
-              },
-              { id: "nav2", name: "Settings", content: <p>Settings content</p> },
-              {
-                id: "nav3",
-                name: "Profile",
-                content: <p>Profile content</p>,
-                disabled: true,
-              },
-            ]}
-            horizontal
-          />
-          <InterfaceBlock id="nav-list" />
-        </section>
-      )}
+        {/* Select */}
+        {activeSection === "select" && (
+          <section id="select" className="space-y-4">
+            <h2 className="text-xl font-semibold">Select</h2>
+            <InterfaceBlock id="select" />
+            <Select
+              label="Choose one"
+              options={[
+                { value: "opt1", label: "Option 1" },
+                { value: "opt2", label: "Option 2" },
+                { value: "opt3", label: "Option 3" },
+              ]}
+              value={selectValue}
+              onChange={setSelectValue}
+            />
+          </section>
+        )}
 
-      {/* Timeline */}
-      {activeSection === "timeline" && (
-        <section id="timeline" className="space-y-4">
-          <h2 className="text-xl font-semibold">Timeline</h2>
-          <Timeline items={timelineItems} animated />
-          <InterfaceBlock id="timeline" />
-        </section>
-      )}
+        {/* StatusBar */}
+        {activeSection === "status-bar" && (
+          <section id="status-bar" className="space-y-4">
+            <h2 className="text-xl font-semibold">StatusBar</h2>
+            <InterfaceBlock id="status-bar" />
+            <StatusBar progress={progress} status="Processing" />
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setProgress((p) => Math.max(0, p - 10))}
+              >
+                -10
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setProgress((p) => Math.min(100, p + 10))}
+              >
+                +10
+              </Button>
+            </div>
+          </section>
+        )}
 
-      {/* Toast */}
-      {/* <section className="space-y-4">
+        {/* DropdownMenu */}
+        {activeSection === "dropdown-menu" && (
+          <section id="dropdown-menu" className="space-y-4">
+            <h2 className="text-xl font-semibold">DropdownMenu</h2>
+            <InterfaceBlock id="dropdown-menu" />
+            <DropdownMenu
+              trigger={<span>Open Menu</span>}
+              groups={[
+                {
+                  heading: "Actions",
+                  items: [
+                    { label: "Edit", value: "edit", onClick: () => {} },
+                    {
+                      label: "Duplicate",
+                      value: "duplicate",
+                      onClick: () => {},
+                    },
+                  ],
+                },
+                {
+                  heading: "Danger",
+                  items: [
+                    {
+                      label: "Delete",
+                      value: "delete",
+                      active: true,
+                      onClick: () => {},
+                    },
+                  ],
+                },
+              ]}
+            />
+          </section>
+        )}
+
+        {/* Tabs */}
+        {activeSection === "tabs" && (
+          <section id="tabs" className="space-y-4">
+            <h2 className="text-xl font-semibold">Tabs</h2>
+            <InterfaceBlock id="tabs" />
+            <Tabs
+              tabs={[
+                {
+                  id: "tab1",
+                  label: "Tab One",
+                  content: <p className="p-4">Content for tab one.</p>,
+                },
+                {
+                  id: "tab2",
+                  label: "Tab Two",
+                  content: <p className="p-4">Content for tab two.</p>,
+                },
+                {
+                  id: "tab3",
+                  label: "Tab Three",
+                  content: <p className="p-4">Content for tab three.</p>,
+                },
+              ]}
+              activeTab={activeTab}
+              onTabChange={setActiveTab}
+              contentHeight="200px"
+              mobileBottomMenu={false}
+            />
+          </section>
+        )}
+
+        {/* NavList */}
+        {activeSection === "nav-list" && (
+          <section id="nav-list" className="space-y-4">
+            <h2 className="text-xl font-semibold">NavList</h2>
+            <InterfaceBlock id="nav-list" />
+            <NavList
+              tabs={[
+                {
+                  id: "nav1",
+                  name: "Dashboard",
+                  content: <p>Dashboard content</p>,
+                },
+                {
+                  id: "nav2",
+                  name: "Settings",
+                  content: <p>Settings content</p>,
+                },
+                {
+                  id: "nav3",
+                  name: "Profile",
+                  content: <p>Profile content</p>,
+                  disabled: true,
+                },
+              ]}
+              horizontal
+            />
+          </section>
+        )}
+
+        {/* Timeline */}
+        {activeSection === "timeline" && (
+          <section id="timeline" className="space-y-4">
+            <h2 className="text-xl font-semibold">Timeline</h2>
+            <InterfaceBlock id="timeline" />
+            <Timeline items={timelineItems} animated />
+          </section>
+        )}
+
+        {/* Toast */}
+        {/* <section className="space-y-4">
         <h2 className="text-xl font-semibold">Toast</h2>
         <div className="flex gap-2 flex-wrap">
           <Button
@@ -551,18 +611,18 @@ export default function DemoPage() {
         <ToastContainer toasts={toasts} onRemove={removeToast} />
       </section> */}
 
-      {/* ScreenCenterWrapper */}
-      {activeSection === "screen-center-wrapper" && (
-        <section id="screen-center-wrapper" className="space-y-4">
-          <h2 className="text-xl font-semibold">ScreenCenterWrapper</h2>
-          <div className="border border-dashed border-gray-500 h-48">
-            <ScreenCenterWrapper className="h-48 !min-h-0">
-              <p>Centered content</p>
-            </ScreenCenterWrapper>
-          </div>
-          <InterfaceBlock id="screen-center-wrapper" />
-        </section>
-      )}
+        {/* ScreenCenterWrapper */}
+        {activeSection === "screen-center-wrapper" && (
+          <section id="screen-center-wrapper" className="space-y-4">
+            <h2 className="text-xl font-semibold">ScreenCenterWrapper</h2>
+            <InterfaceBlock id="screen-center-wrapper" />
+            <div className="border border-dashed border-gray-500 h-48">
+              <ScreenCenterWrapper className="h-48 !min-h-0">
+                <p>Centered content</p>
+              </ScreenCenterWrapper>
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

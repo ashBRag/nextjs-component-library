@@ -24,6 +24,7 @@ export interface VariantSection {
 export interface ComponentGroup {
   id: string;
   title: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- generic component slot, intentionally untyped per group's own props
   component: React.ComponentType<any>;
   sourceFile: string;
   sections: VariantSection[];
