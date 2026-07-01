@@ -25,6 +25,7 @@ export interface ComponentGroup {
   id: string;
   title: string;
   component: React.ComponentType<any>;
+  sourceFile: string;
   sections: VariantSection[];
 }
 
@@ -51,6 +52,7 @@ export const componentGroups: ComponentGroup[] = [
     id: "typography",
     title: "Typography",
     component: Typography,
+    sourceFile: "src/components/typography/Typography.tsx",
     sections: [
       {
         layout: "flex",
@@ -88,6 +90,7 @@ export const componentGroups: ComponentGroup[] = [
     id: "badge",
     title: "Badge",
     component: Badge,
+    sourceFile: "src/components/badge/Badge.tsx",
     sections: [
       {
         label: "Variants",
@@ -124,6 +127,7 @@ export const componentGroups: ComponentGroup[] = [
     id: "chip",
     title: "Chip",
     component: Chip,
+    sourceFile: "src/components/chip/Chip.tsx",
     sections: [
       {
         label: "Variants",
@@ -150,6 +154,7 @@ export const componentGroups: ComponentGroup[] = [
     id: "button",
     title: "Button",
     component: Button,
+    sourceFile: "src/components/button/Button.tsx",
     sections: [
       {
         label: "Variants & sizes",
@@ -210,6 +215,7 @@ export const componentGroups: ComponentGroup[] = [
     id: "card",
     title: "Card",
     component: Card,
+    sourceFile: "src/components/card/Card.tsx",
     sections: [
       {
         label: "Basic",
@@ -307,6 +313,7 @@ export const componentGroups: ComponentGroup[] = [
     id: "table",
     title: "Table",
     component: Table,
+    sourceFile: "src/components/table/Table.tsx",
     sections: [
       {
         label: "Variants",
@@ -383,6 +390,7 @@ export const componentGroups: ComponentGroup[] = [
     id: "divider",
     title: "Divider",
     component: Divider,
+    sourceFile: "src/components/divider/Divider.tsx",
     sections: [
       {
         label: "Spacing",

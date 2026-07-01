@@ -1,0 +1,40 @@
+@reference "tailwindcss";
+
+@layer components {
+  .side-menu {
+    @apply sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto
+           pr-4 border-l;
+    border-color: var(--color-border);
+  }
+
+  .side-menu__title {
+    @apply text-xs font-semibold uppercase tracking-wide mb-3 pl-4;
+    color: var(--color-fg);
+    opacity: 0.6;
+  }
+
+  .side-menu__list {
+    @apply flex flex-col gap-1 list-none m-0 p-0;
+  }
+
+  .side-menu__link {
+    @apply block w-full text-left bg-transparent pl-4 py-1.5 text-sm
+           border-l-2 -ml-px cursor-pointer
+           transition-colors duration-200 no-underline;
+    border-color: transparent;
+    color: var(--color-fg);
+    opacity: 0.7;
+  }
+
+  .side-menu__link:hover {
+    opacity: 1;
+    border-color: var(--color-accent-muted);
+  }
+
+  .side-menu__link--active {
+    opacity: 1;
+    font-weight: 500;
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+}

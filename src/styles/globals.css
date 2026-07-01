@@ -11,6 +11,8 @@
 @import "../components/dialog/dialog.base.css";
 @import "../components/divider/divider.base.css";
 @import "../components/table/table.base.css";
+@import "../components/drawer/drawer.base.css";
+@import "../components/sideMenu/sideMenu.base.css";
 
 @import "./profiles/dev/index.css";
 @import "./profiles/designer/index.css";

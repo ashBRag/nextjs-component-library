@@ -11,13 +11,14 @@
   }
 
   .table__head {
-    @apply border-b;
-    border-color: var(--color-border);
+    @apply border-b-2;
+    border-color: var(--color-accent-muted);
+    background-color: color-mix(in srgb, var(--color-fg) 6%, transparent);
   }
 
   .table__th {
-    @apply px-4 py-2 font-medium;
-    color: var(--color-fg);
+    @apply px-4 py-3 text-xs font-semibold uppercase tracking-wide;
+    color: var(--color-accent);
   }
 
   .table__td {
