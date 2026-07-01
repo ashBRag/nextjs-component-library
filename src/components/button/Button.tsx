@@ -2,7 +2,7 @@ import React from "react";
 import "./button.base.css";
 
 interface ButtonProps {
-  variant?: "primary" | "secondary" | "outline";
+  variant?: "primary" | "secondary" | "outline" | "icon";
   size?: "sm" | "md" | "lg";
   iconBefore?: React.ReactNode;
   iconAfter?: React.ReactNode;
@@ -10,6 +10,7 @@ interface ButtonProps {
   className?: string;
   children?: React.ReactNode;
   onClick?: () => void;
+  "aria-label"?: string;
 }
 
 export function Button({
@@ -21,6 +22,7 @@ export function Button({
   className = "",
   children,
   onClick,
+  "aria-label": ariaLabel,
 }: ButtonProps) {
   const cls = ["btn", `btn--${variant}`, `btn--${size}`, className]
     .filter(Boolean)
@@ -39,7 +41,12 @@ export function Button({
   );
 
   return (
-    <button onClick={onClick} disabled={disabled} className={cls}>
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={cls}
+      aria-label={ariaLabel}
+    >
       {content}
     </button>
   );

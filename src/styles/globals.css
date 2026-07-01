@@ -6,6 +6,11 @@
 @import "../components/menu/menu.base.css";
 @import "../components/navList/navList.base.css";
 @import "../components/badge/badge.base.css";
+@import "../components/typography/typography.base.css";
+@import "../components/chip/chip.base.css";
+@import "../components/dialog/dialog.base.css";
+@import "../components/divider/divider.base.css";
+@import "../components/table/table.base.css";
 
 @import "./profiles/dev/index.css";
 @import "./profiles/designer/index.css";

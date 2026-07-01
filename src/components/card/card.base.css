@@ -3,7 +3,7 @@
 @layer components {
   /* ── Base ── */
   .card {
-    @apply relative w-full h-full overflow-hidden
+    @apply relative w-full h-full overflow-hidden rounded-lg
              transition-all duration-300 ease-out;
   }
 
@@ -21,6 +21,32 @@
   .card--clickable:hover {
     border-color: var(--color-accent-muted);
     @apply text-white;
+  }
+
+  /* ── Shadows ── */
+  .card--shadow-sm {
+    @apply shadow-sm;
+  }
+  .card--shadow-sm:hover {
+    @apply shadow-md;
+  }
+  .card--shadow-md {
+    @apply shadow-md;
+  }
+  .card--shadow-md:hover {
+    @apply shadow-lg;
+  }
+  .card--shadow-lg {
+    @apply shadow-lg;
+  }
+  .card--shadow-lg:hover {
+    @apply shadow-xl;
+  }
+  .card--shadow-glow {
+    box-shadow: 0 0 24px 0 color-mix(in srgb, var(--color-accent) 35%, transparent);
+  }
+  .card--shadow-glow:hover {
+    box-shadow: 0 0 36px 4px color-mix(in srgb, var(--color-accent) 55%, transparent);
   }
 
   /* ── Sizes ── */
@@ -108,5 +134,11 @@
   .card__children {
     @apply leading-relaxed mb-4;
     color: var(--color-fg);
+  }
+
+  /* ── Divider ── */
+  .card__divider {
+    @apply border-0 border-t mb-4;
+    border-color: var(--color-border);
   }
 }

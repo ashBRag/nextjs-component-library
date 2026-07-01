@@ -16,6 +16,8 @@ interface CardProps {
   animated?: boolean;
   showBorder?: boolean;
   showCorners?: boolean;
+  shadow?: "none" | "sm" | "md" | "lg" | "glow";
+  showDivider?: boolean;
   children?: React.ReactNode;
   coverImage?: string;
   coverImageAlt?: string;
@@ -61,6 +63,8 @@ export default function Card({
   animated = true,
   showBorder = true,
   showCorners = true,
+  shadow = "none",
+  showDivider = false,
   children,
   coverImage,
   coverImageAlt = "",
@@ -72,6 +76,7 @@ export default function Card({
     showBorder && "card--bordered",
     animated && "card--animated",
     clickable && "card--clickable",
+    shadow !== "none" && `card--shadow-${shadow}`,
     className,
   ]
     .filter(Boolean)
@@ -129,6 +134,9 @@ export default function Card({
             <p className={`card__description ${descriptionClassName}`}>
               {description}
             </p>
+          )}
+          {showDivider && (content || children) && (
+            <hr className="card__divider" />
           )}
           {content && <div className="card__content">{content}</div>}
           {children && <div className="card__children">{children}</div>}

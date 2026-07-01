@@ -22,9 +22,10 @@ This page serves as a reference for developers to see how to implement and use t
 "use client";
 
 import React, { useState } from "react";
-import { Badge } from "@/components/badge/Badge";
 import { Button } from "@/components/button/Button";
-import Card from "@/components/card/Card";
+import { Chip } from "@/components/chip/Chip";
+import { Dialog } from "@/components/dialog/Dialog";
+import { Divider } from "@/components/divider/Divider";
 import { RadioGroup } from "@/components/form/radio-group/RadioGroup";
 import { Select } from "@/components/form/select/Select";
 import { StatusBar } from "@/components/form/status-bar/StatusBar";
@@ -37,6 +38,52 @@ import Timeline from "@/components/timeline/Timeline";
 import { ScreenCenterWrapper } from "@/components/wrapper/CenterWrapper";
 import type { TimelineItem } from "@/components/timeline/Timeline";
 // import type { ToastEntry } from "@/components/toast/Toast";
+import { componentGroups } from "./componentConfig";
+
+const layoutCls: Record<"flex" | "grid" | "stack", string> = {
+  flex: "flex gap-4 flex-wrap items-center",
+  grid: "grid grid-cols-1 md:grid-cols-2 gap-6",
+  stack: "space-y-6",
+};
+
+function ComponentGroupSection({
+  groupId,
+}: {
+  groupId: string;
+}) {
+  const group = componentGroups.find((g) => g.id === groupId);
+  if (!group) return null;
+
+  const Component = group.component;
+
+  return (
+    <section className="space-y-4">
+      <h2 className="text-xl font-semibold">{group.title}</h2>
+      {group.sections.map((section, si) => (
+        <div key={si} className="space-y-2">
+          {section.label && (
+            <h3 className="text-lg font-medium">{section.label}</h3>
+          )}
+          <div className={layoutCls[section.layout ?? "flex"]}>
+            {section.variants.map((variant) => (
+              <div key={variant.name} className={variant.className}>
+                {section.layout === "stack" && (
+                  <p className="text-sm font-medium mb-2 opacity-80">
+                    {variant.name}
+                  </p>
+                )}
+                <Component {...variant.props}>{variant.children}</Component>
+                {variant.note && (
+                  <p className="text-xs opacity-70 mt-1">{variant.note}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+  );
+}
 
 export default function DemoPage() {
   const [theme, setTheme] = useState("dark");
@@ -48,6 +95,8 @@ export default function DemoPage() {
   const [activeTab, setActiveTab] = useState("tab1");
   // const [toasts, setToasts] = useState<ToastEntry[]>([]);
   const [progress, setProgress] = useState(45);
+  const [chips, setChips] = useState(["React", "TypeScript", "Next.js"]);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const applyTheme = (value: string) => {
     setTheme(value);
@@ -124,63 +173,85 @@ export default function DemoPage() {
         </div>
       </section>
 
+      <Divider />
+
+      {/* Typography */}
+      <ComponentGroupSection groupId="typography" />
+
+      <Divider />
+
       {/* Badge */}
-      <section className="space-y-4">
-        <h2 className="text-xl font-semibold">Badge</h2>
-        <div className="flex gap-4 flex-wrap items-center">
-          <Badge variant="primary">Primary</Badge>
-          <Badge variant="secondary">Secondary</Badge>
-          <Badge variant="success">Success</Badge>
-          <Badge variant="warning">Warning</Badge>
-        </div>
-        <div className="flex gap-4 flex-wrap items-center">
-          <Badge variant="primary" size="sm">Small</Badge>
-          <Badge variant="primary" size="md">Medium</Badge>
-          <Badge variant="primary" size="lg">Large</Badge>
-        </div>
-        <div className="flex gap-4 flex-wrap items-center">
-          <Badge variant="primary" shape="rounded">Rounded</Badge>
-          <Badge variant="primary" shape="squared">Squared</Badge>
-          <Badge variant="success" shape="rounded">Rounded</Badge>
-          <Badge variant="success" shape="squared">Squared</Badge>
+      <ComponentGroupSection groupId="badge" />
+
+      <Divider />
+
+      {/* Chip */}
+      <ComponentGroupSection groupId="chip" />
+      <section className="space-y-2">
+        <h3 className="text-lg font-medium">Removable</h3>
+        <div className="flex gap-2 flex-wrap items-center">
+          {chips.map((chip) => (
+            <Chip
+              key={chip}
+              variant="outline"
+              onRemove={() =>
+                setChips((prev) => prev.filter((c) => c !== chip))
+              }
+            >
+              {chip}
+            </Chip>
+          ))}
         </div>
       </section>
+
+      <Divider />
 
       {/* Button */}
-      <section className="space-y-4">
-        <h2 className="text-xl font-semibold">Button</h2>
-        <div className="flex gap-4 flex-wrap">
-          <Button variant="primary" size="sm">
-            Primary SM
-          </Button>
-          <Button variant="secondary" size="md">
-            Secondary MD
-          </Button>
-          <Button variant="outline" size="lg">
-            Outline LG
-          </Button>
-          <Button disabled>Disabled</Button>
-        </div>
-      </section>
+      <ComponentGroupSection groupId="button" />
+
+      <Divider />
 
       {/* Card */}
+      <ComponentGroupSection groupId="card" />
+
+      <Divider />
+
+      {/* Divider */}
+      <ComponentGroupSection groupId="divider" />
+
+      <Divider />
+
+      {/* Table */}
+      <ComponentGroupSection groupId="table" />
+
+      <Divider />
+
+      {/* Dialog */}
       <section className="space-y-4">
-        <h2 className="text-xl font-semibold">Card</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card
-            title="Basic Card"
-            subtitle="A subtitle"
-            description="This is a card with basic props."
-            size="md"
-          />
-          <Card
-            title="Compact Card"
-            description="Compact size, no corners."
-            size="compact"
-            showCorners={false}
-          />
-        </div>
+        <h2 className="text-xl font-semibold">Dialog</h2>
+        <Button variant="primary" onClick={() => setDialogOpen(true)}>
+          Open Dialog
+        </Button>
+        <Dialog
+          open={dialogOpen}
+          onClose={() => setDialogOpen(false)}
+          title="Confirm action"
+          footer={
+            <>
+              <Button variant="outline" onClick={() => setDialogOpen(false)}>
+                Cancel
+              </Button>
+              <Button variant="primary" onClick={() => setDialogOpen(false)}>
+                Confirm
+              </Button>
+            </>
+          }
+        >
+          <p>Are you sure you want to proceed with this action?</p>
+        </Dialog>
       </section>
+
+      <Divider />
 
       {/* TextField */}
       <section className="space-y-4">
@@ -206,6 +277,8 @@ export default function DemoPage() {
         />
       </section>
 
+      <Divider />
+
       {/* RadioGroup */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">RadioGroup</h2>
@@ -221,6 +294,8 @@ export default function DemoPage() {
         />
       </section>
 
+      <Divider />
+
       {/* Select */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">Select</h2>
@@ -235,6 +310,8 @@ export default function DemoPage() {
           onChange={setSelectValue}
         />
       </section>
+
+      <Divider />
 
       {/* StatusBar */}
       <section className="space-y-4">
@@ -258,11 +335,13 @@ export default function DemoPage() {
         </div>
       </section>
 
+      <Divider />
+
       {/* DropdownMenu */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">DropdownMenu</h2>
         <DropdownMenu
-          trigger={<Button variant="outline">Open Menu</Button>}
+          trigger={<span>Open Menu</span>}
           groups={[
             {
               heading: "Actions",
@@ -285,6 +364,8 @@ export default function DemoPage() {
           ]}
         />
       </section>
+
+      <Divider />
 
       {/* Tabs */}
       <section className="space-y-4">
@@ -314,6 +395,8 @@ export default function DemoPage() {
         />
       </section>
 
+      <Divider />
+
       {/* NavList */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">NavList</h2>
@@ -336,11 +419,15 @@ export default function DemoPage() {
         />
       </section>
 
+      <Divider />
+
       {/* Timeline */}
       <section className="space-y-4">
         <h2 className="text-xl font-semibold">Timeline</h2>
         <Timeline items={timelineItems} animated />
       </section>
+
+      <Divider />
 
       {/* Toast */}
       {/* <section className="space-y-4">

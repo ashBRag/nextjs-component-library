@@ -1,0 +1,70 @@
+@reference "tailwindcss";
+
+@layer components {
+  .table__wrapper {
+    @apply w-full overflow-x-auto;
+  }
+
+  .table {
+    @apply w-full border-collapse text-sm;
+    color: var(--color-fg);
+  }
+
+  .table__head {
+    @apply border-b;
+    border-color: var(--color-border);
+  }
+
+  .table__th {
+    @apply px-4 py-2 font-medium;
+    color: var(--color-fg);
+  }
+
+  .table__td {
+    @apply px-4 py-2;
+  }
+
+  .table__th--left,
+  .table__td--left {
+    @apply text-left;
+  }
+  .table__th--center,
+  .table__td--center {
+    @apply text-center;
+  }
+  .table__th--right,
+  .table__td--right {
+    @apply text-right;
+  }
+
+  .table__row {
+    @apply border-b;
+    border-color: var(--color-border);
+  }
+  .table__row:last-child {
+    @apply border-b-0;
+  }
+
+  .table--striped .table__row:nth-child(even) {
+    background-color: color-mix(in srgb, var(--color-fg) 4%, transparent);
+  }
+
+  .table--bordered .table__th,
+  .table--bordered .table__td {
+    @apply border-r;
+    border-color: var(--color-border);
+  }
+  .table--bordered .table__th:last-child,
+  .table--bordered .table__td:last-child {
+    @apply border-r-0;
+  }
+  .table--bordered {
+    @apply border;
+    border-color: var(--color-border);
+  }
+
+  .table--compact .table__th,
+  .table--compact .table__td {
+    @apply px-2 py-1 text-xs;
+  }
+}

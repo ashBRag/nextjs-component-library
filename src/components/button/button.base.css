@@ -3,16 +3,19 @@
 @layer components {
   .btn {
     @apply inline-flex items-center gap-2
-           border border-transparent
+           border border-transparent rounded-md shadow-sm
            transition-all duration-300 ease-out
            cursor-pointer select-none no-underline;
   }
 
   .btn:hover {
-    @apply scale-105;
+    @apply scale-105 shadow-md;
   }
   .btn:active {
-    @apply scale-95;
+    @apply scale-95 shadow-sm;
+  }
+  .btn:focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-[var(--color-accent)] ring-offset-[var(--color-background)];
   }
 
   .btn:disabled,
@@ -60,5 +63,26 @@
   }
   .btn--outline:hover {
     @apply bg-[var(--color-accent)]/10 text-[var(--color-accent)];
+  }
+
+  .btn--icon {
+    @apply bg-transparent border-[var(--color-accent)] rounded-full
+           p-0 justify-center;
+    color: var(--color-btn-fg);
+  }
+  .btn--icon:hover {
+    @apply bg-[var(--color-accent)]/10 text-[var(--color-accent)];
+  }
+  .btn--icon .btn__label {
+    @apply hidden;
+  }
+  .btn--icon.btn--sm {
+    @apply w-8 h-8;
+  }
+  .btn--icon.btn--md {
+    @apply w-10 h-10;
+  }
+  .btn--icon.btn--lg {
+    @apply w-12 h-12;
   }
 }
