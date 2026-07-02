@@ -5,7 +5,7 @@ import {
   FormErrors,
   FormValidationResult,
   ValidationRule,
-} from "@/types/form";
+} from "../types/form";
 
 export class FormValidator<T extends Record<string, any>> {
   private rules: ValidationRules<T>;

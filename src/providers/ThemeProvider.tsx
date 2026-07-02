@@ -1,11 +1,12 @@
 "use client";
 /*
-  ThemeProvider component manages the application's theme and profile settings. 
-  It provides a context that allows child components to access and update the current theme and profile. 
-  The component also handles dynamic imports of profile-specific styles, 
-  ensuring that only the necessary styles are loaded when a profile is selected.
+  ThemeProvider component manages the application's theme and profile settings.
+  It provides a context that allows child components to access and update the current theme and profile.
+  All theme/profile CSS ships in a single compiled stylesheet and is scoped via
+  [data-theme]/[data-profile] attribute selectors, so switching is a synchronous
+  attribute toggle rather than a dynamic asset load.
 */
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export type Theme = "light" | "dark";
 export type Profile = "dev" | "designer";
@@ -14,29 +15,23 @@ export type Profile = "dev" | "designer";
 export interface ThemeContextValue {
   theme: Theme;
   profile: Profile;
-  profileLoading: boolean;
   setTheme: (t: Theme) => void;
   switchProfile: (p: Profile) => void;
 }
-// Map of profile names to their dynamic import functions for styles
-const profileImports: Partial<Record<Profile, () => Promise<unknown>>> = {
-  designer: () => import("@/styles/profiles/designer/index.css"),
-};
 
 export const ThemeCntxt = createContext<ThemeContextValue>({
   theme: "dark",
   profile: "dev",
-  profileLoading: false,
   setTheme: () => {},
   switchProfile: () => {},
 });
 
 /*
-    1. Manages theme and profile state. 
-    2. Dynamically imports profile styles on demand.
+    1. Manages theme and profile state.
+    2. Toggles [data-theme]/[data-profile] attributes on <html>.
     3. Provides context to the app for theme/profile access.
 
-    This allows the app to switch themes and profiles without a full reload, 
+    This allows the app to switch themes and profiles without a full reload,
     enhancing user experience and customization options.
 
   @param {React.ReactNode} children - The child components that will consume the theme context.
@@ -49,8 +44,6 @@ export const ThemeCntxt = createContext<ThemeContextValue>({
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("dark");
   const [profile, setProfile] = useState<Profile>("dev");
-  const [profileLoading, setProfileLoading] = useState(false);
-  const loadedProfiles = useRef<Set<Profile>>(new Set(["dev"]));
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -64,28 +57,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setThemeState(t);
   }
 
-  async function switchProfile(p: Profile) {
-    if (p === profile) return;
-
-    if (loadedProfiles.current.has(p)) {
-      setProfile(p);
-      return;
-    }
-
-    setProfileLoading(true);
-    try {
-      await profileImports[p]?.();
-      loadedProfiles.current.add(p);
-      setProfile(p);
-    } finally {
-      setProfileLoading(false);
-    }
+  function switchProfile(p: Profile) {
+    setProfile(p);
   }
 
   return (
-    <ThemeCntxt
-      value={{ theme, profile, profileLoading, setTheme, switchProfile }}
-    >
+    <ThemeCntxt value={{ theme, profile, setTheme, switchProfile }}>
       {children}
     </ThemeCntxt>
   );
