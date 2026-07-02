@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { LuX, LuCircle, LuInfo, LuTriangle } from "react-icons/lu";
 import "./toast.base.css";
 
 type ToastType = "success" | "error" | "warning" | "info";
@@ -46,20 +45,6 @@ const Toast: React.FC<ToastProps> = ({
     setTimeout(() => onClose?.(), 300);
   };
 
-  const getIcon = () => {
-    const props = { size: 20 };
-    switch (type) {
-      case "success":
-        return <LuCircle {...props} />;
-      case "error":
-        return <LuCircle {...props} />;
-      case "warning":
-        return <LuTriangle {...props} />;
-      case "info":
-        return <LuInfo {...props} />;
-    }
-  };
-
   const visibilityMod =
     isVisible && !isExiting ? "toast--visible" : "toast--hidden";
 
@@ -73,16 +58,13 @@ const Toast: React.FC<ToastProps> = ({
           isExiting ? "toast__progress--exiting" : ""
         }`}
       />
-      <span className="toast__icon">{getIcon()}</span>
       <div className="toast__message">{message}</div>
       <button
         className="toast__close"
         onClick={handleClose}
         type="button"
         aria-label="Dismiss notification"
-      >
-        <LuX size={16} />
-      </button>
+      ></button>
     </div>
   );
 };

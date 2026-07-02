@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import "./card.base.css";
 
 interface CardProps {
@@ -19,8 +18,6 @@ interface CardProps {
   shadow?: "none" | "sm" | "md" | "lg" | "glow";
   showDivider?: boolean;
   children?: React.ReactNode;
-  coverImage?: string;
-  coverImageAlt?: string;
   clickable?: boolean;
   onClick?: () => void;
 }
@@ -41,8 +38,6 @@ interface CardProps {
       animated={true}
       showBorder={true}
       showCorners={true}
-      coverImage="/path/to/image.jpg"
-      coverImageAlt="Cover Image"
       clickable={true}
       onClick={() => console.log("Card clicked!")}
     />
@@ -66,8 +61,6 @@ export default function Card({
   shadow = "none",
   showDivider = false,
   children,
-  coverImage,
-  coverImageAlt = "",
   clickable = false,
   onClick,
 }: CardProps) {
@@ -101,30 +94,12 @@ export default function Card({
       )}
 
       <div className={cardCls} onClick={clickable ? onClick : undefined}>
-        {coverImage && (
-          <div className="card__cover">
-            <Image
-              src={coverImage}
-              alt={coverImageAlt}
-              fill
-              className="card__cover-img"
-            />
-            <div className="card__cover-overlay" />
-            <div className={bodyCls}>
-              <h3 className={`card__cover-title card__title--${size}`}>
-                {title}
-              </h3>
-            </div>
-          </div>
-        )}
-
         <div className={bodyCls}>
-          {!coverImage &&
-            (typeof title === "string" ? (
-              <h3 className={titleCls}>{title}</h3>
-            ) : (
-              title
-            ))}
+          {typeof title === "string" ? (
+            <h3 className={titleCls}>{title}</h3>
+          ) : (
+            title
+          )}
           {subtitle && (
             <h4 className={`card__subtitle ${subtitleClassName}`}>
               {subtitle}

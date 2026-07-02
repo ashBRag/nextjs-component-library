@@ -120,6 +120,38 @@ Notes:
 - `globals.css` references `--font-fira` and `--font-major` CSS variables for typography. This repo defines them via `next/font`; consumers should define their own font variables with those names (or override them) to avoid falling back to `monospace`.
 - The public API surface is defined in `src/index.ts` (and per-folder barrels under `src/components`, `src/hooks`, `src/providers`, `src/lib`, `src/utils`, `src/types`). Anything not re-exported there isn't part of the package's public API.
 
+### Updating to the latest version
+
+A plain `pnpm install` in the consuming project won't notice new commits pushed here — package managers cache by resolved commit, not by branch. To pull the latest changes:
+
+```bash
+pnpm update nextjs-component-library
+```
+
+If that doesn't pick up the change, force a fresh resolve:
+
+```bash
+pnpm remove nextjs-component-library
+pnpm add git+https://github.com/ashBRag/nextjs-component-library.git
+```
+
+Either way, this re-triggers the `prepare` script, which rebuilds `dist/` from the latest source automatically.
+
+For reproducible installs (recommended over floating on `main`), tag releases here:
+
+```bash
+git tag v1.1.0
+git push origin v1.1.0
+```
+
+and have consumers pin to that tag instead of the branch:
+
+```json
+"nextjs-component-library": "git+https://github.com/ashBRag/nextjs-component-library.git#v1.1.0"
+```
+
+Bumping the tag in the consumer's `package.json` and running `pnpm install` then pulls in exactly that version, and never changes underneath them until they bump it again.
+
 ## Deployment
 
 This project deploys to GitHub Pages via GitHub Actions (`.github/workflows/deploy.yml`) on every push to `main`. It builds a static export (`next build` with `output: "export"`) and publishes the `out/` directory.

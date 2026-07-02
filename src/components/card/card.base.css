@@ -88,24 +88,6 @@
     @apply absolute bottom-0 right-0 w-0.5 h-6 bg-[var(--color-accent)];
   }
 
-  /* ── Cover image ── */
-  .card__cover {
-    @apply relative w-full aspect-video overflow-hidden
-             rounded-t-lg flex items-center justify-center;
-  }
-
-  .card__cover-img {
-    @apply object-cover object-center opacity-20;
-  }
-
-  .card__cover-overlay {
-    @apply absolute inset-0 bg-gradient-to-t from-black/70 to-black/20;
-  }
-
-  .card__cover-title {
-    @apply relative z-10 font-medium mb-2 text-center text-white;
-  }
-
   /* ── Typography ── */
   .card__title {
     @apply font-medium mb-2;

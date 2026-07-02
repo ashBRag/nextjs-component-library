@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import "./timeline.base.css";
 
 export interface TimelineItem {
@@ -94,9 +93,9 @@ export default function Timeline({
 
     if (item.action.href && !item.action.external) {
       return (
-        <Link href={item.action.href} className="timeline__card-link">
+        <a href={item.action.href} className="timeline__card-link">
           {renderCardContent(item)}
-        </Link>
+        </a>
       );
     }
 

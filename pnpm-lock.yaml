@@ -7,16 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      next:
-        specifier: 15.2.3
-        version: 15.2.3(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      react-icons:
-        specifier: ^5.6.0
-        version: 5.6.0(react@19.2.6)
-      react-simple-animate:
-        specifier: ^3.5.3
-        version: 3.5.3(react-dom@19.2.6(react@19.2.6))
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3
@@ -45,6 +35,9 @@ importers:
       eslint-config-next:
         specifier: 15.2.3
         version: 15.2.3(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
+      next:
+        specifier: 15.2.3
+        version: 15.2.3(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react:
         specifier: ^19.0.0
         version: 19.2.6
@@ -2119,18 +2112,8 @@ packages:
     peerDependencies:
       react: ^19.2.6
 
-  react-icons@5.6.0:
-    resolution: {integrity: sha512-RH93p5ki6LfOiIt0UtDyNg/cee+HLVR6cHHtW3wALfo+eOHTp8RnU2kRkI6E+H19zMIs03DyxUG/GfZMOGvmiA==}
-    peerDependencies:
-      react: '*'
-
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-
-  react-simple-animate@3.5.3:
-    resolution: {integrity: sha512-Ob+SmB5J1tXDEZyOe2Hf950K4M8VaWBBmQ3cS2BUnTORqHjhK0iKG8fB+bo47ZL15t8d3g/Y0roiqH05UBjG7A==}
-    peerDependencies:
-      react-dom: ^16.8.0 || ^17 || ^18 || ^19
 
   react@19.2.6:
     resolution: {integrity: sha512-sfWGGfavi0xr8Pg0sVsyHMAOziVYKgPLNrS7ig+ivMNb3wbCBw3KxtflsGBAwD3gYQlE/AEZsTLgToRrSCjb0Q==}
@@ -4447,15 +4430,7 @@ snapshots:
       react: 19.2.6
       scheduler: 0.27.0
 
-  react-icons@5.6.0(react@19.2.6):
-    dependencies:
-      react: 19.2.6
-
   react-is@16.13.1: {}
-
-  react-simple-animate@3.5.3(react-dom@19.2.6(react@19.2.6)):
-    dependencies:
-      react-dom: 19.2.6(react@19.2.6)
 
   react@19.2.6: {}
 
