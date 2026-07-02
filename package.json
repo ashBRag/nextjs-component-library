@@ -1,7 +1,6 @@
 {
-  "name": "project",
+  "name": "nextjs-component-library",
   "version": "1.0.0",
-  "private": true,
   "author": {
     "name": "Aishwarya B R",
     "email": "aishwarya.b.raghavan@gmail.com"
