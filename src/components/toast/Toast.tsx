@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { LuX, LuCircle, LuInfo, LuTriangle } from "react-icons/lu";
-import "./toast.css";
+import "./toast.base.css";
 
 type ToastType = "success" | "error" | "warning" | "info";
 
