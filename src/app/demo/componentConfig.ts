@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge } from "@/components/badge/Badge";
 import { Button } from "@/components/button/Button";
-import Card from "@/components/card/Card";
+import { Card } from "@/components/card/Card";
 import { Chip } from "@/components/chip/Chip";
 import { Divider } from "@/components/divider/Divider";
 import { Table } from "@/components/table/Table";

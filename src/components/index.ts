@@ -1,6 +1,6 @@
 export { Badge } from "./badge/Badge";
 export { Button } from "./button/Button";
-export { default as Card } from "./card/Card";
+export { Card } from "./card/Card";
 export { Chip } from "./chip/Chip";
 export { Dialog } from "./dialog/Dialog";
 export { Divider } from "./divider/Divider";

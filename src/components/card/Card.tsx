@@ -44,7 +44,7 @@ interface CardProps {
   
  */
 
-export default function Card({
+export function Card({
   id,
   title,
   subtitle,
