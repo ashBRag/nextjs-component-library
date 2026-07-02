@@ -78,11 +78,27 @@ pnpm add git+https://github.com/ashBRag/nextjs-component-library.git
 
 Installing runs the library's `prepare` script automatically, which builds `dist/` (compiled JS/ESM/CJS + type declarations + CSS) from source — no separate build step needed on your end.
 
-Then import components, hooks, providers, lib, and utils from the package root:
+### Importing (tree-shakeable, recommended)
+
+Import each component, hook, etc. from its own subpath — this pulls in only that module's code, not the rest of the library:
+
+```tsx
+import { Button } from "nextjs-component-library/button";
+import { Card } from "nextjs-component-library/card";
+import { useForm } from "nextjs-component-library/use-form";
+import { ThemeProvider } from "nextjs-component-library/theme-provider";
+import { fetchApi } from "nextjs-component-library/api";
+```
+
+Available subpaths: `/badge`, `/button`, `/card`, `/chip`, `/dialog`, `/divider`, `/drawer`, `/radio-group`, `/select`, `/status-bar`, `/text-field`, `/menu`, `/nav-list`, `/side-menu`, `/table`, `/tabs`, `/timeline`, `/toast`, `/typography`, `/center-wrapper`, `/use-form`, `/use-scroll`, `/use-theme`, `/use-toast`, `/theme-provider`, `/api`, `/lib-utils`, `/form-validations`, `/types`.
+
+### Importing from the root barrel (convenience, not tree-shakeable)
 
 ```tsx
 import { Button, Card, useForm, ThemeProvider, fetchApi } from "nextjs-component-library";
 ```
+
+The root barrel re-exports everything through one entry point. Because of how ESM barrel re-exports and `bundle: false` output interact, bundlers can't safely tree-shake this path — importing even one component this way loads the whole library's JS. Fine for quick prototyping; prefer subpath imports for production apps, especially anywhere bundle size or render performance matters.
 
 Import the compiled stylesheet once, near your app root (e.g. `layout.tsx` or `_app.tsx`):
 
