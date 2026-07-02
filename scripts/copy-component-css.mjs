@@ -1,11 +1,21 @@
-import { cp, mkdir } from "node:fs/promises";
-import { glob } from "node:fs";
-import { promisify } from "node:util";
+import { cp, mkdir, readdir } from "node:fs/promises";
 import path from "node:path";
 
-const globAsync = promisify(glob);
+async function findCssFiles(dir) {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await findCssFiles(fullPath)));
+    } else if (entry.name.endsWith(".css")) {
+      files.push(fullPath);
+    }
+  }
+  return files;
+}
 
-const files = await globAsync("src/components/**/*.css");
+const files = await findCssFiles("src/components");
 
 for (const file of files) {
   const dest = path.join("dist", path.relative("src", file));
