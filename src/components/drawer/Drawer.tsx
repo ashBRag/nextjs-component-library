@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
+import { Button } from "../button/Button";
 import "./drawer.base.css";
 
 interface DrawerProps {
@@ -62,9 +63,9 @@ export function Drawer({
             ) : (
               title
             )}
-            <button
-              type="button"
-              className="drawer__close"
+            <Button
+              variant="icon"
+              size="sm"
               aria-label="Close"
               onClick={onClose}
             >
@@ -81,7 +82,7 @@ export function Drawer({
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
-            </button>
+            </Button>
           </div>
         )}
 

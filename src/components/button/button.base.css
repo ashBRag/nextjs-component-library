@@ -59,7 +59,7 @@
 
   .btn--outline {
     @apply bg-transparent border-[var(--color-accent)];
-    color: var(--color-btn-fg);
+    color: var(--color-accent);
   }
   .btn--outline:hover {
     @apply bg-[var(--color-accent)]/10 text-[var(--color-accent)];

@@ -41,6 +41,7 @@ import type { TimelineItem } from "@/components/timeline/Timeline";
 // import type { ToastEntry } from "@/components/toast/Toast";
 import { componentGroups } from "./componentConfig";
 import generatedProps from "./generatedProps.json";
+import FloatingCubes from "@/styles/profiles/dev/Background";
 
 const sideMenuGroups = [
   {
@@ -229,6 +230,7 @@ export default function DemoPage() {
 
   return (
     <div className="p-8 max-w-6xl mx-auto flex gap-8 items-start">
+      <FloatingCubes />
       <SideMenu
         groups={sideMenuGroups}
         activeId={activeSection}

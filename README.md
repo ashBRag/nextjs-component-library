@@ -44,7 +44,7 @@ src/
       dark.css
     profiles/
       designer/index.css
-      dev/                    # dev-profile styles + Background.tsx, form-fields.css, navList.css
+      dev/                    # dev-profile styles + Background.tsx
   app/
     demo/
       componentConfig.ts       # registers each component + its demo variants/sections

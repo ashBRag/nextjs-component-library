@@ -1,18 +1,14 @@
 import React from "react";
 import "./card.base.css";
 
-interface CardProps {
+export interface CardProps {
   id?: string;
   title: string | React.ReactNode;
   subtitle?: string;
-  description?: string;
-  content?: React.ReactNode;
   className?: string;
   titleClassName?: string;
   subtitleClassName?: string;
-  descriptionClassName?: string;
   size?: "sm" | "md" | "lg" | "compact";
-  animated?: boolean;
   showBorder?: boolean;
   showCorners?: boolean;
   shadow?: "none" | "sm" | "md" | "lg" | "glow";
@@ -35,7 +31,6 @@ interface CardProps {
       description="This is a description of the card."
       content={<p>Additional content can go here.</p>}
       size="lg"
-      animated={true}
       showBorder={true}
       showCorners={true}
       clickable={true}
@@ -48,14 +43,10 @@ export function Card({
   id,
   title,
   subtitle,
-  description,
-  content,
   className = "",
   titleClassName = "",
   subtitleClassName = "",
-  descriptionClassName = "",
   size = "md",
-  animated = true,
   showBorder = true,
   showCorners = true,
   shadow = "none",
@@ -67,7 +58,6 @@ export function Card({
   const cardCls = [
     "card",
     showBorder && "card--bordered",
-    animated && "card--animated",
     clickable && "card--clickable",
     shadow !== "none" && `card--shadow-${shadow}`,
     className,
@@ -105,15 +95,7 @@ export function Card({
               {subtitle}
             </h4>
           )}
-          {description && (
-            <p className={`card__description ${descriptionClassName}`}>
-              {description}
-            </p>
-          )}
-          {showDivider && (content || children) && (
-            <hr className="card__divider" />
-          )}
-          {content && <div className="card__content">{content}</div>}
+          {showDivider && children && <hr className="card__divider" />}
           {children && <div className="card__children">{children}</div>}
         </div>
       </div>

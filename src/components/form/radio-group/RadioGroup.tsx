@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import "./radio-group.base.css";
+import "../form.base.css";
 
 interface RadioOption {
   value: string;
