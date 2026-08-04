@@ -1,4 +1,9 @@
 export { Badge } from "./badge/Badge";
+export {
+  Breadcrumbs,
+  type BreadcrumbItem,
+  type BreadcrumbsProps,
+} from "./breadcrumbs/Breadcrumbs";
 export { Button } from "./button/Button";
 export { Card } from "./card/Card";
 export { Chip } from "./chip/Chip";

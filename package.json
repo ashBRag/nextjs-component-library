@@ -59,6 +59,11 @@
       "import": "./dist/components/badge/Badge.mjs",
       "require": "./dist/components/badge/Badge.js"
     },
+    "./breadcrumbs": {
+      "types": "./dist/components/breadcrumbs/Breadcrumbs.d.ts",
+      "import": "./dist/components/breadcrumbs/Breadcrumbs.mjs",
+      "require": "./dist/components/breadcrumbs/Breadcrumbs.js"
+    },
     "./button": {
       "types": "./dist/components/button/Button.d.ts",
       "import": "./dist/components/button/Button.mjs",

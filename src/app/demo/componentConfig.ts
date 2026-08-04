@@ -1,5 +1,6 @@
 import React from "react";
 import { Badge } from "@/components/badge/Badge";
+import { Breadcrumbs } from "@/components/breadcrumbs/Breadcrumbs";
 import { Button } from "@/components/button/Button";
 import { Card } from "@/components/card/Card";
 import { Chip } from "@/components/chip/Chip";
@@ -49,6 +50,41 @@ function PlusIcon() {
 }
 
 export const componentGroups: ComponentGroup[] = [
+  {
+    id: "breadcrumbs",
+    title: "Breadcrumbs",
+    component: Breadcrumbs,
+    sourceFile: "src/components/breadcrumbs/Breadcrumbs.tsx",
+    sections: [
+      {
+        label: "Navigation paths",
+        layout: "stack",
+        variants: [
+          {
+            name: "Default separator",
+            props: {
+              items: [
+                { label: "Home", href: "#home" },
+                { label: "Components", href: "#components" },
+                { label: "Breadcrumbs" },
+              ],
+            },
+          },
+          {
+            name: "Custom separator",
+            props: {
+              separator: ">",
+              items: [
+                { label: "Home", href: "#home" },
+                { label: "Library", href: "#library" },
+                { label: "Current page" },
+              ],
+            },
+          },
+        ],
+      },
+    ],
+  },
   {
     id: "typography",
     title: "Typography",

@@ -68,7 +68,7 @@
   .btn--icon {
     @apply bg-transparent border-[var(--color-accent)] rounded-full
            p-0 justify-center;
-    color: var(--color-btn-fg);
+    color: var(--color-text-primary);
   }
   .btn--icon:hover {
     @apply bg-[var(--color-accent)]/10 text-[var(--color-accent)];

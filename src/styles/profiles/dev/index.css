@@ -53,7 +53,6 @@
   /* ── Derived: foreground ── */
   --color-fg: var(--color-neutral);
   --color-fg-muted: rgb(var(--color-neutral-rgb) / 0.5);
-  --color-btn-fg: var(--color-white);
 
   /* ── Derived: border ── */
   --color-border: rgb(var(--color-neutral-rgb) / 0.19);
@@ -70,7 +69,7 @@
 
   /* Nav */
   --color-nav-inactive: var(--color-neutral);
-  --color-nav-hover: var(--color-white);
+  --color-nav-hover: var(--color-accent);
   --color-nav-border: rgb(var(--color-neutral-rgb) / 0.3);
   --color-nav-border-hover: rgb(var(--color-accent-rgb) / 0.5);
   --color-nav-active: var(--color-accent);
@@ -88,7 +87,7 @@
   --color-timeline-node-border: var(--color-accent);
   --color-timeline-node-text: var(--color-accent);
   --color-timeline-node-bg: var(--color-white);
-  --color-timeline-title: var(--color-white);
+  --color-timeline-title: var(--color-text-primary);
   --color-timeline-date: var(--color-accent);
   --color-timeline-description: var(--color-neutral);
   --color-card-border: rgb(var(--color-neutral-rgb) / 0.3);
@@ -119,8 +118,8 @@
   --color-badge-warning-border: rgb(var(--color-warning-rgb) / 0.5);
 
   /* Form fields — shared token set */
-  --color-field-label: var(--color-white);
-  --color-field-text: var(--color-white);
+  --color-field-label: var(--color-text-primary);
+  --color-field-text: var(--color-text-primary);
   --color-field-placeholder: var(--color-neutral);
   --color-field-bg: rgb(var(--color-neutral-rgb) / 0.1);
   --color-field-border: rgb(var(--color-neutral-rgb) / 0.3);
@@ -145,12 +144,15 @@
    */
   --color-background: #f4f3ee;
   --color-bg-elevated: #e8e8e8;
-  --color-accent: #7c3aed;
-  --color-accent-rgb: 124 58 237;
+  --color-accent: #c778dd;
+  --color-accent-rgb: 199 120 221;
   --color-neutral: #6b7280;
   --color-neutral-rgb: 107 114 128;
   --color-fg: #383a42;
   --color-fg-rgb: 56 58 66;
+  --color-field-bg: rgb(255 255 255 / 0.8);
+  --color-text-primary: #383a42;
+
   --color-success: #16a34a;
   --color-success-rgb: 22 163 74;
   --color-warning: #ca8a04;
@@ -158,5 +160,4 @@
   --color-error: #e06c75;
   --color-error-rgb: 224 108 117;
   --color-info: #61afef;
-  --color-field-bg: rgb(255 255 255 / 0.8);
 }

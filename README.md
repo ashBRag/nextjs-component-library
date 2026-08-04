@@ -51,7 +51,7 @@ src/
       generatedProps.json      # auto-generated Props interface snapshots (do not hand-edit)
 ```
 
-Existing components: `badge`, `button`, `card`, `chip`, `dialog`, `divider`, `drawer`, `menu`, `navList`, `sideMenu`, `table`, `tabs`, `timeline`, `toast`, `typography`, `wrapper` (`CenterWrapper`), and form components: `text-field`, `select`, `radio-group`, `status-bar`.
+Existing components: `badge`, `breadcrumbs`, `button`, `card`, `chip`, `dialog`, `divider`, `drawer`, `menu`, `navList`, `sideMenu`, `table`, `tabs`, `timeline`, `toast`, `typography`, `wrapper` (`CenterWrapper`), and form components: `text-field`, `select`, `radio-group`, `status-bar`.
 
 ### Adding a new component
 
@@ -90,7 +90,7 @@ import { ThemeProvider } from "nextjs-component-library/theme-provider";
 import { fetchApi } from "nextjs-component-library/api";
 ```
 
-Available subpaths: `/badge`, `/button`, `/card`, `/chip`, `/dialog`, `/divider`, `/drawer`, `/radio-group`, `/select`, `/status-bar`, `/text-field`, `/menu`, `/nav-list`, `/side-menu`, `/table`, `/tabs`, `/timeline`, `/toast`, `/typography`, `/center-wrapper`, `/use-form`, `/use-scroll`, `/use-theme`, `/use-toast`, `/theme-provider`, `/api`, `/lib-utils`, `/form-validations`, `/types`.
+Available subpaths: `/badge`, `/breadcrumbs`, `/button`, `/card`, `/chip`, `/dialog`, `/divider`, `/drawer`, `/radio-group`, `/select`, `/status-bar`, `/text-field`, `/menu`, `/nav-list`, `/side-menu`, `/table`, `/tabs`, `/timeline`, `/toast`, `/typography`, `/center-wrapper`, `/use-form`, `/use-scroll`, `/use-theme`, `/use-toast`, `/theme-provider`, `/api`, `/lib-utils`, `/form-validations`, `/types`.
 
 ### Importing from the root barrel (convenience, not tree-shakeable)
 
