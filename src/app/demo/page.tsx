@@ -10,8 +10,10 @@ Components included:
 - Select
 - StatusBar
 - DropdownMenu
+- Breadcrumbs
 - Tabs
 - NavList
+- SideMenu
 - Timeline
 - Toast
 - ScreenCenterWrapper
@@ -86,8 +88,10 @@ const sideMenuGroups = [
   {
     label: "Navigation",
     items: [
+      { id: "breadcrumbs", label: "Breadcrumbs" },
       { id: "tabs", label: "Tabs" },
       { id: "nav-list", label: "NavList" },
+      { id: "side-menu", label: "SideMenu" },
       { id: "timeline", label: "Timeline" },
     ],
   },
@@ -183,6 +187,7 @@ export default function DemoPage() {
     "left" | "right" | "top" | "bottom" | null
   >(null);
   const [activeSection, setActiveSection] = useState(sideMenuItems[0].id);
+  const [activeSampleMenuItem, setActiveSampleMenuItem] = useState("overview");
 
   const applyTheme = (value: string) => {
     setTheme(value);
@@ -319,6 +324,12 @@ export default function DemoPage() {
 
         {/* Table */}
         <ComponentGroupSection groupId="table" activeSection={activeSection} />
+
+        {/* Breadcrumbs */}
+        <ComponentGroupSection
+          groupId="breadcrumbs"
+          activeSection={activeSection}
+        />
 
         {/* Dialog */}
         {activeSection === "dialog" && (
@@ -568,6 +579,36 @@ export default function DemoPage() {
                 },
               ]}
               horizontal
+            />
+          </section>
+        )}
+
+        {/* SideMenu */}
+        {activeSection === "side-menu" && (
+          <section id="side-menu" className="space-y-4">
+            <h2 className="text-xl font-semibold">SideMenu</h2>
+            <InterfaceBlock id="side-menu" />
+            <SideMenu
+              title="Project settings"
+              activeId={activeSampleMenuItem}
+              onSelect={setActiveSampleMenuItem}
+              className="w-56"
+              groups={[
+                {
+                  label: "Workspace",
+                  items: [
+                    { id: "overview", label: "Overview" },
+                    { id: "members", label: "Members" },
+                  ],
+                },
+                {
+                  label: "Configuration",
+                  items: [
+                    { id: "integrations", label: "Integrations" },
+                    { id: "billing", label: "Billing" },
+                  ],
+                },
+              ]}
             />
           </section>
         )}
