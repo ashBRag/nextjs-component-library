@@ -40,6 +40,7 @@ import Timeline from "@/components/timeline/Timeline";
 import { ScreenCenterWrapper } from "@/components/wrapper/CenterWrapper";
 import { SideMenu } from "@/components/sideMenu/SideMenu";
 import type { TimelineItem } from "@/components/timeline/Timeline";
+import type { Profile, Theme } from "@/providers/ThemeProvider";
 // import type { ToastEntry } from "@/components/toast/Toast";
 import { componentGroups } from "./componentConfig";
 import generatedProps from "./generatedProps.json";
@@ -111,6 +112,64 @@ const layoutCls: Record<"flex" | "grid" | "stack", string> = {
   stack: "space-y-6",
 };
 
+const themeProfileUsage = `// app/layout.tsx
+import type { ReactNode } from "react";
+import { ThemeProvider } from "nextjs-component-library/theme-provider";
+import "nextjs-component-library/styles/globals.css";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return <ThemeProvider>{children}</ThemeProvider>;
+}
+
+// ThemeSwitcher.tsx
+"use client";
+
+import { useTheme } from "nextjs-component-library/use-theme";
+
+export function ThemeSwitcher() {
+  const { theme, profile, setTheme, switchProfile } = useTheme();
+
+  return (
+    <>
+      <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+        Switch theme
+      </button>
+      <button onClick={() => switchProfile(profile === "dev" ? "designer" : "dev")}>
+        Switch profile
+      </button>
+    </>
+  );
+}`;
+
+const themeProfileTypes = `export type Theme = "light" | "dark";
+
+export type Profile =
+  | "dev"
+  | "designer"
+  | "gravitova"
+  | "calma";
+
+export interface ThemeContextValue {
+  theme: Theme;
+  profile: Profile;
+  setTheme: (theme: Theme) => void;
+  switchProfile: (profile: Profile) => void;
+}`;
+
+function CodeBlock({ title, source }: { title: string; source: string }) {
+  return (
+    <div className="space-y-2">
+      <h3 className="text-lg font-medium">{title}</h3>
+      <pre
+        className="text-xs p-4 rounded-md overflow-x-auto border"
+        style={{ borderColor: "var(--color-border)" }}
+      >
+        <code>{source}</code>
+      </pre>
+    </div>
+  );
+}
+
 function InterfaceBlock({ id }: { id: string }) {
   const source = generatedProps[id as keyof typeof generatedProps];
   if (!source) return null;
@@ -171,8 +230,8 @@ function ComponentGroupSection({
 }
 
 export default function DemoPage() {
-  const [theme, setTheme] = useState("dark");
-  const [profile, setProfile] = useState("dev");
+  const [theme, setTheme] = useState<Theme>("dark");
+  const [profile, setProfile] = useState<Profile>("dev");
   const [radioValue, setRadioValue] = useState("a");
   const [selectValue, setSelectValue] = useState("opt1");
   const [textValue, setTextValue] = useState("");
@@ -189,13 +248,22 @@ export default function DemoPage() {
   const [activeSampleMenuItem, setActiveSampleMenuItem] = useState("overview");
 
   const applyTheme = (value: string) => {
-    setTheme(value);
-    document.documentElement.setAttribute("data-theme", value);
+    if (value === "dark" || value === "light") {
+      setTheme(value);
+      document.documentElement.setAttribute("data-theme", value);
+    }
   };
 
   const applyProfile = (value: string) => {
-    setProfile(value);
-    document.documentElement.setAttribute("data-profile", value);
+    if (
+      value === "dev" ||
+      value === "designer" ||
+      value === "gravitova" ||
+      value === "calma"
+    ) {
+      setProfile(value);
+      document.documentElement.setAttribute("data-profile", value);
+    }
   };
 
   // const addToast = (type: ToastEntry["type"]) => {
@@ -248,6 +316,13 @@ export default function DemoPage() {
         {activeSection === "theme-profile" && (
           <section id="theme-profile" className="space-y-4">
             <h2 className="text-xl font-semibold">Theme & Profile</h2>
+            <p className="text-sm opacity-80 max-w-3xl">
+              Import the stylesheet once, wrap the application with
+              {" "}<code>ThemeProvider</code>, then use <code>useTheme</code>
+              {" "}in client components. The provider updates the
+              {" "}<code>data-theme</code> and <code>data-profile</code>
+              {" "}attributes on the document root.
+            </p>
             <div className="flex gap-8 flex-wrap">
               <RadioGroup
                 label="Theme"
@@ -272,6 +347,8 @@ export default function DemoPage() {
                 onChange={applyProfile}
               />
             </div>
+            <CodeBlock title="How to use" source={themeProfileUsage} />
+            <CodeBlock title="Types & interface" source={themeProfileTypes} />
           </section>
         )}
 
