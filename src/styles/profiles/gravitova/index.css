@@ -1,0 +1,188 @@
+[data-profile="gravitova"] body {
+  background-color: var(--background);
+}
+
+[data-profile="gravitova"] .nav-list__trigger {
+  background-color: transparent;
+}
+
+[data-profile="gravitova"] .nav-list__trigger--active {
+  background-color: var(--color-nav-bg-active);
+}
+
+[data-profile="gravitova"] {
+  /*
+   * ── Base palette (10 colors) ──
+   * Every other token in this block is a variation (alpha/tint) of one
+   * of these. Change appearance by editing only these.
+   */
+  /* Backgrounds */
+  --color-background: #1b1816;
+  --color-bg-surface-rgb: 36 32 29;
+  --color-bg-elevated: #2a2522;
+
+  /* Brand */
+  --color-accent: #bf5b45;
+  --color-accent-rgb: 191 91 69;
+
+  --color-neutral: #d9bf8f;
+  --color-neutral-rgb: 217 191 143;
+
+  /* Semantic */
+  --color-success: #87a76a;
+  --color-success-rgb: 135 167 106;
+
+  --color-warning: #d59b52;
+  --color-warning-rgb: 213 155 82;
+
+  --color-error: #c55d55;
+  --color-error-rgb: 197 93 85;
+
+  --color-info: #b88a67;
+
+  /* UI */
+  --color-field-bg: rgb(255 255 255 / 0.05);
+  --color-border-subtle: rgb(217 191 143 / 0.15);
+
+  /* Text */
+  --color-text-primary: #f6efe6;
+  --color-text-secondary: #d5c7b5;
+  --color-text-muted: #9c8e81;
+
+  --color-white: #ffffff;
+
+  /* ── Derived: background ── */
+  --background: var(--color-background);
+  --color-bg: var(--color-background);
+  --color-bg-surface: rgb(var(--color-bg-surface-rgb) / 0.9);
+
+  /* ── Derived: accent ── */
+  --color-accent-muted: rgb(var(--color-accent-rgb) / 0.5);
+
+  /* ── Derived: foreground ── */
+  --color-fg: var(--color-neutral);
+  --color-fg-muted: rgb(var(--color-neutral-rgb) / 0.5);
+
+  /* ── Derived: border ── */
+  --color-border: rgb(var(--color-neutral-rgb) / 0.19);
+  --color-border-focus: var(--color-accent);
+
+  /* Tabs */
+  --color-tab-inactive: var(--color-neutral);
+  --color-tab-hover: var(--color-accent);
+  --color-tab-border-hover: rgb(var(--color-accent-rgb) / 0.5);
+  --color-tab-active: var(--color-accent);
+  --color-tab-border-active: var(--color-accent);
+  --color-tab-bg-active: rgb(var(--color-accent-rgb) / 0.1);
+  --color-tab-shadow-active: rgb(var(--color-accent-rgb) / 0.2);
+
+  /* Nav */
+  --color-nav-inactive: var(--color-neutral);
+  --color-nav-hover: var(--color-accent);
+  --color-nav-border: rgb(var(--color-neutral-rgb) / 0.3);
+  --color-nav-border-hover: rgb(var(--color-accent-rgb) / 0.5);
+  --color-nav-active: var(--color-accent);
+  --color-nav-border-active: var(--color-accent);
+  --color-nav-bg-active: transparent;
+  --color-nav-shadow-active: rgb(var(--color-accent-rgb) / 0.2);
+  --color-nav-disabled: rgb(var(--color-neutral-rgb) / 0.5);
+  --color-nav-border-disabled: rgb(var(--color-neutral-rgb) / 0.2);
+  --color-nav-content-text: var(--color-neutral);
+  --nav-label-prefix: "#";
+  --nav-disabled-opacity: 0.5;
+
+  /* Timeline */
+  --color-timeline-line: rgb(var(--color-accent-rgb) / 0.3);
+  --color-timeline-node-border: var(--color-accent);
+  --color-timeline-node-text: var(--color-accent);
+  --color-timeline-node-bg: var(--color-white);
+  --color-timeline-title: var(--color-text-primary);
+  --color-timeline-date: var(--color-accent);
+  --color-timeline-description: var(--color-neutral);
+  --color-card-border: rgb(var(--color-neutral-rgb) / 0.3);
+  --color-card-border-hover: rgb(var(--color-accent-rgb) / 0.5);
+  --color-card-border-active: rgb(var(--color-accent-rgb) / 0.5);
+  --color-card-shadow-hover: rgb(var(--color-accent-rgb) / 0.1);
+  --color-card-shadow-active: rgb(var(--color-accent-rgb) / 0.2);
+  --color-corner: rgb(var(--color-neutral-rgb) / 0.5);
+
+  /* Badge — primary */
+  --color-badge-primary-text: var(--color-accent);
+  --color-badge-primary-bg: rgb(var(--color-accent-rgb) / 0.1);
+  --color-badge-primary-border: rgb(var(--color-accent-rgb) / 0.5);
+
+  /* Badge — secondary */
+  --color-badge-secondary-text: var(--color-neutral);
+  --color-badge-secondary-bg: rgb(var(--color-neutral-rgb) / 0.2);
+  --color-badge-secondary-border: rgb(var(--color-neutral-rgb) / 0.5);
+
+  /* Badge — success */
+  --color-badge-success-text: var(--color-success);
+  --color-badge-success-bg: rgb(var(--color-success-rgb) / 0.2);
+  --color-badge-success-border: rgb(var(--color-success-rgb) / 0.5);
+
+  /* Badge — warning */
+  --color-badge-warning-text: var(--color-warning);
+  --color-badge-warning-bg: rgb(var(--color-warning-rgb) / 0.2);
+  --color-badge-warning-border: rgb(var(--color-warning-rgb) / 0.5);
+
+  /* Form fields — shared token set */
+  --color-field-label: var(--color-text-primary);
+  --color-field-text: var(--color-text-primary);
+  --color-field-placeholder: var(--color-neutral);
+  --color-field-bg: rgb(var(--color-neutral-rgb) / 0.1);
+  --color-field-border: rgb(var(--color-neutral-rgb) / 0.3);
+  --color-field-border-hover: rgb(var(--color-accent-rgb) / 0.5);
+  --color-field-border-focus: var(--color-accent);
+  --color-field-shadow-focus: rgb(var(--color-accent-rgb) / 0.2);
+  --color-field-border-error: var(--color-error);
+  --color-field-shadow-error: rgb(var(--color-error-rgb) / 0.2);
+  --color-field-error-text: var(--color-error);
+  --color-radio-selected-bg: rgb(var(--color-accent-rgb) / 0.1);
+  --color-status-text: var(--color-neutral);
+  --color-status-track-bg: rgb(var(--color-neutral-rgb) / 0.2);
+  --field-label-prefix: "#";
+  --status-bar-prefix: ">";
+}
+
+[data-profile="gravitova"][data-theme="light"] {
+  /*
+   * ── Base palette (10 colors) ──
+   * Every other token in this block is a variation (alpha/tint) of one
+   * of these. Change appearance by editing only these.
+   */
+  /* Backgrounds */
+  --color-background: #faf6f1;
+  --color-bg-surface-rgb: 255 252 248;
+  --color-bg-elevated: #ffffff;
+
+  /* Brand */
+  --color-accent: #bf5b45;
+  --color-accent-rgb: 191 91 69;
+
+  --color-neutral: #d9bf8f;
+  --color-neutral-rgb: 217 191 143;
+
+  /* Semantic */
+  --color-success: #6c8a4e;
+  --color-success-rgb: 108 138 78;
+
+  --color-warning: #c88431;
+  --color-warning-rgb: 200 132 49;
+
+  --color-error: #b84e48;
+  --color-error-rgb: 184 78 72;
+
+  --color-info: #9c6f4e;
+
+  /* UI */
+  --color-field-bg: #ffffff;
+  --color-border-subtle: rgb(191 91 69 / 0.12);
+
+  /* Text */
+  --color-text-primary: #2f2722;
+  --color-text-secondary: #62564c;
+  --color-text-muted: #8d8073;
+
+  --color-white: #ffffff;
+}

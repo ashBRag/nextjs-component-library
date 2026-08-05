@@ -1,0 +1,192 @@
+[data-profile="calma"] body {
+  background-color: var(--background);
+}
+
+[data-profile="calma"] .nav-list__trigger {
+  background-color: transparent;
+}
+
+[data-profile="calma"] .nav-list__trigger--active {
+  background-color: var(--color-nav-bg-active);
+}
+
+[data-profile="calma"] {
+  /*
+   * ── Base palette (10 colors) ──
+   * Every other token in this block is a variation (alpha/tint) of one
+   * of these. Change appearance by editing only these.
+   */
+  /* Backgrounds */
+  --color-background: #10161c;
+  --color-bg-surface-rgb: 24 32 41;
+  --color-bg-elevated: #1a232d;
+
+  /* Brand */
+  --color-accent: #5b84c8;
+  --color-accent-rgb: 91 132 200;
+
+  --color-neutral: #8fdcd4;
+  --color-neutral-rgb: 143 220 212;
+
+  /* Semantic */
+  --color-success: #45be72;
+  --color-success-rgb: 69 190 114;
+
+  --color-warning: #e3b55a;
+  --color-warning-rgb: 227 181 90;
+
+  --color-error: #e06c75;
+  --color-error-rgb: 224 108 117;
+
+  --color-info: #74b8f2;
+
+  /* Inputs */
+  --color-field-bg: rgb(255 255 255 / 0.04);
+
+  /* Borders */
+  --color-border-subtle: rgb(182 242 236 / 0.12);
+
+  /* Typography */
+  --color-text-primary: #eaf2f7;
+  --color-text-secondary: #b7c5d2;
+  --color-text-muted: #7f8e9c;
+
+  --color-white: #ffffff;
+
+  /* ── Derived: background ── */
+  --background: var(--color-background);
+  --color-bg: var(--color-background);
+  --color-bg-surface: rgb(var(--color-bg-surface-rgb) / 0.9);
+
+  /* ── Derived: accent ── */
+  --color-accent-muted: rgb(var(--color-accent-rgb) / 0.5);
+
+  /* ── Derived: foreground ── */
+  --color-fg: var(--color-neutral);
+  --color-fg-muted: rgb(var(--color-neutral-rgb) / 0.5);
+
+  /* ── Derived: border ── */
+  --color-border: rgb(var(--color-neutral-rgb) / 0.19);
+  --color-border-focus: var(--color-accent);
+
+  /* Tabs */
+  --color-tab-inactive: var(--color-neutral);
+  --color-tab-hover: var(--color-accent);
+  --color-tab-border-hover: rgb(var(--color-accent-rgb) / 0.5);
+  --color-tab-active: var(--color-accent);
+  --color-tab-border-active: var(--color-accent);
+  --color-tab-bg-active: rgb(var(--color-accent-rgb) / 0.1);
+  --color-tab-shadow-active: rgb(var(--color-accent-rgb) / 0.2);
+
+  /* Nav */
+  --color-nav-inactive: var(--color-neutral);
+  --color-nav-hover: var(--color-accent);
+  --color-nav-border: rgb(var(--color-neutral-rgb) / 0.3);
+  --color-nav-border-hover: rgb(var(--color-accent-rgb) / 0.5);
+  --color-nav-active: var(--color-accent);
+  --color-nav-border-active: var(--color-accent);
+  --color-nav-bg-active: transparent;
+  --color-nav-shadow-active: rgb(var(--color-accent-rgb) / 0.2);
+  --color-nav-disabled: rgb(var(--color-neutral-rgb) / 0.5);
+  --color-nav-border-disabled: rgb(var(--color-neutral-rgb) / 0.2);
+  --color-nav-content-text: var(--color-neutral);
+  --nav-label-prefix: "#";
+  --nav-disabled-opacity: 0.5;
+
+  /* Timeline */
+  --color-timeline-line: rgb(var(--color-accent-rgb) / 0.3);
+  --color-timeline-node-border: var(--color-accent);
+  --color-timeline-node-text: var(--color-accent);
+  --color-timeline-node-bg: var(--color-white);
+  --color-timeline-title: var(--color-text-primary);
+  --color-timeline-date: var(--color-accent);
+  --color-timeline-description: var(--color-neutral);
+  --color-card-border: rgb(var(--color-neutral-rgb) / 0.3);
+  --color-card-border-hover: rgb(var(--color-accent-rgb) / 0.5);
+  --color-card-border-active: rgb(var(--color-accent-rgb) / 0.5);
+  --color-card-shadow-hover: rgb(var(--color-accent-rgb) / 0.1);
+  --color-card-shadow-active: rgb(var(--color-accent-rgb) / 0.2);
+  --color-corner: rgb(var(--color-neutral-rgb) / 0.5);
+
+  /* Badge — primary */
+  --color-badge-primary-text: var(--color-accent);
+  --color-badge-primary-bg: rgb(var(--color-accent-rgb) / 0.1);
+  --color-badge-primary-border: rgb(var(--color-accent-rgb) / 0.5);
+
+  /* Badge — secondary */
+  --color-badge-secondary-text: var(--color-neutral);
+  --color-badge-secondary-bg: rgb(var(--color-neutral-rgb) / 0.2);
+  --color-badge-secondary-border: rgb(var(--color-neutral-rgb) / 0.5);
+
+  /* Badge — success */
+  --color-badge-success-text: var(--color-success);
+  --color-badge-success-bg: rgb(var(--color-success-rgb) / 0.2);
+  --color-badge-success-border: rgb(var(--color-success-rgb) / 0.5);
+
+  /* Badge — warning */
+  --color-badge-warning-text: var(--color-warning);
+  --color-badge-warning-bg: rgb(var(--color-warning-rgb) / 0.2);
+  --color-badge-warning-border: rgb(var(--color-warning-rgb) / 0.5);
+
+  /* Form fields — shared token set */
+  --color-field-label: var(--color-text-primary);
+  --color-field-text: var(--color-text-primary);
+  --color-field-placeholder: var(--color-neutral);
+  --color-field-bg: rgb(var(--color-neutral-rgb) / 0.1);
+  --color-field-border: rgb(var(--color-neutral-rgb) / 0.3);
+  --color-field-border-hover: rgb(var(--color-accent-rgb) / 0.5);
+  --color-field-border-focus: var(--color-accent);
+  --color-field-shadow-focus: rgb(var(--color-accent-rgb) / 0.2);
+  --color-field-border-error: var(--color-error);
+  --color-field-shadow-error: rgb(var(--color-error-rgb) / 0.2);
+  --color-field-error-text: var(--color-error);
+  --color-radio-selected-bg: rgb(var(--color-accent-rgb) / 0.1);
+  --color-status-text: var(--color-neutral);
+  --color-status-track-bg: rgb(var(--color-neutral-rgb) / 0.2);
+  --field-label-prefix: "#";
+  --status-bar-prefix: ">";
+}
+
+[data-profile="calma"][data-theme="light"] {
+  /*
+   * ── Base palette (10 colors) ──
+   * Every other token in this block is a variation (alpha/tint) of one
+   * of these. Change appearance by editing only these.
+   */
+  /* Backgrounds */
+  --color-background: #fefdfeb8;
+  --color-bg-surface-rgb: 255 255 255;
+  --color-bg-elevated: #ffffff;
+
+  /* Brand */
+  --color-accent: #183458;
+  --color-accent-rgb: 50 89 140;
+
+  --color-neutral: #376561;
+  --color-neutral-rgb: 55 102 97;
+
+  /* Semantic */
+  --color-success: #26a653;
+  --color-success-rgb: 38 166 83;
+
+  --color-warning: #d8b24c;
+  --color-warning-rgb: 216 178 76;
+
+  --color-error: #d05c5c;
+  --color-error-rgb: 208 92 92;
+
+  --color-info: #4a87c7;
+
+  /* Inputs */
+  --color-field-bg: #ffffff;
+
+  /* Borders */
+  --color-border-subtle: rgb(50 89 140 / 0.12);
+
+  /* Typography */
+  --color-text-primary: #243447;
+  --color-text-secondary: #5d6b78;
+  --color-text-muted: #8a96a3;
+
+  --color-white: #ffffff;
+}
