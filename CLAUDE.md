@@ -4,10 +4,7 @@ These rules apply to all AI agents operating in this codebase.
 
 ## Context Policy
 
-- Never read, scan, or glob files unless the user has explicitly named them in the current message.
-- If context is needed to proceed, ask: "I need to see [specific file/function] — please confirm the path." Do not infer or explore.
-- Accepted context forms: absolute path, relative path, `path:FunctionName`, or pasted text. Treat anything else as insufficient.
-- Do not read `package.json`, `tsconfig.json`, directory trees, or config files unless explicitly asked or referenced by a STOP Gate check.
+- If context is needed to proceed, ask: "I need to see [specific file/function] — please confirm "
 - `.claudeignore` controls filesystem exclusions; this policy controls behavior.
 
 ## Response Style

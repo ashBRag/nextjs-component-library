@@ -180,9 +180,9 @@
       "require": "./dist/hooks/useToast.js"
     },
     "./theme-provider": {
-      "types": "./dist/providers/ThemeProvider.d.ts",
-      "import": "./dist/providers/ThemeProvider.mjs",
-      "require": "./dist/providers/ThemeProvider.js"
+      "types": "./dist/providers/index.d.ts",
+      "import": "./dist/providers/index.mjs",
+      "require": "./dist/providers/index.js"
     },
     "./api": {
       "types": "./dist/lib/api.d.ts",
