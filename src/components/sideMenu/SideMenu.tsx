@@ -18,6 +18,7 @@ interface SideMenuProps {
   activeId: string | null;
   onSelect: (id: string) => void;
   title?: string;
+  variant?: "left" | "right";
   className?: string;
 }
 
@@ -26,10 +27,11 @@ export function SideMenu({
   activeId,
   onSelect,
   title,
+  variant = "left",
   className = "",
 }: SideMenuProps) {
   return (
-    <nav className={`side-menu ${className}`}>
+    <nav className={`side-menu side-menu--${variant} ${className}`}>
       {title && <p className="side-menu__title">{title}</p>}
       {groups.map((group, gi) => (
         <div key={group.label} className="side-menu__group">
@@ -42,6 +44,7 @@ export function SideMenu({
                   onClick={() => onSelect(item.id)}
                   className={[
                     "side-menu__link",
+                    `side-menu__link--${variant}`,
                     activeId === item.id && "side-menu__link--active",
                   ]
                     .filter(Boolean)
