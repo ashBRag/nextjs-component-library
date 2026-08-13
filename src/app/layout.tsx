@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Fira_Code } from "next/font/google";
+import { Fira_Code, Inter } from "next/font/google";
 import "@/styles/globals.css";
 import "@/styles/profiles/dev/index.css";
 const fira = Fira_Code({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-fira",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-major",
   display: "swap",
 });
 
@@ -21,7 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="dark" data-profile="dev">
-      <body className={`${fira.variable} antialiased`}>{children}</body>
+      <body className={`${fira.variable} ${inter.variable} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

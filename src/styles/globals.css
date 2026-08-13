@@ -59,7 +59,14 @@ body {
   position: relative;
   overflow-x: hidden;
   color: var(--foreground);
-  font-family: var(--font-major), monospace;
+  font-family: var(--font-major), system-ui, sans-serif;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--font-fira), monospace;
 }
 
 :is(
