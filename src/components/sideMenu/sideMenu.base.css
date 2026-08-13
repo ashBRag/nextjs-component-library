@@ -4,8 +4,8 @@
   .side-menu {
     @apply sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto;
     border-color: var(--color-border);
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-accent-muted) transparent;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .side-menu--left {
@@ -17,17 +17,7 @@
   }
 
   .side-menu::-webkit-scrollbar {
-    width: 6px;
-  }
-  .side-menu::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .side-menu::-webkit-scrollbar-thumb {
-    background: var(--color-accent-muted);
-    border-radius: 8px;
-  }
-  .side-menu::-webkit-scrollbar-thumb:hover {
-    background: var(--color-accent);
+    display: none;
   }
 
   .side-menu__title {

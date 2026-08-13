@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./toast.base.css";
 
 type ToastType = "success" | "error" | "warning" | "info";
+type ToastVariant = "outline" | "filled";
 
 interface ToastProps {
   type: ToastType;
   message: string;
+  variant?: ToastVariant;
   duration?: number;
   onClose?: () => void;
 }
@@ -14,6 +16,7 @@ interface ToastEntry {
   id: string;
   type: ToastType;
   message: string;
+  variant?: ToastVariant;
   duration?: number;
 }
 
@@ -25,6 +28,7 @@ interface ToastContainerProps {
 const Toast: React.FC<ToastProps> = ({
   type,
   message,
+  variant = "outline",
   duration = 4000,
   onClose,
 }) => {
@@ -50,7 +54,7 @@ const Toast: React.FC<ToastProps> = ({
 
   return (
     <div
-      className={`toast toast--${type} ${visibilityMod}`}
+      className={`toast toast--${type} toast--${variant} ${visibilityMod}`}
       style={{ "--toast-duration": `${duration}ms` } as React.CSSProperties}
     >
       <div
@@ -64,7 +68,9 @@ const Toast: React.FC<ToastProps> = ({
         onClick={handleClose}
         type="button"
         aria-label="Dismiss notification"
-      ></button>
+      >
+        &times;
+      </button>
     </div>
   );
 };
@@ -79,6 +85,7 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
         key={t.id}
         type={t.type}
         message={t.message}
+        variant={t.variant}
         duration={t.duration}
         onClose={() => onRemove(t.id)}
       />
@@ -87,4 +94,4 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
 );
 
 export { Toast, ToastContainer };
-export type { ToastType, ToastEntry };
+export type { ToastType, ToastVariant, ToastEntry };

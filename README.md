@@ -43,7 +43,6 @@ src/
       light.css
       dark.css
     profiles/
-      designer/index.css
       dev/                    # dev-profile styles + Background.tsx
   app/
     demo/
@@ -95,7 +94,13 @@ Available subpaths: `/badge`, `/breadcrumbs`, `/button`, `/card`, `/chip`, `/dia
 ### Importing from the root barrel (convenience, not tree-shakeable)
 
 ```tsx
-import { Button, Card, useForm, ThemeProvider, fetchApi } from "nextjs-component-library";
+import {
+  Button,
+  Card,
+  useForm,
+  ThemeProvider,
+  fetchApi,
+} from "nextjs-component-library";
 ```
 
 The root barrel re-exports everything through one entry point. Because of how ESM barrel re-exports and `bundle: false` output interact, bundlers can't safely tree-shake this path — importing even one component this way loads the whole library's JS. Fine for quick prototyping; prefer subpath imports for production apps, especially anywhere bundle size or render performance matters.
@@ -106,7 +111,7 @@ Import the compiled stylesheet once, near your app root (e.g. `layout.tsx` or `_
 import "nextjs-component-library/styles/globals.css";
 ```
 
-This single stylesheet includes Tailwind's compiled output, every component's scoped CSS, and both theme (`light`/`dark`) and profile (`dev`/`designer`) variants — `ThemeProvider` toggles between them at runtime via `data-theme`/`data-profile` attributes on `<html>`, so nothing else needs to be imported separately.
+This single stylesheet includes Tailwind's compiled output, every component's scoped CSS, and both theme (`light`/`dark`) and profile (`dev`) variants — `ThemeProvider` toggles between them at runtime via `data-theme`/`data-profile` attributes on `<html>`, so nothing else needs to be imported separately.
 
 ```tsx
 <ThemeProvider>

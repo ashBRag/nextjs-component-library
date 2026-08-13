@@ -16,7 +16,9 @@
   "dropdown-menu": "interface DropdownMenuProps {\n  trigger: React.ReactNode;\n  groups: DropdownGroup[];\n  align?: \"left\" | \"right\";\n  className?: string;\n}",
   "tabs": "interface TabsProps {\n  tabs: Tab[];\n  activeTab: string;\n  onTabChange: (tabId: string) => void;\n  className?: string;\n  animated?: boolean;\n  contentHeight?: string | number;\n  mobileBottomMenu?: boolean;\n}",
   "nav-list": "interface NavListProps {\n  tabs: NavListItem[];\n  defaultActiveTab?: string;\n  className?: string;\n  tabsClassName?: string;\n  contentClassName?: string;\n  animated?: boolean;\n  horizontal?: boolean;\n}",
-  "side-menu": "interface SideMenuProps {\n  groups: SideMenuGroup[];\n  activeId: string | null;\n  onSelect: (id: string) => void;\n  title?: string;\n  className?: string;\n}",
+  "side-menu": "interface SideMenuProps {\n  groups: SideMenuGroup[];\n  activeId: string | null;\n  onSelect: (id: string) => void;\n  title?: string;\n  variant?: \"left\" | \"right\";\n  className?: string;\n}",
   "timeline": "interface TimelineProps {\n  items: TimelineItem[];\n  className?: string;\n  animated?: boolean;\n  selectedId?: string;\n  onSelect?: (id: string) => void;\n}",
-  "screen-center-wrapper": "interface ScreenCenterWrapperProps {\n  children: React.ReactNode;\n  className?: string;\n}"
+  "wavy-timeline": "interface WavyTimelineProps {\n  points: WavyTimelinePoint[];\n  className?: string;\n  /** Trend the curve upward across points, left to right. Default false (flat baseline). */\n  ascending?: boolean;\n  /** Where labels/content render relative to the curve. Default \"bottom\". */\n  labelPosition?: \"top\" | \"bottom\" | \"alternate\";\n  selectedId?: string;\n  onSelect?: (id: string) => void;\n}",
+  "screen-center-wrapper": "interface ScreenCenterWrapperProps {\n  children: React.ReactNode;\n  className?: string;\n}",
+  "toast": "interface ToastProps {\n  type: ToastType;\n  message: string;\n  variant?: ToastVariant;\n  duration?: number;\n  onClose?: () => void;\n}"
 }

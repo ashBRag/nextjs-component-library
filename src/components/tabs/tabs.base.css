@@ -5,7 +5,11 @@
 }
 
 .tabs--desktop {
-  @apply hidden sm:block border rounded-lg;
+  @apply hidden sm:block;
+}
+
+.tabs--desktop.tabs--bordered {
+  @apply border rounded-lg;
   border-color: var(--color-tab-border-active, var(--color-border));
 }
 
@@ -92,8 +96,7 @@
 
 /* Trigger */
 .tabs__trigger {
-  @apply relative inline-flex items-center px-4 py-3 border;
-  border-color: transparent;
+  @apply relative inline-flex items-center px-4 py-3 border border-transparent;
   color: var(--color-tab-inactive, var(--color-nav-inactive));
   transition: color 300ms, border-color 300ms, background-color 300ms;
 }
@@ -104,52 +107,21 @@
 
 .tabs__trigger--active {
   color: var(--color-tab-active, var(--color-accent));
+}
+
+/* Underline variant (default) */
+.tabs__trigger--underline.tabs__trigger--desktop.tabs__trigger--active {
+  border-bottom-color: var(--color-tab-border-active, var(--color-accent));
+}
+
+.tabs__trigger--underline.tabs__trigger--mobile.tabs__trigger--active {
+  border-top-color: var(--color-tab-border-active, var(--color-accent));
+}
+
+/* Boxed variant */
+.tabs__trigger--boxed.tabs__trigger--active {
   border-color: var(--color-tab-border-active, var(--color-accent));
   box-shadow: 0 8px 24px var(--color-tab-shadow-active, transparent);
-}
-
-.tabs__trigger--desktop {
-  @apply border-b-0;
-}
-
-.tabs__trigger--mobile {
-  @apply border-t-0;
-}
-
-/* Trigger corner brackets — navList style */
-.tabs__trigger-corners {
-  @apply absolute inset-0 pointer-events-none;
-}
-
-.tabs__trigger-corners .tabs__corner {
-  @apply absolute w-2 h-2;
-}
-
-.tabs__trigger-corners .tabs__corner::before,
-.tabs__trigger-corners .tabs__corner::after {
-  content: "";
-  @apply absolute block;
-  background-color: var(--color-tab-active, var(--color-accent));
-}
-
-.tabs__trigger-corners .tabs__corner--tl {
-  @apply top-1 left-1;
-}
-.tabs__trigger-corners .tabs__corner--tl::before {
-  @apply w-full h-px top-0 left-0;
-}
-.tabs__trigger-corners .tabs__corner--tl::after {
-  @apply w-px h-full top-0 left-0;
-}
-
-.tabs__trigger-corners .tabs__corner--tr {
-  @apply top-1 right-1;
-}
-.tabs__trigger-corners .tabs__corner--tr::before {
-  @apply w-full h-px top-0 right-0;
-}
-.tabs__trigger-corners .tabs__corner--tr::after {
-  @apply w-px h-full top-0 right-0;
 }
 
 /* Inner layout */

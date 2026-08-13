@@ -1,7 +1,8 @@
 @reference "tailwindcss";
 
 /* ============================================================
-   toast.css — structure only. No colors, no hardcoded values.
+   toast.css — structure + color tokens. No hardcoded values;
+   colors come from --color-toast-* profile variables.
    ============================================================ */
 
 /* Container */
@@ -14,8 +15,53 @@
   @apply relative flex items-center gap-3 p-4 rounded-lg border
            backdrop-blur-sm shadow-xl min-w-[320px] max-w-[480px]
            text-sm;
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-primary);
   transition: transform 300ms ease-out, opacity 300ms ease-out,
     scale 300ms ease-out;
+}
+
+.toast--success {
+  --toast-accent-color: var(--color-success);
+  border-color: rgb(var(--color-success-rgb) / 0.5);
+}
+
+.toast--error {
+  --toast-accent-color: var(--color-error);
+  border-color: rgb(var(--color-error-rgb) / 0.5);
+}
+
+.toast--warning {
+  --toast-accent-color: var(--color-warning);
+  border-color: rgb(var(--color-warning-rgb) / 0.5);
+}
+
+.toast--info {
+  --toast-accent-color: var(--color-info);
+  border-color: var(--color-info);
+}
+
+/* Filled — background takes the full type color */
+.toast--filled {
+  color: #ffffff;
+  border-color: transparent;
+  background-color: var(--toast-accent-color);
+}
+
+.toast--filled .toast__icon {
+  color: #ffffff;
+}
+
+.toast--filled .toast__progress {
+  background-color: rgb(255 255 255 / 0.6);
+}
+
+.toast--filled .toast__close {
+  color: rgb(255 255 255 / 0.8);
+}
+
+.toast--filled .toast__close:hover {
+  background-color: rgb(255 255 255 / 0.15);
 }
 
 /* Entry / exit state — transforms only, colors in profile */
@@ -52,6 +98,12 @@
 
 /* Close button */
 .toast__close {
-  @apply flex-shrink-0 p-1 rounded;
+  @apply flex-shrink-0 flex items-center justify-center
+         w-6 h-6 rounded text-lg leading-none cursor-pointer;
+  color: var(--color-neutral);
   transition: background-color 200ms;
+}
+
+.toast__close:hover {
+  background-color: rgb(var(--color-neutral-rgb) / 0.15);
 }

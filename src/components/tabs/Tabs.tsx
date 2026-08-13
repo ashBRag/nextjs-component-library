@@ -11,6 +11,8 @@ interface Tab {
   className?: string;
 }
 
+type TabsVariant = "underline" | "boxed";
+
 interface TabsProps {
   tabs: Tab[];
   activeTab: string;
@@ -19,6 +21,10 @@ interface TabsProps {
   animated?: boolean;
   contentHeight?: string | number;
   mobileBottomMenu?: boolean;
+  /** Active-tab trigger style. Default "underline". */
+  variant?: TabsVariant;
+  /** Whether the outer container has a border/rounded box. Default true. */
+  bordered?: boolean;
 }
 
 export default function Tabs({
@@ -29,6 +35,8 @@ export default function Tabs({
   animated = true,
   contentHeight = "77vh",
   mobileBottomMenu = true,
+  variant = "underline",
+  bordered = true,
 }: TabsProps) {
   const [computedHeight, setComputedHeight] = useState<string>("77vh");
 
@@ -64,6 +72,7 @@ export default function Tabs({
             const isActive = activeTab === tab.id;
             const itemMod = isActive ? "tabs__item--active" : "";
             const btnMod = [
+              `tabs__trigger--${variant}`,
               isActive ? "tabs__trigger--active" : "",
               isMobile ? "tabs__trigger--mobile" : "tabs__trigger--desktop",
             ]
@@ -84,20 +93,6 @@ export default function Tabs({
                   aria-controls={tab.id}
                   aria-selected={isActive}
                 >
-                  {isActive && (
-                    <span
-                      className={`tabs__trigger-corners ${
-                        isMobile
-                          ? "tabs__trigger-corners--mobile"
-                          : "tabs__trigger-corners--desktop"
-                      }`}
-                      aria-hidden="true"
-                    >
-                      <span className="tabs__corner tabs__corner--tl" />
-                      <span className="tabs__corner tabs__corner--tr" />
-                    </span>
-                  )}
-
                   <span className="tabs__trigger-inner">
                     {tab.icon && (
                       <span
@@ -138,15 +133,21 @@ export default function Tabs({
     <>
       {/* Desktop / Tablet */}
       <div
-        className={`tabs tabs--desktop ${rootMod} ${className}`}
+        className={`tabs tabs--desktop ${
+          bordered ? "tabs--bordered" : ""
+        } ${rootMod} ${className}`}
         style={
           { "--tabs-content-height": computedHeight } as React.CSSProperties
         }
       >
-        <span className="tabs__corner tabs__corner--tl" aria-hidden="true" />
-        <span className="tabs__corner tabs__corner--tr" aria-hidden="true" />
-        <span className="tabs__corner tabs__corner--bl" aria-hidden="true" />
-        <span className="tabs__corner tabs__corner--br" aria-hidden="true" />
+        {bordered && (
+          <>
+            <span className="tabs__corner tabs__corner--tl" aria-hidden="true" />
+            <span className="tabs__corner tabs__corner--tr" aria-hidden="true" />
+            <span className="tabs__corner tabs__corner--bl" aria-hidden="true" />
+            <span className="tabs__corner tabs__corner--br" aria-hidden="true" />
+          </>
+        )}
 
         <TabHeaders />
 

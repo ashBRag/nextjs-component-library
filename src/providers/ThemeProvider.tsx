@@ -9,7 +9,7 @@
 import React, { createContext, useEffect, useState } from "react";
 
 export type Theme = "light" | "dark";
-export type Profile = "dev" | "designer" | "gravitova" | "calma";
+export type Profile = "dev" | "gravitova" | "calma";
 
 // Defines the shape of the theme context value
 export interface ThemeContextValue {

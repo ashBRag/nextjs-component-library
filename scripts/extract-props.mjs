@@ -28,6 +28,7 @@ const sources = {
   timeline: "src/components/timeline/Timeline.tsx",
   "wavy-timeline": "src/components/timeline/WavyTimeline.tsx",
   "screen-center-wrapper": "src/components/wrapper/CenterWrapper.tsx",
+  toast: "src/components/toast/Toast.tsx",
 };
 
 function extractInterfaceBlock(source) {
