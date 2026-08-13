@@ -18,6 +18,7 @@
 @import "../components/timeline/timeline.base.css";
 @import "../components/toast/toast.base.css";
 @import "../components/form/form.base.css";
+@import "../components/grid/grid.base.css";
 
 @import "./profiles/base/index.css";
 @import "./profiles/dev/index.css";

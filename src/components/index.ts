@@ -11,6 +11,7 @@ export { Dialog } from "./dialog/Dialog";
 export { Divider } from "./divider/Divider";
 export { Drawer } from "./drawer/Drawer";
 export { RadioGroup, Select, StatusBar, TextField } from "./form";
+export { Grid, GridItem, type GridProps, type GridItemProps } from "./grid/Grid";
 export { DropdownMenu } from "./menu/Menu";
 export { default as NavList } from "./navList/NavList";
 export { SideMenu } from "./sideMenu/SideMenu";

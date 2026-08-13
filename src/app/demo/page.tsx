@@ -16,6 +16,7 @@ import DialogDemo from "@/components/dialog/DialogDemo";
 import DividerDemo from "@/components/divider/DividerDemo";
 import DrawerDemo from "@/components/drawer/DrawerDemo";
 import RadioGroupDemo from "@/components/form/radio-group/RadioGroupDemo";
+import GridDemo from "@/components/grid/GridDemo";
 import SelectDemo from "@/components/form/select/SelectDemo";
 import StatusBarDemo from "@/components/form/status-bar/StatusBarDemo";
 import TextFieldDemo from "@/components/form/text-field/TextFieldDemo";
@@ -95,6 +96,7 @@ const sideMenuGroups = [
     label: "Layout",
     items: [
       { id: "divider", label: "Divider" },
+      { id: "grid", label: "Grid" },
       { id: "screen-center-wrapper", label: "ScreenCenterWrapper" },
     ],
   },
@@ -115,6 +117,7 @@ const sectionContent: Record<string, React.ReactNode> = {
   button: <ButtonDemo />,
   card: <CardDemo />,
   divider: <DividerDemo />,
+  grid: <GridDemo />,
   table: <TableDemo />,
   breadcrumbs: <BreadcrumbsDemo />,
   dialog: <DialogDemo />,

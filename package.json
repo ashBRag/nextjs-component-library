@@ -89,6 +89,11 @@
       "import": "./dist/components/divider/Divider.mjs",
       "require": "./dist/components/divider/Divider.js"
     },
+    "./grid": {
+      "types": "./dist/components/grid/Grid.d.ts",
+      "import": "./dist/components/grid/Grid.mjs",
+      "require": "./dist/components/grid/Grid.js"
+    },
     "./drawer": {
       "types": "./dist/components/drawer/Drawer.d.ts",
       "import": "./dist/components/drawer/Drawer.mjs",

@@ -15,6 +15,7 @@ const sources = {
   card: "src/components/card/Card.tsx",
   table: "src/components/table/Table.tsx",
   divider: "src/components/divider/Divider.tsx",
+  grid: "src/components/grid/Grid.tsx",
   dialog: "src/components/dialog/Dialog.tsx",
   drawer: "src/components/drawer/Drawer.tsx",
   "text-field": "src/components/form/text-field/TextField.tsx",
