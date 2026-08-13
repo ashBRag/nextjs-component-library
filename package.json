@@ -144,6 +144,11 @@
       "import": "./dist/components/timeline/Timeline.mjs",
       "require": "./dist/components/timeline/Timeline.js"
     },
+    "./wavy-timeline": {
+      "types": "./dist/components/timeline/WavyTimeline.d.ts",
+      "import": "./dist/components/timeline/WavyTimeline.mjs",
+      "require": "./dist/components/timeline/WavyTimeline.js"
+    },
     "./toast": {
       "types": "./dist/components/toast/Toast.d.ts",
       "import": "./dist/components/toast/Toast.mjs",

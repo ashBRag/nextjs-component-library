@@ -15,6 +15,7 @@ Components included:
 - NavList
 - SideMenu
 - Timeline
+- WavyTimeline
 - Toast
 - ScreenCenterWrapper
 
@@ -36,10 +37,12 @@ import { DropdownMenu } from "@/components/menu/Menu";
 import NavList from "@/components/navList/NavList";
 import Tabs from "@/components/tabs/Tabs";
 import Timeline from "@/components/timeline/Timeline";
+import WavyTimeline from "@/components/timeline/WavyTimeline";
 // import { Toast, ToastContainer } from "@/components/toast/Toast";
 import { ScreenCenterWrapper } from "@/components/wrapper/CenterWrapper";
 import { SideMenu } from "@/components/sideMenu/SideMenu";
 import type { TimelineItem } from "@/components/timeline/Timeline";
+import type { WavyTimelinePoint } from "@/components/timeline/WavyTimeline";
 import type { Profile, Theme } from "@/providers/ThemeProvider";
 // import type { ToastEntry } from "@/components/toast/Toast";
 import { componentGroups } from "./componentConfig";
@@ -94,6 +97,7 @@ const sideMenuGroups = [
       { id: "nav-list", label: "NavList" },
       { id: "side-menu", label: "SideMenu" },
       { id: "timeline", label: "Timeline" },
+      { id: "wavy-timeline", label: "WavyTimeline" },
     ],
   },
   {
@@ -290,6 +294,7 @@ export default function DemoPage() {
   const [textValue, setTextValue] = useState("");
   const [textareaValue, setTextareaValue] = useState("");
   const [activeTab, setActiveTab] = useState("tab1");
+  const [wavyTimelineSelected, setWavyTimelineSelected] = useState("2001");
   // const [toasts, setToasts] = useState<ToastEntry[]>([]);
   const [progress, setProgress] = useState(45);
   const [chips, setChips] = useState(["React", "TypeScript", "Next.js"]);
@@ -418,6 +423,91 @@ export default function DemoPage() {
     },
   ];
 
+  const wavyTimelinePoints: WavyTimelinePoint[] = [
+    {
+      id: "1998",
+      label: "1998",
+      children: (
+        <p className="text-sm">Founder opens the doors of the company.</p>
+      ),
+    },
+    {
+      id: "2000",
+      label: "2000",
+      children: (
+        <p className="text-sm">Added new therapy and service offerings.</p>
+      ),
+    },
+    {
+      id: "2001",
+      label: "2001",
+      children: (
+        <p className="text-sm">Introduced a new flagship treatment system.</p>
+      ),
+    },
+    {
+      id: "2002",
+      label: "2002",
+      children: <p className="text-sm">Second clinic and offices open.</p>,
+    },
+    {
+      id: "2013",
+      label: "2013",
+      children: <p className="text-sm">Opened a new clinic location.</p>,
+    },
+    {
+      id: "2015",
+      label: "2015",
+      children: <p className="text-sm">Opened another chiropractic clinic.</p>,
+    },
+    {
+      id: "2016",
+      label: "2016",
+      children: <p className="text-sm">Opened a full-service clinic.</p>,
+    },
+    {
+      id: "1998",
+      label: "1998",
+      children: (
+        <p className="text-sm">Founder opens the doors of the company.</p>
+      ),
+    },
+    {
+      id: "2000",
+      label: "2000",
+      children: (
+        <p className="text-sm">Added new therapy and service offerings.</p>
+      ),
+    },
+    {
+      id: "2001",
+      label: "2001",
+      children: (
+        <p className="text-sm">Introduced a new flagship treatment system.</p>
+      ),
+    },
+    {
+      id: "2002",
+      label: "2002",
+      children: <p className="text-sm">Second clinic and offices open.</p>,
+    },
+    {
+      id: "2013",
+      label: "2013",
+      children: <p className="text-sm">Opened a new clinic location.</p>,
+    },
+    {
+      id: "2015",
+      label: "2015",
+      children: <p className="text-sm">Opened another chiropractic clinic.</p>,
+    },
+    {
+      id: "2016",
+      label: "2016",
+      children: <p className="text-sm">Opened a full-service clinic.</p>,
+    },
+  ];
+
   return (
     <div className="p-8 max-w-6xl mx-auto flex gap-8 items-start">
       <SideMenu
@@ -501,9 +591,9 @@ export default function DemoPage() {
             <div className="space-y-2 max-w-2xl">
               <h3 className="text-lg font-medium">Import CSS</h3>
               <p className="text-sm opacity-80">
-                Paste a block containing <code>--color-*</code>{" "}
-                declarations (e.g. copied from your own stylesheet) to load
-                them into the playground.
+                Paste a block containing <code>--color-*</code> declarations
+                (e.g. copied from your own stylesheet) to load them into the
+                playground.
               </p>
               <TextField
                 label="CSS"
@@ -959,6 +1049,20 @@ export default function DemoPage() {
             <h2 className="text-xl font-semibold">Timeline</h2>
             <InterfaceBlock id="timeline" />
             <Timeline items={timelineItems} animated />
+          </section>
+        )}
+
+        {/* WavyTimeline */}
+        {activeSection === "wavy-timeline" && (
+          <section id="wavy-timeline" className="space-y-4">
+            <h2 className="text-xl font-semibold">WavyTimeline</h2>
+            <InterfaceBlock id="wavy-timeline" />
+            <WavyTimeline
+              points={wavyTimelinePoints}
+              ascending
+              selectedId={wavyTimelineSelected}
+              onSelect={setWavyTimelineSelected}
+            />
           </section>
         )}
 

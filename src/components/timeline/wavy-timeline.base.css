@@ -1,0 +1,120 @@
+@reference "tailwindcss";
+
+.wavy-timeline {
+  @apply relative w-full;
+}
+
+/* Horizontal (curve) layout — hidden on small screens */
+.wavy-timeline__scroll {
+  @apply hidden sm:block relative w-full;
+}
+
+.wavy-timeline__svg {
+  @apply block w-full h-full;
+}
+
+.wavy-timeline__path {
+  stroke: var(--color-timeline-line);
+  stroke-width: 2;
+}
+
+.wavy-timeline__list {
+  @apply absolute inset-0 list-none;
+}
+
+.wavy-timeline__point {
+  @apply absolute;
+}
+
+.wavy-timeline__dot {
+  @apply absolute rounded-full border-2 z-10 p-0 cursor-pointer transition-all duration-200
+         -translate-x-1/2 -translate-y-1/2 top-0 left-0;
+  border-color: var(--color-timeline-node-border);
+  background-color: var(--color-timeline-node-bg);
+}
+
+.wavy-timeline__dot--md {
+  @apply w-5 h-5;
+}
+
+.wavy-timeline__dot--lg {
+  @apply w-8 h-8;
+}
+
+.wavy-timeline__dot--selected {
+  background-color: var(--color-timeline-node-border);
+}
+
+.wavy-timeline__stem {
+  @apply absolute flex flex-col items-center -translate-x-1/2 left-0;
+}
+
+.wavy-timeline__stub {
+  @apply w-px h-16 border-l border-dashed;
+  border-color: var(--color-timeline-line);
+}
+
+.wavy-timeline__stem--bottom {
+  @apply top-0;
+}
+
+.wavy-timeline__stem--bottom .wavy-timeline__content,
+.wavy-timeline__stem--bottom .wavy-timeline__label {
+  @apply mt-2;
+}
+
+.wavy-timeline__stem--top {
+  @apply bottom-0 flex-col-reverse;
+}
+
+.wavy-timeline__stem--top .wavy-timeline__content,
+.wavy-timeline__stem--top .wavy-timeline__label {
+  @apply mb-2;
+}
+
+.wavy-timeline__content {
+  @apply flex flex-col items-center text-center w-max max-w-[10rem];
+}
+
+.wavy-timeline__content--selected {
+  @apply max-w-[16rem];
+}
+
+.wavy-timeline__callout {
+  @apply absolute z-20 top-0;
+}
+
+.wavy-timeline__callout--top-left {
+  @apply left-0;
+}
+
+.wavy-timeline__callout--top-right {
+  @apply right-0;
+}
+
+.wavy-timeline__callout--top-right .wavy-timeline__content {
+  @apply items-end text-right ml-auto;
+}
+
+.wavy-timeline__label {
+  @apply text-lg font-semibold whitespace-nowrap;
+  color: var(--color-timeline-title, var(--color-text-primary));
+}
+
+/* Stacked (mobile) layout */
+.wavy-timeline__stacked {
+  @apply sm:hidden relative flex flex-col gap-6 border-l-2 ml-3 pl-6 list-none;
+  border-color: var(--color-timeline-line);
+}
+
+.wavy-timeline__stacked-item {
+  @apply relative;
+}
+
+.wavy-timeline__stacked-item .wavy-timeline__dot {
+  @apply absolute -left-[1.85rem] top-1;
+}
+
+.wavy-timeline__stacked-item .wavy-timeline__content {
+  @apply items-start text-left max-w-none min-w-0;
+}

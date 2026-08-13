@@ -19,6 +19,7 @@ const extraSources = {
   "nav-list": "src/components/navList/NavList.tsx",
   "side-menu": "src/components/sideMenu/SideMenu.tsx",
   timeline: "src/components/timeline/Timeline.tsx",
+  "wavy-timeline": "src/components/timeline/WavyTimeline.tsx",
   "screen-center-wrapper": "src/components/wrapper/CenterWrapper.tsx",
 };
 
