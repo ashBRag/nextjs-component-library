@@ -133,8 +133,37 @@ This single stylesheet includes Tailwind's compiled output, every component's sc
 Notes:
 
 - `react` and `react-dom` are `peerDependencies` (^19.0.0) — the consuming project must already have them installed; they aren't bundled.
-- `globals.css` references `--font-fira` and `--font-major` CSS variables for typography. This repo defines them via `next/font`; consumers should define their own font variables with those names (or override them) to avoid falling back to `monospace`.
+- `globals.css` loads Inter (`--font-major`, body/UI text) and Fira Code (`--font-fira`, code blocks) from Google Fonts by default — typography works out of the box, same as the shipped theme/profile styling. See "Updating fonts" below to change this.
 - The public API surface is defined in `src/index.ts` (and per-folder barrels under `src/components`, `src/hooks`, `src/providers`, `src/lib`, `src/utils`, `src/types`). Anything not re-exported there isn't part of the package's public API.
+
+### Updating fonts
+
+Every component's `font-family` resolves through two CSS variables: `--font-major` for UI/body text, `--font-fira` for code blocks (`<pre>`/`<code>`). The library ships Inter + Fira Code via a Google Fonts `@import` in `src/styles/fonts.css`.
+
+**As a consumer** — override either variable in your own CSS, loaded *after* `nextjs-component-library/styles/globals.css` so it wins the cascade (same pattern as overriding `--color-*` tokens):
+
+```css
+/* your-theme.css, imported after the library stylesheet */
+:root {
+  --font-major: "Your UI Font", sans-serif;
+  --font-fira: "Your Mono Font", monospace;
+}
+```
+
+To self-host instead of using Google Fonts at runtime, load your font with [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) and point the same two variables at its generated CSS variable:
+
+```tsx
+// layout.tsx
+import { Inter } from "next/font/google"; // or next/font/local
+const inter = Inter({ variable: "--your-ui-font", subsets: ["latin"] });
+```
+```css
+:root {
+  --font-major: var(--your-ui-font), sans-serif;
+}
+```
+
+**As a maintainer of this repo** (changing the library's shipped default for every consumer) — edit `src/styles/fonts.css`: swap the `@import url(...)` for a different Google Fonts URL, and update the `--font-major`/`--font-fira` values in its `:root` block to match the new family names. That's the only file to touch; `globals.css` already imports it first. This repo's own demo app (`src/app/layout.tsx`) self-hosts Inter/Fira Code via `next/font` regardless of `fonts.css`'s Google Fonts import, since `next/font`'s CSS variables are set on `<body>` and take precedence over `fonts.css`'s `:root` fallback.
 
 ### Updating to the latest version
 

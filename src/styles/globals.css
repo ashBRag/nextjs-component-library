@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./fonts.css";
 @import "./themes/light.css";
 @import "./themes/dark.css";
 @import "../components/button/button.base.css";
