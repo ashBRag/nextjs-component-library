@@ -2,16 +2,10 @@
   --foreground: #ededed;
   --surface: #1e2227;
   --border: rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="dark"] .custom-scroll::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-}
-[data-theme="dark"] .custom-scroll::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-}
-[data-theme="dark"] .custom-scroll::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  --scrollbar-track: rgba(255, 255, 255, 0.1);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.3);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.5);
+  color-scheme: dark;
 }
 
 [data-theme="dark"] .card--shadow-sm {
@@ -31,4 +25,10 @@
 }
 [data-theme="dark"] .card--shadow-lg:hover {
   box-shadow: 0 12px 28px 0 rgba(255, 255, 255, 0.18);
+}
+
+[data-theme="dark"] .btn:not(.btn--primary) {
+  --btn-shadow-rest: 0 2px 8px 0 rgb(var(--color-accent-rgb) / 0.3);
+  --btn-shadow-hover: 0 6px 18px 0 rgb(var(--color-accent-rgb) / 0.4);
+  --btn-shadow-active: 0 1px 3px 0 rgb(var(--color-accent-rgb) / 0.25);
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { CornerBrackets } from "../corner/CornerBrackets";
 import "./timeline.base.css";
 
 export interface TimelineItem {
@@ -53,12 +54,7 @@ export default function Timeline({
 
   const renderCardContent = (item: TimelineItem): React.ReactNode => (
     <div className={`timeline__card ${getCardMods(item)}`}>
-      <span className="timeline__corners" aria-hidden="true">
-        <span className="timeline__corner timeline__corner--tl" />
-        <span className="timeline__corner timeline__corner--tr" />
-        <span className="timeline__corner timeline__corner--bl" />
-        <span className="timeline__corner timeline__corner--br" />
-      </span>
+      <CornerBrackets wrapped size="lg" color="corner-token" />
 
       <div className="timeline__card-inner">
         <div className="timeline__card-header">

@@ -1,4 +1,5 @@
 import React from "react";
+import { CornerBrackets } from "../corner/CornerBrackets";
 import "./card.base.css";
 
 export interface CardProps {
@@ -71,16 +72,12 @@ export function Card({
   return (
     <div className={`card__corner-wrapper ${className}`} id={id}>
       {showCorners && (
-        <>
-          <div className="card__corner--tl">
-            <div className="card__corner--tl-h" />
-            <div className="card__corner--tl-v" />
-          </div>
-          <div className="card__corner--br">
-            <div className="card__corner--br-h" />
-            <div className="card__corner--br-v" />
-          </div>
-        </>
+        <CornerBrackets
+          corners={["tl", "br"]}
+          size="lg"
+          inset="outside"
+          color="nav-active"
+        />
       )}
 
       <div className={cardCls} onClick={clickable ? onClick : undefined}>

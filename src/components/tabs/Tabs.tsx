@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { CornerBrackets } from "../corner/CornerBrackets";
 import "./tabs.base.css";
 
 interface Tab {
@@ -16,7 +17,7 @@ type TabsVariant = "underline" | "boxed";
 interface TabsProps {
   tabs: Tab[];
   activeTab: string;
-  onTabChange: (tabId: string) => void;
+  onTabChange?: (tabId: string) => void;
   className?: string;
   animated?: boolean;
   contentHeight?: string | number;
@@ -87,7 +88,9 @@ export default function Tabs({
               >
                 <button
                   className={`tabs__trigger ${btnMod}`}
-                  onClick={() => onTabChange(tab.id)}
+                  onClick={() => {
+                    onTabChange && onTabChange(tab.id);
+                  }}
                   type="button"
                   role="tab"
                   aria-controls={tab.id}
@@ -140,14 +143,7 @@ export default function Tabs({
           { "--tabs-content-height": computedHeight } as React.CSSProperties
         }
       >
-        {bordered && (
-          <>
-            <span className="tabs__corner tabs__corner--tl" aria-hidden="true" />
-            <span className="tabs__corner tabs__corner--tr" aria-hidden="true" />
-            <span className="tabs__corner tabs__corner--bl" aria-hidden="true" />
-            <span className="tabs__corner tabs__corner--br" aria-hidden="true" />
-          </>
-        )}
+        {bordered && <CornerBrackets color="tab-active" />}
 
         <TabHeaders />
 
@@ -164,22 +160,7 @@ export default function Tabs({
                 role="tabpanel"
                 aria-labelledby={`${tab.id}-tab`}
               >
-                <span
-                  className="tabs__corner tabs__corner--tl"
-                  aria-hidden="true"
-                />
-                <span
-                  className="tabs__corner tabs__corner--tr"
-                  aria-hidden="true"
-                />
-                <span
-                  className="tabs__corner tabs__corner--bl"
-                  aria-hidden="true"
-                />
-                <span
-                  className="tabs__corner tabs__corner--br"
-                  aria-hidden="true"
-                />
+                <CornerBrackets color="tab-active" />
 
                 <div className="tabs__panel-content">{tab.content}</div>
 
@@ -213,14 +194,7 @@ export default function Tabs({
           </div>
 
           <div className="tabs__mobile-bar">
-            <span
-              className="tabs__corner tabs__corner--tl"
-              aria-hidden="true"
-            />
-            <span
-              className="tabs__corner tabs__corner--tr"
-              aria-hidden="true"
-            />
+            <CornerBrackets corners={["tl", "tr"]} color="tab-active" />
             <TabHeaders isMobile />
           </div>
         </div>

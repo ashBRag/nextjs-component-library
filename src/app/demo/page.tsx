@@ -30,9 +30,14 @@ import TypographyDemo from "@/components/typography/TypographyDemo";
 import CenterWrapperDemo from "@/components/wrapper/CenterWrapperDemo";
 import { SideMenu } from "@/components/sideMenu/SideMenu";
 import SideMenuDemo from "@/components/sideMenu/SideMenuDemo";
-import { ThemeProfileDemo, ColorPlaygroundDemo } from "./ThemeColorPlayground";
+import {
+  ThemeProfileDemo,
+  ThemeProfileInterface,
+  ColorPlaygroundDemo,
+  ColorPlaygroundInterface,
+} from "./ThemeColorPlayground";
 import generatedProps from "./generatedProps.json";
-import { Card } from "@/components";
+import { Card, Tabs, Typography } from "@/components";
 
 const sideMenuGroups = [
   {
@@ -128,14 +133,19 @@ const sectionContent: Record<string, React.ReactNode> = {
   toast: <ToastDemo />,
 };
 
-const sectionsWithoutInterface = new Set(["theme-profile", "color-playground"]);
+const interfaceOverrides: Record<string, React.ReactNode> = {
+  "theme-profile": <ThemeProfileInterface />,
+  "color-playground": <ColorPlaygroundInterface />,
+};
 
 function InterfaceBlock({ id }: { id: string }) {
+  if (interfaceOverrides[id]) return interfaceOverrides[id];
+
   const source = generatedProps[id as keyof typeof generatedProps];
   if (!source) return null;
 
   return (
-    <Card title="Interface" size="compact" showCorners={false}>
+    <Card title="" size="compact" showCorners={false}>
       <pre className="text-xs overflow-x-auto">
         <code className="whitespace-pre">{source}</code>
       </pre>
@@ -148,6 +158,7 @@ export default function DemoPage() {
   const activeSectionLabel = sideMenuItems.find(
     (item) => item.id === activeSection
   )?.label;
+  const [activeTab, setActiveTab] = useState("tab-interface");
 
   return (
     <div className="p-8 max-w-6xl mx-auto flex gap-8 items-start">
@@ -161,13 +172,25 @@ export default function DemoPage() {
       <div className="space-y-12 flex-1 min-w-0">
         {activeSectionLabel && (
           <section id={activeSection} className="space-y-4">
-            <h2 className="text-xl font-semibold">{activeSectionLabel}</h2>
-            {!sectionsWithoutInterface.has(activeSection) && (
-              <InterfaceBlock id={activeSection} />
-            )}
-            <Card title="Demo" showCorners={false} size="compact">
-              {sectionContent[activeSection]}
-            </Card>
+            <Typography variant="h2">{activeSectionLabel}</Typography>
+            <Tabs
+              activeTab={activeTab}
+              onTabChange={(tabId) => {
+                setActiveTab(tabId);
+              }}
+              tabs={[
+                {
+                  id: "tab-interface",
+                  label: "Interface",
+                  content: <InterfaceBlock id={activeSection} />,
+                },
+                {
+                  id: "tab-demo",
+                  label: "Demo",
+                  content: sectionContent[activeSection],
+                },
+              ]}
+            ></Tabs>
           </section>
         )}
       </div>

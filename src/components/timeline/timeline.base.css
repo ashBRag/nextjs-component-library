@@ -62,62 +62,6 @@
   @apply block;
 }
 
-/* Corner brackets */
-.timeline__corners {
-  @apply absolute inset-0 pointer-events-none;
-}
-
-.timeline__corner {
-  @apply absolute w-3 h-3;
-}
-
-.timeline__corner::before,
-.timeline__corner::after {
-  content: "";
-  @apply absolute block;
-  background-color: var(--color-corner);
-}
-
-.timeline__corner--tl {
-  @apply top-2 left-2;
-}
-.timeline__corner--tl::before {
-  @apply w-full h-px top-0 left-0;
-}
-.timeline__corner--tl::after {
-  @apply w-px h-full top-0 left-0;
-}
-
-.timeline__corner--tr {
-  @apply top-2 right-2;
-}
-.timeline__corner--tr::before {
-  @apply w-full h-px top-0 right-0;
-}
-.timeline__corner--tr::after {
-  @apply w-px h-full top-0 right-0;
-}
-
-.timeline__corner--bl {
-  @apply bottom-2 left-2;
-}
-.timeline__corner--bl::before {
-  @apply w-full h-px bottom-0 left-0;
-}
-.timeline__corner--bl::after {
-  @apply w-px h-full bottom-0 left-0;
-}
-
-.timeline__corner--br {
-  @apply bottom-2 right-2;
-}
-.timeline__corner--br::before {
-  @apply w-full h-px bottom-0 right-0;
-}
-.timeline__corner--br::after {
-  @apply w-px h-full bottom-0 right-0;
-}
-
 /* Card inner */
 .timeline__card-inner {
   @apply relative z-10;

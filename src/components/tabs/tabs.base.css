@@ -17,58 +17,6 @@
   @apply sm:hidden flex flex-col h-screen;
 }
 
-/* Corner decorations — matches navList pattern */
-.tabs > .tabs__corner {
-  @apply absolute w-2 h-2 pointer-events-none;
-}
-
-.tabs > .tabs__corner::before,
-.tabs > .tabs__corner::after {
-  content: "";
-  @apply absolute block;
-  background-color: var(--color-tab-active, var(--color-accent));
-}
-
-.tabs > .tabs__corner--tl {
-  @apply top-1 left-1;
-}
-.tabs > .tabs__corner--tl::before {
-  @apply w-full h-px top-0 left-0;
-}
-.tabs > .tabs__corner--tl::after {
-  @apply w-px h-full top-0 left-0;
-}
-
-.tabs > .tabs__corner--tr {
-  @apply top-1 right-1;
-}
-.tabs > .tabs__corner--tr::before {
-  @apply w-full h-px top-0 right-0;
-}
-.tabs > .tabs__corner--tr::after {
-  @apply w-px h-full top-0 right-0;
-}
-
-.tabs > .tabs__corner--bl {
-  @apply bottom-1 left-1;
-}
-.tabs > .tabs__corner--bl::before {
-  @apply w-full h-px bottom-0 left-0;
-}
-.tabs > .tabs__corner--bl::after {
-  @apply w-px h-full bottom-0 left-0;
-}
-
-.tabs > .tabs__corner--br {
-  @apply bottom-1 right-1;
-}
-.tabs > .tabs__corner--br::before {
-  @apply w-full h-px bottom-0 right-0;
-}
-.tabs > .tabs__corner--br::after {
-  @apply w-px h-full bottom-0 right-0;
-}
-
 /* Header */
 .tabs__header {
   @apply relative;
@@ -195,59 +143,6 @@
 /* Desktop panel */
 .tabs--desktop .tabs__panel {
   @apply p-6;
-}
-
-/* Panel inner corners */
-.tabs__panel > .tabs__corner {
-  @apply absolute w-2 h-2 pointer-events-none;
-}
-
-.tabs__panel > .tabs__corner::before,
-.tabs__panel > .tabs__corner::after {
-  content: "";
-  @apply absolute block;
-  background-color: var(--color-tab-active, var(--color-accent));
-  opacity: 0.3;
-}
-
-.tabs__panel > .tabs__corner--tl {
-  @apply top-1 left-1;
-}
-.tabs__panel > .tabs__corner--tl::before {
-  @apply w-full h-px top-0 left-0;
-}
-.tabs__panel > .tabs__corner--tl::after {
-  @apply w-px h-full top-0 left-0;
-}
-
-.tabs__panel > .tabs__corner--tr {
-  @apply top-1 right-1;
-}
-.tabs__panel > .tabs__corner--tr::before {
-  @apply w-full h-px top-0 right-0;
-}
-.tabs__panel > .tabs__corner--tr::after {
-  @apply w-px h-full top-0 right-0;
-}
-
-.tabs__panel > .tabs__corner--bl {
-  @apply bottom-1 left-1;
-}
-.tabs__panel > .tabs__corner--bl::before {
-  @apply w-full h-px bottom-0 left-0;
-}
-.tabs__panel > .tabs__corner--bl::after {
-  @apply w-px h-full bottom-0 left-0;
-}
-
-.tabs__panel > .tabs__corner--br {
-  @apply bottom-1 right-1;
-}
-.tabs__panel > .tabs__corner--br::before {
-  @apply w-full h-px bottom-0 right-0;
-}
-.tabs__panel > .tabs__corner--br::after {
-  @apply w-px h-full bottom-0 right-0;
 }
 
 /* Panel content */

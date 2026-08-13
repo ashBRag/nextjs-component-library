@@ -1,0 +1,154 @@
+/*
+ * Corner brackets (dev profile only).
+ *
+ * Generic bracket-square mechanism: a positioned square whose
+ * ::before/::after draw the two line segments of an L.
+ *   .corner--sm / .corner--lg     size
+ *   .corner--inside / --outside   inset direction (into vs. outside the box)
+ *   .corner--accent / --nav-active / --tab-active / --corner-token
+ *                                  which --color-* token to draw with
+ *   .corner--tl / --tr / --bl / --br  which corner to render
+ */
+[data-profile="dev"] .corner {
+  position: absolute;
+  z-index: 10;
+  width: var(--corner-size, 0.5rem);
+  height: var(--corner-size, 0.5rem);
+  pointer-events: none;
+}
+
+[data-profile="dev"] .corner::before,
+[data-profile="dev"] .corner::after {
+  content: "";
+  position: absolute;
+  display: block;
+  background-color: var(--corner-color, var(--color-accent));
+}
+
+/* ── Size ── */
+[data-profile="dev"] .corner--sm {
+  --corner-size: 0.5rem;
+}
+[data-profile="dev"] .corner--lg {
+  --corner-size: 0.75rem;
+}
+
+/* ── Color ── */
+[data-profile="dev"] .corner--accent {
+  --corner-color: var(--color-accent);
+}
+[data-profile="dev"] .corner--nav-active {
+  --corner-color: var(--color-nav-active);
+}
+[data-profile="dev"] .corner--tab-active {
+  --corner-color: var(--color-tab-active, var(--color-accent));
+}
+[data-profile="dev"] .corner--corner-token {
+  --corner-color: var(--color-accent);
+}
+
+/* ── Position + inset direction ── */
+[data-profile="dev"] .corner--tl.corner--inside {
+  top: var(--corner-inset, 0.25rem);
+  left: var(--corner-inset, 0.25rem);
+}
+[data-profile="dev"] .corner--tl.corner--outside {
+  top: calc(-1 * var(--corner-inset, 0.25rem));
+  left: calc(-1 * var(--corner-inset, 0.25rem));
+}
+[data-profile="dev"] .corner--tl::before {
+  width: 100%;
+  height: var(--corner-thickness, 1px);
+  top: 0;
+  left: 0;
+}
+[data-profile="dev"] .corner--tl::after {
+  width: var(--corner-thickness, 1px);
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+[data-profile="dev"] .corner--tr.corner--inside {
+  top: var(--corner-inset, 0.25rem);
+  right: var(--corner-inset, 0.25rem);
+}
+[data-profile="dev"] .corner--tr.corner--outside {
+  top: calc(-1 * var(--corner-inset, 0.25rem));
+  right: calc(-1 * var(--corner-inset, 0.25rem));
+}
+[data-profile="dev"] .corner--tr::before {
+  width: 100%;
+  height: var(--corner-thickness, 1px);
+  top: 0;
+  right: 0;
+}
+[data-profile="dev"] .corner--tr::after {
+  width: var(--corner-thickness, 1px);
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+
+[data-profile="dev"] .corner--bl.corner--inside {
+  bottom: var(--corner-inset, 0.25rem);
+  left: var(--corner-inset, 0.25rem);
+}
+[data-profile="dev"] .corner--bl.corner--outside {
+  bottom: calc(-1 * var(--corner-inset, 0.25rem));
+  left: calc(-1 * var(--corner-inset, 0.25rem));
+}
+[data-profile="dev"] .corner--bl::before {
+  width: 100%;
+  height: var(--corner-thickness, 1px);
+  bottom: 0;
+  left: 0;
+}
+[data-profile="dev"] .corner--bl::after {
+  width: var(--corner-thickness, 1px);
+  height: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+[data-profile="dev"] .corner--br.corner--inside {
+  bottom: var(--corner-inset, 0.25rem);
+  right: var(--corner-inset, 0.25rem);
+}
+[data-profile="dev"] .corner--br.corner--outside {
+  bottom: calc(-1 * var(--corner-inset, 0.25rem));
+  right: calc(-1 * var(--corner-inset, 0.25rem));
+}
+[data-profile="dev"] .corner--br::before {
+  width: 100%;
+  height: var(--corner-thickness, 1px);
+  bottom: 0;
+  right: 0;
+}
+[data-profile="dev"] .corner--br::after {
+  width: var(--corner-thickness, 1px);
+  height: 100%;
+  bottom: 0;
+  right: 0;
+}
+
+/* ── Wrappers & special cases ── */
+[data-profile="dev"] .card__corner-wrapper {
+  position: relative;
+}
+[data-profile="dev"] .card__corner-wrapper .corner {
+  --corner-inset: 0.5rem;
+  --corner-thickness: 2px;
+}
+[data-profile="dev"] .corners-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+[data-profile="dev"] .timeline .corners-wrapper > .corner {
+  --corner-inset: 0.5rem;
+}
+[data-profile="dev"] .tabs__panel > .corner::before,
+[data-profile="dev"] .tabs__panel > .corner::after {
+  opacity: 0.3;
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { CornerBrackets } from "../../corner/CornerBrackets";
 import "../form.base.css";
 
 interface RadioOption {
@@ -53,14 +54,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                   isSelected ? "radio-group__option--selected" : ""
                 }`}
               >
-                {isSelected && (
-                  <span className="radio-group__corners" aria-hidden="true">
-                    <span className="radio-group__corner radio-group__corner--tl" />
-                    <span className="radio-group__corner radio-group__corner--tr" />
-                    <span className="radio-group__corner radio-group__corner--bl" />
-                    <span className="radio-group__corner radio-group__corner--br" />
-                  </span>
-                )}
+                {isSelected && <CornerBrackets wrapped color="accent" />}
 
                 <div className="radio-group__option-inner">
                   <div className="radio-group__option-label">

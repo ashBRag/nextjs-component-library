@@ -59,62 +59,6 @@
   @apply no-underline;
 }
 
-/* Corner brackets */
-.nav-list__corners {
-  @apply absolute inset-0 pointer-events-none;
-}
-
-.nav-list__corner {
-  @apply absolute w-2 h-2;
-}
-
-.nav-list__corner::before,
-.nav-list__corner::after {
-  content: "";
-  @apply absolute block;
-  background-color: var(--color-nav-active);
-}
-
-.nav-list__corner--tl {
-  @apply top-1 left-1;
-}
-.nav-list__corner--tl::before {
-  @apply w-full h-px top-0 left-0;
-}
-.nav-list__corner--tl::after {
-  @apply w-px h-full top-0 left-0;
-}
-
-.nav-list__corner--tr {
-  @apply top-1 right-1;
-}
-.nav-list__corner--tr::before {
-  @apply w-full h-px top-0 right-0;
-}
-.nav-list__corner--tr::after {
-  @apply w-px h-full top-0 right-0;
-}
-
-.nav-list__corner--bl {
-  @apply bottom-1 left-1;
-}
-.nav-list__corner--bl::before {
-  @apply w-full h-px bottom-0 left-0;
-}
-.nav-list__corner--bl::after {
-  @apply w-px h-full bottom-0 left-0;
-}
-
-.nav-list__corner--br {
-  @apply bottom-1 right-1;
-}
-.nav-list__corner--br::before {
-  @apply w-full h-px bottom-0 right-0;
-}
-.nav-list__corner--br::after {
-  @apply w-px h-full bottom-0 right-0;
-}
-
 /* Icon */
 .nav-list__icon {
   @apply w-4 h-4 me-3 flex-shrink-0;

@@ -19,7 +19,9 @@
 @import "../components/toast/toast.base.css";
 @import "../components/form/form.base.css";
 
+@import "./profiles/base/index.css";
 @import "./profiles/dev/index.css";
+@import "./profiles/dev/corner.css";
 @import "./profiles/gravitova/index.css";
 @import "./profiles/calma/index.css";
 
@@ -59,14 +61,54 @@ body {
   font-family: var(--font-major), monospace;
 }
 
-.custom-scroll::-webkit-scrollbar {
+:is(
+    .custom-scroll,
+    .dialog__panel,
+    .drawer__panel,
+    .table__wrapper,
+    .tabs__panel
+  ) {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+:is(
+    .custom-scroll,
+    .dialog__panel,
+    .drawer__panel,
+    .table__wrapper,
+    .tabs__panel
+  )::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
-.custom-scroll::-webkit-scrollbar-track {
+:is(
+    .custom-scroll,
+    .dialog__panel,
+    .drawer__panel,
+    .table__wrapper,
+    .tabs__panel
+  )::-webkit-scrollbar-track {
   border-radius: 8px;
+  background: var(--scrollbar-track);
 }
-.custom-scroll::-webkit-scrollbar-thumb {
+:is(
+    .custom-scroll,
+    .dialog__panel,
+    .drawer__panel,
+    .table__wrapper,
+    .tabs__panel
+  )::-webkit-scrollbar-thumb {
   border-radius: 8px;
+  background: var(--scrollbar-thumb);
+}
+:is(
+    .custom-scroll,
+    .dialog__panel,
+    .drawer__panel,
+    .table__wrapper,
+    .tabs__panel
+  )::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
 }
 
 .current-zap {

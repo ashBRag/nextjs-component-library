@@ -34,19 +34,23 @@ src/
   components/
     <component>/
       <Component>.tsx        # component implementation + exported Props interface
+      <Component>Demo.tsx    # colocated demo used by the /demo page
       <component>.base.css   # component-scoped styles (BEM-ish: .name, .name--variant)
     form/
       <field>/                # form-specific components (text-field, select, radio-group, status-bar)
   styles/
-    globals.css               # global resets/imports
+    globals.css               # global resets/imports (also lists every component's .base.css import)
     themes/
       light.css
       dark.css
     profiles/
       dev/                    # dev-profile styles + Background.tsx
+      gravitova/
+      calma/
   app/
     demo/
-      componentConfig.ts       # registers each component + its demo variants/sections
+      page.tsx                 # sideMenuGroups (nav) + sectionContent (id -> <ComponentDemo />) drive the page
+      ThemeColorPlayground.tsx # theme/profile + color playground demos (not tied to one component)
       generatedProps.json      # auto-generated Props interface snapshots (do not hand-edit)
 ```
 
@@ -55,9 +59,16 @@ Existing components: `badge`, `breadcrumbs`, `button`, `card`, `chip`, `dialog`,
 ### Adding a new component
 
 1. Create `src/components/<name>/<Name>.tsx` exporting the component and a `<Name>Props` interface.
-2. Add `src/components/<name>/<name>.base.css` for scoped styles, and import it at the top of the `.tsx` file (`import "./<name>.base.css"`).
-3. Register it in `src/app/demo/componentConfig.ts`: import the component and add a `ComponentGroup` entry (`id`, `title`, `component`, `sourceFile`, `sections` with variants).
-4. If the Props interface should show up in the demo's generated docs, add an entry to `extraSources` in `scripts/extract-props.mjs` (only needed if `sourceFile` in `componentConfig.ts` doesn't already point at the right file), then run `pnpm run extract-props`.
+2. Add `src/components/<name>/<name>.base.css` for scoped styles, import it at the top of the `.tsx` file (`import "./<name>.base.css"`), and add a matching `@import` line in `src/styles/globals.css`.
+3. Create `src/components/<name>/<Name>Demo.tsx` — a small self-contained component (its own `useState` if it needs interaction) that renders a representative usage of `<Name>`. Keep demo data/state inside this file, not in `page.tsx`.
+4. Wire it into `src/app/demo/page.tsx`:
+   - Import the demo component.
+   - Add `{ id: "<name>", label: "<Name>" }` to the relevant group in `sideMenuGroups` (or a new group).
+   - Add `<name>: <NameDemo />` to the `sectionContent` map.
+5. Add `<name>: "src/components/<name>/<Name>.tsx"` to the `sources` map in `scripts/extract-props.mjs`, then run `pnpm run extract-props` to regenerate `generatedProps.json` (powers the "Interface" block on the demo page).
+6. If the component should be part of the published package's public API, add a subpath entry to `package.json`'s `exports` field (see "Available subpaths" below) and re-export it from `src/index.ts` / the relevant folder barrel.
+
+Two sections on the demo page — Theme & Profile and Color Playground — aren't tied to a single component (they exercise `ThemeProvider`/CSS variables globally), so their demo code lives in `src/app/demo/ThemeColorPlayground.tsx` rather than under `src/components/`.
 
 ## Using this as a dependency in another project
 
@@ -111,7 +122,7 @@ Import the compiled stylesheet once, near your app root (e.g. `layout.tsx` or `_
 import "nextjs-component-library/styles/globals.css";
 ```
 
-This single stylesheet includes Tailwind's compiled output, every component's scoped CSS, and both theme (`light`/`dark`) and profile (`dev`) variants — `ThemeProvider` toggles between them at runtime via `data-theme`/`data-profile` attributes on `<html>`, so nothing else needs to be imported separately.
+This single stylesheet includes Tailwind's compiled output, every component's scoped CSS, and both theme (`light`/`dark`) and profile (`dev`/`gravitova`/`calma`) variants — `ThemeProvider` toggles between them at runtime via `data-theme`/`data-profile` attributes on `<html>`, so nothing else needs to be imported separately.
 
 ```tsx
 <ThemeProvider>

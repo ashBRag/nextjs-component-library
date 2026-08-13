@@ -1,6 +1,10 @@
 @reference "tailwindcss";
 
 @layer components {
+  .card__corner-wrapper {
+    @apply relative w-full;
+  }
+
   /* ── Base ── */
   .card {
     @apply relative w-full h-full overflow-hidden rounded-lg
@@ -43,10 +47,12 @@
     @apply shadow-xl;
   }
   .card--shadow-glow {
-    box-shadow: 0 0 24px 0 color-mix(in srgb, var(--color-accent) 35%, transparent);
+    box-shadow: 0 0 24px 0
+      color-mix(in srgb, var(--color-accent) 35%, transparent);
   }
   .card--shadow-glow:hover {
-    box-shadow: 0 0 36px 4px color-mix(in srgb, var(--color-accent) 55%, transparent);
+    box-shadow: 0 0 36px 4px
+      color-mix(in srgb, var(--color-accent) 55%, transparent);
   }
 
   /* ── Sizes ── */
@@ -61,31 +67,6 @@
   }
   .card__body--compact {
     @apply px-8 py-4 text-sm;
-  }
-
-  /* ── Corner brackets ── */
-  .card__corner-wrapper {
-    @apply relative w-full;
-  }
-
-  .card__corner--tl {
-    @apply absolute -top-2 -left-2 w-6 h-6 z-10;
-  }
-  .card__corner--tl-h {
-    @apply w-full h-0.5 bg-[var(--color-accent)];
-  }
-  .card__corner--tl-v {
-    @apply w-0.5 h-6 bg-[var(--color-accent)];
-  }
-
-  .card__corner--br {
-    @apply absolute -bottom-2 -right-2 w-6 h-6 z-10;
-  }
-  .card__corner--br-h {
-    @apply absolute bottom-0 right-0 w-full h-0.5 bg-[var(--color-accent)];
-  }
-  .card__corner--br-v {
-    @apply absolute bottom-0 right-0 w-0.5 h-6 bg-[var(--color-accent)];
   }
 
   /* ── Typography ── */

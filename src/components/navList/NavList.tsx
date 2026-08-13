@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { CornerBrackets } from "../corner/CornerBrackets";
 import "./navList.base.css";
 
 interface NavListItem {
@@ -59,14 +60,7 @@ export default function NavList({
     isActive: boolean
   ): React.ReactNode => (
     <>
-      {isActive && (
-        <span className="nav-list__corners" aria-hidden="true">
-          <span className="nav-list__corner nav-list__corner--tl" />
-          <span className="nav-list__corner nav-list__corner--tr" />
-          <span className="nav-list__corner nav-list__corner--bl" />
-          <span className="nav-list__corner nav-list__corner--br" />
-        </span>
-      )}
+      {isActive && <CornerBrackets wrapped color="nav-active" />}
 
       {item.icon && (
         <span

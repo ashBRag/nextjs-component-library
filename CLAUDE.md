@@ -121,3 +121,16 @@ Resolve in this order:
 - Permitted: auth guards, redirects, locale detection, edge-safe logic.
 - Always export a `matcher` config. Never run on all routes by default.
 - Auth: re-validate identity inside Server Actions and Route Handlers — middleware guards alone are not sufficient.
+
+---
+
+## Component Library
+
+This repo is a component library with a live demo app at `src/app/demo`. Full steps: **README.md → "Adding a new component"**. Summary:
+
+- Component: `src/components/<name>/<Name>.tsx` (+ `<Name>Props` interface) and `<name>.base.css`, imported by both the `.tsx` file and `src/styles/globals.css`.
+- Demo: colocated `src/components/<name>/<Name>Demo.tsx` — self-contained, owns its own `useState`. Never add per-component demo JSX/state directly into `src/app/demo/page.tsx`.
+- Wire into `src/app/demo/page.tsx` via `sideMenuGroups` (nav entry) and the `sectionContent` map (`id: <NameDemo />`) — do not add new `{activeSection === "x" && ...}` conditional blocks; that pattern was retired.
+- Add the component to the `sources` map in `scripts/extract-props.mjs`, then run `pnpm run extract-props` to refresh `generatedProps.json`.
+- Public API: add a subpath to `package.json` `exports` and re-export from `src/index.ts` / the relevant barrel only if the component should ship in the published package.
+- Theme colors: reuse existing `--color-*` tokens already defined in `src/styles/profiles/*/index.css` (base palette: background, accent, neutral, success, warning, error, info, text-primary, bg-elevated, white) before introducing a new CSS variable. Profiles: `dev`, `gravitova`, `calma`.

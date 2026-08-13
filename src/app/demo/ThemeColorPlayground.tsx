@@ -115,6 +115,19 @@ function CodeBlock({ title, source }: { title: string; source: string }) {
   );
 }
 
+export function ThemeProfileInterface() {
+  return (
+    <>
+      <CodeBlock title="How to use" source={themeProfileUsage} />
+      <CodeBlock title="Types & interface" source={themeProfileTypes} />
+      <CodeBlock
+        title="Custom colors from your own CSS"
+        source={customColorsUsage}
+      />
+    </>
+  );
+}
+
 export function ThemeProfileDemo() {
   const [theme, setTheme] = useState<Theme>("dark");
   const [profile, setProfile] = useState<Profile>("dev");
@@ -164,14 +177,19 @@ export function ThemeProfileDemo() {
           onChange={applyProfile}
         />
       </div>
-      <CodeBlock title="How to use" source={themeProfileUsage} />
-      <CodeBlock title="Types & interface" source={themeProfileTypes} />
-      <CodeBlock
-        title="Custom colors from your own CSS"
-        source={customColorsUsage}
-      />
     </>
   );
+}
+
+const colorPlaygroundUsage = `// Override any --color-* variable the active profile defines,
+// scoped to a profile/theme combination so it doesn't leak elsewhere.
+[data-profile="dev"][data-theme="dark"] {
+  --color-accent: #bf5b45;
+  --color-accent-rgb: 191 91 69;
+}`;
+
+export function ColorPlaygroundInterface() {
+  return <CodeBlock title="How to use" source={colorPlaygroundUsage} />;
 }
 
 export function ColorPlaygroundDemo() {

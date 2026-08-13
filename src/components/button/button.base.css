@@ -3,16 +3,19 @@
 @layer components {
   .btn {
     @apply inline-flex items-center gap-2
-           border border-transparent rounded-md shadow-sm
+           border border-transparent rounded-md
            transition-all duration-300 ease-out
            cursor-pointer select-none no-underline;
+    box-shadow: var(--btn-shadow-rest);
   }
 
   .btn:hover {
-    @apply scale-105 shadow-md;
+    @apply scale-105;
+    box-shadow: var(--btn-shadow-hover);
   }
   .btn:active {
-    @apply scale-95 shadow-sm;
+    @apply scale-95;
+    box-shadow: var(--btn-shadow-active);
   }
   .btn:focus-visible {
     @apply outline-none ring-2 ring-offset-2 ring-[var(--color-accent)] ring-offset-[var(--color-background)];
@@ -40,6 +43,18 @@
   }
   .btn--lg {
     @apply px-6 py-3 text-lg;
+  }
+
+  /* ── Elevation ── */
+  .btn {
+    --btn-shadow-rest: 0 2px 6px 0 rgb(0 0 0 / 0.25);
+    --btn-shadow-hover: 0 6px 16px 0 rgb(0 0 0 / 0.3);
+    --btn-shadow-active: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+  }
+  .btn--primary {
+    --btn-shadow-rest: 0 2px 8px 0 rgb(var(--color-accent-rgb) / 0.4);
+    --btn-shadow-hover: 0 6px 18px 0 rgb(var(--color-accent-rgb) / 0.5);
+    --btn-shadow-active: 0 1px 3px 0 rgb(var(--color-accent-rgb) / 0.3);
   }
 
   /* ── Variants ── */
