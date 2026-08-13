@@ -4,10 +4,17 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = join(__dirname, "..");
-const configPath = join(rootDir, "src/app/demo/componentConfig.ts");
 const outPath = join(rootDir, "src/app/demo/generatedProps.json");
 
-const extraSources = {
+const sources = {
+  breadcrumbs: "src/components/breadcrumbs/Breadcrumbs.tsx",
+  typography: "src/components/typography/Typography.tsx",
+  badge: "src/components/badge/Badge.tsx",
+  chip: "src/components/chip/Chip.tsx",
+  button: "src/components/button/Button.tsx",
+  card: "src/components/card/Card.tsx",
+  table: "src/components/table/Table.tsx",
+  divider: "src/components/divider/Divider.tsx",
   dialog: "src/components/dialog/Dialog.tsx",
   drawer: "src/components/drawer/Drawer.tsx",
   "text-field": "src/components/form/text-field/TextField.tsx",
@@ -42,24 +49,9 @@ function extractInterfaceBlock(source) {
 }
 
 function main() {
-  const configSource = readFileSync(configPath, "utf-8");
-  const groupPattern = /id:\s*"([^"]+)",[\s\S]*?sourceFile:\s*"([^"]+)",/g;
-
   const result = {};
-  let m;
-  while ((m = groupPattern.exec(configSource)) !== null) {
-    const [, id, relPath] = m;
-    const absPath = join(rootDir, relPath);
-    try {
-      const source = readFileSync(absPath, "utf-8");
-      const block = extractInterfaceBlock(source);
-      result[id] = block ?? "// No Props interface found";
-    } catch (err) {
-      result[id] = `// Could not read ${relPath}: ${err.message}`;
-    }
-  }
 
-  for (const [id, relPath] of Object.entries(extraSources)) {
+  for (const [id, relPath] of Object.entries(sources)) {
     const absPath = join(rootDir, relPath);
     try {
       const source = readFileSync(absPath, "utf-8");

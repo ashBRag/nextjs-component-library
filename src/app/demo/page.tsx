@@ -1,6 +1,6 @@
 /*
-This is a demo page showcasing various components from the design system. 
-It includes examples of buttons, cards, form elements, navigation, and more. 
+This is a demo page showcasing various components from the design system.
+It includes examples of buttons, cards, form elements, navigation, and more.
 Each section demonstrates the usage and styling of the components in a practical context.
 Components included:
 - Button
@@ -26,26 +26,33 @@ This page serves as a reference for developers to see how to implement and use t
 
 import React, { useState } from "react";
 import { Button } from "@/components/button/Button";
-import { Chip } from "@/components/chip/Chip";
-import { Dialog } from "@/components/dialog/Dialog";
-import { Drawer } from "@/components/drawer/Drawer";
+import BadgeDemo from "@/components/badge/BadgeDemo";
+import BreadcrumbsDemo from "@/components/breadcrumbs/BreadcrumbsDemo";
+import ButtonDemo from "@/components/button/ButtonDemo";
+import CardDemo from "@/components/card/CardDemo";
+import ChipDemo from "@/components/chip/ChipDemo";
+import DialogDemo from "@/components/dialog/DialogDemo";
+import DividerDemo from "@/components/divider/DividerDemo";
+import DrawerDemo from "@/components/drawer/DrawerDemo";
+import RadioGroupDemo from "@/components/form/radio-group/RadioGroupDemo";
 import { RadioGroup } from "@/components/form/radio-group/RadioGroup";
-import { Select } from "@/components/form/select/Select";
-import { StatusBar } from "@/components/form/status-bar/StatusBar";
+import SelectDemo from "@/components/form/select/SelectDemo";
+import StatusBarDemo from "@/components/form/status-bar/StatusBarDemo";
 import { TextField } from "@/components/form/text-field/TextField";
-import { DropdownMenu } from "@/components/menu/Menu";
-import NavList from "@/components/navList/NavList";
-import Tabs from "@/components/tabs/Tabs";
-import Timeline from "@/components/timeline/Timeline";
-import WavyTimeline from "@/components/timeline/WavyTimeline";
+import TextFieldDemo from "@/components/form/text-field/TextFieldDemo";
+import MenuDemo from "@/components/menu/MenuDemo";
+import NavListDemo from "@/components/navList/NavListDemo";
+import TableDemo from "@/components/table/TableDemo";
+import TabsDemo from "@/components/tabs/TabsDemo";
+import TimelineDemo from "@/components/timeline/TimelineDemo";
+import WavyTimelineDemo from "@/components/timeline/WavyTimelineDemo";
+import TypographyDemo from "@/components/typography/TypographyDemo";
 // import { Toast, ToastContainer } from "@/components/toast/Toast";
-import { ScreenCenterWrapper } from "@/components/wrapper/CenterWrapper";
+import CenterWrapperDemo from "@/components/wrapper/CenterWrapperDemo";
 import { SideMenu } from "@/components/sideMenu/SideMenu";
-import type { TimelineItem } from "@/components/timeline/Timeline";
-import type { WavyTimelinePoint } from "@/components/timeline/WavyTimeline";
+import SideMenuDemo from "@/components/sideMenu/SideMenuDemo";
 import type { Profile, Theme } from "@/providers/ThemeProvider";
 // import type { ToastEntry } from "@/components/toast/Toast";
-import { componentGroups } from "./componentConfig";
 import generatedProps from "./generatedProps.json";
 
 const sideMenuGroups = [
@@ -110,12 +117,6 @@ const sideMenuGroups = [
 ];
 
 const sideMenuItems = sideMenuGroups.flatMap((g) => g.items);
-
-const layoutCls: Record<"flex" | "grid" | "stack", string> = {
-  flex: "flex gap-4 flex-wrap items-center",
-  grid: "grid grid-cols-1 md:grid-cols-2 gap-6",
-  stack: "space-y-6",
-};
 
 const themeProfileUsage = `// app/layout.tsx
 import type { ReactNode } from "react";
@@ -244,66 +245,10 @@ function InterfaceBlock({ id }: { id: string }) {
   );
 }
 
-function ComponentGroupSection({
-  groupId,
-  activeSection,
-}: {
-  groupId: string;
-  activeSection: string;
-}) {
-  const group = componentGroups.find((g) => g.id === groupId);
-  if (!group || group.id !== activeSection) return null;
-
-  const Component = group.component;
-
-  return (
-    <section id={group.id} className="space-y-4 scroll-mt-8">
-      <h2 className="text-xl font-semibold">{group.title}</h2>
-      <InterfaceBlock id={group.id} />
-      {group.sections.map((section, si) => (
-        <div key={si} className="space-y-2">
-          {section.label && (
-            <h3 className="text-lg font-medium">{section.label}</h3>
-          )}
-          <div className={layoutCls[section.layout ?? "flex"]}>
-            {section.variants.map((variant) => (
-              <div key={variant.name} className={variant.className}>
-                {section.layout === "stack" && (
-                  <p className="text-sm font-medium mb-2 opacity-80">
-                    {variant.name}
-                  </p>
-                )}
-                <Component {...variant.props}>{variant.children}</Component>
-                {variant.note && (
-                  <p className="text-xs opacity-70 mt-1">{variant.note}</p>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
-    </section>
-  );
-}
-
 export default function DemoPage() {
   const [theme, setTheme] = useState<Theme>("dark");
   const [profile, setProfile] = useState<Profile>("dev");
-  const [radioValue, setRadioValue] = useState("a");
-  const [selectValue, setSelectValue] = useState("opt1");
-  const [textValue, setTextValue] = useState("");
-  const [textareaValue, setTextareaValue] = useState("");
-  const [activeTab, setActiveTab] = useState("tab1");
-  const [wavyTimelineSelected, setWavyTimelineSelected] = useState("2001");
-  // const [toasts, setToasts] = useState<ToastEntry[]>([]);
-  const [progress, setProgress] = useState(45);
-  const [chips, setChips] = useState(["React", "TypeScript", "Next.js"]);
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [drawerSide, setDrawerSide] = useState<
-    "left" | "right" | "top" | "bottom" | null
-  >(null);
   const [activeSection, setActiveSection] = useState(sideMenuItems[0].id);
-  const [activeSampleMenuItem, setActiveSampleMenuItem] = useState("overview");
 
   const applyTheme = (value: string) => {
     if (value === "dark" || value === "light") {
@@ -399,114 +344,6 @@ export default function DemoPage() {
   // const removeToast = (id: string) => {
   //   setToasts((prev) => prev.filter((t) => t.id !== id));
   // };
-
-  const timelineItems: TimelineItem[] = [
-    {
-      id: "1",
-      title: "Project Started",
-      date: "Jan 2024",
-      description: "Initial project setup and planning.",
-    },
-    {
-      id: "2",
-      title: "First Release",
-      date: "Mar 2024",
-      badge: { text: "v1.0", variant: "success" },
-      description: "Launched the first version.",
-    },
-    {
-      id: "3",
-      title: "Major Update",
-      date: "Jun 2024",
-      badge: { text: "v2.0", variant: "primary" },
-      description: "Added new features and improvements.",
-    },
-  ];
-
-  const wavyTimelinePoints: WavyTimelinePoint[] = [
-    {
-      id: "1998",
-      label: "1998",
-      children: (
-        <p className="text-sm">Founder opens the doors of the company.</p>
-      ),
-    },
-    {
-      id: "2000",
-      label: "2000",
-      children: (
-        <p className="text-sm">Added new therapy and service offerings.</p>
-      ),
-    },
-    {
-      id: "2001",
-      label: "2001",
-      children: (
-        <p className="text-sm">Introduced a new flagship treatment system.</p>
-      ),
-    },
-    {
-      id: "2002",
-      label: "2002",
-      children: <p className="text-sm">Second clinic and offices open.</p>,
-    },
-    {
-      id: "2013",
-      label: "2013",
-      children: <p className="text-sm">Opened a new clinic location.</p>,
-    },
-    {
-      id: "2015",
-      label: "2015",
-      children: <p className="text-sm">Opened another chiropractic clinic.</p>,
-    },
-    {
-      id: "2016",
-      label: "2016",
-      children: <p className="text-sm">Opened a full-service clinic.</p>,
-    },
-    {
-      id: "1998",
-      label: "1998",
-      children: (
-        <p className="text-sm">Founder opens the doors of the company.</p>
-      ),
-    },
-    {
-      id: "2000",
-      label: "2000",
-      children: (
-        <p className="text-sm">Added new therapy and service offerings.</p>
-      ),
-    },
-    {
-      id: "2001",
-      label: "2001",
-      children: (
-        <p className="text-sm">Introduced a new flagship treatment system.</p>
-      ),
-    },
-    {
-      id: "2002",
-      label: "2002",
-      children: <p className="text-sm">Second clinic and offices open.</p>,
-    },
-    {
-      id: "2013",
-      label: "2013",
-      children: <p className="text-sm">Opened a new clinic location.</p>,
-    },
-    {
-      id: "2015",
-      label: "2015",
-      children: <p className="text-sm">Opened another chiropractic clinic.</p>,
-    },
-    {
-      id: "2016",
-      label: "2016",
-      children: <p className="text-sm">Opened a full-service clinic.</p>,
-    },
-  ];
 
   return (
     <div className="p-8 max-w-6xl mx-auto flex gap-8 items-start">
@@ -670,92 +507,83 @@ export default function DemoPage() {
         )}
 
         {/* Typography */}
-        <ComponentGroupSection
-          groupId="typography"
-          activeSection={activeSection}
-        />
+        {activeSection === "typography" && (
+          <section id="typography" className="space-y-4">
+            <h2 className="text-xl font-semibold">Typography</h2>
+            <InterfaceBlock id="typography" />
+            <TypographyDemo />
+          </section>
+        )}
 
         {/* Badge */}
-        <ComponentGroupSection groupId="badge" activeSection={activeSection} />
+        {activeSection === "badge" && (
+          <section id="badge" className="space-y-4">
+            <h2 className="text-xl font-semibold">Badge</h2>
+            <InterfaceBlock id="badge" />
+            <BadgeDemo />
+          </section>
+        )}
 
         {/* Chip */}
         {activeSection === "chip" && (
-          <>
-            <ComponentGroupSection
-              groupId="chip"
-              activeSection={activeSection}
-            />
-            <section className="space-y-2">
-              <h3 className="text-lg font-medium">Removable</h3>
-              <div className="flex gap-2 flex-wrap items-center">
-                {chips.map((chip) => (
-                  <Chip
-                    key={chip}
-                    variant="outline"
-                    onRemove={() =>
-                      setChips((prev) => prev.filter((c) => c !== chip))
-                    }
-                  >
-                    {chip}
-                  </Chip>
-                ))}
-              </div>
-            </section>
-          </>
+          <section id="chip" className="space-y-4">
+            <h2 className="text-xl font-semibold">Chip</h2>
+            <InterfaceBlock id="chip" />
+            <ChipDemo />
+          </section>
         )}
 
         {/* Button */}
-        <ComponentGroupSection groupId="button" activeSection={activeSection} />
+        {activeSection === "button" && (
+          <section id="button" className="space-y-4">
+            <h2 className="text-xl font-semibold">Button</h2>
+            <InterfaceBlock id="button" />
+            <ButtonDemo />
+          </section>
+        )}
 
         {/* Card */}
-        <ComponentGroupSection groupId="card" activeSection={activeSection} />
+        {activeSection === "card" && (
+          <section id="card" className="space-y-4">
+            <h2 className="text-xl font-semibold">Card</h2>
+            <InterfaceBlock id="card" />
+            <CardDemo />
+          </section>
+        )}
 
         {/* Divider */}
-        <ComponentGroupSection
-          groupId="divider"
-          activeSection={activeSection}
-        />
+        {activeSection === "divider" && (
+          <section id="divider" className="space-y-4">
+            <h2 className="text-xl font-semibold">Divider</h2>
+            <InterfaceBlock id="divider" />
+            <DividerDemo />
+          </section>
+        )}
 
         {/* Table */}
-        <ComponentGroupSection groupId="table" activeSection={activeSection} />
+        {activeSection === "table" && (
+          <section id="table" className="space-y-4">
+            <h2 className="text-xl font-semibold">Table</h2>
+            <InterfaceBlock id="table" />
+            <TableDemo />
+          </section>
+        )}
 
         {/* Breadcrumbs */}
-        <ComponentGroupSection
-          groupId="breadcrumbs"
-          activeSection={activeSection}
-        />
+        {activeSection === "breadcrumbs" && (
+          <section id="breadcrumbs" className="space-y-4">
+            <h2 className="text-xl font-semibold">Breadcrumbs</h2>
+            <InterfaceBlock id="breadcrumbs" />
+            <BreadcrumbsDemo />
+          </section>
+        )}
 
         {/* Dialog */}
         {activeSection === "dialog" && (
           <section id="dialog" className="space-y-4">
             <h2 className="text-xl font-semibold">Dialog</h2>
             <InterfaceBlock id="dialog" />
-            <Button variant="primary" onClick={() => setDialogOpen(true)}>
-              Open Dialog
-            </Button>
-            <Dialog
-              open={dialogOpen}
-              onClose={() => setDialogOpen(false)}
-              title="Confirm action"
-              footer={
-                <>
-                  <Button
-                    variant="outline"
-                    onClick={() => setDialogOpen(false)}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    variant="primary"
-                    onClick={() => setDialogOpen(false)}
-                  >
-                    Confirm
-                  </Button>
-                </>
-              }
-            >
-              <p>Are you sure you want to proceed with this action?</p>
-            </Dialog>
+            <DialogDemo />
           </section>
         )}
 
@@ -764,33 +592,7 @@ export default function DemoPage() {
           <section id="drawer" className="space-y-4">
             <h2 className="text-xl font-semibold">Drawer</h2>
             <InterfaceBlock id="drawer" />
-            <div className="flex gap-2 flex-wrap">
-              <Button variant="outline" onClick={() => setDrawerSide("left")}>
-                Open Left
-              </Button>
-              <Button variant="outline" onClick={() => setDrawerSide("right")}>
-                Open Right
-              </Button>
-              <Button variant="outline" onClick={() => setDrawerSide("top")}>
-                Open Top
-              </Button>
-              <Button variant="outline" onClick={() => setDrawerSide("bottom")}>
-                Open Bottom
-              </Button>
-            </div>
-            <Drawer
-              open={drawerSide !== null}
-              onClose={() => setDrawerSide(null)}
-              side={drawerSide ?? "right"}
-              title="Drawer title"
-              footer={
-                <Button variant="primary" onClick={() => setDrawerSide(null)}>
-                  Done
-                </Button>
-              }
-            >
-              <p>Drawer content slides in from the {drawerSide} side.</p>
-            </Drawer>
+            <DrawerDemo />
           </section>
         )}
 
@@ -799,25 +601,7 @@ export default function DemoPage() {
           <section id="text-field" className="space-y-4">
             <h2 className="text-xl font-semibold">TextField</h2>
             <InterfaceBlock id="text-field" />
-            <TextField
-              label="Name"
-              value={textValue}
-              onChange={setTextValue}
-              placeholder="Enter your name"
-            />
-            <TextField
-              label="Message"
-              value={textareaValue}
-              onChange={setTextareaValue}
-              placeholder="Write a message..."
-              rows={3}
-            />
-            <TextField
-              label="With Error"
-              value=""
-              onChange={() => {}}
-              error="This field is required"
-            />
+            <TextFieldDemo />
           </section>
         )}
 
@@ -826,16 +610,7 @@ export default function DemoPage() {
           <section id="radio-group" className="space-y-4">
             <h2 className="text-xl font-semibold">RadioGroup</h2>
             <InterfaceBlock id="radio-group" />
-            <RadioGroup
-              label="Pick an option"
-              options={[
-                { value: "a", label: "Option A", description: "First option" },
-                { value: "b", label: "Option B", description: "Second option" },
-                { value: "c", label: "Option C" },
-              ]}
-              value={radioValue}
-              onChange={setRadioValue}
-            />
+            <RadioGroupDemo />
           </section>
         )}
 
@@ -844,16 +619,7 @@ export default function DemoPage() {
           <section id="select" className="space-y-4">
             <h2 className="text-xl font-semibold">Select</h2>
             <InterfaceBlock id="select" />
-            <Select
-              label="Choose one"
-              options={[
-                { value: "opt1", label: "Option 1" },
-                { value: "opt2", label: "Option 2" },
-                { value: "opt3", label: "Option 3" },
-              ]}
-              value={selectValue}
-              onChange={setSelectValue}
-            />
+            <SelectDemo />
           </section>
         )}
 
@@ -862,23 +628,7 @@ export default function DemoPage() {
           <section id="status-bar" className="space-y-4">
             <h2 className="text-xl font-semibold">StatusBar</h2>
             <InterfaceBlock id="status-bar" />
-            <StatusBar progress={progress} status="Processing" />
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setProgress((p) => Math.max(0, p - 10))}
-              >
-                -10
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setProgress((p) => Math.min(100, p + 10))}
-              >
-                +10
-              </Button>
-            </div>
+            <StatusBarDemo />
           </section>
         )}
 
@@ -887,33 +637,7 @@ export default function DemoPage() {
           <section id="dropdown-menu" className="space-y-4">
             <h2 className="text-xl font-semibold">DropdownMenu</h2>
             <InterfaceBlock id="dropdown-menu" />
-            <DropdownMenu
-              trigger={<span>Open Menu</span>}
-              groups={[
-                {
-                  heading: "Actions",
-                  items: [
-                    { label: "Edit", value: "edit", onClick: () => {} },
-                    {
-                      label: "Duplicate",
-                      value: "duplicate",
-                      onClick: () => {},
-                    },
-                  ],
-                },
-                {
-                  heading: "Danger",
-                  items: [
-                    {
-                      label: "Delete",
-                      value: "delete",
-                      active: true,
-                      onClick: () => {},
-                    },
-                  ],
-                },
-              ]}
-            />
+            <MenuDemo />
           </section>
         )}
 
@@ -922,29 +646,7 @@ export default function DemoPage() {
           <section id="tabs" className="space-y-4">
             <h2 className="text-xl font-semibold">Tabs</h2>
             <InterfaceBlock id="tabs" />
-            <Tabs
-              tabs={[
-                {
-                  id: "tab1",
-                  label: "Tab One",
-                  content: <p className="p-4">Content for tab one.</p>,
-                },
-                {
-                  id: "tab2",
-                  label: "Tab Two",
-                  content: <p className="p-4">Content for tab two.</p>,
-                },
-                {
-                  id: "tab3",
-                  label: "Tab Three",
-                  content: <p className="p-4">Content for tab three.</p>,
-                },
-              ]}
-              activeTab={activeTab}
-              onTabChange={setActiveTab}
-              contentHeight="200px"
-              mobileBottomMenu={false}
-            />
+            <TabsDemo />
           </section>
         )}
 
@@ -953,27 +655,7 @@ export default function DemoPage() {
           <section id="nav-list" className="space-y-4">
             <h2 className="text-xl font-semibold">NavList</h2>
             <InterfaceBlock id="nav-list" />
-            <NavList
-              tabs={[
-                {
-                  id: "nav1",
-                  name: "Dashboard",
-                  content: <p>Dashboard content</p>,
-                },
-                {
-                  id: "nav2",
-                  name: "Settings",
-                  content: <p>Settings content</p>,
-                },
-                {
-                  id: "nav3",
-                  name: "Profile",
-                  content: <p>Profile content</p>,
-                  disabled: true,
-                },
-              ]}
-              horizontal
-            />
+            <NavListDemo />
           </section>
         )}
 
@@ -982,64 +664,7 @@ export default function DemoPage() {
           <section id="side-menu" className="space-y-4">
             <h2 className="text-xl font-semibold">SideMenu</h2>
             <InterfaceBlock id="side-menu" />
-            <div className="flex gap-12 flex-wrap">
-              <div className="space-y-2">
-                <p className="text-sm font-medium mb-2 opacity-80">
-                  variant=&quot;left&quot; (default)
-                </p>
-                <SideMenu
-                  title="Project settings"
-                  variant="left"
-                  activeId={activeSampleMenuItem}
-                  onSelect={setActiveSampleMenuItem}
-                  className="w-56"
-                  groups={[
-                    {
-                      label: "Workspace",
-                      items: [
-                        { id: "overview", label: "Overview" },
-                        { id: "members", label: "Members" },
-                      ],
-                    },
-                    {
-                      label: "Configuration",
-                      items: [
-                        { id: "integrations", label: "Integrations" },
-                        { id: "billing", label: "Billing" },
-                      ],
-                    },
-                  ]}
-                />
-              </div>
-              <div className="space-y-2">
-                <p className="text-sm font-medium mb-2 opacity-80">
-                  variant=&quot;right&quot;
-                </p>
-                <SideMenu
-                  title="Project settings"
-                  variant="right"
-                  activeId={activeSampleMenuItem}
-                  onSelect={setActiveSampleMenuItem}
-                  className="w-56"
-                  groups={[
-                    {
-                      label: "Workspace",
-                      items: [
-                        { id: "overview", label: "Overview" },
-                        { id: "members", label: "Members" },
-                      ],
-                    },
-                    {
-                      label: "Configuration",
-                      items: [
-                        { id: "integrations", label: "Integrations" },
-                        { id: "billing", label: "Billing" },
-                      ],
-                    },
-                  ]}
-                />
-              </div>
-            </div>
+            <SideMenuDemo />
           </section>
         )}
 
@@ -1048,7 +673,7 @@ export default function DemoPage() {
           <section id="timeline" className="space-y-4">
             <h2 className="text-xl font-semibold">Timeline</h2>
             <InterfaceBlock id="timeline" />
-            <Timeline items={timelineItems} animated />
+            <TimelineDemo />
           </section>
         )}
 
@@ -1057,12 +682,7 @@ export default function DemoPage() {
           <section id="wavy-timeline" className="space-y-4">
             <h2 className="text-xl font-semibold">WavyTimeline</h2>
             <InterfaceBlock id="wavy-timeline" />
-            <WavyTimeline
-              points={wavyTimelinePoints}
-              ascending
-              selectedId={wavyTimelineSelected}
-              onSelect={setWavyTimelineSelected}
-            />
+            <WavyTimelineDemo />
           </section>
         )}
 
@@ -1103,11 +723,7 @@ export default function DemoPage() {
           <section id="screen-center-wrapper" className="space-y-4">
             <h2 className="text-xl font-semibold">ScreenCenterWrapper</h2>
             <InterfaceBlock id="screen-center-wrapper" />
-            <div className="border border-dashed border-gray-500 h-48">
-              <ScreenCenterWrapper className="h-48 !min-h-0">
-                <p>Centered content</p>
-              </ScreenCenterWrapper>
-            </div>
+            <CenterWrapperDemo />
           </section>
         )}
       </div>
