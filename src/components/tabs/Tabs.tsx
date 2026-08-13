@@ -89,7 +89,7 @@ export default function Tabs({
                 <button
                   className={`tabs__trigger ${btnMod}`}
                   onClick={() => {
-                    onTabChange && onTabChange(tab.id);
+                    onTabChange?.(tab.id);
                   }}
                   type="button"
                   role="tab"

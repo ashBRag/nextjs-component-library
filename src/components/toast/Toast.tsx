@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./toast.base.css";
 
 type ToastType = "success" | "error" | "warning" | "info";
@@ -35,6 +35,11 @@ const Toast: React.FC<ToastProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
 
+  const handleClose = useCallback(() => {
+    setIsExiting(true);
+    setTimeout(() => onClose?.(), 300);
+  }, [onClose]);
+
   useEffect(() => {
     const enterTimer = setTimeout(() => setIsVisible(true), 50);
     const exitTimer = setTimeout(() => handleClose(), duration);
@@ -42,12 +47,7 @@ const Toast: React.FC<ToastProps> = ({
       clearTimeout(enterTimer);
       clearTimeout(exitTimer);
     };
-  }, [duration]);
-
-  const handleClose = () => {
-    setIsExiting(true);
-    setTimeout(() => onClose?.(), 300);
-  };
+  }, [duration, handleClose]);
 
   const visibilityMod =
     isVisible && !isExiting ? "toast--visible" : "toast--hidden";
