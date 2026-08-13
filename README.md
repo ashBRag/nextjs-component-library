@@ -40,16 +40,19 @@ src/
       <field>/                # form-specific components (text-field, select, radio-group, status-bar)
   styles/
     globals.css               # global resets/imports (also lists every component's .base.css import)
+    fonts.css                 # --font-major / --font-fira: Google Fonts import + var contract
     themes/
       light.css
       dark.css
     profiles/
-      dev/                    # dev-profile styles + Background.tsx
+      base/                   # derived --color-* tokens shared by every profile (index.css)
+      dev/                    # dev-profile palette + Background.tsx + corner.css (dev-only decorative brackets)
       gravitova/
       calma/
   app/
     demo/
-      page.tsx                 # sideMenuGroups (nav) + sectionContent (id -> <ComponentDemo />) drive the page
+      page.tsx                 # sideMenuGroups (nav) + sectionContent (id -> <ComponentDemo />) drive the page;
+                                # each section renders in an Interface/Demo Tabs split
       ThemeColorPlayground.tsx # theme/profile + color playground demos (not tied to one component)
       generatedProps.json      # auto-generated Props interface snapshots (do not hand-edit)
 ```
@@ -65,7 +68,7 @@ Existing components: `badge`, `breadcrumbs`, `button`, `card`, `chip`, `dialog`,
    - Import the demo component.
    - Add `{ id: "<name>", label: "<Name>" }` to the relevant group in `sideMenuGroups` (or a new group).
    - Add `<name>: <NameDemo />` to the `sectionContent` map.
-5. Add `<name>: "src/components/<name>/<Name>.tsx"` to the `sources` map in `scripts/extract-props.mjs`, then run `pnpm run extract-props` to regenerate `generatedProps.json` (powers the "Interface" block on the demo page).
+5. Add `<name>: "src/components/<name>/<Name>.tsx"` to the `sources` map in `scripts/extract-props.mjs`, then run `pnpm run extract-props` to regenerate `generatedProps.json` (powers the "Interface" tab on the demo page). If the component has no single Props interface to show (e.g. it's not tied to one component), add a `<name>: <YourInterfaceContent />` entry to the `interfaceOverrides` map in `page.tsx` instead.
 6. If the component should be part of the published package's public API, add a subpath entry to `package.json`'s `exports` field (see "Available subpaths" below) and re-export it from `src/index.ts` / the relevant folder barrel.
 
 Two sections on the demo page — Theme & Profile and Color Playground — aren't tied to a single component (they exercise `ThemeProvider`/CSS variables globally), so their demo code lives in `src/app/demo/ThemeColorPlayground.tsx` rather than under `src/components/`.
