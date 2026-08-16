@@ -15,7 +15,7 @@
     "build:js": "tsup && node scripts/copy-component-css.mjs",
     "build:css": "tailwindcss -i src/styles/globals.css -o dist/styles/globals.css --minify",
     "prepublishOnly": "pnpm run build:lib",
-    "prepare": "pnpm run build:lib && node scripts/install-hooks.mjs"
+    "setup-hooks": "node scripts/install-hooks.mjs"
   },
   "peerDependencies": {
     "react": "^19.0.0",
