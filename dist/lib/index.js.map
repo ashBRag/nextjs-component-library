@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/lib/index.ts"],"sourcesContent":["export { ApiError, fetchApi } from \"./api\";\nexport { capitalizeFirstLetter, scrollToElement, scrollToBottom } from \"./utils\";\n"],"mappings":";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,iBAAmC;AACnC,mBAAuE;","names":[]}

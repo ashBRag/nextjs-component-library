@@ -1,0 +1,66 @@
+@reference "tailwindcss";
+
+@layer components {
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border
+           font-medium select-none
+           transition-colors duration-200;
+  }
+
+  .chip--disabled {
+    @apply opacity-50 pointer-events-none;
+  }
+
+  .chip__icon {
+    @apply inline-flex items-center;
+  }
+
+  .chip__label {
+    @apply leading-none;
+  }
+
+  .chip__remove {
+    @apply inline-flex items-center justify-center rounded-full
+           cursor-pointer opacity-70 hover:opacity-100
+           transition-opacity duration-200;
+  }
+
+  .chip--primary {
+    color: var(--color-badge-primary-text);
+    background-color: var(--color-badge-primary-bg);
+    border-color: var(--color-badge-primary-border);
+  }
+
+  .chip--secondary {
+    color: var(--color-badge-secondary-text);
+    background-color: var(--color-badge-secondary-bg);
+    border-color: var(--color-badge-secondary-border);
+  }
+
+  .chip--outline {
+    @apply bg-transparent;
+    color: var(--color-fg);
+    border-color: var(--color-border);
+  }
+
+  .chip--sm {
+    @apply px-2 py-0.5 text-[0.65rem];
+  }
+  .chip--sm .chip__remove svg {
+    @apply w-2.5 h-2.5;
+  }
+
+  .chip--md {
+    @apply px-3 py-1 text-xs;
+  }
+  .chip--md .chip__remove svg {
+    @apply w-3 h-3;
+  }
+
+  .chip--lg {
+    @apply px-4 py-1.5 text-sm;
+  }
+  .chip--lg .chip__remove svg {
+    @apply w-3.5 h-3.5;
+  }
+}

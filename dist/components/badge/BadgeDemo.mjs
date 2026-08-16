@@ -1,0 +1,10 @@
+"use client";
+import "../../chunk-FJBZBVPE.mjs";
+import { Badge } from "./Badge";
+function BadgeDemo() {
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React.createElement("h3", { className: "text-lg font-medium" }, "Variants"), /* @__PURE__ */ React.createElement("div", { className: "flex gap-4 flex-wrap items-center" }, /* @__PURE__ */ React.createElement(Badge, { variant: "primary" }, "Primary"), /* @__PURE__ */ React.createElement(Badge, { variant: "secondary" }, "Secondary"), /* @__PURE__ */ React.createElement(Badge, { variant: "success" }, "Success"), /* @__PURE__ */ React.createElement(Badge, { variant: "warning" }, "Warning"))), /* @__PURE__ */ React.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React.createElement("h3", { className: "text-lg font-medium" }, "Sizes"), /* @__PURE__ */ React.createElement("div", { className: "flex gap-4 flex-wrap items-center" }, /* @__PURE__ */ React.createElement(Badge, { variant: "primary", size: "sm" }, "Small"), /* @__PURE__ */ React.createElement(Badge, { variant: "primary", size: "md" }, "Medium"), /* @__PURE__ */ React.createElement(Badge, { variant: "primary", size: "lg" }, "Large"))), /* @__PURE__ */ React.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React.createElement("h3", { className: "text-lg font-medium" }, "Shapes"), /* @__PURE__ */ React.createElement("div", { className: "flex gap-4 flex-wrap items-center" }, /* @__PURE__ */ React.createElement(Badge, { variant: "primary", shape: "rounded" }, "Rounded"), /* @__PURE__ */ React.createElement(Badge, { variant: "primary", shape: "squared" }, "Squared"), /* @__PURE__ */ React.createElement(Badge, { variant: "success", shape: "rounded" }, "Rounded"), /* @__PURE__ */ React.createElement(Badge, { variant: "success", shape: "squared" }, "Squared"))));
+}
+export {
+  BadgeDemo as default
+};
+//# sourceMappingURL=BadgeDemo.mjs.map

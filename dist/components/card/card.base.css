@@ -1,0 +1,107 @@
+@reference "tailwindcss";
+
+@layer components {
+  .card__corner-wrapper {
+    @apply relative w-full;
+  }
+
+  /* ── Base ── */
+  .card {
+    @apply relative w-full h-full overflow-hidden rounded-lg
+             transition-all duration-300 ease-out;
+  }
+
+  .card--bordered {
+    @apply border border-[var(--color-border)];
+  }
+
+  .card--animated:hover {
+    border-color: var(--color-accent-muted);
+  }
+
+  .card--clickable {
+    @apply cursor-pointer;
+  }
+  .card--clickable:hover {
+    border-color: var(--color-accent-muted);
+    @apply text-white;
+  }
+
+  /* ── Shadows ── */
+  .card--shadow-sm {
+    @apply shadow-sm;
+  }
+  .card--shadow-sm:hover {
+    @apply shadow-md;
+  }
+  .card--shadow-md {
+    @apply shadow-md;
+  }
+  .card--shadow-md:hover {
+    @apply shadow-lg;
+  }
+  .card--shadow-lg {
+    @apply shadow-lg;
+  }
+  .card--shadow-lg:hover {
+    @apply shadow-xl;
+  }
+  .card--shadow-glow {
+    box-shadow: 0 0 24px 0
+      color-mix(in srgb, var(--color-accent) 35%, transparent);
+  }
+  .card--shadow-glow:hover {
+    box-shadow: 0 0 36px 4px
+      color-mix(in srgb, var(--color-accent) 55%, transparent);
+  }
+
+  /* ── Sizes ── */
+  .card__body--sm {
+    @apply p-4 text-sm;
+  }
+  .card__body--md {
+    @apply p-6 text-base;
+  }
+  .card__body--lg {
+    @apply p-8 text-lg;
+  }
+  .card__body--compact {
+    @apply px-8 py-4 text-sm;
+  }
+
+  /* ── Typography ── */
+  .card__title {
+    @apply font-medium mb-2;
+    color: var(--color-fg);
+  }
+  .card__title--sm {
+    @apply text-lg;
+  }
+  .card__title--md {
+    @apply text-xl;
+  }
+  .card__title--lg {
+    @apply text-2xl;
+  }
+  .card__title--compact {
+    @apply text-lg;
+  }
+
+  .card__subtitle {
+    @apply text-base mb-4;
+    color: var(--color-accent);
+  }
+
+  .card__description,
+  .card__content,
+  .card__children {
+    @apply leading-relaxed mb-4;
+    color: var(--color-fg);
+  }
+
+  /* ── Divider ── */
+  .card__divider {
+    @apply border-0 border-t mb-4;
+    border-color: var(--color-border);
+  }
+}
