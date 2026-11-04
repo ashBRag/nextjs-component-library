@@ -16,5 +16,5 @@ interface DropdownMenuProps {
     align?: "left" | "right";
     className?: string;
 }
-export declare function DropdownMenu({ trigger, groups, align, className, }: DropdownMenuProps): React.JSX.Element;
+export declare function DropdownMenu({ trigger, groups, align, className, }: DropdownMenuProps): import("react/jsx-runtime").JSX.Element;
 export {};

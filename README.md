@@ -89,7 +89,7 @@ or:
 pnpm add git+https://github.com/ashBRag/nextjs-component-library.git
 ```
 
-Installing runs the library's `prepare` script automatically, which builds `dist/` (compiled JS/ESM/CJS + type declarations + CSS) from source — no separate build step needed on your end.
+`dist/` (compiled ESM JavaScript + type declarations + CSS) is committed to this repo, so installing needs no build step on your end. The package is ESM-only (`"type": "module"`) — import it, don't `require()` it.
 
 ### Importing (tree-shakeable, recommended)
 
@@ -117,7 +117,7 @@ import {
 } from "nextjs-component-library";
 ```
 
-The root barrel re-exports everything through one entry point. Because of how ESM barrel re-exports and `bundle: false` output interact, bundlers can't safely tree-shake this path — importing even one component this way loads the whole library's JS. Fine for quick prototyping; prefer subpath imports for production apps, especially anywhere bundle size or render performance matters.
+The root barrel re-exports everything through one entry point. Because the build emits one file per source module (unbundled, so `"use client"` directives survive), bundlers can't safely tree-shake this path — importing even one component this way loads the whole library's JS. Fine for quick prototyping; prefer subpath imports for production apps, especially anywhere bundle size or render performance matters.
 
 Import the compiled stylesheet once, near your app root (e.g. `layout.tsx` or `_app.tsx`):
 
@@ -204,7 +204,7 @@ pnpm remove nextjs-component-library
 pnpm add git+https://github.com/ashBRag/nextjs-component-library.git
 ```
 
-Either way, this re-triggers the `prepare` script, which rebuilds `dist/` from the latest source automatically.
+Either way, this pulls the `dist/` committed at that commit.
 
 For reproducible installs (recommended over floating on `main`), tag releases here:
 
@@ -220,6 +220,13 @@ and have consumers pin to that tag instead of the branch:
 ```
 
 Bumping the tag in the consumer's `package.json` and running `pnpm install` then pulls in exactly that version, and never changes underneath them until they bump it again.
+
+### Building and distribution (maintainers)
+
+- `pnpm run build:lib` compiles `src/` to `dist/` with `tsc -p tsconfig.build.json` (one ESM `.js` + `.d.ts` per source file, `*Demo.tsx` and `src/app` excluded), copies component CSS, and builds `dist/styles/globals.css` with Tailwind. The pre-commit hook (`pnpm run setup-hooks`) runs this and stages `dist/` on every commit.
+- Relative imports in library source must include the `.ts`/`.tsx` extension (e.g. `from "../typography/Typography.tsx"`). `tsc` rewrites them to `.js` on emit (`rewriteRelativeImportExtensions`), so the output resolves under Node and every bundler without post-processing. Extensionless relative imports will emit broken specifiers.
+
+> **Note — planned: stop committing `dist/`.** `dist/` is currently committed because consumers install straight from git. The recommended replacement is publishing to **GitHub Packages** (or a private npm registry): `prepublishOnly` already runs `build:lib`, consumers get prebuilt output with normal semver ranges, and `dist/` can be removed from git and added to `.gitignore`. One-time cost: an `.npmrc` with a read token in each consumer repo. (Fallback if staying on git URLs: a GitHub Action that builds on `v*` tags and commits `dist/` to a `release` branch, keeping `main` clean.) Avoid a `prepare`-script build in consumers — pnpm 10 blocks dependency build scripts by default, so `dist/` would silently be missing.
 
 ## Deployment
 

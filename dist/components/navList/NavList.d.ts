@@ -18,5 +18,5 @@ interface NavListProps {
     animated?: boolean;
     horizontal?: boolean;
 }
-export default function NavList({ tabs, defaultActiveTab, className, tabsClassName, contentClassName, animated, horizontal, }: NavListProps): React.JSX.Element;
+export default function NavList({ tabs, defaultActiveTab, className, tabsClassName, contentClassName, animated, horizontal, }: NavListProps): import("react/jsx-runtime").JSX.Element;
 export {};

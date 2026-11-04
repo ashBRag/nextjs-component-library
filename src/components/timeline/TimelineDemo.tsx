@@ -1,7 +1,7 @@
 "use client";
 
-import Timeline from "./Timeline";
-import type { TimelineItem } from "./Timeline";
+import Timeline from "./Timeline.tsx";
+import type { TimelineItem } from "./Timeline.tsx";
 
 const timelineItems: TimelineItem[] = [
   {

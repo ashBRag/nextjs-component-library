@@ -5,5 +5,5 @@ interface DividerProps {
     label?: React.ReactNode;
     className?: string;
 }
-export declare function Divider({ spacing, label, className }: DividerProps): React.JSX.Element;
+export declare function Divider({ spacing, label, className }: DividerProps): import("react/jsx-runtime").JSX.Element;
 export {};

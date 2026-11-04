@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/button/Button";
-import { ToastContainer } from "./Toast";
-import type { ToastEntry, ToastType, ToastVariant } from "./Toast";
+import { ToastContainer } from "./Toast.tsx";
+import type { ToastEntry, ToastType, ToastVariant } from "./Toast.tsx";
 
 export default function ToastDemo() {
   const [toasts, setToasts] = useState<ToastEntry[]>([]);

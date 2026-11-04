@@ -17,5 +17,5 @@ interface WavyTimelineProps {
     selectedId?: string;
     onSelect?: (id: string) => void;
 }
-export default function WavyTimeline({ points, className, ascending, labelPosition, selectedId, onSelect, }: WavyTimelineProps): React.JSX.Element;
+export default function WavyTimeline({ points, className, ascending, labelPosition, selectedId, onSelect, }: WavyTimelineProps): import("react/jsx-runtime").JSX.Element;
 export {};

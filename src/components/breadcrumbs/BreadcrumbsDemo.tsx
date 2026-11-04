@@ -1,6 +1,6 @@
 "use client";
 
-import { Breadcrumbs } from "./Breadcrumbs";
+import { Breadcrumbs } from "./Breadcrumbs.tsx";
 
 export default function BreadcrumbsDemo() {
   return (

@@ -21,5 +21,5 @@ interface TabsProps {
     /** Whether the outer container has a border/rounded box. Default true. */
     bordered?: boolean;
 }
-export default function Tabs({ tabs, activeTab, onTabChange, className, animated, contentHeight, mobileBottomMenu, variant, bordered, }: TabsProps): React.JSX.Element;
+export default function Tabs({ tabs, activeTab, onTabChange, className, animated, contentHeight, mobileBottomMenu, variant, bordered, }: TabsProps): import("react/jsx-runtime").JSX.Element;
 export {};

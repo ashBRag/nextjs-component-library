@@ -5,4 +5,4 @@ export {
   type Profile,
   type Font,
   type ThemeContextValue,
-} from "./ThemeProvider";
+} from "./ThemeProvider.tsx";

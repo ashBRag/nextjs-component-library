@@ -1,6 +1,6 @@
 "use client";
 
-import { Divider } from "./Divider";
+import { Divider } from "./Divider.tsx";
 
 export default function DividerDemo() {
   return (

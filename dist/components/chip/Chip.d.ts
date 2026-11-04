@@ -9,4 +9,4 @@ export interface ChipProps {
     className?: string;
     children: React.ReactNode;
 }
-export declare function Chip({ variant, size, icon, disabled, onRemove, className, children, }: ChipProps): React.JSX.Element;
+export declare function Chip({ variant, size, icon, disabled, onRemove, className, children, }: ChipProps): import("react/jsx-runtime").JSX.Element;

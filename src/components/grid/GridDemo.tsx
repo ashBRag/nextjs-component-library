@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Grid, GridItem } from "./Grid";
+import { Grid, GridItem } from "./Grid.tsx";
 
 function Box({ children }: { children: ReactNode }) {
   return (

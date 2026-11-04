@@ -1,6 +1,6 @@
 "use client";
 
-import { ScreenCenterWrapper } from "./CenterWrapper";
+import { ScreenCenterWrapper } from "./CenterWrapper.tsx";
 
 export default function CenterWrapperDemo() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Chip } from "./Chip";
+import { Chip } from "./Chip.tsx";
 
 export default function ChipDemo() {
   const [chips, setChips] = useState(["React", "TypeScript", "Next.js"]);

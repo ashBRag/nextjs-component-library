@@ -10,5 +10,5 @@ interface DialogProps {
     className?: string;
     children?: React.ReactNode;
 }
-export declare function Dialog({ open, onClose, title, footer, size, closeOnOverlayClick, className, children, }: DialogProps): React.JSX.Element | null;
+export declare function Dialog({ open, onClose, title, footer, size, closeOnOverlayClick, className, children, }: DialogProps): import("react/jsx-runtime").JSX.Element | null;
 export {};

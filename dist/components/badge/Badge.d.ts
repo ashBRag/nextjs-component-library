@@ -7,4 +7,4 @@ export interface BadgeProps {
     children: React.ReactNode;
     className?: string;
 }
-export declare function Badge({ variant, size, shape, children, className, }: BadgeProps): React.JSX.Element;
+export declare function Badge({ variant, size, shape, children, className, }: BadgeProps): import("react/jsx-runtime").JSX.Element;

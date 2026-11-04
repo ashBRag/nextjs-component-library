@@ -1,6 +1,6 @@
 "use client";
 
-import { DropdownMenu } from "./Menu";
+import { DropdownMenu } from "./Menu.tsx";
 
 export default function MenuDemo() {
   return (

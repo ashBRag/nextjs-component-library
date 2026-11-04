@@ -1,4 +1,3 @@
-import React from "react";
 import "./sideMenu.base.css";
 interface SideMenuItem {
     id: string;
@@ -16,5 +15,5 @@ interface SideMenuProps {
     variant?: "left" | "right";
     className?: string;
 }
-export declare function SideMenu({ groups, activeId, onSelect, title, variant, className, }: SideMenuProps): React.JSX.Element;
+export declare function SideMenu({ groups, activeId, onSelect, title, variant, className, }: SideMenuProps): import("react/jsx-runtime").JSX.Element;
 export {};

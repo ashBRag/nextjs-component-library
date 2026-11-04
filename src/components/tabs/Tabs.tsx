@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { CornerBrackets } from "../corner/CornerBrackets";
+import { CornerBrackets } from "../corner/CornerBrackets.tsx";
 import "./tabs.base.css";
 
 interface Tab {

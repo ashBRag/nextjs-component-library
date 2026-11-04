@@ -11,5 +11,5 @@ interface DrawerProps {
     className?: string;
     children?: React.ReactNode;
 }
-export declare function Drawer({ open, onClose, title, footer, side, size, closeOnOverlayClick, className, children, }: DrawerProps): React.JSX.Element | null;
+export declare function Drawer({ open, onClose, title, footer, side, size, closeOnOverlayClick, className, children, }: DrawerProps): import("react/jsx-runtime").JSX.Element | null;
 export {};

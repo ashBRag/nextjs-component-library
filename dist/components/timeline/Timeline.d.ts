@@ -23,5 +23,5 @@ interface TimelineProps {
     selectedId?: string;
     onSelect?: (id: string) => void;
 }
-export default function Timeline({ items, className, animated, selectedId, onSelect, }: TimelineProps): React.JSX.Element;
+export default function Timeline({ items, className, animated, selectedId, onSelect, }: TimelineProps): import("react/jsx-runtime").JSX.Element;
 export {};

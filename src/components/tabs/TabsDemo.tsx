@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Tabs from "./Tabs";
+import Tabs from "./Tabs.tsx";
 
 const sampleTabs = [
   {

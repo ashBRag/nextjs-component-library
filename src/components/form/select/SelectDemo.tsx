@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Select } from "./Select";
+import { Select } from "./Select.tsx";
 
 export default function SelectDemo() {
   const [value, setValue] = useState("opt1");

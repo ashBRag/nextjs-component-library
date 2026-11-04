@@ -1,4 +1,4 @@
-import { ValidationRules, FormValidationResult, ValidationRule } from "../types/form";
+import { ValidationRules, FormValidationResult, ValidationRule } from "../types/form.ts";
 export declare class FormValidator<T extends Record<string, any>> {
     private rules;
     constructor(rules?: ValidationRules<T>);

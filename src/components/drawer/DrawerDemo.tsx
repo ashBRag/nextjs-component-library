@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/button/Button";
-import { Drawer } from "./Drawer";
+import { Drawer } from "./Drawer.tsx";
 
 export default function DrawerDemo() {
   const [side, setSide] = useState<"left" | "right" | "top" | "bottom" | null>(

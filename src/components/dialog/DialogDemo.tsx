@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/button/Button";
-import { Dialog } from "./Dialog";
+import { Dialog } from "./Dialog.tsx";
 
 export default function DialogDemo() {
   const [open, setOpen] = useState(false);

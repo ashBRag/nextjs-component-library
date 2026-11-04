@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/button/Button";
-import { StatusBar } from "./StatusBar";
+import { StatusBar } from "./StatusBar.tsx";
 
 export default function StatusBarDemo() {
   const [progress, setProgress] = useState(45);

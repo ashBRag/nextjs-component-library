@@ -3,16 +3,23 @@
   "compilerOptions": {
     "incremental": false,
     "noEmit": false,
+    "target": "ES2020",
+    "jsx": "react-jsx",
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "sourceMap": true,
+    "allowJs": false,
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
     "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "plugins": []
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": [
     "node_modules",
     "src/app",
     "src/styles/profiles/dev/Background.tsx",
+    "**/*Demo.tsx",
     "**/*.test.ts",
     "**/*.test.tsx"
   ]

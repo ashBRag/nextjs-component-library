@@ -13,5 +13,5 @@ interface TableProps {
     compact?: boolean;
     className?: string;
 }
-export declare function Table({ columns, data, striped, bordered, compact, className, }: TableProps): React.JSX.Element;
+export declare function Table({ columns, data, striped, bordered, compact, className, }: TableProps): import("react/jsx-runtime").JSX.Element;
 export {};

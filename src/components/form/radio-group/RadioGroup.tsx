@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CornerBrackets } from "../../corner/CornerBrackets";
+import { CornerBrackets } from "../../corner/CornerBrackets.tsx";
 import "../form.base.css";
 
 interface RadioOption {

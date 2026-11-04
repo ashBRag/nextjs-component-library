@@ -1,1 +1,1 @@
-{"version":3,"sources":["../../src/lib/index.ts"],"sourcesContent":["export { ApiError, fetchApi } from \"./api\";\nexport { capitalizeFirstLetter, scrollToElement, scrollToBottom } from \"./utils\";\n"],"mappings":";;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,iBAAmC;AACnC,mBAAuE;","names":[]}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../src/lib/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,QAAQ,EAAE,MAAM,UAAU,CAAC;AAC9C,OAAO,EAAE,qBAAqB,EAAE,eAAe,EAAE,cAAc,EAAE,MAAM,YAAY,CAAC"}

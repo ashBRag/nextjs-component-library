@@ -1,6 +1,6 @@
 "use client";
 
-import { Typography } from "./Typography";
+import { Typography } from "./Typography.tsx";
 
 export default function TypographyDemo() {
   return (

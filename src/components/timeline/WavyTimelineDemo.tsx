@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import WavyTimeline from "./WavyTimeline";
-import type { WavyTimelinePoint } from "./WavyTimeline";
+import WavyTimeline from "./WavyTimeline.tsx";
+import type { WavyTimelinePoint } from "./WavyTimeline.tsx";
 
 const wavyTimelinePoints: WavyTimelinePoint[] = [
   {

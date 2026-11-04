@@ -2,7 +2,7 @@ import React from "react";
 import {
   Typography,
   type TypographyVariant,
-} from "../typography/Typography";
+} from "../typography/Typography.tsx";
 import "./button.base.css";
 
 export interface ButtonProps {

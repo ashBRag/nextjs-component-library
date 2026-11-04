@@ -1,10 +1,10 @@
 import React from "react";
-import { CornerBrackets } from "../corner/CornerBrackets";
+import { CornerBrackets } from "../corner/CornerBrackets.tsx";
 import {
   Typography,
   type TypographyColor,
   type TypographyVariant,
-} from "../typography/Typography";
+} from "../typography/Typography.tsx";
 import "./card.base.css";
 
 export interface CardProps {

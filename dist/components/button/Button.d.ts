@@ -13,4 +13,4 @@ export interface ButtonProps {
     onClick?: () => void;
     "aria-label"?: string;
 }
-export declare function Button({ variant, color, size, iconBefore, iconAfter, disabled, className, children, onClick, "aria-label": ariaLabel, }: ButtonProps): React.JSX.Element;
+export declare function Button({ variant, color, size, iconBefore, iconAfter, disabled, className, children, onClick, "aria-label": ariaLabel, }: ButtonProps): import("react/jsx-runtime").JSX.Element;

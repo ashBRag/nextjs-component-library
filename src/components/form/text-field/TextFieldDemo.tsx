@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TextField } from "./TextField";
+import { TextField } from "./TextField.tsx";
 
 export default function TextFieldDemo() {
   const [textValue, setTextValue] = useState("");

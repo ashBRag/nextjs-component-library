@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { CornerBrackets } from "../corner/CornerBrackets";
+import { CornerBrackets } from "../corner/CornerBrackets.tsx";
 import "./navList.base.css";
 
 interface NavListItem {

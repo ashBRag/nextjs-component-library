@@ -7,8 +7,8 @@ import {
   FormErrors,
   FormValidationResult,
   FieldProps,
-} from "../types/form";
-import { FormValidator } from "../utils/formValidations";
+} from "../types/form.ts";
+import { FormValidator } from "../utils/formValidations.ts";
 
 export const useForm = <T extends Record<string, any>>(
   config: UseFormConfig<T>

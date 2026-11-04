@@ -1,80 +1,55 @@
-"use strict";
 "use client";
-var __create = Object.create;
-var __defProp = Object.defineProperty;
-var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
-var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __copyProps = (to, from, except, desc) => {
-  if (from && typeof from === "object" || typeof from === "function") {
-    for (let key of __getOwnPropNames(from))
-      if (!__hasOwnProp.call(to, key) && key !== except)
-        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-  }
-  return to;
-};
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
-var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var ThemeProvider_exports = {};
-__export(ThemeProvider_exports, {
-  ThemeCntxt: () => ThemeCntxt,
-  ThemeProvider: () => ThemeProvider
+import { jsx as _jsx } from "react/jsx-runtime";
+/*
+  ThemeProvider component manages the application's theme and profile settings.
+  It provides a context that allows child components to access and update the current theme and profile.
+  All theme/profile CSS ships in a single compiled stylesheet and is scoped via
+  [data-theme]/[data-profile] attribute selectors, so switching is a synchronous
+  attribute toggle rather than a dynamic asset load.
+*/
+import { createContext, useEffect, useState } from "react";
+export const ThemeCntxt = createContext({
+    theme: "dark",
+    profile: "dev",
+    font: "sans",
+    setTheme: () => { },
+    switchProfile: () => { },
+    setFont: () => { },
 });
-module.exports = __toCommonJS(ThemeProvider_exports);
-var import_react = __toESM(require("react"));
-const ThemeCntxt = (0, import_react.createContext)({
-  theme: "dark",
-  profile: "dev",
-  font: "sans",
-  setTheme: () => {
-  },
-  switchProfile: () => {
-  },
-  setFont: () => {
-  }
-});
-function ThemeProvider({ children }) {
-  const [theme, setThemeState] = (0, import_react.useState)("dark");
-  const [profile, setProfile] = (0, import_react.useState)("dev");
-  const [font, setFont] = (0, import_react.useState)("sans");
-  (0, import_react.useEffect)(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
-  (0, import_react.useEffect)(() => {
-    document.documentElement.setAttribute("data-profile", profile);
-  }, [profile]);
-  (0, import_react.useEffect)(() => {
-    document.documentElement.setAttribute("data-font", font);
-  }, [font]);
-  function setTheme(t) {
-    setThemeState(t);
-  }
-  function switchProfile(p) {
-    setProfile(p);
-  }
-  return /* @__PURE__ */ import_react.default.createElement(
-    ThemeCntxt,
-    {
-      value: { theme, profile, font, setTheme, switchProfile, setFont }
-    },
-    children
-  );
+/*
+    1. Manages theme, profile and font state.
+    2. Toggles [data-theme]/[data-profile]/[data-font] attributes on <html>.
+    3. Provides context to the app for theme/profile access.
+
+    This allows the app to switch themes and profiles without a full reload,
+    enhancing user experience and customization options.
+
+  @param {React.ReactNode} children - The child components that will consume the theme context.
+  @returns {JSX.Element} The ThemeProvider component that wraps its children with the theme context.
+  @example
+  <ThemeProvider>
+    <App />
+    </ThemeProvider>
+*/
+export function ThemeProvider({ children }) {
+    const [theme, setThemeState] = useState("dark");
+    const [profile, setProfile] = useState("dev");
+    const [font, setFont] = useState("sans");
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+    }, [theme]);
+    useEffect(() => {
+        document.documentElement.setAttribute("data-profile", profile);
+    }, [profile]);
+    useEffect(() => {
+        document.documentElement.setAttribute("data-font", font);
+    }, [font]);
+    function setTheme(t) {
+        setThemeState(t);
+    }
+    function switchProfile(p) {
+        setProfile(p);
+    }
+    return (_jsx(ThemeCntxt, { value: { theme, profile, font, setTheme, switchProfile, setFont }, children: children }));
 }
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  ThemeCntxt,
-  ThemeProvider
-});
 //# sourceMappingURL=ThemeProvider.js.map

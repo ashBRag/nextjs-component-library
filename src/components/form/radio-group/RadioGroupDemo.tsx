@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { RadioGroup } from "./RadioGroup";
+import { RadioGroup } from "./RadioGroup.tsx";
 
 export default function RadioGroupDemo() {
   const [value, setValue] = useState("a");

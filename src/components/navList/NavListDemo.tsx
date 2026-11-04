@@ -1,6 +1,6 @@
 "use client";
 
-import NavList from "./NavList";
+import NavList from "./NavList.tsx";
 
 export default function NavListDemo() {
   return (

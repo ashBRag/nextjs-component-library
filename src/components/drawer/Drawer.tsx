@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Button } from "../button/Button";
+import { Button } from "../button/Button.tsx";
 import "./drawer.base.css";
 
 interface DrawerProps {

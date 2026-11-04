@@ -1,6 +1,6 @@
 "use client";
 
-import { Table } from "./Table";
+import { Table } from "./Table.tsx";
 
 const columns = [
   { key: "name", label: "Name" },

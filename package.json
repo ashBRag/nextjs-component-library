@@ -12,7 +12,7 @@
     "lint": "next lint",
     "extract-props": "node scripts/extract-props.mjs",
     "build:lib": "pnpm run build:js && pnpm run build:css",
-    "build:js": "tsup && tsc -p tsconfig.build.json && node scripts/copy-component-css.mjs && node scripts/fix-import-extensions.mjs",
+    "build:js": "rm -rf dist && tsc -p tsconfig.build.json && node scripts/copy-component-css.mjs",
     "build:css": "tailwindcss -i src/styles/globals.css -o dist/styles/globals.css --minify",
     "prepublishOnly": "pnpm run build:lib",
     "setup-hooks": "node scripts/install-hooks.mjs"
@@ -35,12 +35,11 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4",
-    "tsup": "^8.5.1",
     "typescript": "^5"
   },
   "description": "Built with Next.js",
+  "type": "module",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": [
     "**/*.css"
@@ -51,168 +50,135 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "default": "./dist/index.js"
     },
     "./badge": {
       "types": "./dist/components/badge/Badge.d.ts",
-      "import": "./dist/components/badge/Badge.mjs",
-      "require": "./dist/components/badge/Badge.js"
+      "default": "./dist/components/badge/Badge.js"
     },
     "./breadcrumbs": {
       "types": "./dist/components/breadcrumbs/Breadcrumbs.d.ts",
-      "import": "./dist/components/breadcrumbs/Breadcrumbs.mjs",
-      "require": "./dist/components/breadcrumbs/Breadcrumbs.js"
+      "default": "./dist/components/breadcrumbs/Breadcrumbs.js"
     },
     "./button": {
       "types": "./dist/components/button/Button.d.ts",
-      "import": "./dist/components/button/Button.mjs",
-      "require": "./dist/components/button/Button.js"
+      "default": "./dist/components/button/Button.js"
     },
     "./card": {
       "types": "./dist/components/card/Card.d.ts",
-      "import": "./dist/components/card/Card.mjs",
-      "require": "./dist/components/card/Card.js"
+      "default": "./dist/components/card/Card.js"
     },
     "./chip": {
       "types": "./dist/components/chip/Chip.d.ts",
-      "import": "./dist/components/chip/Chip.mjs",
-      "require": "./dist/components/chip/Chip.js"
+      "default": "./dist/components/chip/Chip.js"
     },
     "./dialog": {
       "types": "./dist/components/dialog/Dialog.d.ts",
-      "import": "./dist/components/dialog/Dialog.mjs",
-      "require": "./dist/components/dialog/Dialog.js"
+      "default": "./dist/components/dialog/Dialog.js"
     },
     "./divider": {
       "types": "./dist/components/divider/Divider.d.ts",
-      "import": "./dist/components/divider/Divider.mjs",
-      "require": "./dist/components/divider/Divider.js"
+      "default": "./dist/components/divider/Divider.js"
     },
     "./grid": {
       "types": "./dist/components/grid/Grid.d.ts",
-      "import": "./dist/components/grid/Grid.mjs",
-      "require": "./dist/components/grid/Grid.js"
+      "default": "./dist/components/grid/Grid.js"
     },
     "./drawer": {
       "types": "./dist/components/drawer/Drawer.d.ts",
-      "import": "./dist/components/drawer/Drawer.mjs",
-      "require": "./dist/components/drawer/Drawer.js"
+      "default": "./dist/components/drawer/Drawer.js"
     },
     "./radio-group": {
       "types": "./dist/components/form/radio-group/RadioGroup.d.ts",
-      "import": "./dist/components/form/radio-group/RadioGroup.mjs",
-      "require": "./dist/components/form/radio-group/RadioGroup.js"
+      "default": "./dist/components/form/radio-group/RadioGroup.js"
     },
     "./select": {
       "types": "./dist/components/form/select/Select.d.ts",
-      "import": "./dist/components/form/select/Select.mjs",
-      "require": "./dist/components/form/select/Select.js"
+      "default": "./dist/components/form/select/Select.js"
     },
     "./status-bar": {
       "types": "./dist/components/form/status-bar/StatusBar.d.ts",
-      "import": "./dist/components/form/status-bar/StatusBar.mjs",
-      "require": "./dist/components/form/status-bar/StatusBar.js"
+      "default": "./dist/components/form/status-bar/StatusBar.js"
     },
     "./text-field": {
       "types": "./dist/components/form/text-field/TextField.d.ts",
-      "import": "./dist/components/form/text-field/TextField.mjs",
-      "require": "./dist/components/form/text-field/TextField.js"
+      "default": "./dist/components/form/text-field/TextField.js"
     },
     "./menu": {
       "types": "./dist/components/menu/Menu.d.ts",
-      "import": "./dist/components/menu/Menu.mjs",
-      "require": "./dist/components/menu/Menu.js"
+      "default": "./dist/components/menu/Menu.js"
     },
     "./nav-list": {
       "types": "./dist/components/navList/NavList.d.ts",
-      "import": "./dist/components/navList/NavList.mjs",
-      "require": "./dist/components/navList/NavList.js"
+      "default": "./dist/components/navList/NavList.js"
     },
     "./side-menu": {
       "types": "./dist/components/sideMenu/SideMenu.d.ts",
-      "import": "./dist/components/sideMenu/SideMenu.mjs",
-      "require": "./dist/components/sideMenu/SideMenu.js"
+      "default": "./dist/components/sideMenu/SideMenu.js"
     },
     "./table": {
       "types": "./dist/components/table/Table.d.ts",
-      "import": "./dist/components/table/Table.mjs",
-      "require": "./dist/components/table/Table.js"
+      "default": "./dist/components/table/Table.js"
     },
     "./tabs": {
       "types": "./dist/components/tabs/Tabs.d.ts",
-      "import": "./dist/components/tabs/Tabs.mjs",
-      "require": "./dist/components/tabs/Tabs.js"
+      "default": "./dist/components/tabs/Tabs.js"
     },
     "./timeline": {
       "types": "./dist/components/timeline/Timeline.d.ts",
-      "import": "./dist/components/timeline/Timeline.mjs",
-      "require": "./dist/components/timeline/Timeline.js"
+      "default": "./dist/components/timeline/Timeline.js"
     },
     "./wavy-timeline": {
       "types": "./dist/components/timeline/WavyTimeline.d.ts",
-      "import": "./dist/components/timeline/WavyTimeline.mjs",
-      "require": "./dist/components/timeline/WavyTimeline.js"
+      "default": "./dist/components/timeline/WavyTimeline.js"
     },
     "./toast": {
       "types": "./dist/components/toast/Toast.d.ts",
-      "import": "./dist/components/toast/Toast.mjs",
-      "require": "./dist/components/toast/Toast.js"
+      "default": "./dist/components/toast/Toast.js"
     },
     "./typography": {
       "types": "./dist/components/typography/Typography.d.ts",
-      "import": "./dist/components/typography/Typography.mjs",
-      "require": "./dist/components/typography/Typography.js"
+      "default": "./dist/components/typography/Typography.js"
     },
     "./center-wrapper": {
       "types": "./dist/components/wrapper/CenterWrapper.d.ts",
-      "import": "./dist/components/wrapper/CenterWrapper.mjs",
-      "require": "./dist/components/wrapper/CenterWrapper.js"
+      "default": "./dist/components/wrapper/CenterWrapper.js"
     },
     "./use-form": {
       "types": "./dist/hooks/useForm.d.ts",
-      "import": "./dist/hooks/useForm.mjs",
-      "require": "./dist/hooks/useForm.js"
+      "default": "./dist/hooks/useForm.js"
     },
     "./use-scroll": {
       "types": "./dist/hooks/useScroll.d.ts",
-      "import": "./dist/hooks/useScroll.mjs",
-      "require": "./dist/hooks/useScroll.js"
+      "default": "./dist/hooks/useScroll.js"
     },
     "./use-theme": {
       "types": "./dist/hooks/useTheme.d.ts",
-      "import": "./dist/hooks/useTheme.mjs",
-      "require": "./dist/hooks/useTheme.js"
+      "default": "./dist/hooks/useTheme.js"
     },
     "./use-toast": {
       "types": "./dist/hooks/useToast.d.ts",
-      "import": "./dist/hooks/useToast.mjs",
-      "require": "./dist/hooks/useToast.js"
+      "default": "./dist/hooks/useToast.js"
     },
     "./theme-provider": {
       "types": "./dist/providers/index.d.ts",
-      "import": "./dist/providers/index.mjs",
-      "require": "./dist/providers/index.js"
+      "default": "./dist/providers/index.js"
     },
     "./api": {
       "types": "./dist/lib/api.d.ts",
-      "import": "./dist/lib/api.mjs",
-      "require": "./dist/lib/api.js"
+      "default": "./dist/lib/api.js"
     },
     "./lib-utils": {
       "types": "./dist/lib/utils.d.ts",
-      "import": "./dist/lib/utils.mjs",
-      "require": "./dist/lib/utils.js"
+      "default": "./dist/lib/utils.js"
     },
     "./form-validations": {
       "types": "./dist/utils/formValidations.d.ts",
-      "import": "./dist/utils/formValidations.mjs",
-      "require": "./dist/utils/formValidations.js"
+      "default": "./dist/utils/formValidations.js"
     },
     "./types": {
       "types": "./dist/types/index.d.ts",
-      "import": "./dist/types/index.mjs",
-      "require": "./dist/types/index.js"
+      "default": "./dist/types/index.js"
     },
     "./styles/globals.css": "./dist/styles/globals.css",
     "./package.json": "./package.json"

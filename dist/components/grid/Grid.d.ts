@@ -10,7 +10,7 @@ export interface GridProps {
     gap?: "none" | "sm" | "md" | "lg";
     className?: string;
 }
-export declare function Grid({ children, columns, columnsSm, columnsMd, columnsLg, gap, className, }: GridProps): React.JSX.Element;
+export declare function Grid({ children, columns, columnsSm, columnsMd, columnsLg, gap, className, }: GridProps): import("react/jsx-runtime").JSX.Element;
 export interface GridItemProps {
     children: React.ReactNode;
     span?: GridColumns;
@@ -19,5 +19,5 @@ export interface GridItemProps {
     spanLg?: GridColumns;
     className?: string;
 }
-export declare function GridItem({ children, span, spanSm, spanMd, spanLg, className, }: GridItemProps): React.JSX.Element;
+export declare function GridItem({ children, span, spanSm, spanMd, spanLg, className, }: GridItemProps): import("react/jsx-runtime").JSX.Element;
 export {};

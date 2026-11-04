@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge } from "./Badge";
+import { Badge } from "./Badge.tsx";
 
 export default function BadgeDemo() {
   return (

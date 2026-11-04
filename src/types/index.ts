@@ -9,4 +9,4 @@ export type {
   SubmissionResult,
   ToastMethods,
   UseFormWithToastConfig,
-} from "./form";
+} from "./form.ts";

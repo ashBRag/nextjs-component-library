@@ -14,4 +14,4 @@ export interface ThemeContextValue {
 export declare const ThemeCntxt: React.Context<ThemeContextValue>;
 export declare function ThemeProvider({ children }: {
     children: React.ReactNode;
-}): React.JSX.Element;
+}): import("react/jsx-runtime").JSX.Element;

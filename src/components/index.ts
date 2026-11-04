@@ -1,28 +1,28 @@
-export { Badge } from "./badge/Badge";
+export { Badge } from "./badge/Badge.tsx";
 export {
   Breadcrumbs,
   type BreadcrumbItem,
   type BreadcrumbsProps,
-} from "./breadcrumbs/Breadcrumbs";
-export { Button } from "./button/Button";
-export { Card } from "./card/Card";
-export { Chip } from "./chip/Chip";
-export { Dialog } from "./dialog/Dialog";
-export { Divider } from "./divider/Divider";
-export { Drawer } from "./drawer/Drawer";
-export { RadioGroup, Select, StatusBar, TextField } from "./form";
-export { Grid, GridItem, type GridProps, type GridItemProps } from "./grid/Grid";
-export { DropdownMenu } from "./menu/Menu";
-export { default as NavList } from "./navList/NavList";
-export { SideMenu } from "./sideMenu/SideMenu";
-export { Table } from "./table/Table";
-export { default as Tabs } from "./tabs/Tabs";
-export { default as Timeline, type TimelineItem } from "./timeline/Timeline";
+} from "./breadcrumbs/Breadcrumbs.tsx";
+export { Button } from "./button/Button.tsx";
+export { Card } from "./card/Card.tsx";
+export { Chip } from "./chip/Chip.tsx";
+export { Dialog } from "./dialog/Dialog.tsx";
+export { Divider } from "./divider/Divider.tsx";
+export { Drawer } from "./drawer/Drawer.tsx";
+export { RadioGroup, Select, StatusBar, TextField } from "./form/index.ts";
+export { Grid, GridItem, type GridProps, type GridItemProps } from "./grid/Grid.tsx";
+export { DropdownMenu } from "./menu/Menu.tsx";
+export { default as NavList } from "./navList/NavList.tsx";
+export { SideMenu } from "./sideMenu/SideMenu.tsx";
+export { Table } from "./table/Table.tsx";
+export { default as Tabs } from "./tabs/Tabs.tsx";
+export { default as Timeline, type TimelineItem } from "./timeline/Timeline.tsx";
 export {
   Toast,
   ToastContainer,
   type ToastType,
   type ToastEntry,
-} from "./toast/Toast";
-export { Typography } from "./typography/Typography";
-export { ScreenCenterWrapper } from "./wrapper/CenterWrapper";
+} from "./toast/Toast.tsx";
+export { Typography } from "./typography/Typography.tsx";
+export { ScreenCenterWrapper } from "./wrapper/CenterWrapper.tsx";

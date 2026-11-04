@@ -1,7 +1,7 @@
 "use client";
 
-import { Card } from "./Card";
-import { Grid } from "../grid/Grid";
+import { Card } from "./Card.tsx";
+import { Grid } from "../grid/Grid.tsx";
 
 export default function CardDemo() {
   return (
