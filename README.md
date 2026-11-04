@@ -139,6 +139,16 @@ Notes:
 - `globals.css` loads Inter (`--font-major`, body/UI text) and Fira Code (`--font-fira`, code blocks) from Google Fonts by default — typography works out of the box, same as the shipped theme/profile styling. See "Updating fonts" below to change this.
 - The public API surface is defined in `src/index.ts` (and per-folder barrels under `src/components`, `src/hooks`, `src/providers`, `src/lib`, `src/utils`, `src/types`). Anything not re-exported there isn't part of the package's public API.
 
+### Card options
+
+```tsx
+<Card title="Glass card" glass="md" shadow="lg" showCorners />
+```
+
+- `glass`: `"none"` (default) | `"sm"` | `"md"` | `"lg"` — translucent surface + backdrop blur; higher levels are more transparent with stronger blur. Tinted from the active profile's `--color-bg-surface-rgb`, so it adapts per profile/theme. Only visible over non-flat content (images, gradients, other elements). Combine with `shadow` independently.
+- `shadow`: `"none"` (default) | `"sm"` | `"md"` | `"lg"` | `"glow"`.
+- `showCorners`: defaults to `false`. Pass `showCorners` to render the corner brackets (dev profile only). **Breaking:** previously defaulted to `true` — cards that relied on the default no longer show brackets.
+
 ### Updating fonts
 
 Every component's `font-family` resolves through two CSS variables: `--font-major` for UI/body text, `--font-fira` for code blocks (`<pre>`/`<code>`). The library ships Inter + Fira Code via a Google Fonts `@import` in `src/styles/fonts.css`.

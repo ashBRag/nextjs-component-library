@@ -55,6 +55,25 @@
       color-mix(in srgb, var(--color-accent) 55%, transparent);
   }
 
+  /* ── Glass ── */
+  .card--glass {
+    background-color: rgb(var(--color-bg-surface-rgb) / var(--card-glass-alpha));
+    backdrop-filter: blur(var(--card-glass-blur));
+    -webkit-backdrop-filter: blur(var(--card-glass-blur));
+  }
+  .card--glass-sm {
+    --card-glass-alpha: 0.6;
+    --card-glass-blur: 4px;
+  }
+  .card--glass-md {
+    --card-glass-alpha: 0.45;
+    --card-glass-blur: 12px;
+  }
+  .card--glass-lg {
+    --card-glass-alpha: 0.3;
+    --card-glass-blur: 24px;
+  }
+
   /* ── Sizes ── */
   .card__body--sm {
     @apply p-4 text-sm;

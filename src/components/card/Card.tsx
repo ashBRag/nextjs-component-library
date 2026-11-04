@@ -13,6 +13,7 @@ export interface CardProps {
   showBorder?: boolean;
   showCorners?: boolean;
   shadow?: "none" | "sm" | "md" | "lg" | "glow";
+  glass?: "none" | "sm" | "md" | "lg";
   showDivider?: boolean;
   children?: React.ReactNode;
   clickable?: boolean;
@@ -49,8 +50,9 @@ export function Card({
   subtitleClassName = "",
   size = "md",
   showBorder = true,
-  showCorners = true,
+  showCorners = false,
   shadow = "none",
+  glass = "none",
   showDivider = false,
   children,
   clickable = false,
@@ -61,6 +63,7 @@ export function Card({
     showBorder && "card--bordered",
     clickable && "card--clickable",
     shadow !== "none" && `card--shadow-${shadow}`,
+    glass !== "none" && `card--glass card--glass-${glass}`,
     className,
   ]
     .filter(Boolean)

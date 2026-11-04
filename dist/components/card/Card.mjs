@@ -11,8 +11,9 @@ function Card({
   subtitleClassName = "",
   size = "md",
   showBorder = true,
-  showCorners = true,
+  showCorners = false,
   shadow = "none",
+  glass = "none",
   showDivider = false,
   children,
   clickable = false,
@@ -23,6 +24,7 @@ function Card({
     showBorder && "card--bordered",
     clickable && "card--clickable",
     shadow !== "none" && `card--shadow-${shadow}`,
+    glass !== "none" && `card--glass card--glass-${glass}`,
     className
   ].filter(Boolean).join(" ");
   const bodyCls = `card__body--${size}`;
