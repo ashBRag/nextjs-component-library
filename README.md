@@ -145,7 +145,7 @@ Notes:
 <Card title="Glass card" glass="md" shadow="lg" showCorners />
 ```
 
-- `glass`: `"none"` (default) | `"sm"` | `"md"` | `"lg"` — translucent surface + backdrop blur; higher levels are more transparent with stronger blur. Tinted from the active profile's `--color-bg-surface-rgb`, so it adapts per profile/theme. Only visible over non-flat content (images, gradients, other elements). Combine with `shadow` independently.
+- `glass`: `"none"` (default) | `"sm"` | `"md"` | `"lg"` — translucent surface + backdrop blur; higher levels are more transparent with stronger blur. Tinted from the active profile's `--color-bg-elevated`, so it adapts per profile/theme. Only visible over non-flat content (images, gradients, other elements). Combine with `shadow` independently.
 - `shadow`: `"none"` (default) | `"sm"` | `"md"` | `"lg"` | `"glow"`.
 - `showCorners`: defaults to `false`. Pass `showCorners` to render the corner brackets (dev profile only). **Breaking:** previously defaulted to `true` — cards that relied on the default no longer show brackets.
 
@@ -153,7 +153,7 @@ Notes:
 
 Every component's `font-family` resolves through two CSS variables: `--font-major` for UI/body text, `--font-fira` for code blocks (`<pre>`/`<code>`). The library ships Inter + Fira Code via a Google Fonts `@import` in `src/styles/fonts.css`.
 
-**As a consumer** — override either variable in your own CSS, loaded *after* `nextjs-component-library/styles/globals.css` so it wins the cascade (same pattern as overriding `--color-*` tokens):
+**As a consumer** — override either variable in your own CSS, loaded _after_ `nextjs-component-library/styles/globals.css` so it wins the cascade (same pattern as overriding `--color-*` tokens):
 
 ```css
 /* your-theme.css, imported after the library stylesheet */
@@ -170,6 +170,7 @@ To self-host instead of using Google Fonts at runtime, load your font with [`nex
 import { Inter } from "next/font/google"; // or next/font/local
 const inter = Inter({ variable: "--your-ui-font", subsets: ["latin"] });
 ```
+
 ```css
 :root {
   --font-major: var(--your-ui-font), sans-serif;

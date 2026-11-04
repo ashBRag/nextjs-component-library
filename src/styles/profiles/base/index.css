@@ -2,7 +2,7 @@ body {
   /* ── Derived: background ── */
   --background: var(--color-background);
   --color-bg: var(--color-background);
-  --color-bg-surface: rgb(var(--color-bg-surface-rgb) / 0.9);
+  --color-bg-surface: rgb(var(--color-bg-elevated) / 0.9);
 
   /* ── Derived: accent ── */
   --color-accent-muted: rgb(var(--color-accent-rgb) / 0.5);
