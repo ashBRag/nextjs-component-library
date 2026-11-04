@@ -8,7 +8,7 @@ export default defineConfig({
     "!src/types/css.d.ts",
   ],
   format: ["esm", "cjs"],
-  dts: true,
+  dts: false, // declarations emitted by tsc (see build:js) — tsup dts OOMs with per-file entries
   tsconfig: "tsconfig.build.json",
   sourcemap: true,
   clean: true,

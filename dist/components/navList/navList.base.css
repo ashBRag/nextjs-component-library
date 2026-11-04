@@ -1,0 +1,103 @@
+@reference "tailwindcss";
+
+.nav-list {
+  @apply flex;
+}
+
+.nav-list--vertical {
+  @apply flex-row;
+}
+
+.nav-list--horizontal {
+  @apply flex-col;
+}
+
+/* List */
+.nav-list__list {
+  @apply flex-col space-y-3 text-sm font-medium;
+}
+
+.nav-list--vertical .nav-list__list {
+  @apply flex min-w-48 me-4 mb-0 md:mb-0;
+}
+
+.nav-list--horizontal .nav-list__list {
+  @apply flex flex-row space-y-0 space-x-4 mb-2 md:mb-4;
+}
+
+/* Item */
+.nav-list__item {
+  @apply block;
+}
+
+/* Trigger — shared */
+.nav-list__trigger {
+  @apply relative inline-flex items-center gap-4 px-4 py-3 w-full border;
+  color: var(--color-nav-inactive);
+  border-color: var(--color-nav-border);
+  transition: color 300ms, border-color 300ms, background-color 300ms;
+}
+
+.nav-list__trigger:hover:not(.nav-list__trigger--disabled) {
+  color: var(--color-nav-hover);
+  border-color: var(--color-nav-border-hover);
+}
+
+.nav-list__trigger--active {
+  color: var(--color-nav-active);
+  border-color: var(--color-nav-border-active);
+  box-shadow: 0 8px 24px var(--color-nav-shadow-active);
+}
+
+.nav-list__trigger--disabled {
+  @apply cursor-not-allowed;
+  color: var(--color-nav-disabled);
+  border-color: var(--color-nav-border-disabled);
+}
+
+.nav-list__trigger--link {
+  @apply no-underline;
+}
+
+/* Icon */
+.nav-list__icon {
+  @apply w-4 h-4 me-3 flex-shrink-0;
+}
+
+.nav-list--animated .nav-list__icon {
+  @apply transition-transform duration-300;
+}
+
+.nav-list--animated .nav-list__icon--active {
+  @apply scale-110;
+}
+
+.nav-list__icon--disabled {
+  opacity: var(--nav-disabled-opacity, 0.5);
+}
+
+/* Label */
+.nav-list__label {
+  @apply flex items-center gap-0;
+}
+
+.nav-list__label-prefix::before {
+  content: var(--nav-label-prefix, "#");
+  color: var(--color-nav-active);
+}
+
+/* Active indicator */
+.nav-list__indicator {
+  @apply ml-auto w-2 h-2 block animate-pulse;
+  background-color: var(--color-nav-active);
+}
+
+/* Content pane */
+.nav-list__content {
+  @apply relative p-2 w-full;
+  color: var(--color-nav-content-text);
+}
+
+.nav-list__content-inner {
+  @apply relative z-10;
+}

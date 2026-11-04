@@ -1,0 +1,90 @@
+@reference "tailwindcss";
+
+@layer components {
+  .side-menu {
+    @apply sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto;
+    border-color: var(--color-border);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .side-menu--left {
+    @apply pr-4 border-l;
+  }
+
+  .side-menu--right {
+    @apply pl-4 border-r;
+  }
+
+  .side-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .side-menu__title {
+    @apply text-base font-bold tracking-tight mb-4;
+    color: var(--color-fg);
+  }
+
+  .side-menu--left .side-menu__title {
+    @apply pl-4;
+  }
+
+  .side-menu--right .side-menu__title {
+    @apply pr-4 text-right;
+  }
+
+  .side-menu__group {
+    @apply mb-3;
+  }
+
+  .side-menu__group-label {
+    @apply text-[0.65rem] font-semibold uppercase tracking-wide mb-1.5;
+    color: var(--color-fg);
+    opacity: 0.45;
+  }
+
+  .side-menu--left .side-menu__group-label {
+    @apply pl-4;
+  }
+
+  .side-menu--right .side-menu__group-label {
+    @apply pr-4 text-right;
+  }
+
+  .side-menu__list {
+    @apply flex flex-col gap-1 list-none m-0 p-0;
+  }
+
+  .side-menu__divider {
+    @apply border-0 border-t mt-3;
+    border-color: var(--color-border);
+  }
+
+  .side-menu__link {
+    @apply block w-full bg-transparent py-1.5 text-sm cursor-pointer
+           transition-colors duration-200 no-underline;
+    border-color: transparent;
+    color: var(--color-fg);
+    opacity: 0.7;
+  }
+
+  .side-menu__link--left {
+    @apply text-left pl-4 border-l-2 -ml-px;
+  }
+
+  .side-menu__link--right {
+    @apply text-right pr-4 border-r-2 -mr-px;
+  }
+
+  .side-menu__link:hover {
+    opacity: 1;
+    border-color: var(--color-accent-muted);
+  }
+
+  .side-menu__link--active {
+    opacity: 1;
+    font-weight: 500;
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+}

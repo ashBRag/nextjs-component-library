@@ -1,0 +1,165 @@
+@reference "tailwindcss";
+
+.tabs {
+  @apply relative;
+}
+
+.tabs--desktop {
+  @apply hidden sm:block;
+}
+
+.tabs--desktop.tabs--bordered {
+  @apply border rounded-lg;
+  border-color: var(--color-tab-border-active, var(--color-border));
+}
+
+.tabs--mobile {
+  @apply sm:hidden flex flex-col h-screen;
+}
+
+/* Header */
+.tabs__header {
+  @apply relative;
+}
+
+.tabs__header--desktop {
+  @apply border-b;
+  border-color: var(--color-border-subtle, var(--color-border));
+}
+
+.tabs__header--mobile {
+  @apply border-t;
+  border-color: var(--color-border-subtle, var(--color-border));
+}
+
+/* Tab list */
+.tabs__list {
+  @apply flex text-sm font-medium relative z-10;
+}
+
+/* Tab item */
+.tabs__item {
+  @apply relative;
+}
+
+/* Trigger */
+.tabs__trigger {
+  @apply relative inline-flex items-center px-4 py-3 border border-transparent;
+  color: var(--color-tab-inactive, var(--color-nav-inactive));
+  transition: color 300ms, border-color 300ms, background-color 300ms;
+}
+
+.tabs__trigger:hover:not(.tabs__trigger--active) {
+  color: var(--color-tab-hover, var(--color-nav-hover));
+}
+
+.tabs__trigger--active {
+  color: var(--color-tab-active, var(--color-accent));
+}
+
+/* Underline variant (default) */
+.tabs__trigger--underline.tabs__trigger--desktop.tabs__trigger--active {
+  border-bottom-color: var(--color-tab-border-active, var(--color-accent));
+}
+
+.tabs__trigger--underline.tabs__trigger--mobile.tabs__trigger--active {
+  border-top-color: var(--color-tab-border-active, var(--color-accent));
+}
+
+/* Boxed variant */
+.tabs__trigger--boxed.tabs__trigger--active {
+  border-color: var(--color-tab-border-active, var(--color-accent));
+  box-shadow: 0 8px 24px var(--color-tab-shadow-active, transparent);
+}
+
+/* Inner layout */
+.tabs__trigger-inner {
+  @apply flex items-center gap-2;
+}
+
+/* Icon */
+.tabs__icon {
+  @apply flex-shrink-0;
+}
+
+.tabs--animated .tabs__icon--active {
+  @apply animate-pulse;
+}
+
+/* Label */
+.tabs__label {
+  @apply flex items-center text-sm;
+}
+
+.tabs__label-prefix,
+.tabs__label-suffix {
+  @apply hidden sm:inline;
+}
+
+.tabs__label-prefix::before {
+  content: var(--tabs-label-prefix-active, "");
+  color: var(--color-tab-active, var(--color-accent));
+}
+
+.tabs__label-suffix::after {
+  content: var(--tabs-label-suffix-active, "");
+}
+
+/* Active indicator — square beside label, like navList */
+.tabs__indicator {
+  @apply ml-2 w-2 h-2 block animate-pulse;
+  background-color: var(--color-tab-active, var(--color-accent));
+}
+
+.tabs__indicator--desktop,
+.tabs__indicator--mobile {
+  @apply static translate-x-0;
+}
+
+/* Panels container */
+.tabs__panels {
+  @apply relative;
+  height: var(--tabs-content-height, 77vh);
+}
+
+.tabs__panels--mobile {
+  @apply flex-1;
+  height: auto;
+}
+
+/* Panel */
+.tabs__panel {
+  @apply relative overflow-auto h-full;
+}
+
+.tabs__panel--hidden {
+  @apply hidden;
+}
+
+.tabs__panel--active {
+  @apply block;
+}
+
+/* Desktop panel */
+.tabs--desktop .tabs__panel {
+  @apply p-6;
+}
+
+/* Panel content */
+.tabs__panel-content {
+  @apply relative z-10;
+  color: var(--color-text-primary, var(--color-fg));
+}
+
+/* Panel pulse indicator */
+.tabs__panel-indicator {
+  @apply absolute bottom-3 right-3 w-1.5 h-1.5 animate-pulse;
+  background-color: var(--color-tab-active, var(--color-accent));
+  opacity: 0.4;
+}
+
+/* Mobile bottom bar */
+.tabs__mobile-bar {
+  @apply fixed bottom-0 left-0 right-0 border-t z-50 relative;
+  border-color: var(--color-border-subtle, var(--color-border));
+}

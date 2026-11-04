@@ -1,0 +1,20 @@
+import React from "react";
+import "./card.base.css";
+export interface CardProps {
+    id?: string;
+    title: string | React.ReactNode;
+    subtitle?: string;
+    className?: string;
+    titleClassName?: string;
+    subtitleClassName?: string;
+    size?: "sm" | "md" | "lg" | "compact";
+    showBorder?: boolean;
+    showCorners?: boolean;
+    shadow?: "none" | "sm" | "md" | "lg" | "glow";
+    glass?: "none" | "sm" | "md" | "lg";
+    showDivider?: boolean;
+    children?: React.ReactNode;
+    clickable?: boolean;
+    onClick?: () => void;
+}
+export declare function Card({ id, title, subtitle, className, titleClassName, subtitleClassName, size, showBorder, showCorners, shadow, glass, showDivider, children, clickable, onClick, }: CardProps): React.JSX.Element;

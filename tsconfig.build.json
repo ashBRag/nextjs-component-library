@@ -2,7 +2,18 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "incremental": false,
-    "noEmit": false
+    "noEmit": false,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "rootDir": "src",
+    "outDir": "dist"
   },
-  "exclude": ["node_modules", "src/app", "**/*.test.ts", "**/*.test.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": [
+    "node_modules",
+    "src/app",
+    "src/styles/profiles/dev/Background.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
 }

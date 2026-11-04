@@ -1,0 +1,43 @@
+@reference "tailwindcss";
+
+@layer components {
+  .breadcrumbs {
+    @apply text-sm;
+  }
+
+  .breadcrumbs__list {
+    @apply flex flex-wrap items-center gap-y-1 list-none m-0 p-0;
+  }
+
+  .breadcrumbs__item {
+    @apply inline-flex items-center;
+  }
+
+  .breadcrumbs__link,
+  .breadcrumbs__current {
+    @apply inline-flex items-center gap-1.5;
+  }
+
+  .breadcrumbs__link {
+    color: var(--color-fg, var(--foreground));
+    @apply underline-offset-4 transition-colors duration-200 hover:underline;
+  }
+
+  .breadcrumbs__link:hover {
+    color: var(--color-accent, var(--color-fg, var(--foreground)));
+  }
+
+  .breadcrumbs__current {
+    color: var(--color-accent, var(--color-fg, var(--foreground)));
+    @apply font-medium;
+  }
+
+  .breadcrumbs__icon {
+    @apply inline-flex shrink-0 items-center;
+  }
+
+  .breadcrumbs__separator {
+    @apply mx-2 select-none opacity-60;
+    color: var(--color-fg, var(--foreground));
+  }
+}
