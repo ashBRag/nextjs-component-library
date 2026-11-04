@@ -5,7 +5,7 @@
  * ::before/::after draw the two line segments of an L.
  *   .corner--sm / .corner--lg     size
  *   .corner--inside / --outside   inset direction (into vs. outside the box)
- *   .corner--accent / --nav-active / --tab-active / --corner-token
+ *   .corner--primary / --nav-active / --tab-active / --corner-token
  *                                  which --color-* token to draw with
  *   .corner--tl / --tr / --bl / --br  which corner to render
  */
@@ -22,7 +22,7 @@
   content: "";
   position: absolute;
   display: block;
-  background-color: var(--corner-color, var(--color-accent));
+  background-color: var(--corner-color, var(--color-primary));
 }
 
 /* ── Size ── */
@@ -34,17 +34,17 @@
 }
 
 /* ── Color ── */
-[data-profile="dev"] .corner--accent {
-  --corner-color: var(--color-accent);
+[data-profile="dev"] .corner--primary {
+  --corner-color: var(--color-primary);
 }
 [data-profile="dev"] .corner--nav-active {
   --corner-color: var(--color-nav-active);
 }
 [data-profile="dev"] .corner--tab-active {
-  --corner-color: var(--color-tab-active, var(--color-accent));
+  --corner-color: var(--color-tab-active, var(--color-primary));
 }
 [data-profile="dev"] .corner--corner-token {
-  --corner-color: var(--color-accent);
+  --corner-color: var(--color-primary);
 }
 
 /* ── Position + inset direction ── */

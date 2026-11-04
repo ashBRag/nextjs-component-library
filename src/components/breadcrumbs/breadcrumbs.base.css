@@ -24,11 +24,11 @@
   }
 
   .breadcrumbs__link:hover {
-    color: var(--color-accent, var(--color-fg, var(--foreground)));
+    color: var(--color-primary, var(--color-fg, var(--foreground)));
   }
 
   .breadcrumbs__current {
-    color: var(--color-accent, var(--color-fg, var(--foreground)));
+    color: var(--color-primary, var(--color-fg, var(--foreground)));
     @apply font-medium;
   }
 

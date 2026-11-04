@@ -54,21 +54,21 @@
 }
 
 .tabs__trigger--active {
-  color: var(--color-tab-active, var(--color-accent));
+  color: var(--color-tab-active, var(--color-primary));
 }
 
 /* Underline variant (default) */
 .tabs__trigger--underline.tabs__trigger--desktop.tabs__trigger--active {
-  border-bottom-color: var(--color-tab-border-active, var(--color-accent));
+  border-bottom-color: var(--color-tab-border-active, var(--color-primary));
 }
 
 .tabs__trigger--underline.tabs__trigger--mobile.tabs__trigger--active {
-  border-top-color: var(--color-tab-border-active, var(--color-accent));
+  border-top-color: var(--color-tab-border-active, var(--color-primary));
 }
 
 /* Boxed variant */
 .tabs__trigger--boxed.tabs__trigger--active {
-  border-color: var(--color-tab-border-active, var(--color-accent));
+  border-color: var(--color-tab-border-active, var(--color-primary));
   box-shadow: 0 8px 24px var(--color-tab-shadow-active, transparent);
 }
 
@@ -98,7 +98,7 @@
 
 .tabs__label-prefix::before {
   content: var(--tabs-label-prefix-active, "");
-  color: var(--color-tab-active, var(--color-accent));
+  color: var(--color-tab-active, var(--color-primary));
 }
 
 .tabs__label-suffix::after {
@@ -108,7 +108,7 @@
 /* Active indicator — square beside label, like navList */
 .tabs__indicator {
   @apply ml-2 w-2 h-2 block animate-pulse;
-  background-color: var(--color-tab-active, var(--color-accent));
+  background-color: var(--color-tab-active, var(--color-primary));
 }
 
 .tabs__indicator--desktop,
@@ -154,7 +154,7 @@
 /* Panel pulse indicator */
 .tabs__panel-indicator {
   @apply absolute bottom-3 right-3 w-1.5 h-1.5 animate-pulse;
-  background-color: var(--color-tab-active, var(--color-accent));
+  background-color: var(--color-tab-active, var(--color-primary));
   opacity: 0.4;
 }
 

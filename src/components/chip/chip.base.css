@@ -31,6 +31,12 @@
     border-color: var(--color-badge-primary-border);
   }
 
+  .chip--accent {
+    color: var(--color-badge-accent-text);
+    background-color: var(--color-badge-accent-bg);
+    border-color: var(--color-badge-accent-border);
+  }
+
   .chip--secondary {
     color: var(--color-badge-secondary-text);
     background-color: var(--color-badge-secondary-bg);

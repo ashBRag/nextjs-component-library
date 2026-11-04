@@ -18,11 +18,11 @@
    */
   /* Backgrounds */
   --color-background: #1b1816;
-  --color-bg-elevated: #2a2522;
+  --color-elevated: #2a2522;
 
   /* Brand */
-  --color-accent: #bf5b45;
-  --color-accent-rgb: 191 91 69;
+  --color-primary: #bf5b45;
+  --color-primary-rgb: 191 91 69;
 
   --color-neutral: #d9bf8f;
   --color-neutral-rgb: 217 191 143;
@@ -59,11 +59,11 @@
    */
   /* Backgrounds */
   --color-background: #faf6f1;
-  --color-bg-elevated: #ffffff;
+  --color-elevated: #ffffff;
 
   /* Brand */
-  --color-accent: #bf5b45;
-  --color-accent-rgb: 191 91 69;
+  --color-primary: #bf5b45;
+  --color-primary-rgb: 191 91 69;
 
   --color-neutral: #d9bf8f;
   --color-neutral-rgb: 217 191 143;

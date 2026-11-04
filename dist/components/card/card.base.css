@@ -16,14 +16,14 @@
   }
 
   .card--animated:hover {
-    border-color: var(--color-accent-muted);
+    border-color: var(--color-primary-muted);
   }
 
   .card--clickable {
     @apply cursor-pointer;
   }
   .card--clickable:hover {
-    border-color: var(--color-accent-muted);
+    border-color: var(--color-primary-muted);
     @apply text-white;
   }
 
@@ -48,16 +48,20 @@
   }
   .card--shadow-glow {
     box-shadow: 0 0 24px 0
-      color-mix(in srgb, var(--color-accent) 35%, transparent);
+      color-mix(in srgb, var(--color-primary) 35%, transparent);
   }
   .card--shadow-glow:hover {
     box-shadow: 0 0 36px 4px
-      color-mix(in srgb, var(--color-accent) 55%, transparent);
+      color-mix(in srgb, var(--color-primary) 55%, transparent);
   }
 
   /* ── Glass ── */
   .card--glass {
-    background-color: rgb(var(--color-bg-elevated) / var(--card-glass-alpha));
+    background-color: color-mix(
+      in srgb,
+      var(--color-elevated) calc(var(--card-glass-alpha) * 100%),
+      transparent
+    );
     backdrop-filter: blur(var(--card-glass-blur));
     -webkit-backdrop-filter: blur(var(--card-glass-blur));
   }
@@ -75,6 +79,9 @@
   }
 
   /* ── Sizes ── */
+  .card__body {
+    @apply flex flex-col gap-2;
+  }
   .card__body--sm {
     @apply p-4 text-sm;
   }
@@ -88,29 +95,7 @@
     @apply px-8 py-4 text-sm;
   }
 
-  /* ── Typography ── */
-  .card__title {
-    @apply font-medium mb-2;
-    color: var(--color-fg);
-  }
-  .card__title--sm {
-    @apply text-lg;
-  }
-  .card__title--md {
-    @apply text-xl;
-  }
-  .card__title--lg {
-    @apply text-2xl;
-  }
-  .card__title--compact {
-    @apply text-lg;
-  }
-
-  .card__subtitle {
-    @apply text-base mb-4;
-    color: var(--color-accent);
-  }
-
+  /* ── Content ── */
   .card__description,
   .card__content,
   .card__children {

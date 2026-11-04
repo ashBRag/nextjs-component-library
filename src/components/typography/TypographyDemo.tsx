@@ -12,8 +12,14 @@ export default function TypographyDemo() {
       <Typography variant="body">
         Body text used for standard paragraph content.
       </Typography>
-      <Typography variant="caption">Caption text, accent colored.</Typography>
+      <Typography variant="caption">Caption text, primary colored.</Typography>
       <Typography variant="label">Label text</Typography>
+      <Typography variant="body" color="accent">
+        Accent colored text.
+      </Typography>
+      <Typography variant="body" color="muted">
+        Muted text.
+      </Typography>
       <div>
         <Typography variant="body" as="div">
           Body variant rendered as a div via the `as` prop.

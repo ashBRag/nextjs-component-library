@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/button/Button";
 import { RadioGroup } from "@/components/form/radio-group/RadioGroup";
 import { TextField } from "@/components/form/text-field/TextField";
-import type { Profile, Theme } from "@/providers/ThemeProvider";
+import type { Font, Profile, Theme } from "@/providers/ThemeProvider";
 
 const themeProfileUsage = `// app/layout.tsx
 import type { ReactNode } from "react";
@@ -21,7 +21,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 import { useTheme } from "nextjs-component-library/use-theme";
 
 export function ThemeSwitcher() {
-  const { theme, profile, setTheme, switchProfile } = useTheme();
+  const { theme, profile, font, setTheme, switchProfile, setFont } =
+    useTheme();
 
   return (
     <>
@@ -30,6 +31,9 @@ export function ThemeSwitcher() {
       </button>
       <button onClick={() => switchProfile("dev")}>
         Switch profile
+      </button>
+      <button onClick={() => setFont(font === "sans" ? "mono" : "sans")}>
+        Switch font
       </button>
     </>
   );
@@ -51,9 +55,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 // Scope to [data-theme]/[data-profile] to only affect that
 // combination, or use :root to apply regardless of theme/profile.
 [data-profile="dev"] {
-  --color-accent: #bf5b45;
-  --color-accent-rgb: 191 91 69;
-  --color-bg-elevated: #ffffff;
+  --color-primary: #bf5b45;
+  --color-primary-rgb: 191 91 69;
+  --color-elevated: #ffffff;
 }
 
 [data-profile="dev"][data-theme="light"] {
@@ -67,17 +71,22 @@ export type Profile =
   | "gravitova"
   | "calma";
 
+// UI font: sans = Inter, fira = Fira Code, mono = JetBrains Mono
+export type Font = "sans" | "fira" | "mono";
+
 export interface ThemeContextValue {
   theme: Theme;
   profile: Profile;
+  font: Font;
   setTheme: (theme: Theme) => void;
   switchProfile: (profile: Profile) => void;
+  setFont: (font: Font) => void;
 }`;
 
 const playgroundVars: { key: string; label: string; rgbKey?: string }[] = [
   { key: "--color-background", label: "Background" },
-  { key: "--color-bg-elevated", label: "Bg elevated" },
-  { key: "--color-accent", label: "Accent", rgbKey: "--color-accent-rgb" },
+  { key: "--color-elevated", label: "Bg elevated" },
+  { key: "--color-primary", label: "primary", rgbKey: "--color-primary-rgb" },
   { key: "--color-neutral", label: "Neutral", rgbKey: "--color-neutral-rgb" },
   { key: "--color-success", label: "Success", rgbKey: "--color-success-rgb" },
   { key: "--color-warning", label: "Warning", rgbKey: "--color-warning-rgb" },
@@ -131,6 +140,7 @@ export function ThemeProfileInterface() {
 export function ThemeProfileDemo() {
   const [theme, setTheme] = useState<Theme>("dark");
   const [profile, setProfile] = useState<Profile>("dev");
+  const [font, setFont] = useState<Font>("sans");
 
   const applyTheme = (value: string) => {
     if (value === "dark" || value === "light") {
@@ -146,13 +156,21 @@ export function ThemeProfileDemo() {
     }
   };
 
+  const applyFont = (value: string) => {
+    if (value === "sans" || value === "fira" || value === "mono") {
+      setFont(value);
+      document.documentElement.setAttribute("data-font", value);
+    }
+  };
+
   return (
     <>
       <p className="text-sm opacity-80 max-w-3xl">
         Import the stylesheet once, wrap the application with{" "}
         <code>ThemeProvider</code>, then use <code>useTheme</code> in client
-        components. The provider updates the <code>data-theme</code> and{" "}
-        <code>data-profile</code> attributes on the document root.
+        components. The provider updates the <code>data-theme</code>,{" "}
+        <code>data-profile</code> and <code>data-font</code> attributes on the
+        document root.
       </p>
       <div className="flex gap-8 flex-wrap">
         <RadioGroup
@@ -176,6 +194,17 @@ export function ThemeProfileDemo() {
           value={profile}
           onChange={applyProfile}
         />
+        <RadioGroup
+          label="Font"
+          name="font"
+          options={[
+            { value: "sans", label: "Inter" },
+            { value: "fira", label: "Fira Code" },
+            { value: "mono", label: "JetBrains Mono" },
+          ]}
+          value={font}
+          onChange={applyFont}
+        />
       </div>
     </>
   );
@@ -184,8 +213,8 @@ export function ThemeProfileDemo() {
 const colorPlaygroundUsage = `// Override any --color-* variable the active profile defines,
 // scoped to a profile/theme combination so it doesn't leak elsewhere.
 [data-profile="dev"][data-theme="dark"] {
-  --color-accent: #bf5b45;
-  --color-accent-rgb: 191 91 69;
+  --color-primary: #bf5b45;
+  --color-primary-rgb: 191 91 69;
 }`;
 
 export function ColorPlaygroundInterface() {
@@ -290,7 +319,7 @@ export function ColorPlaygroundDemo() {
           label="CSS"
           value={importCss}
           onChange={setImportCss}
-          placeholder={`--color-accent: #bf5b45;\n--color-accent-rgb: 191 91 69;`}
+          placeholder={`--color-primary: #bf5b45;\n--color-primary-rgb: 191 91 69;`}
           rows={5}
         />
         {importError && (

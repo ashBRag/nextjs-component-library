@@ -54,7 +54,7 @@ export const RadioGroup: React.FC<RadioGroupProps> = ({
                   isSelected ? "radio-group__option--selected" : ""
                 }`}
               >
-                {isSelected && <CornerBrackets wrapped color="accent" />}
+                {isSelected && <CornerBrackets wrapped color="primary" />}
 
                 <div className="radio-group__option-inner">
                   <div className="radio-group__option-label">

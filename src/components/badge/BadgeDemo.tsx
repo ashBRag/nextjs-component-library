@@ -9,6 +9,7 @@ export default function BadgeDemo() {
         <h3 className="text-lg font-medium">Variants</h3>
         <div className="flex gap-4 flex-wrap items-center">
           <Badge variant="primary">Primary</Badge>
+          <Badge variant="accent">Accent</Badge>
           <Badge variant="secondary">Secondary</Badge>
           <Badge variant="success">Success</Badge>
           <Badge variant="warning">Warning</Badge>

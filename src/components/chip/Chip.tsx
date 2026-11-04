@@ -1,8 +1,8 @@
 import React from "react";
 import "./chip.base.css";
 
-interface ChipProps {
-  variant?: "primary" | "secondary" | "outline";
+export interface ChipProps {
+  variant?: "primary" | "accent" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   icon?: React.ReactNode;
   disabled?: boolean;

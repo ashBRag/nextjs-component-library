@@ -21,11 +21,31 @@
   .typography--body {
     @apply text-base leading-relaxed;
   }
+  .typography--body-sm {
+    @apply text-sm;
+  }
+  .typography--body-lg {
+    @apply text-lg;
+  }
   .typography--caption {
     @apply text-sm leading-normal;
-    color: var(--color-accent);
+    color: var(--color-primary);
   }
   .typography--label {
     @apply text-sm font-medium uppercase tracking-wide;
+  }
+
+  /* ── Colors (declared after variants so they override e.g. caption) ── */
+  .typography--color-inherit {
+    color: inherit;
+  }
+  .typography--color-primary {
+    color: var(--color-primary);
+  }
+  .typography--color-accent {
+    color: var(--color-accent);
+  }
+  .typography--color-muted {
+    color: var(--color-fg-muted);
   }
 }

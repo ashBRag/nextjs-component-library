@@ -1,4 +1,5 @@
 import React from "react";
+import { type TypographyColor } from "../typography/Typography";
 import "./card.base.css";
 export interface CardProps {
     id?: string;
@@ -7,6 +8,8 @@ export interface CardProps {
     className?: string;
     titleClassName?: string;
     subtitleClassName?: string;
+    titleColor?: TypographyColor;
+    subtitleColor?: TypographyColor;
     size?: "sm" | "md" | "lg" | "compact";
     showBorder?: boolean;
     showCorners?: boolean;
@@ -17,4 +20,4 @@ export interface CardProps {
     clickable?: boolean;
     onClick?: () => void;
 }
-export declare function Card({ id, title, subtitle, className, titleClassName, subtitleClassName, size, showBorder, showCorners, shadow, glass, showDivider, children, clickable, onClick, }: CardProps): React.JSX.Element;
+export declare function Card({ id, title, subtitle, className, titleClassName, subtitleClassName, titleColor, subtitleColor, size, showBorder, showCorners, shadow, glass, showDivider, children, clickable, onClick, }: CardProps): React.JSX.Element;

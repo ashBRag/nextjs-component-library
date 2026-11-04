@@ -39,17 +39,25 @@ const defaultTag = {
   h3: "h3",
   h4: "h4",
   body: "p",
+  "body-sm": "p",
+  "body-lg": "p",
   caption: "span",
   label: "span"
 };
 function Typography({
   variant = "body",
+  color = "default",
   as,
   className = "",
   children
 }) {
   const Tag = as != null ? as : defaultTag[variant];
-  const cls = ["typography", `typography--${variant}`, className].filter(Boolean).join(" ");
+  const cls = [
+    "typography",
+    `typography--${variant}`,
+    color !== "default" && `typography--color-${color}`,
+    className
+  ].filter(Boolean).join(" ");
   return import_react.default.createElement(Tag, { className: cls }, children);
 }
 // Annotate the CommonJS export names for ESM import in node:

@@ -1,6 +1,17 @@
 @reference "tailwindcss";
 
 @layer components {
+  /* ── Color scheme ── */
+  .btn,
+  .btn--color-primary {
+    --btn-color: var(--color-primary);
+    --btn-color-rgb: var(--color-primary-rgb);
+  }
+  .btn--color-accent {
+    --btn-color: var(--color-accent);
+    --btn-color-rgb: var(--color-accent-rgb);
+  }
+
   .btn {
     @apply inline-flex items-center gap-2
            border border-transparent rounded-md
@@ -18,7 +29,7 @@
     box-shadow: var(--btn-shadow-active);
   }
   .btn:focus-visible {
-    @apply outline-none ring-2 ring-offset-2 ring-[var(--color-accent)] ring-offset-[var(--color-background)];
+    @apply outline-none ring-2 ring-offset-2 ring-[var(--btn-color)] ring-offset-[var(--color-background)];
   }
 
   .btn:disabled,
@@ -34,15 +45,15 @@
     @apply flex-1 text-left;
   }
 
-  /* ── Sizes ── */
+  /* ── Sizes ── (label font size comes from <Typography>) */
   .btn--sm {
-    @apply px-3 py-2 text-sm;
+    @apply px-3 py-2;
   }
   .btn--md {
-    @apply px-4 py-2 text-base;
+    @apply px-4 py-2;
   }
   .btn--lg {
-    @apply px-6 py-3 text-lg;
+    @apply px-6 py-3;
   }
 
   /* ── Elevation ── */
@@ -52,41 +63,41 @@
     --btn-shadow-active: 0 1px 2px 0 rgb(0 0 0 / 0.2);
   }
   .btn--primary {
-    --btn-shadow-rest: 0 2px 8px 0 rgb(var(--color-accent-rgb) / 0.4);
-    --btn-shadow-hover: 0 6px 18px 0 rgb(var(--color-accent-rgb) / 0.5);
-    --btn-shadow-active: 0 1px 3px 0 rgb(var(--color-accent-rgb) / 0.3);
+    --btn-shadow-rest: 0 2px 8px 0 rgb(var(--btn-color-rgb) / 0.4);
+    --btn-shadow-hover: 0 6px 18px 0 rgb(var(--btn-color-rgb) / 0.5);
+    --btn-shadow-active: 0 1px 3px 0 rgb(var(--btn-color-rgb) / 0.3);
   }
 
   /* ── Variants ── */
   .btn--primary {
-    @apply bg-[var(--color-accent)] text-white border-[var(--color-accent)];
+    @apply bg-[var(--btn-color)] text-white border-[var(--btn-color)];
   }
   .btn--primary:hover {
-    @apply bg-[var(--color-accent)]/80 border-[var(--color-accent)]/80;
+    @apply bg-[var(--btn-color)]/80 border-[var(--btn-color)]/80;
   }
 
   .btn--secondary {
-    @apply bg-transparent text-[var(--color-accent)] border-[var(--color-accent)];
+    @apply bg-transparent text-[var(--btn-color)] border-[var(--btn-color)];
   }
   .btn--secondary:hover {
-    @apply bg-[var(--color-accent)]/10;
+    @apply bg-[var(--btn-color)]/10;
   }
 
   .btn--outline {
-    @apply bg-transparent border-[var(--color-accent)];
-    color: var(--color-accent);
+    @apply bg-transparent border-[var(--btn-color)];
+    color: var(--btn-color);
   }
   .btn--outline:hover {
-    @apply bg-[var(--color-accent)]/10 text-[var(--color-accent)];
+    @apply bg-[var(--btn-color)]/10 text-[var(--btn-color)];
   }
 
   .btn--icon {
-    @apply bg-transparent border-[var(--color-accent)] rounded-full
+    @apply bg-transparent border-[var(--btn-color)] rounded-full
            p-0 justify-center;
     color: var(--color-text-primary);
   }
   .btn--icon:hover {
-    @apply bg-[var(--color-accent)]/10 text-[var(--color-accent)];
+    @apply bg-[var(--btn-color)]/10 text-[var(--btn-color)];
   }
   .btn--icon .btn__label {
     @apply hidden;

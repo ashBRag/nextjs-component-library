@@ -24,6 +24,12 @@ export default function CardDemo() {
         <Card title="Glass: sm" glass="sm" />
         <Card title="Glass: md" glass="md" />
         <Card title="Glass: lg + Shadow: lg" glass="lg" shadow="lg" />
+        <Card
+          title="Accent Title"
+          titleColor="accent"
+          subtitle="Muted subtitle"
+          subtitleColor="muted"
+        />
       </Grid>
     </>
   );

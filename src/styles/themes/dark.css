@@ -28,7 +28,7 @@
 }
 
 [data-theme="dark"] .btn:not(.btn--primary) {
-  --btn-shadow-rest: 0 2px 8px 0 rgb(var(--color-accent-rgb) / 0.3);
-  --btn-shadow-hover: 0 6px 18px 0 rgb(var(--color-accent-rgb) / 0.4);
-  --btn-shadow-active: 0 1px 3px 0 rgb(var(--color-accent-rgb) / 0.25);
+  --btn-shadow-rest: 0 2px 8px 0 rgb(var(--color-primary-rgb) / 0.3);
+  --btn-shadow-hover: 0 6px 18px 0 rgb(var(--color-primary-rgb) / 0.4);
+  --btn-shadow-active: 0 1px 3px 0 rgb(var(--color-primary-rgb) / 0.25);
 }

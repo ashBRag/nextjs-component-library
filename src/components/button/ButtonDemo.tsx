@@ -34,6 +34,18 @@ export default function ButtonDemo() {
       </div>
 
       <div className="space-y-2">
+        <h3 className="text-lg font-medium">Accent</h3>
+        <div className="flex gap-4 flex-wrap items-center">
+          <Button variant="primary" color="accent">Primary</Button>
+          <Button variant="secondary" color="accent">Secondary</Button>
+          <Button variant="outline" color="accent" iconBefore={<PlusIcon />}>
+            Outline
+          </Button>
+          <Button variant="icon" color="accent" aria-label="Add" iconBefore={<PlusIcon />} />
+        </div>
+      </div>
+
+      <div className="space-y-2">
         <h3 className="text-lg font-medium">Regular with icon</h3>
         <div className="flex gap-4 flex-wrap items-center">
           <Button variant="primary" size="md" iconBefore={<PlusIcon />}>

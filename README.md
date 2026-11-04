@@ -40,7 +40,7 @@ src/
       <field>/                # form-specific components (text-field, select, radio-group, status-bar)
   styles/
     globals.css               # global resets/imports (also lists every component's .base.css import)
-    fonts.css                 # --font-major / --font-fira: Google Fonts import + var contract
+    fonts.css                 # --font-major / --font-fira + [data-font] options: Google Fonts import + var contract
     themes/
       light.css
       dark.css
@@ -145,13 +145,23 @@ Notes:
 <Card title="Glass card" glass="md" shadow="lg" showCorners />
 ```
 
-- `glass`: `"none"` (default) | `"sm"` | `"md"` | `"lg"` — translucent surface + backdrop blur; higher levels are more transparent with stronger blur. Tinted from the active profile's `--color-bg-elevated`, so it adapts per profile/theme. Only visible over non-flat content (images, gradients, other elements). Combine with `shadow` independently.
+- `glass`: `"none"` (default) | `"sm"` | `"md"` | `"lg"` — translucent surface + backdrop blur; higher levels are more transparent with stronger blur. Tinted from the active profile's `--color-elevated`, so it adapts per profile/theme. Only visible over non-flat content (images, gradients, other elements). Combine with `shadow` independently.
 - `shadow`: `"none"` (default) | `"sm"` | `"md"` | `"lg"` | `"glow"`.
 - `showCorners`: defaults to `false`. Pass `showCorners` to render the corner brackets (dev profile only). **Breaking:** previously defaulted to `true` — cards that relied on the default no longer show brackets.
 
 ### Updating fonts
 
-Every component's `font-family` resolves through two CSS variables: `--font-major` for UI/body text, `--font-fira` for code blocks (`<pre>`/`<code>`). The library ships Inter + Fira Code via a Google Fonts `@import` in `src/styles/fonts.css`.
+Every component's `font-family` resolves through two CSS variables: `--font-major` for UI/body text, `--font-fira` for code blocks (`<pre>`/`<code>`). The library ships Inter, Fira Code and JetBrains Mono via a Google Fonts `@import` in `src/styles/fonts.css`.
+
+**Font option** — `ThemeProvider` sets `data-font` on `<html>` (`useTheme().setFont(...)`), which switches `--font-major`:
+
+| `font` | UI font (`--font-major`) |
+|---|---|
+| `"sans"` (default) | Inter (`--font-inter`) |
+| `"fira"` | Fira Code (`--font-fira`) |
+| `"mono"` | JetBrains Mono (`--font-jetbrains`) |
+
+Code blocks always use `--font-fira`. Family variables are declared under `:where(:root)` (zero specificity), so overriding `--font-inter` / `--font-fira` / `--font-jetbrains` anywhere wins; an override of `--font-major` on `:root` applies to the default `"sans"` option only.
 
 **As a consumer** — override either variable in your own CSS, loaded _after_ `nextjs-component-library/styles/globals.css` so it wins the cascade (same pattern as overriding `--color-*` tokens):
 
@@ -177,7 +187,7 @@ const inter = Inter({ variable: "--your-ui-font", subsets: ["latin"] });
 }
 ```
 
-**As a maintainer of this repo** (changing the library's shipped default for every consumer) — edit `src/styles/fonts.css`: swap the `@import url(...)` for a different Google Fonts URL, and update the `--font-major`/`--font-fira` values in its `:root` block to match the new family names. That's the only file to touch; `globals.css` already imports it first. This repo's own demo app (`src/app/layout.tsx`) self-hosts Inter/Fira Code via `next/font` regardless of `fonts.css`'s Google Fonts import, since `next/font`'s CSS variables are set on `<body>` and take precedence over `fonts.css`'s `:root` fallback.
+**As a maintainer of this repo** (changing the library's shipped default for every consumer) — edit `src/styles/fonts.css`: swap the `@import url(...)` for a different Google Fonts URL, and update the family variables (`--font-inter`/`--font-fira`/`--font-jetbrains`) and `[data-font]` mappings to match. That's the only file to touch; `globals.css` already imports it first. This repo's own demo app (`src/app/layout.tsx`) self-hosts the three fonts via `next/font`, setting `--font-inter`/`--font-fira`/`--font-jetbrains` on `<html>`; those win over `fonts.css`'s zero-specificity defaults.
 
 ### Updating to the latest version
 

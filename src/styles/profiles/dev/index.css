@@ -24,22 +24,40 @@
    * of these. Change appearance by editing only these.
    */
   --color-background: #282c33;
-  --color-bg-elevated: #343a45;
-  --color-accent: #c778dd;
-  --color-accent-rgb: 199 120 221;
+  --color-background-rgb: 40 44 51;
+
+  --color-elevated: #343a45;
+  --color-elevated-rgb: 52 58 69;
+
+  --color-primary: #c778dd;
+  --color-primary-rgb: 199 120 221;
+
+  --color-accent: #7ddd6f;
+  --color-accent-rgb: 125 221 111;
+
   --color-neutral: #abb2bf;
   --color-neutral-rgb: 171 178 191;
+
   --color-white: #ffffff;
+  --color-white-rgb: 255 255 255;
+
   --color-success: #98c379;
   --color-success-rgb: 152 195 121;
+
   --color-warning: #e5c07b;
   --color-warning-rgb: 229 192 123;
+
   --color-error: #e06c75;
   --color-error-rgb: 224 108 117;
+
   --color-info: #61afef;
+  --color-info-rgb: 97 175 239;
+
   --color-field-bg: rgb(var(--color-neutral-rgb) / 0.1);
   --color-border-subtle: rgb(51 65 85 / 0.5);
+
   --color-text-primary: #e2e8f0;
+  --color-text-primary-rgb: 226 232 240;
 }
 
 [data-profile="dev"][data-theme="light"] {
@@ -49,21 +67,36 @@
    * of these. Change appearance by editing only these.
    */
   --color-background: #f4f3ee;
-  --color-bg-elevated: #e8e8e8;
-  --color-accent: #c778dd;
-  --color-accent-rgb: 199 120 221;
+  --color-background-rgb: 244 243 238;
+
+  --color-elevated: #e8e8e8;
+  --color-elevated-rgb: 232 232 232;
+
+  --color-primary: #c778dd;
+  --color-primary-rgb: 199 120 221;
+
+  --color-accent: #7ddd6f;
+  --color-accent-rgb: 125 221 111;
+
   --color-neutral: #6b7280;
   --color-neutral-rgb: 107 114 128;
+
   --color-fg: #383a42;
   --color-fg-rgb: 56 58 66;
+
   --color-field-bg: rgb(255 255 255 / 0.8);
+
   --color-text-primary: #383a42;
 
   --color-success: #16a34a;
   --color-success-rgb: 22 163 74;
+
   --color-warning: #ca8a04;
   --color-warning-rgb: 202 138 4;
+
   --color-error: #e06c75;
   --color-error-rgb: 224 108 117;
+
   --color-info: #61afef;
+  --color-info-rgb: 97 175 239;
 }

@@ -12,7 +12,7 @@
 
 .text-field__label-prefix::before {
   content: var(--field-label-prefix, "#");
-  color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .text-field__input {
@@ -57,7 +57,7 @@
 
 .select-field__label-prefix::before {
   content: var(--field-label-prefix, "#");
-  color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .select-field__input {
@@ -70,7 +70,7 @@
 
 .select-field__input option {
   color: var(--color-field-text);
-  background-color: var(--color-bg-elevated, var(--color-field-bg));
+  background-color: var(--color-elevated, var(--color-field-bg));
 }
 
 .select-field__input:focus {
@@ -98,7 +98,7 @@
 
 .radio-group__label-prefix::before {
   content: var(--field-label-prefix, "#");
-  color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .radio-group__options {
@@ -125,7 +125,7 @@
 }
 
 .radio-group__option--selected {
-  border-color: var(--color-accent);
+  border-color: var(--color-primary);
   background-color: var(--color-radio-selected-bg);
   color: var(--color-field-text);
 }
@@ -160,7 +160,7 @@
 
 .status-bar__status-prefix::before {
   content: var(--status-bar-prefix, ">");
-  color: var(--color-accent);
+  color: var(--color-primary);
   margin-right: 0.25rem;
 }
 
@@ -172,5 +172,5 @@
 .status-bar__fill {
   @apply absolute inset-y-0 left-0 transition-all duration-300;
   width: var(--status-progress, 0%);
-  background-color: var(--color-accent);
+  background-color: var(--color-primary);
 }

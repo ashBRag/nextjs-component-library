@@ -37,27 +37,40 @@ var import_react = __toESM(require("react"));
 const ThemeCntxt = (0, import_react.createContext)({
   theme: "dark",
   profile: "dev",
+  font: "sans",
   setTheme: () => {
   },
   switchProfile: () => {
+  },
+  setFont: () => {
   }
 });
 function ThemeProvider({ children }) {
   const [theme, setThemeState] = (0, import_react.useState)("dark");
   const [profile, setProfile] = (0, import_react.useState)("dev");
+  const [font, setFont] = (0, import_react.useState)("sans");
   (0, import_react.useEffect)(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
   (0, import_react.useEffect)(() => {
     document.documentElement.setAttribute("data-profile", profile);
   }, [profile]);
+  (0, import_react.useEffect)(() => {
+    document.documentElement.setAttribute("data-font", font);
+  }, [font]);
   function setTheme(t) {
     setThemeState(t);
   }
   function switchProfile(p) {
     setProfile(p);
   }
-  return /* @__PURE__ */ import_react.default.createElement(ThemeCntxt, { value: { theme, profile, setTheme, switchProfile } }, children);
+  return /* @__PURE__ */ import_react.default.createElement(
+    ThemeCntxt,
+    {
+      value: { theme, profile, font, setTheme, switchProfile, setFont }
+    },
+    children
+  );
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

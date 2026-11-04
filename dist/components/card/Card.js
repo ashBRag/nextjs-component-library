@@ -33,7 +33,14 @@ __export(Card_exports, {
 module.exports = __toCommonJS(Card_exports);
 var import_react = __toESM(require("react"));
 var import_CornerBrackets = require("../corner/CornerBrackets");
+var import_Typography = require("../typography/Typography");
 var import_card_base = require("./card.base.css");
+const titleVariant = {
+  sm: "h4",
+  compact: "h4",
+  md: "h4",
+  lg: "h3"
+};
 function Card({
   id,
   title,
@@ -41,6 +48,8 @@ function Card({
   className = "",
   titleClassName = "",
   subtitleClassName = "",
+  titleColor = "default",
+  subtitleColor = "primary",
   size = "md",
   showBorder = true,
   showCorners = false,
@@ -59,8 +68,7 @@ function Card({
     glass !== "none" && `card--glass card--glass-${glass}`,
     className
   ].filter(Boolean).join(" ");
-  const bodyCls = `card__body--${size}`;
-  const titleCls = `card__title card__title--${size} ${titleClassName}`.trim();
+  const bodyCls = `card__body card__body--${size}`;
   return /* @__PURE__ */ import_react.default.createElement("div", { className: `card__corner-wrapper ${className}`, id }, showCorners && /* @__PURE__ */ import_react.default.createElement(
     import_CornerBrackets.CornerBrackets,
     {
@@ -69,7 +77,23 @@ function Card({
       inset: "outside",
       color: "nav-active"
     }
-  ), /* @__PURE__ */ import_react.default.createElement("div", { className: cardCls, onClick: clickable ? onClick : void 0 }, /* @__PURE__ */ import_react.default.createElement("div", { className: bodyCls }, typeof title === "string" ? /* @__PURE__ */ import_react.default.createElement("h3", { className: titleCls }, title) : title, subtitle && /* @__PURE__ */ import_react.default.createElement("h4", { className: `card__subtitle ${subtitleClassName}` }, subtitle), showDivider && children && /* @__PURE__ */ import_react.default.createElement("hr", { className: "card__divider" }), children && /* @__PURE__ */ import_react.default.createElement("div", { className: "card__children" }, children))));
+  ), /* @__PURE__ */ import_react.default.createElement("div", { className: cardCls, onClick: clickable ? onClick : void 0 }, /* @__PURE__ */ import_react.default.createElement("div", { className: bodyCls }, typeof title === "string" ? /* @__PURE__ */ import_react.default.createElement(
+    import_Typography.Typography,
+    {
+      variant: titleVariant[size],
+      color: titleColor,
+      className: titleClassName
+    },
+    title
+  ) : title, subtitle && /* @__PURE__ */ import_react.default.createElement(
+    import_Typography.Typography,
+    {
+      variant: "body",
+      color: subtitleColor,
+      className: subtitleClassName
+    },
+    subtitle
+  ), showDivider && children && /* @__PURE__ */ import_react.default.createElement("hr", { className: "card__divider" }), children && /* @__PURE__ */ import_react.default.createElement("div", { className: "card__children" }, children))));
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

@@ -61,7 +61,7 @@ const RadioGroup = ({
       {
         className: `radio-group__option ${isSelected ? "radio-group__option--selected" : ""}`
       },
-      isSelected && /* @__PURE__ */ import_react.default.createElement(import_CornerBrackets.CornerBrackets, { wrapped: true, color: "accent" }),
+      isSelected && /* @__PURE__ */ import_react.default.createElement(import_CornerBrackets.CornerBrackets, { wrapped: true, color: "primary" }),
       /* @__PURE__ */ import_react.default.createElement("div", { className: "radio-group__option-inner" }, /* @__PURE__ */ import_react.default.createElement("div", { className: "radio-group__option-label" }, option.label), option.description && /* @__PURE__ */ import_react.default.createElement("div", { className: "radio-group__option-description" }, option.description))
     ));
   })), error && /* @__PURE__ */ import_react.default.createElement("p", { className: "radio-group__error" }, error));

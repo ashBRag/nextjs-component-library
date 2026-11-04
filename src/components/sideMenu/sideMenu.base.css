@@ -78,13 +78,13 @@
 
   .side-menu__link:hover {
     opacity: 1;
-    border-color: var(--color-accent-muted);
+    border-color: var(--color-primary-muted);
   }
 
   .side-menu__link--active {
     opacity: 1;
     font-weight: 500;
-    color: var(--color-accent);
-    border-color: var(--color-accent);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
   }
 }

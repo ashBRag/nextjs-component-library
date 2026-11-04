@@ -37,7 +37,7 @@ function CornerBrackets({
   corners = ALL_CORNERS,
   size = "sm",
   inset = "inside",
-  color = "accent",
+  color = "primary",
   wrapped = false,
   className = ""
 }) {

@@ -32,9 +32,16 @@ __export(Button_exports, {
 });
 module.exports = __toCommonJS(Button_exports);
 var import_react = __toESM(require("react"));
+var import_Typography = require("../typography/Typography");
 var import_button_base = require("./button.base.css");
+const labelVariant = {
+  sm: "body-sm",
+  md: "body",
+  lg: "body-lg"
+};
 function Button({
   variant = "outline",
+  color = "primary",
   size = "md",
   iconBefore,
   iconAfter,
@@ -44,8 +51,23 @@ function Button({
   onClick,
   "aria-label": ariaLabel
 }) {
-  const cls = ["btn", `btn--${variant}`, `btn--${size}`, className].filter(Boolean).join(" ");
-  const content = /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, iconBefore && /* @__PURE__ */ import_react.default.createElement("span", { className: "btn__icon btn__icon--before" }, iconBefore), children && /* @__PURE__ */ import_react.default.createElement("span", { className: "btn__label" }, children), iconAfter && /* @__PURE__ */ import_react.default.createElement("span", { className: "btn__icon btn__icon--after" }, iconAfter));
+  const cls = [
+    "btn",
+    `btn--${variant}`,
+    `btn--${size}`,
+    `btn--color-${color}`,
+    className
+  ].filter(Boolean).join(" ");
+  const content = /* @__PURE__ */ import_react.default.createElement(import_react.default.Fragment, null, iconBefore && /* @__PURE__ */ import_react.default.createElement("span", { className: "btn__icon btn__icon--before" }, iconBefore), children && /* @__PURE__ */ import_react.default.createElement(
+    import_Typography.Typography,
+    {
+      as: "span",
+      variant: labelVariant[size],
+      color: "inherit",
+      className: "btn__label"
+    },
+    children
+  ), iconAfter && /* @__PURE__ */ import_react.default.createElement("span", { className: "btn__icon btn__icon--after" }, iconAfter));
   return /* @__PURE__ */ import_react.default.createElement(
     "button",
     {

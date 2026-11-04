@@ -6,12 +6,12 @@
     color: var(--color-fg);
   }
   .dropdown__trigger:hover {
-    color: var(--color-accent);
+    color: var(--color-primary);
   }
 
   .dropdown__panel {
     @apply min-w-48 py-1 border;
-    background-color: var(--color-bg-elevated);
+    background-color: var(--color-elevated);
     border-color: var(--color-border);
   }
 
@@ -31,17 +31,17 @@
     color: var(--color-fg);
   }
   .dropdown__item:hover {
-    background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
-    color: var(--color-accent);
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+    color: var(--color-primary);
   }
 
   .dropdown__item--active {
-    color: var(--color-accent);
+    color: var(--color-primary);
   }
 
   .dropdown__item-dot {
     @apply w-1.5 h-1.5 rounded-full shrink-0;
-    background-color: var(--color-accent);
+    background-color: var(--color-primary);
   }
 
   .dropdown__divider {

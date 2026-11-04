@@ -1,5 +1,10 @@
 import React from "react";
 import { CornerBrackets } from "../corner/CornerBrackets";
+import {
+  Typography,
+  type TypographyColor,
+  type TypographyVariant,
+} from "../typography/Typography";
 import "./card.base.css";
 
 export interface CardProps {
@@ -9,6 +14,8 @@ export interface CardProps {
   className?: string;
   titleClassName?: string;
   subtitleClassName?: string;
+  titleColor?: TypographyColor;
+  subtitleColor?: TypographyColor;
   size?: "sm" | "md" | "lg" | "compact";
   showBorder?: boolean;
   showCorners?: boolean;
@@ -41,6 +48,16 @@ export interface CardProps {
   
  */
 
+const titleVariant: Record<
+  NonNullable<CardProps["size"]>,
+  TypographyVariant
+> = {
+  sm: "h4",
+  compact: "h4",
+  md: "h4",
+  lg: "h3",
+};
+
 export function Card({
   id,
   title,
@@ -48,6 +65,8 @@ export function Card({
   className = "",
   titleClassName = "",
   subtitleClassName = "",
+  titleColor = "default",
+  subtitleColor = "primary",
   size = "md",
   showBorder = true,
   showCorners = false,
@@ -69,8 +88,7 @@ export function Card({
     .filter(Boolean)
     .join(" ");
 
-  const bodyCls = `card__body--${size}`;
-  const titleCls = `card__title card__title--${size} ${titleClassName}`.trim();
+  const bodyCls = `card__body card__body--${size}`;
 
   return (
     <div className={`card__corner-wrapper ${className}`} id={id}>
@@ -86,14 +104,24 @@ export function Card({
       <div className={cardCls} onClick={clickable ? onClick : undefined}>
         <div className={bodyCls}>
           {typeof title === "string" ? (
-            <h3 className={titleCls}>{title}</h3>
+            <Typography
+              variant={titleVariant[size]}
+              color={titleColor}
+              className={titleClassName}
+            >
+              {title}
+            </Typography>
           ) : (
             title
           )}
           {subtitle && (
-            <h4 className={`card__subtitle ${subtitleClassName}`}>
+            <Typography
+              variant="body"
+              color={subtitleColor}
+              className={subtitleClassName}
+            >
               {subtitle}
-            </h4>
+            </Typography>
           )}
           {showDivider && children && <hr className="card__divider" />}
           {children && <div className="card__children">{children}</div>}

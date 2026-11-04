@@ -15,29 +15,29 @@
   @apply relative flex items-center gap-3 p-4 rounded-lg border
            backdrop-blur-sm shadow-xl min-w-[320px] max-w-[480px]
            text-sm;
-  background-color: var(--color-bg-elevated);
+  background-color: var(--color-elevated);
   color: var(--color-text-primary);
   transition: transform 300ms ease-out, opacity 300ms ease-out,
     scale 300ms ease-out;
 }
 
 .toast--success {
-  --toast-accent-color: var(--color-success);
+  --toast-primary-color: var(--color-success);
   border-color: rgb(var(--color-success-rgb) / 0.5);
 }
 
 .toast--error {
-  --toast-accent-color: var(--color-error);
+  --toast-primary-color: var(--color-error);
   border-color: rgb(var(--color-error-rgb) / 0.5);
 }
 
 .toast--warning {
-  --toast-accent-color: var(--color-warning);
+  --toast-primary-color: var(--color-warning);
   border-color: rgb(var(--color-warning-rgb) / 0.5);
 }
 
 .toast--info {
-  --toast-accent-color: var(--color-info);
+  --toast-primary-color: var(--color-info);
   border-color: var(--color-info);
 }
 
@@ -45,7 +45,7 @@
 .toast--filled {
   color: #ffffff;
   border-color: transparent;
-  background-color: var(--toast-accent-color);
+  background-color: var(--toast-primary-color);
 }
 
 .toast--filled .toast__icon {
@@ -77,7 +77,7 @@
 .toast__progress {
   @apply absolute bottom-0 left-0 h-1 rounded-b-lg;
   width: 100%;
-  background-color: var(--toast-accent-color);
+  background-color: var(--toast-primary-color);
   transition: width var(--toast-duration, 4000ms) linear;
 }
 
@@ -88,7 +88,7 @@
 /* Icon */
 .toast__icon {
   @apply flex-shrink-0;
-  color: var(--toast-accent-color);
+  color: var(--toast-primary-color);
 }
 
 /* Message */

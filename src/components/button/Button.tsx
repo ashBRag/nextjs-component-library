@@ -1,8 +1,14 @@
 import React from "react";
+import {
+  Typography,
+  type TypographyVariant,
+} from "../typography/Typography";
 import "./button.base.css";
 
-interface ButtonProps {
+export interface ButtonProps {
   variant?: "primary" | "secondary" | "outline" | "icon";
+  /** Color scheme for background, border, shadow, hover and focus ring. */
+  color?: "primary" | "accent";
   size?: "sm" | "md" | "lg";
   iconBefore?: React.ReactNode;
   iconAfter?: React.ReactNode;
@@ -13,8 +19,16 @@ interface ButtonProps {
   "aria-label"?: string;
 }
 
+const labelVariant: Record<NonNullable<ButtonProps["size"]>, TypographyVariant> =
+  {
+    sm: "body-sm",
+    md: "body",
+    lg: "body-lg",
+  };
+
 export function Button({
   variant = "outline",
+  color = "primary",
   size = "md",
   iconBefore,
   iconAfter,
@@ -24,7 +38,13 @@ export function Button({
   onClick,
   "aria-label": ariaLabel,
 }: ButtonProps) {
-  const cls = ["btn", `btn--${variant}`, `btn--${size}`, className]
+  const cls = [
+    "btn",
+    `btn--${variant}`,
+    `btn--${size}`,
+    `btn--color-${color}`,
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 
@@ -33,7 +53,16 @@ export function Button({
       {iconBefore && (
         <span className="btn__icon btn__icon--before">{iconBefore}</span>
       )}
-      {children && <span className="btn__label">{children}</span>}
+      {children && (
+        <Typography
+          as="span"
+          variant={labelVariant[size]}
+          color="inherit"
+          className="btn__label"
+        >
+          {children}
+        </Typography>
+      )}
       {iconAfter && (
         <span className="btn__icon btn__icon--after">{iconAfter}</span>
       )}

@@ -12,6 +12,7 @@ export default function ChipDemo() {
         <h3 className="text-lg font-medium">Variants</h3>
         <div className="flex gap-2 flex-wrap items-center">
           <Chip variant="primary">Primary</Chip>
+          <Chip variant="accent">Accent</Chip>
           <Chip variant="secondary">Secondary</Chip>
           <Chip variant="outline">Outline</Chip>
           <Chip variant="primary" disabled>

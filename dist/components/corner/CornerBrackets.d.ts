@@ -2,7 +2,7 @@ import React from "react";
 type CornerPosition = "tl" | "tr" | "bl" | "br";
 type CornerSize = "sm" | "lg";
 type CornerInset = "inside" | "outside";
-type CornerColor = "accent" | "nav-active" | "tab-active" | "corner-token";
+type CornerColor = "primary" | "nav-active" | "tab-active" | "corner-token";
 interface CornerBracketsProps {
     corners?: CornerPosition[];
     size?: CornerSize;
@@ -13,7 +13,7 @@ interface CornerBracketsProps {
     className?: string;
 }
 /**
- * Decorative corner-bracket accents. Purely visual — renders nothing
+ * Decorative corner-bracket primarys. Purely visual — renders nothing
  * outside the dev profile (see src/styles/profiles/dev/corner.css).
  */
 export declare function CornerBrackets({ corners, size, inset, color, wrapped, className, }: CornerBracketsProps): React.JSX.Element;
