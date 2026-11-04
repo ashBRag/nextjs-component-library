@@ -24,7 +24,7 @@ __export(DrawerDemo_exports, {
 module.exports = __toCommonJS(DrawerDemo_exports);
 var import_react = require("react");
 var import_Button = require("@/components/button/Button");
-var import_Drawer = require("./Drawer");
+var import_Drawer = require("./Drawer.js");
 function DrawerDemo() {
   const [side, setSide] = (0, import_react.useState)(
     null

@@ -25,8 +25,8 @@ __export(lib_exports, {
   scrollToElement: () => import_utils.scrollToElement
 });
 module.exports = __toCommonJS(lib_exports);
-var import_api = require("./api");
-var import_utils = require("./utils");
+var import_api = require("./api.js");
+var import_utils = require("./utils.js");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   ApiError,

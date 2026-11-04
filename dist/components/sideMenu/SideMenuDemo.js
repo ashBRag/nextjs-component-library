@@ -23,7 +23,7 @@ __export(SideMenuDemo_exports, {
 });
 module.exports = __toCommonJS(SideMenuDemo_exports);
 var import_react = require("react");
-var import_SideMenu = require("./SideMenu");
+var import_SideMenu = require("./SideMenu.js");
 const sampleGroups = [
   {
     label: "Workspace",

@@ -22,7 +22,7 @@ __export(GridDemo_exports, {
   default: () => GridDemo
 });
 module.exports = __toCommonJS(GridDemo_exports);
-var import_Grid = require("./Grid");
+var import_Grid = require("./Grid.js");
 function Box({ children }) {
   return /* @__PURE__ */ React.createElement(
     "div",

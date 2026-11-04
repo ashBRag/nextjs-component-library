@@ -1,6 +1,6 @@
 import "../chunk-FJBZBVPE.mjs";
-import { ApiError, fetchApi } from "./api";
-import { capitalizeFirstLetter, scrollToElement, scrollToBottom } from "./utils";
+import { ApiError, fetchApi } from "./api.mjs";
+import { capitalizeFirstLetter, scrollToElement, scrollToBottom } from "./utils.mjs";
 export {
   ApiError,
   capitalizeFirstLetter,

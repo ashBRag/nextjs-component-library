@@ -2,7 +2,7 @@ import "../chunk-FJBZBVPE.mjs";
 import {
   ThemeProvider,
   ThemeCntxt
-} from "./ThemeProvider";
+} from "./ThemeProvider.mjs";
 export {
   ThemeCntxt,
   ThemeProvider

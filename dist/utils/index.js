@@ -22,7 +22,7 @@ __export(utils_exports, {
   createValidationRules: () => import_formValidations.createValidationRules
 });
 module.exports = __toCommonJS(utils_exports);
-var import_formValidations = require("./formValidations");
+var import_formValidations = require("./formValidations.js");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   FormValidator,

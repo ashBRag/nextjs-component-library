@@ -2,7 +2,7 @@
 import "../../../chunk-FJBZBVPE.mjs";
 import { useState } from "react";
 import { Button } from "@/components/button/Button";
-import { StatusBar } from "./StatusBar";
+import { StatusBar } from "./StatusBar.mjs";
 function StatusBarDemo() {
   const [progress, setProgress] = useState(45);
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(StatusBar, { progress, status: "Processing" }), /* @__PURE__ */ React.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React.createElement(

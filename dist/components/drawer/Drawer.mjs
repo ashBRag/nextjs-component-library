@@ -1,7 +1,7 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
 import React, { useEffect } from "react";
-import { Button } from "../button/Button";
+import { Button } from "../button/Button.mjs";
 import "./drawer.base.css";
 function Drawer({
   open,

@@ -22,7 +22,7 @@ __export(BreadcrumbsDemo_exports, {
   default: () => BreadcrumbsDemo
 });
 module.exports = __toCommonJS(BreadcrumbsDemo_exports);
-var import_Breadcrumbs = require("./Breadcrumbs");
+var import_Breadcrumbs = require("./Breadcrumbs.js");
 function BreadcrumbsDemo() {
   return /* @__PURE__ */ React.createElement("div", { className: "space-y-2" }, /* @__PURE__ */ React.createElement("h3", { className: "text-lg font-medium" }, "Navigation paths"), /* @__PURE__ */ React.createElement("div", { className: "space-y-6" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("p", { className: "text-sm font-medium mb-2 opacity-80" }, "Default separator"), /* @__PURE__ */ React.createElement(
     import_Breadcrumbs.Breadcrumbs,

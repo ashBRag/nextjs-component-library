@@ -1,8 +1,8 @@
 import "../../chunk-FJBZBVPE.mjs";
-import { RadioGroup } from "./radio-group/RadioGroup";
-import { Select } from "./select/Select";
-import { StatusBar } from "./status-bar/StatusBar";
-import { TextField } from "./text-field/TextField";
+import { RadioGroup } from "./radio-group/RadioGroup.mjs";
+import { Select } from "./select/Select.mjs";
+import { StatusBar } from "./status-bar/StatusBar.mjs";
+import { TextField } from "./text-field/TextField.mjs";
 export {
   RadioGroup,
   Select,

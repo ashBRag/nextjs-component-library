@@ -1,7 +1,7 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
 import { useState } from "react";
-import WavyTimeline from "./WavyTimeline";
+import WavyTimeline from "./WavyTimeline.mjs";
 const wavyTimelinePoints = [
   {
     id: "1998",

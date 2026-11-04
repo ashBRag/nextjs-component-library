@@ -24,7 +24,7 @@ __export(DialogDemo_exports, {
 module.exports = __toCommonJS(DialogDemo_exports);
 var import_react = require("react");
 var import_Button = require("@/components/button/Button");
-var import_Dialog = require("./Dialog");
+var import_Dialog = require("./Dialog.js");
 function DialogDemo() {
   const [open, setOpen] = (0, import_react.useState)(false);
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(import_Button.Button, { variant: "primary", onClick: () => setOpen(true) }, "Open Dialog"), /* @__PURE__ */ React.createElement(

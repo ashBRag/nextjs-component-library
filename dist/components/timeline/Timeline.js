@@ -33,7 +33,7 @@ __export(Timeline_exports, {
 });
 module.exports = __toCommonJS(Timeline_exports);
 var import_react = __toESM(require("react"));
-var import_CornerBrackets = require("../corner/CornerBrackets");
+var import_CornerBrackets = require("../corner/CornerBrackets.js");
 var import_timeline_base = require("./timeline.base.css");
 function Timeline({
   items,

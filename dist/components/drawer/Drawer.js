@@ -33,7 +33,7 @@ __export(Drawer_exports, {
 });
 module.exports = __toCommonJS(Drawer_exports);
 var import_react = __toESM(require("react"));
-var import_Button = require("../button/Button");
+var import_Button = require("../button/Button.js");
 var import_drawer_base = require("./drawer.base.css");
 function Drawer({
   open,

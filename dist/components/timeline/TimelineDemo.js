@@ -32,7 +32,7 @@ __export(TimelineDemo_exports, {
   default: () => TimelineDemo
 });
 module.exports = __toCommonJS(TimelineDemo_exports);
-var import_Timeline = __toESM(require("./Timeline"));
+var import_Timeline = __toESM(require("./Timeline.js"));
 const timelineItems = [
   {
     id: "1",

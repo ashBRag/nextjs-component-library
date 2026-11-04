@@ -22,7 +22,7 @@ __export(MenuDemo_exports, {
   default: () => MenuDemo
 });
 module.exports = __toCommonJS(MenuDemo_exports);
-var import_Menu = require("./Menu");
+var import_Menu = require("./Menu.js");
 function MenuDemo() {
   return /* @__PURE__ */ React.createElement(
     import_Menu.DropdownMenu,

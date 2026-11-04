@@ -1,7 +1,7 @@
 "use client";
 import "../../../chunk-FJBZBVPE.mjs";
 import { useState } from "react";
-import { TextField } from "./TextField";
+import { TextField } from "./TextField.mjs";
 function TextFieldDemo() {
   const [textValue, setTextValue] = useState("");
   const [textareaValue, setTextareaValue] = useState("");

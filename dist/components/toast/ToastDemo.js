@@ -24,7 +24,7 @@ __export(ToastDemo_exports, {
 module.exports = __toCommonJS(ToastDemo_exports);
 var import_react = require("react");
 var import_Button = require("@/components/button/Button");
-var import_Toast = require("./Toast");
+var import_Toast = require("./Toast.js");
 function ToastDemo() {
   const [toasts, setToasts] = (0, import_react.useState)([]);
   const addToast = (type, variant) => {

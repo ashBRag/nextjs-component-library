@@ -23,7 +23,7 @@ __export(useTheme_exports, {
 });
 module.exports = __toCommonJS(useTheme_exports);
 var import_react = require("react");
-var import_ThemeProvider = require("../providers/ThemeProvider");
+var import_ThemeProvider = require("../providers/ThemeProvider.js");
 function useTheme() {
   const ctx = (0, import_react.use)(import_ThemeProvider.ThemeCntxt);
   if (!ctx) throw new Error("useTheme must be used within ThemeProvider");

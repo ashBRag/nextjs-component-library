@@ -33,7 +33,7 @@ __export(WavyTimelineDemo_exports, {
 });
 module.exports = __toCommonJS(WavyTimelineDemo_exports);
 var import_react = require("react");
-var import_WavyTimeline = __toESM(require("./WavyTimeline"));
+var import_WavyTimeline = __toESM(require("./WavyTimeline.js"));
 const wavyTimelinePoints = [
   {
     id: "1998",

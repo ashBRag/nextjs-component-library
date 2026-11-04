@@ -1,7 +1,7 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
 import { useState } from "react";
-import Tabs from "./Tabs";
+import Tabs from "./Tabs.mjs";
 const sampleTabs = [
   {
     id: "tab1",

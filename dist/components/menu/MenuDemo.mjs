@@ -1,6 +1,6 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
-import { DropdownMenu } from "./Menu";
+import { DropdownMenu } from "./Menu.mjs";
 function MenuDemo() {
   return /* @__PURE__ */ React.createElement(
     DropdownMenu,

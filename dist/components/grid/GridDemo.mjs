@@ -1,6 +1,6 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
-import { Grid, GridItem } from "./Grid";
+import { Grid, GridItem } from "./Grid.mjs";
 function Box({ children }) {
   return /* @__PURE__ */ React.createElement(
     "div",

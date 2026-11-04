@@ -22,7 +22,7 @@ __export(ButtonDemo_exports, {
   default: () => ButtonDemo
 });
 module.exports = __toCommonJS(ButtonDemo_exports);
-var import_Button = require("./Button");
+var import_Button = require("./Button.js");
 function PlusIcon() {
   return /* @__PURE__ */ React.createElement(
     "svg",

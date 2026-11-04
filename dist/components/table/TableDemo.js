@@ -22,7 +22,7 @@ __export(TableDemo_exports, {
   default: () => TableDemo
 });
 module.exports = __toCommonJS(TableDemo_exports);
-var import_Table = require("./Table");
+var import_Table = require("./Table.js");
 const columns = [
   { key: "name", label: "Name" },
   { key: "role", label: "Role" },

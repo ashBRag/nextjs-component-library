@@ -1,6 +1,6 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
-import NavList from "./NavList";
+import NavList from "./NavList.mjs";
 function NavListDemo() {
   return /* @__PURE__ */ React.createElement(
     NavList,

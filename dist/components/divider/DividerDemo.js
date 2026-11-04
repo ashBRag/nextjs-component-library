@@ -22,7 +22,7 @@ __export(DividerDemo_exports, {
   default: () => DividerDemo
 });
 module.exports = __toCommonJS(DividerDemo_exports);
-var import_Divider = require("./Divider");
+var import_Divider = require("./Divider.js");
 function DividerDemo() {
   return /* @__PURE__ */ React.createElement("div", { className: "flex gap-4 flex-wrap items-center" }, /* @__PURE__ */ React.createElement(import_Divider.Divider, { spacing: "sm" }), /* @__PURE__ */ React.createElement(import_Divider.Divider, { spacing: "md" }), /* @__PURE__ */ React.createElement(import_Divider.Divider, { spacing: "lg" }), /* @__PURE__ */ React.createElement(import_Divider.Divider, { label: "OR" }));
 }

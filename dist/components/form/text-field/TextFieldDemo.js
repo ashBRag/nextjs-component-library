@@ -23,7 +23,7 @@ __export(TextFieldDemo_exports, {
 });
 module.exports = __toCommonJS(TextFieldDemo_exports);
 var import_react = require("react");
-var import_TextField = require("./TextField");
+var import_TextField = require("./TextField.js");
 function TextFieldDemo() {
   const [textValue, setTextValue] = (0, import_react.useState)("");
   const [textareaValue, setTextareaValue] = (0, import_react.useState)("");

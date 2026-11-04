@@ -22,7 +22,7 @@ __export(providers_exports, {
   ThemeProvider: () => import_ThemeProvider.ThemeProvider
 });
 module.exports = __toCommonJS(providers_exports);
-var import_ThemeProvider = require("./ThemeProvider");
+var import_ThemeProvider = require("./ThemeProvider.js");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   ThemeCntxt,

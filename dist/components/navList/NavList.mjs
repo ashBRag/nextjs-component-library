@@ -1,7 +1,7 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
 import React, { useState } from "react";
-import { CornerBrackets } from "../corner/CornerBrackets";
+import { CornerBrackets } from "../corner/CornerBrackets.mjs";
 import "./navList.base.css";
 function NavList({
   tabs,

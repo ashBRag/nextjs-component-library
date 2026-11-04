@@ -1,7 +1,7 @@
 "use client";
 import "../../../chunk-FJBZBVPE.mjs";
 import { useState } from "react";
-import { Select } from "./Select";
+import { Select } from "./Select.mjs";
 function SelectDemo() {
   const [value, setValue] = useState("opt1");
   return /* @__PURE__ */ React.createElement(

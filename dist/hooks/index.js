@@ -24,10 +24,10 @@ __export(hooks_exports, {
   useToast: () => import_useToast.useToast
 });
 module.exports = __toCommonJS(hooks_exports);
-var import_useForm = require("./useForm");
-var import_useScroll = require("./useScroll");
-var import_useTheme = require("./useTheme");
-var import_useToast = require("./useToast");
+var import_useForm = require("./useForm.js");
+var import_useScroll = require("./useScroll.js");
+var import_useTheme = require("./useTheme.js");
+var import_useToast = require("./useToast.js");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   useForm,

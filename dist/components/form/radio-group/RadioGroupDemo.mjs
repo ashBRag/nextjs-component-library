@@ -1,7 +1,7 @@
 "use client";
 import "../../../chunk-FJBZBVPE.mjs";
 import { useState } from "react";
-import { RadioGroup } from "./RadioGroup";
+import { RadioGroup } from "./RadioGroup.mjs";
 function RadioGroupDemo() {
   const [value, setValue] = useState("a");
   return /* @__PURE__ */ React.createElement(

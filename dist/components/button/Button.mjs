@@ -2,7 +2,7 @@ import "../../chunk-FJBZBVPE.mjs";
 import React from "react";
 import {
   Typography
-} from "../typography/Typography";
+} from "../typography/Typography.mjs";
 import "./button.base.css";
 const labelVariant = {
   sm: "body-sm",

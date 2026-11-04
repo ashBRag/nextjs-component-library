@@ -3,7 +3,7 @@ import {
   __spreadValues
 } from "../chunk-FJBZBVPE.mjs";
 import { useState, useCallback, useMemo } from "react";
-import { FormValidator } from "../utils/formValidations";
+import { FormValidator } from "../utils/formValidations.mjs";
 const useForm = (config) => {
   const {
     initialValues,

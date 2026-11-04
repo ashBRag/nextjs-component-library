@@ -1,9 +1,9 @@
 import "../../chunk-FJBZBVPE.mjs";
 import React from "react";
-import { CornerBrackets } from "../corner/CornerBrackets";
+import { CornerBrackets } from "../corner/CornerBrackets.mjs";
 import {
   Typography
-} from "../typography/Typography";
+} from "../typography/Typography.mjs";
 import "./card.base.css";
 const titleVariant = {
   sm: "h4",

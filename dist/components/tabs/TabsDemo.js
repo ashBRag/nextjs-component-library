@@ -33,7 +33,7 @@ __export(TabsDemo_exports, {
 });
 module.exports = __toCommonJS(TabsDemo_exports);
 var import_react = require("react");
-var import_Tabs = __toESM(require("./Tabs"));
+var import_Tabs = __toESM(require("./Tabs.js"));
 const sampleTabs = [
   {
     id: "tab1",

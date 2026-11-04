@@ -2,7 +2,7 @@
 import "../../chunk-FJBZBVPE.mjs";
 import { useState } from "react";
 import { Button } from "@/components/button/Button";
-import { Dialog } from "./Dialog";
+import { Dialog } from "./Dialog.mjs";
 function DialogDemo() {
   const [open, setOpen] = useState(false);
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(Button, { variant: "primary", onClick: () => setOpen(true) }, "Open Dialog"), /* @__PURE__ */ React.createElement(

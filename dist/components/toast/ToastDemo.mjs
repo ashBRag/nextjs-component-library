@@ -2,7 +2,7 @@
 import "../../chunk-FJBZBVPE.mjs";
 import { useState } from "react";
 import { Button } from "@/components/button/Button";
-import { ToastContainer } from "./Toast";
+import { ToastContainer } from "./Toast.mjs";
 function ToastDemo() {
   const [toasts, setToasts] = useState([]);
   const addToast = (type, variant) => {

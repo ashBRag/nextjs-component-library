@@ -24,7 +24,7 @@ __export(StatusBarDemo_exports, {
 module.exports = __toCommonJS(StatusBarDemo_exports);
 var import_react = require("react");
 var import_Button = require("@/components/button/Button");
-var import_StatusBar = require("./StatusBar");
+var import_StatusBar = require("./StatusBar.js");
 function StatusBarDemo() {
   const [progress, setProgress] = (0, import_react.useState)(45);
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(import_StatusBar.StatusBar, { progress, status: "Processing" }), /* @__PURE__ */ React.createElement("div", { className: "flex gap-2" }, /* @__PURE__ */ React.createElement(

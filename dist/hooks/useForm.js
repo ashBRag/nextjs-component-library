@@ -39,7 +39,7 @@ __export(useForm_exports, {
 });
 module.exports = __toCommonJS(useForm_exports);
 var import_react = require("react");
-var import_formValidations = require("../utils/formValidations");
+var import_formValidations = require("../utils/formValidations.js");
 const useForm = (config) => {
   const {
     initialValues,

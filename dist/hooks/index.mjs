@@ -1,8 +1,8 @@
 import "../chunk-FJBZBVPE.mjs";
-import { useForm } from "./useForm";
-import { useScrollToElement } from "./useScroll";
-import { useTheme } from "./useTheme";
-import { useToast } from "./useToast";
+import { useForm } from "./useForm.mjs";
+import { useScrollToElement } from "./useScroll.mjs";
+import { useTheme } from "./useTheme.mjs";
+import { useToast } from "./useToast.mjs";
 export {
   useForm,
   useScrollToElement,

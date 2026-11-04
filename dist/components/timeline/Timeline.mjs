@@ -1,7 +1,7 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
 import React from "react";
-import { CornerBrackets } from "../corner/CornerBrackets";
+import { CornerBrackets } from "../corner/CornerBrackets.mjs";
 import "./timeline.base.css";
 function Timeline({
   items,

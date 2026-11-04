@@ -24,10 +24,10 @@ __export(form_exports, {
   TextField: () => import_TextField.TextField
 });
 module.exports = __toCommonJS(form_exports);
-var import_RadioGroup = require("./radio-group/RadioGroup");
-var import_Select = require("./select/Select");
-var import_StatusBar = require("./status-bar/StatusBar");
-var import_TextField = require("./text-field/TextField");
+var import_RadioGroup = require("./radio-group/RadioGroup.js");
+var import_Select = require("./select/Select.js");
+var import_StatusBar = require("./status-bar/StatusBar.js");
+var import_TextField = require("./text-field/TextField.js");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   RadioGroup,

@@ -23,7 +23,7 @@ __export(RadioGroupDemo_exports, {
 });
 module.exports = __toCommonJS(RadioGroupDemo_exports);
 var import_react = require("react");
-var import_RadioGroup = require("./RadioGroup");
+var import_RadioGroup = require("./RadioGroup.js");
 function RadioGroupDemo() {
   const [value, setValue] = (0, import_react.useState)("a");
   return /* @__PURE__ */ React.createElement(

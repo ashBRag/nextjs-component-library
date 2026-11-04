@@ -33,7 +33,7 @@ __export(RadioGroup_exports, {
 });
 module.exports = __toCommonJS(RadioGroup_exports);
 var import_react = __toESM(require("react"));
-var import_CornerBrackets = require("../../corner/CornerBrackets");
+var import_CornerBrackets = require("../../corner/CornerBrackets.js");
 var import_form_base = require("../form.base.css");
 const RadioGroup = ({
   label,

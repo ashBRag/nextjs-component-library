@@ -1,6 +1,6 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
-import { Button } from "./Button";
+import { Button } from "./Button.mjs";
 function PlusIcon() {
   return /* @__PURE__ */ React.createElement(
     "svg",

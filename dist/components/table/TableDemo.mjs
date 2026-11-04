@@ -1,6 +1,6 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
-import { Table } from "./Table";
+import { Table } from "./Table.mjs";
 const columns = [
   { key: "name", label: "Name" },
   { key: "role", label: "Role" },

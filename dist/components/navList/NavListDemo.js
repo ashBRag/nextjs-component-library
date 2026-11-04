@@ -32,7 +32,7 @@ __export(NavListDemo_exports, {
   default: () => NavListDemo
 });
 module.exports = __toCommonJS(NavListDemo_exports);
-var import_NavList = __toESM(require("./NavList"));
+var import_NavList = __toESM(require("./NavList.js"));
 function NavListDemo() {
   return /* @__PURE__ */ React.createElement(
     import_NavList.default,

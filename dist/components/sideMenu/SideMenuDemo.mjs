@@ -1,7 +1,7 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
 import { useState } from "react";
-import { SideMenu } from "./SideMenu";
+import { SideMenu } from "./SideMenu.mjs";
 const sampleGroups = [
   {
     label: "Workspace",

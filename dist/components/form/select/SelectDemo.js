@@ -23,7 +23,7 @@ __export(SelectDemo_exports, {
 });
 module.exports = __toCommonJS(SelectDemo_exports);
 var import_react = require("react");
-var import_Select = require("./Select");
+var import_Select = require("./Select.js");
 function SelectDemo() {
   const [value, setValue] = (0, import_react.useState)("opt1");
   return /* @__PURE__ */ React.createElement(

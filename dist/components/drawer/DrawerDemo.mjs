@@ -2,7 +2,7 @@
 import "../../chunk-FJBZBVPE.mjs";
 import { useState } from "react";
 import { Button } from "@/components/button/Button";
-import { Drawer } from "./Drawer";
+import { Drawer } from "./Drawer.mjs";
 function DrawerDemo() {
   const [side, setSide] = useState(
     null

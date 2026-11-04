@@ -32,7 +32,7 @@ __export(Button_exports, {
 });
 module.exports = __toCommonJS(Button_exports);
 var import_react = __toESM(require("react"));
-var import_Typography = require("../typography/Typography");
+var import_Typography = require("../typography/Typography.js");
 var import_button_base = require("./button.base.css");
 const labelVariant = {
   sm: "body-sm",

@@ -1,6 +1,6 @@
 "use client";
 import "../../chunk-FJBZBVPE.mjs";
-import Timeline from "./Timeline";
+import Timeline from "./Timeline.mjs";
 const timelineItems = [
   {
     id: "1",

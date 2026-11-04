@@ -22,7 +22,7 @@ __export(CenterWrapperDemo_exports, {
   default: () => CenterWrapperDemo
 });
 module.exports = __toCommonJS(CenterWrapperDemo_exports);
-var import_CenterWrapper = require("./CenterWrapper");
+var import_CenterWrapper = require("./CenterWrapper.js");
 function CenterWrapperDemo() {
   return /* @__PURE__ */ React.createElement("div", { className: "border border-dashed border-gray-500 h-48" }, /* @__PURE__ */ React.createElement(import_CenterWrapper.ScreenCenterWrapper, { className: "h-48 !min-h-0" }, /* @__PURE__ */ React.createElement("p", null, "Centered content")));
 }

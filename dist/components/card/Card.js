@@ -32,8 +32,8 @@ __export(Card_exports, {
 });
 module.exports = __toCommonJS(Card_exports);
 var import_react = __toESM(require("react"));
-var import_CornerBrackets = require("../corner/CornerBrackets");
-var import_Typography = require("../typography/Typography");
+var import_CornerBrackets = require("../corner/CornerBrackets.js");
+var import_Typography = require("../typography/Typography.js");
 var import_card_base = require("./card.base.css");
 const titleVariant = {
   sm: "h4",
