@@ -24,8 +24,9 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description: "Portfolio",
+  title: "UI Component Library",
+  description:
+    "A component library built with Next.js, Tailwind CSS, and TypeScript.",
 };
 
 export default function RootLayout({
@@ -41,9 +42,7 @@ export default function RootLayout({
       data-font="sans"
       className={`${fira.variable} ${inter.variable} ${jetbrains.variable}`}
     >
-      <body className="antialiased">
-        {children}
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
